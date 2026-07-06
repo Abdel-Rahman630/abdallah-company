@@ -9,9 +9,9 @@ export default function Home() {
     <>
       <VideoSection />
       <WhoWeAre />
-      <OurProducts />
-      <OurBranches />
-      <News />
+      {/* <OurProducts /> */}
+      {/* <OurBranches /> */}
+      {/* <News /> */}
     </>
   );
 }
