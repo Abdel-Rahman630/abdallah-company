@@ -11,17 +11,25 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 
 const countdownData = [
-  { to: 80, suffix: "+", title: <>Years of <br /> Experience</> },
+  {
+    to: 80,
+    suffix: "+",
+    title: (
+      <>
+        Years of <br /> Experience
+      </>
+    ),
+  },
   { to: 33, suffix: "+", title: "BRANCHES" },
   { to: 90, suffix: "+", title: "DEALERS" },
 ];
 
 export default function WhoWeAre() {
   return (
-    <section 
-      id="whoWeAre" 
+    <section
+      id="whoWeAre"
       className="section-padding bg-white"
-      style={{ backgroundImage: 'linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(157, 157, 157, 0.52) 100%)' }}
+      style={{ backgroundImage: "linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(157, 157, 157, 0.52) 100%)" }}
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-[26px] lg:gap-[50px]">
@@ -41,12 +49,7 @@ export default function WhoWeAre() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <SwiperSlide key={num}>
                     <div className="relative h-full w-full">
-                      <Image
-                        src={`/${num}.png`}
-                        alt={`Slide ${num}`}
-                        fill
-                        className="object-cover"
-                      />
+                      <Image src={`/${num}.png`} alt={`Slide ${num}`} fill className="object-cover" />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -59,41 +62,24 @@ export default function WhoWeAre() {
             <div className="text-content">
               <ScrollAnimation delay={0.2}>
                 <div className="flex items-center gap-[10px] mb-[11.5px]">
-                  <Image
-                    src="/logo.png"
-                    alt="Logo"
-                    width={96}
-                    height={24}
-                    className="h-6 w-auto object-contain"
-                  />
-                  <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">
-                    who we are
-                  </span>
+                  <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 w-auto object-contain" />
+                  <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">who we are</span>
                 </div>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.3}>
                 <h2 className="text-[#1E1E1E] text-[2rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
-                  A Legacy of{" "}
-                  <span className="font-bold">
-                    Automotive & machinery distributor
-                  </span>{" "}
-                  Excellence
+                  A Legacy of <span className="font-bold">Automotive & machinery distributor</span> Excellence
                 </h2>
               </ScrollAnimation>
 
               <ScrollAnimation delay={0.4}>
                 <p className="text-[#727272] text-[1rem] font-normal  mb-[32px]">
-                  <span className="font-bold text-[#1E1E1E]">
-                    Abdullah Hashim Company Limited (AHCL){" "}
-                  </span>
-                  is an established automotive and machinery distributor in
-                  Saudi Arabia. Since its establishment in 1945, it has grown
-                  and expanded its network of showrooms, service centers &
-                  dealers, allowing it to serve a large customer base in the
-                  kingdom. AHCL operates across automobiles (including HONDA),
-                  machinery & commercial trucks and is headquartered in Jeddah,
-                  Saudi Arabia.
+                  <span className="font-bold text-[#1E1E1E]">Abdullah Hashim Company Limited (AHCL) </span>
+                  is an established automotive and machinery distributor in Saudi Arabia. Since its establishment in
+                  1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to
+                  serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA),
+                  machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.
                 </p>
               </ScrollAnimation>
 
@@ -126,17 +112,21 @@ export default function WhoWeAre() {
                   <div
                     key={index}
                     className={`flex flex-col flex-1 items-center md:items-start text-center md:text-left ${
-                      index !== countdownData.length - 1 ? "border-b border-[#D1A52A] md:border-b-0 md:border-r md:border-[#D1A52A]" : ""
+                      index !== countdownData.length - 1
+                        ? "border-b border-[#D1A52A] md:border-b-0 md:border-r md:border-[#D1A52A]"
+                        : ""
                     } ${
-                      index === 0 ? "pb-4 md:pb-0" : index === countdownData.length - 1 ? "pt-4 md:pt-0 md:pl-12" : "py-4 md:py-0 md:pl-12"
+                      index === 0
+                        ? "pb-4 md:pb-0"
+                        : index === countdownData.length - 1
+                          ? "pt-4 md:pt-0 md:pl-12"
+                          : "py-4 md:py-0 md:pl-12"
                     }`}
                   >
-                    <span className="text-[#1E1E1E] font-['Inter'] text-[3.75rem] font-semibold uppercase mb-[10px] leading-none">
+                    <span className="text-[#1E1E1E]  text-[3.75rem] font-semibold uppercase mb-[10px] leading-none">
                       <Counter to={item.to} suffix={item.suffix} />
                     </span>
-                    <span className="text-[#656565] font-['Inter'] text-[1.25rem] font-normal uppercase">
-                      {item.title}
-                    </span>
+                    <span className="text-[#656565]  text-[1.25rem] font-normal uppercase">{item.title}</span>
                   </div>
                 ))}
               </div>

@@ -3,6 +3,7 @@
 import { ReactNode, useState } from "react";
 import { useHeader, navItems } from "@/hooks/header";
 import DropdownPanel from "@/components/ui/DropdownPanel";
+import ProductsDropdown from "@/components/ui/ProductsDropdown";
 
 interface HeaderClientProps {
   logo: ReactNode;
@@ -54,12 +55,14 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         boxes={item.dropdown.boxes}
                         image={item.dropdown.image}
                       />
+                    ) : item.label === "Our Products" ? (
+                      <ProductsDropdown />
                     ) : (
                       <div
                         className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px]"
                         style={{ minWidth: "939px", minHeight: "418px" }}
                       >
-                        {/* Our Products dropdown — content to be added later */}
+                        {/* Other dropdowns placeholder */}
                       </div>
                     )}
                   </div>
@@ -76,17 +79,18 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
         <button
           className="min-[1200px]:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] rounded-lg transition-colors z-50 relative"
           onClick={() => {
-            if (mobileOpen && mobileActiveMenu) {
-              setMobileActiveMenu(null);
+            if (mobileOpen) {
+              setMobileOpen(false);
+              setTimeout(() => setMobileActiveMenu(null), 500);
             } else {
-              setMobileOpen((prev) => !prev);
+              setMobileOpen(true);
             }
           }}
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen && !mobileActiveMenu ? "rotate-45 translate-y-[8px]" : ""}`} />
-          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen && !mobileActiveMenu ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen && !mobileActiveMenu ? "-rotate-45 -translate-y-[8px]" : ""}`} />
+          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
+          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${mobileOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
         </button>
       </div>
 
@@ -96,7 +100,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
           mobileOpen ? "max-h-[100dvh] opacity-100" : "max-h-0 opacity-0"
         } ${scrolled || mobileOpen ? "bg-[#1E1E1E]" : "bg-transparent"}`}
       >
-        <div className="container mx-auto px-4 pb-6 pt-4 relative">
+        <div className="container mx-auto px-4 lg:pb-6 pt-4 relative">
           
           {/* Main Links */}
           <div className={`transition-all duration-300 ${mobileActiveMenu ? "-translate-x-full absolute w-full opacity-0 pointer-events-none" : "translate-x-0 relative opacity-100"}`}>
@@ -148,10 +152,13 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                 boxes={activeDropdownData.boxes}
                 image={activeDropdownData.image}
               />
+            ) : mobileActiveMenu === "Our Products" ? (
+              <div className="p-4">
+                <ProductsDropdown isMobile={true} />
+              </div>
             ) : (
               <div className="text-white p-4">
-                {/* Placeholder for Our Products on mobile */}
-                Our Products content coming soon...
+                {/* Placeholder */}
               </div>
             )}
           </div>
