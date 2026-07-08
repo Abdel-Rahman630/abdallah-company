@@ -5,14 +5,14 @@ interface YellowButtonProps {
   href: string;
   children: ReactNode;
   icon?: ReactNode;
+  className?: string;
 }
 
-export default function YellowButton({ href, children, icon }: YellowButtonProps) {
+export default function YellowButton({ href, children, icon, className = "" }: YellowButtonProps) {
   return (
     <Link
       href={href}
-      className="flex items-center justify-center gap-[4px] px-[16px] rounded-[5px] text-[#1E1E1E] bg-[#D0A42A] hover:opacity-90 transition-opacity"
-      style={{ height: "37px", fontSize: "0.85rem", fontWeight: 400, alignSelf: "stretch" }}
+      className={`inline-flex justify-center items-center gap-[10px] bg-[#D1A52A] text-black rounded-[5px] px-[16px] h-[37px] text-[0.85rem] font-normal self-stretch transition-transform duration-500 hover:scale-105 active:scale-95 ${className}`}
     >
       {children}
       {icon}

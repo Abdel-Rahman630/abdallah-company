@@ -75,12 +75,16 @@ export const navItems = [
     },
   },
   {
-    label: "Find Us",
-    href: "#find-us",
+    label: "Contact Us",
+    href: "#contact",
     dropdown: {
-      sectionTitle: "Find Us",
+      sectionTitle: "Contact Us",
       image: "/find.png",
       boxes: [
+        {
+          title: "Contact Us",
+          text: "Get in touch with our team for inquiries, support, or assistance.",
+        },
         {
           title: "Our Locations",
           text: "Find AHCL showrooms, service centers, and branches across Saudi Arabia.",

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#231F20] py-[80px]">
-      <div className="container mx-auto px-4">
+    <footer className="bg-[#231F20] py-[50px] md:py-[80px]">
+      <div className="container mx-auto">
         {/* Top Section */}
         <div className="pb-[64px] border-b border-[rgba(255,255,255,0.30)] grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: Logo & Socials */}
@@ -100,8 +100,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
+          {/* Wrapper for Col 2 and 3 */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-2">
+            {/* Column 2: Quick Links */}
+            <div>
             <h4 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
               Quick Links
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
@@ -141,18 +143,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#products"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {"AHCL's Store"}
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="#news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Find Us
+                  {"AHCL's Store"}
                 </Link>
               </li>
             </ul>
@@ -222,6 +216,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
           </div>
 
           {/* Column 3: Services */}

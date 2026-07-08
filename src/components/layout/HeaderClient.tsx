@@ -20,35 +20,33 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 py-[25px] ${
-        scrolled || mobileOpen ? "bg-[#1E1E1E]" : "bg-transparent"
+      className={`fixed z-50 transition-all duration-300 ${
+        scrolled || mobileOpen
+          ? "top-0 left-0 w-full bg-[#1E1E1E] py-[15px] min-[1200px]:py-[25px]"
+          : "top-[15px] left-[15px] w-[calc(100%-30px)] bg-[#1E1E1E] py-[15px] min-[1200px]:top-0 min-[1200px]:left-0 min-[1200px]:w-full min-[1200px]:bg-transparent min-[1200px]:rounded-none min-[1200px]:py-[25px]"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between gap-6">
+      <div className="container mx-auto flex items-center justify-between gap-6">
         {/* Column 1: Logo */}
         {logo}
 
         {/* Column 2: Navigation (desktop) */}
         <nav className="hidden min-[1200px]:flex items-center">
-          <ul
-            className={`flex items-center gap-[10px] p-[4px] rounded-[5px] transition-all duration-300 ${
-              scrolled ? "bg-[#1E1E1E] border border-[#474747]" : "bg-white"
-            }`}
-          >
+          <ul className="flex items-center gap-[10px] p-[4px] rounded-[5px] transition-all duration-300">
             {navItems.map((item) => (
               <li key={item.label} className="relative">
                 <button
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap ${
-                    scrolled ? "text-white" : "text-[#1E1E1E]"
-                  } ${activeDropdown === item.label ? (scrolled ? "bg-[#333]" : "bg-gray-100") : ""}`}
+                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap text-white cursor-pointer ${
+                    activeDropdown === item.label ? "bg-[#333]" : ""
+                  }`}
                 >
                   {item.label}
                 </button>
 
-                {/* Dropdown Panel */}
+                {/* Dropdown Panel - single unified dropdown */}
                 {activeDropdown === item.label && (
-                  <div className="absolute top-full mt-3 z-50" style={{ left: "50%", transform: "translateX(-50%)" }}>
+                  <div className="absolute top-full mt-3 z-50 left-1/2 -translate-x-1/2">
                     {item.dropdown ? (
                       <DropdownPanel
                         sectionTitle={item.dropdown.sectionTitle}
@@ -58,10 +56,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                     ) : item.label === "Our Products" ? (
                       <ProductsDropdown />
                     ) : (
-                      <div
-                        className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px]"
-                        style={{ minWidth: "939px", minHeight: "418px" }}
-                      >
+                      <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] min-w-[939px] min-h-[418px]">
                         {/* Other dropdowns placeholder */}
                       </div>
                     )}
@@ -77,7 +72,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
 
         {/* Burger button (mobile/tablet) */}
         <button
-          className="min-[1200px]:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] rounded-lg transition-colors z-50 relative"
+          className="min-[1200px]:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] transition-colors z-50 relative cursor-pointer"
           onClick={() => {
             if (mobileOpen) {
               setMobileOpen(false);
@@ -98,9 +93,9 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
       <div
         className={`min-[1200px]:hidden transition-all duration-500 overflow-hidden ${
           mobileOpen ? "max-h-[100dvh] opacity-100" : "max-h-0 opacity-0"
-        } ${scrolled || mobileOpen ? "bg-[#1E1E1E]" : "bg-transparent"}`}
+        } bg-[#1E1E1E]`}
       >
-        <div className="container mx-auto px-4 lg:pb-6 pt-4 relative">
+        <div className="container mx-auto lg:pb-6 pt-4 relative">
           
           {/* Main Links */}
           <div className={`transition-all duration-300 ${mobileActiveMenu ? "-translate-x-full absolute w-full opacity-0 pointer-events-none" : "translate-x-0 relative opacity-100"}`}>
@@ -113,7 +108,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         setMobileActiveMenu(item.label);
                       }
                     }}
-                    className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-white text-[0.95rem] font-medium hover:bg-[#2D2D2D] transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-3 text-white text-[0.95rem] font-medium hover:bg-[#2D2D2D] transition-colors cursor-pointer"
                   >
                     <span>{item.label}</span>
                     <svg
@@ -153,7 +148,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                 image={activeDropdownData.image}
               />
             ) : mobileActiveMenu === "Our Products" ? (
-              <div className="p-4">
+              <div className="lg:p-4">
                 <ProductsDropdown isMobile={true} />
               </div>
             ) : (
