@@ -106,7 +106,7 @@ export default function News() {
 
                   {/* Second Box (Content) */}
                   <div>
-                    <h3 className="text-white text-[2.625rem] font-bold mb-[1rem] leading-tight">
+                    <h3 className="text-white text-[1.8rem] md:text-[2.625rem] font-bold mb-[1rem] leading-tight">
                       {"UNVEILING THE FUTURE OF PERFORMANCE: AHCL'S FLAGSHIP INNOVATION HUB Exclusive Reveal"}
                     </h3>
                     <p className="text-white/80 text-[1.1rem] font-normal leading-relaxed">
@@ -152,7 +152,7 @@ export default function News() {
 
             {/* Newsletter Div */}
             <RevealText delay={0.5}>
-              <div className="rounded-[12px] border border-[#686868] bg-[#1E1E1E] flex flex-col p-[32px] items-start gap-[1rem]">
+              <div className="rounded-[12px] border border-[#686868] bg-[#1E1E1E] flex md:flex-row flex-col md:items-center p-[32px]  gap-[1rem]">
                 <h4 className="text-[#D1A52A] text-[1rem] font-medium">
                   Stay updated with AHCL
                 </h4>
@@ -217,13 +217,13 @@ export default function News() {
                 </span>
                 
                 {/* Title */}
-                <h4 className="absolute bottom-[16px] left-1/2 -translate-x-1/2 w-[90%] text-center text-white text-[1rem] font-semibold transition-transform duration-500 group-hover:-translate-y-8 z-10">
+                <h4 className="absolute bottom-[16px] left-1/2 -translate-x-1/2 w-[90%] text-white text-[1rem] font-semibold transition-transform duration-500 group-hover:-translate-y-8 z-10">
                   {event.title}
                 </h4>
                 
                 {/* Hover Link */}
                 <div className="absolute bottom-[16px] left-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
-                  <ArrowLink href="#" color="white" className="!text-[0.75rem]">view more</ArrowLink>
+                  <ArrowLink href="#" color="white" className="!text-[0.6rem]">view more</ArrowLink>
                 </div>
               </div>
             </SwiperSlide>

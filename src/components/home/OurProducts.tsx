@@ -21,21 +21,27 @@ const productsData = [
   },
   {
     title: "Power Solutions",
-    image: "/power-demo.png",
+    image: "/power-demo.jpg",
     description:
       "AHCL offers power generators as a robust supplier of  power solutions, with more than 30,000 units of  generators sold to date. We are the distributor of  Kirloskar Oil Engines, a leading brand in the field.",
   },
   {
     title: "Agriculture",
-    image: "/agriculture-demo.png",
+    image: "/agriculture-demo.jpg",
     description:
       "Sonalika International tractors Ltd. is India's heavy duty tractor manufacturing  company, producing best-selling tractors and well recognized in domestic and  international market as the third largest player.",
   },
   {
-    title: "Equipment",
-    image: "/Equipment-demo.png",
+    title: "Construction Equipment",
+    image: "/Equipment-demo.jpg",
     description:
       "AHCL offers construction equipment, water pumps, and air compressors built for performance, reliability, and efficiency, backed by expert support and nationwide service.",
+  },
+  {
+    title: "Water Solutions",
+    image: "/water-demo.jpg",
+    description:
+      "AHCL provides reliable water solutions, including high-performance pumps and systems designed for efficient water supply, transfer, and management across residential, commercial, and industrial applications.",
   },
   {
     title: "Material Handling",
@@ -50,10 +56,7 @@ export default function OurProducts() {
   const active = productsData[activeIndex];
 
   return (
-    <section
-      id="products"
-      className="relative overflow-hidden py-[50px]"
-    >
+    <section id="products" className="relative overflow-hidden py-[50px]">
       {/* Background image with fade transition */}
       <AnimatePresence mode="sync">
         <motion.div
@@ -75,9 +78,7 @@ export default function OurProducts() {
       </AnimatePresence>
 
       {/* Overlay */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none bg-overlay-gradient"
-      />
+      <div className="absolute inset-0 z-10 pointer-events-none bg-overlay-gradient" />
 
       {/* Content */}
       <div className="relative z-20 container mx-auto">
@@ -127,15 +128,14 @@ export default function OurProducts() {
               >
                 {/* Left: Title + Desc */}
                 <div className="w-full md:w-[50%]">
-                    <h3 className="text-white text-[2rem] font-bold uppercase mb-4">
-                      {active.title}
-                    </h3>
-                    <p className="md:mb-0 mb-6 text-white text-justify text-[1rem] font-normal">
-                      {active.description}
-                    </p>
+                  <h3 className="text-white text-[2rem] font-bold uppercase mb-4">
+                    {active.title}
+                  </h3>
+                  <p className="md:mb-0 mb-6 text-white text-justify text-[1rem] font-normal">
+                    {active.description}
+                  </p>
                 </div>
-                  <ArrowLink href="#">More about {active.title}</ArrowLink>
-
+                <ArrowLink href="#">More about {active.title}</ArrowLink>
               </motion.div>
             </AnimatePresence>
           </div>

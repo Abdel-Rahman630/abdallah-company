@@ -41,10 +41,10 @@ export const navItems = [
           title: "News",
           text: "Stay updated with the latest news, announcements, and company highlights from AHCL.",
         },
-        {
-          title: "Press Releases",
-          text: "Explore the latest official announcements and corporate updates from AHCL.",
-        },
+        // {
+        //   title: "Press Releases",
+        //   text: "Explore the latest official announcements and corporate updates from AHCL.",
+        // },
         {
           title: "Events",
           text: "Discover the latest events, exhibitions, and activities featuring AHCL.",

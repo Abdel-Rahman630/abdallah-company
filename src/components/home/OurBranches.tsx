@@ -24,7 +24,7 @@ export default function OurBranches() {
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-[50px] lg:gap-[100px] items-center">
           {/* First Div: Content — order-2 on mobile, order-1 on lg */}
-          <div className="flex-1 py-[24px] order-2 lg:order-1">
+          <div className="flex-1 py-[24px]">
             <RevealText delay={0.1}>
               <h3 className="mb-[8px] uppercase text-[#D1A52A] text-[0.6875rem] font-medium tracking-[2.5px]">
                 OUR BRANCHES
@@ -198,7 +198,7 @@ export default function OurBranches() {
           </div>
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
-          <div className="flex-1 w-full lg:w-auto flex flex-col justify-center order-1 lg:order-2">
+          <div className="flex-1 w-full lg:w-auto flex flex-col justify-center">
             <RevealImage className="relative w-full max-w-[727px] h-[300px] md:h-[544px]">
               <Image
                 src="/map.png"
