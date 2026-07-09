@@ -60,16 +60,8 @@ export const navItems = [
       image: "/about.png",
       boxes: [
         {
-          title: "Open Positions",
-          text: "Explore current job openings and find the right opportunity to grow your career at AHCL.",
-        },
-        {
-          title: "Life at AHCL",
-          text: "Discover what it is like to work at AHCL and be part of a dynamic, driven team.",
-        },
-        {
-          title: "Internships",
-          text: "Kick-start your career with AHCL's internship programs designed for ambitious young talent.",
+          title: "Why AHCL",
+          text: "Discover why AHCL is a trusted partner, delivering quality, reliability, and exceptional service across Saudi Arabia.",
         },
       ],
     },
