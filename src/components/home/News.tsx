@@ -87,7 +87,7 @@ export default function News() {
             <RevealText delay={0.3}>
               {/* Box with Background Image */}
               <div
-                className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[48px] min-h-[600px] bg-[url('/new1.png')] bg-cover bg-center"
+                className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[48px] h-[645px] bg-[url('/new1.png')] bg-cover bg-center"
               >
                 {/* Optional dark overlay to ensure text is readable */}
                 <div className="absolute inset-0 bg-black/40 z-0" />
@@ -119,7 +119,7 @@ export default function News() {
           </div>
 
           {/* Second Div (Right Side) */}
-          <div className="w-full lg:w-1/2 flex flex-col">
+          <div className="w-full lg:w-1/2 flex flex-col justify-end">
             <div className="mb-[24px] md:mb-[50px] flex justify-end">
               <ArrowLink href="#" color="black">all news</ArrowLink>
             </div>
@@ -162,7 +162,7 @@ export default function News() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full rounded-[3px] border-b border-[#E5E5E5] bg-[#333] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal focus:border-[#D1A52A] transition-colors"
+                  className="md:w-[33.3%] w-full rounded-[3px] border-b border-[#E5E5E5] bg-[#333] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal focus:border-[#D1A52A] transition-colors"
                 />
               </div>
             </RevealText>

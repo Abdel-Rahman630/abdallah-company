@@ -34,7 +34,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
         <nav className="hidden min-[1200px]:flex items-center">
           <ul className="flex items-center gap-[10px] p-[4px] rounded-[5px] transition-all duration-300">
             {navItems.map((item) => (
-              <li key={item.label} className="relative">
+              <li key={item.label}>
                 <button
                   onClick={() => toggleDropdown(item.label)}
                   className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap text-white cursor-pointer ${

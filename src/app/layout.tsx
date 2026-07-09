@@ -18,16 +18,16 @@ export const metadata: Metadata = {
   title: "Abdallah Company | Leading Innovation",
   description: "Discover our premium products, news, and global branches. We deliver excellence and innovative solutions.",
   openGraph: {
-    title: "Abdallah Company",
-    description: "Discover our premium products, news, and global branches.",
+    title: "Abdullah Hashim Company",
+    description: "Driving Progress Through Innovation, Quality, and Reliability",
     url: "https://abdallah-company.com",
-    siteName: "Abdallah Company",
+    siteName: "Abdullah Hashim Company",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdallah Company",
-    description: "Discover our premium products, news, and global branches.",
+    title: "Abdullah Hashim Company",
+    description: "Driving Progress Through Innovation, Quality, and Reliability",
   },
 };
 
