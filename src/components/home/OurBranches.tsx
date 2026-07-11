@@ -4,6 +4,7 @@ import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import { Counter } from "@/hooks/Counter";
 import ArrowLink from "@/components/ui/ArrowLink";
+import SubTitle from "@/components/ui/SubTitle";
 
 const countdownData = [
   {
@@ -26,9 +27,7 @@ export default function OurBranches() {
           {/* First Div: Content — order-2 on mobile, order-1 on lg */}
           <div className="flex-1 py-[24px]">
             <RevealText delay={0.1}>
-              <h3 className="mb-[8px] uppercase text-[#D1A52A] text-[0.6875rem] font-medium tracking-[2.5px]">
-                OUR BRANCHES
-              </h3>
+              <SubTitle>OUR BRANCHES</SubTitle>
             </RevealText>
 
             <RevealText delay={0.2}>

@@ -45,7 +45,7 @@ export default function ArrowLink({ href = "#", children, color = "white", class
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center gap-2 text-[1rem] font-normal uppercase underline transition-opacity duration-500 hover:opacity-80 ${
+      className={`group inline-flex items-center gap-2 text-[1rem] font-bold uppercase underline transition-opacity duration-500 hover:opacity-80 ${
         color === "black" ? "text-[#1E1E1E]" : "text-white"
       } ${className}`}
     >

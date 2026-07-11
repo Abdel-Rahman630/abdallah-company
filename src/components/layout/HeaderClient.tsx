@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useHeader, navItems } from "@/hooks/header";
 import DropdownPanel from "@/components/ui/DropdownPanel";
 import ProductsDropdown from "@/components/ui/ProductsDropdown";
@@ -14,6 +15,9 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
   const { scrolled, activeDropdown, headerRef, toggleDropdown } = useHeader();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
+  
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
 
   const activeDropdownData = navItems.find((item) => item.label === mobileActiveMenu)?.dropdown;
 
@@ -22,8 +26,8 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
       ref={headerRef}
       className={`fixed z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? "top-0 left-0 w-full bg-[#1E1E1E] py-[15px] min-[1200px]:py-[25px]"
-          : "top-[15px] left-[15px] w-[calc(100%-30px)] bg-[#1E1E1E] py-[15px] min-[1200px]:top-0 min-[1200px]:left-0 min-[1200px]:w-full min-[1200px]:bg-transparent min-[1200px]:rounded-none min-[1200px]:py-[25px]"
+          ? "top-0 left-0 w-full py-[15px] min-[1200px]:py-[25px] bg-[#1E1E1E]"
+          : `top-[15px] left-[15px] w-[calc(100%-30px)] py-[15px] min-[1200px]:top-0 min-[1200px]:left-0 min-[1200px]:w-full min-[1200px]:rounded-none min-[1200px]:py-[25px] bg-[#1E1E1E] ${isHomepage ? "min-[1200px]:bg-transparent" : "min-[1200px]:bg-[rgba(30,30,30,0.20)] min-[1200px]:backdrop-blur-[0px]"}`
       }`}
     >
       <div className="container mx-auto flex items-center justify-between gap-6">
