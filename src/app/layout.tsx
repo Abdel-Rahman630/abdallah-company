@@ -17,6 +17,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "Abdallah Company",
+  description: "Welcome to Abdallah Company",
+  openGraph: {
+    title: "Abdallah Company",
+    description: "Welcome to Abdallah Company",
+    images: [
+      {
+        url: "/bg.png",
+        width: 1200,
+        height: 630,
+        alt: "Abdallah Company Logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abdallah Company",
+    description: "Welcome to Abdallah Company",
+    images: ["/bg.png"],
+  },
+};
 
 export default function RootLayout({
   children,
