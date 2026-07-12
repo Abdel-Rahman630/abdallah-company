@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-export default function NewsBanner() {
+export default function ContactBanner() {
   return (
     <section className="relative w-full h-[366px]">
       <Image
-        src="/newsBanner.png"
-        alt="News & Events"
+        src="/contactanner.png"
+        alt="Contact Us"
         fill
         className="object-cover"
         priority
@@ -16,7 +16,7 @@ export default function NewsBanner() {
         <h1
           className="absolute bottom-[50px] left-4 lg:left-0 text-[#FFF] text-[3rem] font-bold z-20"
         >
-          News &amp; Events
+          Contact Us
         </h1>
       </div>
     </section>

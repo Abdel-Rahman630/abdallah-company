@@ -25,7 +25,7 @@ export function RevealImage({ children, className = "", delay = 0 }: RevealProps
           initial={{ scale: 1.2 }}
           animate={{ scale: isInView ? 1 : 1.2 }}
           transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay }}
-          className="w-full h-full origin-left"
+          className="w-full h-full origin-left relative"
         >
           {children}
         </motion.div>

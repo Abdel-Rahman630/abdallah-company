@@ -70,6 +70,7 @@ export default function EventsSection() {
                   alt={event.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="260px"
                 />
 
                 {/* Default Overlay */}

@@ -14,7 +14,7 @@ export default function NewsDetailsSlider() {
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="relative w-full h-[500px] mb-[40px] rounded-[10px] overflow-hidden">
+    <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] mb-[40px] rounded-[10px] overflow-hidden">
       <Swiper
         modules={[Navigation]}
         navigation={{
@@ -31,6 +31,7 @@ export default function NewsDetailsSlider() {
               alt={`News Detail ${index + 1}`}
               fill
               className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 65vw"
             />
           </SwiperSlide>
         ))}

@@ -84,6 +84,7 @@ export default function WhyJoinUs() {
                     alt="Build Your Future"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </motion.div>
               </div>
@@ -143,7 +144,7 @@ export default function WhyJoinUs() {
 
             <RevealText delay={0.5}>
               <div className="self-start">
-                <ArrowButtonLink href="#">
+                <ArrowButtonLink href="#" target="_blank">
                   Explore Opportunities
                 </ArrowButtonLink>
               </div>

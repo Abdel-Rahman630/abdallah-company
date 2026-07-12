@@ -199,6 +199,7 @@ export default function ProductsDropdown({ isMobile }: { isMobile?: boolean }) {
               alt={activeProduct.title}
               fill
               className="object-cover"
+              sizes="50vw"
             />
           </motion.div>
         </AnimatePresence>

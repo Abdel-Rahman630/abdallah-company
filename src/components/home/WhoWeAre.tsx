@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
-import { useEffect, useState } from "react";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -26,8 +25,6 @@ const countdownData = [
 ];
 
 export default function WhoWeAre() {
-  const [isClient, setIsClient] = useState(false);
-
 
 
   return (
@@ -41,7 +38,6 @@ export default function WhoWeAre() {
           <div className="w-full lg:w-[40%] lg:h-auto h-[350px]">
             <RevealImage className="h-full">
               <Swiper
-                key={isClient ? "client" : "server"}
                 modules={[Autoplay, EffectFade]}
                 effect="fade"
                 autoplay={{
@@ -54,8 +50,8 @@ export default function WhoWeAre() {
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <SwiperSlide key={num}>
                     <div className="relative h-full w-full">
-                      <div className="w-full h-full">
-                        <Image src={`/${num}.png`} alt={`Slide ${num}`} fill className="object-cover" />
+                      <div className="w-full h-full relative">
+                        <Image src={`/${num}.png`} alt={`Slide ${num}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
                       </div>
                     </div>
                   </SwiperSlide>
@@ -69,7 +65,7 @@ export default function WhoWeAre() {
             <div className="text-content">
               <RevealText delay={0.1}>
                 <div className="flex items-center gap-[10px] mb-[11.5px]">
-                  <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 w-auto object-contain" />
+                  <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 object-contain" style={{ width: "auto" }} />
                   <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">who we are</span>
                 </div>
               </RevealText>
@@ -90,7 +86,7 @@ export default function WhoWeAre() {
                 </p>
               </RevealText>
 
-              <ArrowLink href="#" color="black">More on about us</ArrowLink>
+              <ArrowLink href="/about-us" color="black">More on about us</ArrowLink>
             </div>
 
             <div className="contdown  flex md:flex-row flex-col mt-[32px] w-full">

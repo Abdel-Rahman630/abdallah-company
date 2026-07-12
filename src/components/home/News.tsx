@@ -3,20 +3,9 @@
 import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { RevealText } from "@/components/ui/ScrollReveal";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Autoplay } from "swiper/modules";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import UpcomingEventsSlider from "@/components/sliders/UpcomingEventsSlider";
 
-const eventsData = [
-  { image: "/event1.png", date: "15", month: "june", title: "New Event in Saudi Arabia" },
-  { image: "/event2.png", date: "19", month: "june", title: "New Event in Saudi Arabia" },
-  { image: "/event3.png", date: "20", month: "june", title: "New Event in Saudi Arabia" },
-  { image: "/event4.png", date: "27", month: "june", title: "New Event in Saudi Arabia" },
-  { image: "/event5.png", date: "30", month: "june", title: "New Event in Saudi Arabia" },
-    { image: "/event4.png", date: "27", month: "june", title: "New Event in Saudi Arabia" },
-  { image: "/event5.png", date: "30", month: "june", title: "New Event in Saudi Arabia" },
-];
 
 const newsList = [
   {
@@ -121,13 +110,13 @@ export default function News() {
           {/* Second Div (Right Side) */}
           <div className="w-full lg:w-1/2 flex flex-col justify-end">
             <div className="mb-[24px] md:mb-[50px] flex justify-end">
-              <ArrowLink href="#" color="black">all news</ArrowLink>
+              <ArrowLink href="/news" color="black">all news</ArrowLink>
             </div>
 
             {/* List of News - Scrollable */}
             <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] mb-[32px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
               {newsList.map((news, idx) => (
-                <div key={`news-${idx}`} className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] mb-[32px] last:border-b-0 last:mb-0">
+                <Link href={`/news/${news.id}`} key={`news-${idx}`} className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] mb-[32px] last:border-b-0 last:mb-0 hover:bg-gray-50 transition-colors">
                   <Image
                     src={news.image}
                     alt={news.title}
@@ -146,7 +135,7 @@ export default function News() {
                       {news.desc}
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -178,58 +167,12 @@ export default function News() {
             </h2>
           </RevealText>
           <RevealText delay={0.2}>
-            <ArrowLink href="#" color="black">all events</ArrowLink>
+            <ArrowLink href="/events" color="black">all events</ArrowLink>
           </RevealText>
         </div>
       </div>
 
-      {/* Upcoming Events Slider (left container) */}
-      <div className="leftContainer overflow-hidden pb-[20px]">
-        <Swiper
-          
-          modules={[Autoplay]}
-          spaceBetween={30}
-          slidesPerView="auto"
-          loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          className="w-full"
-        >
-          {eventsData.map((event, idx) => (
-            <SwiperSlide key={`event-${idx}`} className="!w-[260px]">
-              <div className="group relative w-[260px] h-[222px] rounded-[5px] overflow-hidden cursor-pointer">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Default Overlay */}
-                <div className="absolute inset-0 bg-event-overlay transition-opacity duration-500" />
-                
-                {/* Hover Dark Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Date Badge */}
-                <span className="absolute top-[24px] left-0 w-[109px] h-[47px] rounded-r-[5px] border-t border-r border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
-                  <span className="text-[2rem] font-bold leading-none">{event.date}</span>
-                  <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{event.month}</span>
-                </span>
-                
-                {/* Title */}
-                <h4 className="absolute bottom-[16px] left-1/2 -translate-x-1/2 w-[90%] text-white text-[1rem] font-semibold transition-transform duration-500 group-hover:-translate-y-8 z-10">
-                  {event.title}
-                </h4>
-                
-                {/* Hover Link */}
-                <div className="absolute bottom-[16px] left-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
-                  <ArrowLink href="#" color="white" className="!text-[0.6rem]">view more</ArrowLink>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <UpcomingEventsSlider />
     </section>
   );
 }

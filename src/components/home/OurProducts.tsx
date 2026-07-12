@@ -73,6 +73,7 @@ export default function OurProducts() {
             fill
             className="object-cover md:object-center object-right"
             priority
+            sizes="100vw"
           />
         </motion.div>
       </AnimatePresence>

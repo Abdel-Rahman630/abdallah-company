@@ -1,15 +1,20 @@
 import NewsBanner from "@/components/news/NewsBanner";
 import LatestNews from "@/components/news/LatestNews";
 import EventsSection from "@/components/news/EventsSection";
-import JoinUs from "@/components/home/JoinUs";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Abdallah Company | News & Events",
+  description: "Stay updated with the latest news, events, and announcements from Abdullah Hashim Company.",
+};
 
 export default function NewsPage() {
   return (
-    <main>
+    <>
       <NewsBanner />
       <LatestNews />
       <EventsSection />
-      <JoinUs />
-    </main>
+    </>
   );
 }

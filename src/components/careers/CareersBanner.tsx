@@ -8,6 +8,8 @@ export default function CareersBanner() {
         alt="Careers"
         fill
         className="object-cover"
+        priority
+        sizes="100vw"
       />
       <div className="absolute inset-0 bg-[#000000] opacity-20 z-10" />
       <div className="container mx-auto h-full relative z-20">

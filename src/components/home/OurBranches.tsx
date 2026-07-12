@@ -193,7 +193,7 @@ export default function OurBranches() {
                 </div>
               ))}
             </div>
-            <ArrowLink href="#">More about our locations</ArrowLink>
+            <ArrowLink href="/contact-us#find-us">More about our locations</ArrowLink>
           </div>
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
@@ -204,6 +204,7 @@ export default function OurBranches() {
                 alt="Our Branches Map"
                 fill
                 className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 55vw"
               />
             </RevealImage>
           </div>

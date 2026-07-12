@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export const navItems = [
   {
     label: "About Us",
-    href: "#about",
+    href: "/about-us",
     dropdown: {
       sectionTitle: "About Us",
       image: "/about.png",
@@ -13,14 +13,17 @@ export const navItems = [
         {
           title: "Company Overview",
           text: "AHCL is a trusted leader in automotive and machinery distribution across Saudi Arabia.",
+          link: "/about-us",
         },
         {
           title: "History & Legacy",
           text: "Since 1945, AHCL has built a legacy of trust and excellence across Saudi Arabia.",
+          link: "/about-us",
         },
         {
           title: "Vision, Mission & Values",
           text: "To deliver reliable mobility, machinery, and equipment solutions with exceptional service and customer focus.",
+          link: "/about-us",
         },
       ],
     },
@@ -32,7 +35,7 @@ export const navItems = [
   },
   {
     label: "News & Events",
-    href: "#news",
+    href: "/news",
     dropdown: {
       sectionTitle: "News & Events",
       image: "/news.png",
@@ -40,6 +43,7 @@ export const navItems = [
         {
           title: "News",
           text: "Stay updated with the latest news, announcements, and company highlights from AHCL.",
+          link: "/news",
         },
         // {
         //   title: "Press Releases",
@@ -48,13 +52,14 @@ export const navItems = [
         {
           title: "Events",
           text: "Discover the latest events, exhibitions, and activities featuring AHCL.",
+          link: "/news",
         },
       ],
     },
   },
   {
     label: "Careers",
-    href: "#careers",
+    href: "/careers",
     dropdown: {
       sectionTitle: "Careers",
       image: "/about.png",
@@ -62,13 +67,14 @@ export const navItems = [
         {
           title: "Why AHCL",
           text: "Discover why AHCL is a trusted partner, delivering quality, reliability, and exceptional service across Saudi Arabia.",
+          link: "/careers",
         },
       ],
     },
   },
   {
     label: "Contact Us",
-    href: "#contact",
+    href: "/contact-us",
     dropdown: {
       sectionTitle: "Contact Us",
       image: "/find.png",
@@ -76,10 +82,12 @@ export const navItems = [
         {
           title: "Contact Us",
           text: "Get in touch with our team for inquiries, support, or assistance.",
+          link: "/contact-us",
         },
         {
           title: "Our Locations",
           text: "Find AHCL showrooms, service centers, and branches across Saudi Arabia.",
+          link: "/contact-us#find-us",
         },
       ],
     },
@@ -113,5 +121,5 @@ export function useHeader() {
     setActiveDropdown((prev) => (prev === label ? null : label));
   };
 
-  return { scrolled, activeDropdown, headerRef, toggleDropdown };
+  return { scrolled, activeDropdown, headerRef, toggleDropdown, setActiveDropdown };
 }

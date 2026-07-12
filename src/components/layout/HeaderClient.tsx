@@ -12,7 +12,7 @@ interface HeaderClientProps {
 }
 
 export default function HeaderClient({ logo, actions }: HeaderClientProps) {
-  const { scrolled, activeDropdown, headerRef, toggleDropdown } = useHeader();
+  const { scrolled, activeDropdown, headerRef, toggleDropdown, setActiveDropdown } = useHeader();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
   
@@ -41,8 +41,8 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
               <li key={item.label}>
                 <button
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap text-white cursor-pointer ${
-                    activeDropdown === item.label ? "bg-[#333]" : ""
+                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap cursor-pointer ${
+                    activeDropdown === item.label ? "bg-[#D1A52A] text-black" : "text-white"
                   }`}
                 >
                   {item.label}
@@ -56,6 +56,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         sectionTitle={item.dropdown.sectionTitle}
                         boxes={item.dropdown.boxes}
                         image={item.dropdown.image}
+                        onLinkClick={() => setActiveDropdown(null)}
                       />
                     ) : item.label === "Our Products" ? (
                       <ProductsDropdown />
@@ -150,6 +151,10 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                 sectionTitle={activeDropdownData.sectionTitle}
                 boxes={activeDropdownData.boxes}
                 image={activeDropdownData.image}
+                onLinkClick={() => {
+                  setMobileActiveMenu(null);
+                  setMobileOpen(false);
+                }}
               />
             ) : mobileActiveMenu === "Our Products" ? (
               <div className="lg:p-4">

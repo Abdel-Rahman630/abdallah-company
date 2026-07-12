@@ -22,6 +22,8 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-[12px]">
               <Link
+              target="_blank"
+
                 href="#"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
               >
@@ -41,6 +43,8 @@ export default function Footer() {
                 </svg>
               </Link>
               <Link
+              target="_blank"
+
                 href="#"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
               >
@@ -67,6 +71,7 @@ export default function Footer() {
                 </svg>
               </Link>
               <Link
+              target="_blank"
                 href="#"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
               >
@@ -111,7 +116,7 @@ export default function Footer() {
             <ul className="space-y-[12px]">
               <li>
                 <Link
-                  href="#who-we-are"
+                  href="/"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   Home
@@ -119,7 +124,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#products"
+                  href="/about-us"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   About Us
@@ -127,7 +132,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#news"
+                  href="/news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   News & Events
@@ -135,7 +140,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#who-we-are"
+                  href="/careers"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   Careers
@@ -143,7 +148,8 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#news"
+                  href="#"
+                  target="_blank"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   {"AHCL's Store"}
@@ -228,7 +234,8 @@ export default function Footer() {
             <ul className="space-y-[12px]">
               <li>
                 <Link
-                  href="#"
+                  target="_blank"
+                  href="/contact-us"
                   className="flex items-start gap-[10px] text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   <span className="mt-[2px]">

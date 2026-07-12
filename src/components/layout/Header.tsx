@@ -37,7 +37,8 @@ export default function Header() {
             width={227}
             height={50}
             priority
-            className="w-[180px] lg:w-[227px] h-auto"
+            className="w-[180px] lg:w-[227px]"
+            style={{ height: "auto" }}
           />
         </Link>
       }
@@ -58,7 +59,7 @@ export default function Header() {
             <span className="text-[#FFF] text-[0.8125rem] font-normal">En</span>
           </Link>
 
-          <YellowButton href="#" icon={StoreIcon}>
+          <YellowButton target="_blank" href="#" icon={StoreIcon}>
             {"AHCL's Store"}
           </YellowButton>
         </div>
