@@ -47,11 +47,11 @@ export default function EventDetailsPage() {
             {/* Left Column */}
             <div className="w-full lg:w-[65%]">
               {/* Slider */}
-              <div className="w-full">
+              {/* <div className="w-full">
                 <RevealImage delay={0.2}>
                   <NewsDetailsSlider />
                 </RevealImage>
-              </div>
+              </div> */}
 
               {/* Meta Row */}
               <div className="w-full flex items-center pb-[24px]">
