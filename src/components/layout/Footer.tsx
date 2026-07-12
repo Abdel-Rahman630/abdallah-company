@@ -321,13 +321,14 @@ export default function Footer() {
             <span className="text-[#AAA] text-[0.75rem] font-medium">
               Designed & Developed by
             </span>
-            <Image
-              src="/icon.svg"
-              alt="Developer Icon"
-              width={63}
-              height={24}
-           
-            />
+            <Link href="http://icon-creations.com/" target="_blank">
+              <Image
+                src="/icon.svg"
+                alt="Developer Icon"
+                width={63}
+                height={24}
+              />
+            </Link>
           </div>
           <div className="lg:order-3 order-1 flex items-center text-[#FFF] text-[0.75rem] font-normal">
             <Link href="#" className="hover:text-gray-300 transition">
