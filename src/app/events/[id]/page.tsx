@@ -1,8 +1,8 @@
 import NewsBanner from "@/components/news/NewsBanner";
 import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
-import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
+import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 
 export const metadata: Metadata = {
   title: "Abdallah Company | Event Details",

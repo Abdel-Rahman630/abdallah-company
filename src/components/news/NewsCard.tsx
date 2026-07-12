@@ -36,10 +36,10 @@ export default function NewsCard({ image, date, title, paragraph, readMore, id =
         <p className="text-[#727272] text-[1rem] font-normal leading-[1.7] mb-[24px] md:mb-[32px]">
           {paragraph}
         </p>
-        {readMore && <ArrowLink href={`/news/${id}`} color="black" className="font-normal">Read More</ArrowLink>}
+        {readMore && <ArrowLink href={`/news/${id}`} as="span" color="black" className="font-normal">Read More</ArrowLink>}
       </div>
     </div>
   );
 
-  return id ? <Link href={`/news/${id}`} className="block group hover:bg-gray-50 transition-colors p-4 -m-4 rounded-xl">{content}</Link> : content;
+  return id ? <Link href={`/news/${id}`} className="block group p-4 -m-4 rounded-xl">{content}</Link> : content;
 }

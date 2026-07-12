@@ -7,6 +7,7 @@ interface ArrowLinkProps {
   children: React.ReactNode;
   color?: "white" | "black";
   className?: string;
+  as?: "link" | "span";
 }
 
 const ArrowIconWhite = () => (
@@ -41,14 +42,22 @@ const ArrowIconBlack = () => (
   </svg>
 );
 
-export default function ArrowLink({ href = "#", children, color = "white", className = "" }: ArrowLinkProps) {
+export default function ArrowLink({ href = "#", children, color = "white", className = "", as = "link" }: ArrowLinkProps) {
+  const classes = `group inline-flex items-center gap-2 text-[1rem] font-bold uppercase underline transition-opacity duration-500 hover:opacity-80 ${
+    color === "black" ? "text-[#1E1E1E]" : "text-white"
+  } ${className}`;
+
+  if (as === "span") {
+    return (
+      <span className={classes}>
+        {children}
+        {color === "black" ? <ArrowIconBlack /> : <ArrowIconWhite />}
+      </span>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center gap-2 text-[1rem] font-bold uppercase underline transition-opacity duration-500 hover:opacity-80 ${
-        color === "black" ? "text-[#1E1E1E]" : "text-white"
-      } ${className}`}
-    >
+    <Link href={href} className={classes}>
       {children}
       {color === "black" ? <ArrowIconBlack /> : <ArrowIconWhite />}
     </Link>

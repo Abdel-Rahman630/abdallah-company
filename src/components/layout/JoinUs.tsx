@@ -1,5 +1,3 @@
-"use client";
-
 import YellowButton from "@/components/ui/YellowButton";
 import { RevealText } from "@/components/ui/ScrollReveal";
 

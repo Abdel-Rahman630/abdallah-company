@@ -7,11 +7,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
-const images = ["/newsDetails.png", "/newsDetails.png", "/newsDetails.png"];
+interface Props {
+  images: string[];
+}
 
-export default function NewsDetailsSlider() {
+export default function NewsDetailsSlider({ images }: Props) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  const slides = images.length > 0 ? images : ["/newsDetails.png"];
 
   return (
     <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] mb-[40px] rounded-[10px] overflow-hidden">
@@ -22,9 +26,9 @@ export default function NewsDetailsSlider() {
           nextEl: ".custom-next-button",
         }}
         className="w-full h-full"
-        loop={true}
+        loop={slides.length > 1}
       >
-        {images.map((src, index) => (
+        {slides.map((src, index) => (
           <SwiperSlide key={index}>
             <Image
               src={src}

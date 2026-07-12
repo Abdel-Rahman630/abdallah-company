@@ -15,18 +15,29 @@ export interface ApiResponse<T> {
 
 // ─── News ───────────────────────────────────────────────────────────────────
 
+export interface NewsMediaItem {
+  id: number;
+  url: string;
+  sort_order: number;
+}
+
 export interface NewsItem {
-  id: string;
-  title: string;
-  subtitle: string;
+  id: number;
   slug: string;
-  image: string;
-  images: string[];
-  paragraph: string;
-  content: string;
-  date: string;
-  tags: string[];
-  category: string;
+  title: string;
+  short_description: string;
+  description: string;
+  cover_image: string;
+  media: NewsMediaItem[];
+  publish_date: string;
+  is_active: boolean;
+}
+
+export interface SingleNewsResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: NewsItem;
 }
 
 // ─── Events ─────────────────────────────────────────────────────────────────

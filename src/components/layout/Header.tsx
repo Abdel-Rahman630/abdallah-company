@@ -30,15 +30,14 @@ export default function Header() {
   return (
     <HeaderClient
       logo={
-        <Link href="/" className="shrink-0 cursor-pointer">
+        <Link href="/" className="shrink-0 cursor-pointer block w-[180px] lg:w-[227px]">
           <Image
             src="/header-logo.png"
             alt="AHCL Logo"
             width={227}
             height={50}
             priority
-            className="w-[180px] lg:w-[227px]"
-            style={{ height: "auto" }}
+            // style={{ width: "100%", height: "auto" }}
           />
         </Link>
       }

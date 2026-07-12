@@ -1,24 +1,11 @@
-import Image from "next/image";
+import PageBanner from "@/components/ui/PageBanner";
 
 export default function NewsBanner() {
   return (
-    <section className="relative w-full h-[366px]">
-      <Image
-        src="/newsBanner.png"
-        alt="News & Events"
-        fill
-        className="object-cover"
-        priority
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-[#000000] opacity-20 z-10" />
-      <div className="container mx-auto h-full relative z-20">
-        <h1
-          className="absolute bottom-[50px] left-4 lg:left-0 text-[#FFF] text-[3rem] font-bold z-20"
-        >
-          News &amp; Events
-        </h1>
-      </div>
-    </section>
+    <PageBanner
+      image="/newsBanner.png"
+      title="News & Events"
+      alt="News and Events banner"
+    />
   );
 }

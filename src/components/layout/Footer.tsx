@@ -23,56 +23,7 @@ export default function Footer() {
             <div className="flex items-center gap-[12px]">
               <Link
               target="_blank"
-
-                href="#"
-                className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                >
-                  <path
-                    d="M11.2496 1.5H13.4994V4.50024H11.2496C11.0507 4.50024 10.8599 4.57926 10.7193 4.71993C10.5786 4.86059 10.4996 5.05137 10.4996 5.2503V7.50048H13.4994L12.7495 10.5007H10.4996V16.5012H7.49984V10.5007H5.25V7.50048H7.49984V5.2503C7.49984 4.25566 7.8949 3.30176 8.59811 2.59844C9.30132 1.89512 10.2551 1.5 11.2496 1.5Z"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </Link>
-              <Link
-              target="_blank"
-
-                href="#"
-                className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                >
-                  <g clipPath="url(#clip0_130_1233)">
-                    <path
-                      d="M15.0011 5.55013C15.9762 4.57509 16.5012 3.00002 16.5012 3.00002C16.5012 3.00002 15.0761 3.90006 14.251 3.90006C12.0008 1.79996 8.32555 3.60004 9.0006 6.75019C6.4504 6.82519 3.90019 5.70014 2.25006 3.75005C0.37491 7.20021 2.25006 11.6254 6.00036 12.7505C4.80026 13.8005 3.15013 14.3255 1.5 14.2505C7.95052 18.5257 16.2012 13.0505 15.0011 5.55013Z"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_130_1233">
-                      <rect width="18" height="18" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </Link>
-              <Link
-              target="_blank"
-                href="#"
+                href="https://www.linkedin.com/company/abdullah-hashim-co--ltd-/"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
               >
                 <svg

@@ -3,20 +3,44 @@ import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
+import { getNewsById } from "@/services/news.service";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Abdallah Company | News Details",
   description: "Read the full story from Abdullah Hashim Company.",
 };
 
-export default function NewsDetailsPage() {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function NewsDetailsPage({ params }: PageProps) {
+  const { id } = await params;
+
+  let news;
+  try {
+    news = await getNewsById(id, "en");
+  } catch {
+    notFound();
+  }
+
+  // Build the images array from the media array, sorted by sort_order
+  const mediaImages = (news.media ?? [])
+    .slice()
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((m) => m.url);
+
+  // Fall back to cover_image if media is empty
+  const sliderImages = mediaImages.length > 0 ? mediaImages : [news.cover_image];
+
   return (
     <>
       <NewsBanner />
-      
+
       <section className="py-[80px] lg:py-[120px] bg-white">
         <div className="w-[80%] md:w-[60%] mx-auto flex flex-col items-center">
-          
+
           {/* Back Button */}
           <div className="self-start mb-[40px]">
             <RevealText delay={0.1}>
@@ -42,10 +66,10 @@ export default function NewsDetailsPage() {
             </RevealText>
           </div>
 
-          {/* Slider */}
+          {/* Slider — fed with real media images */}
           <div className="w-full">
             <RevealImage delay={0.2}>
-              <NewsDetailsSlider />
+              <NewsDetailsSlider images={sliderImages} />
             </RevealImage>
           </div>
 
@@ -57,12 +81,18 @@ export default function NewsDetailsPage() {
                   Company News
                 </span>
                 <span className="text-[#D1A52A] text-[0.9rem] font-bold">
-                  24 October 2025
+                  {news.publish_date
+                    ? new Date(news.publish_date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : ""}
                 </span>
               </div>
             </RevealText>
-            
-            <RevealText delay={0.3}>
+
+            {/* <RevealText delay={0.3}>
               <ul className="flex gap-[8px]">
                 <li>
                   <a href="#" target="_blank" className="w-[32px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center hover:bg-gray-50 transition-colors">
@@ -95,57 +125,26 @@ export default function NewsDetailsPage() {
                   </a>
                 </li>
               </ul>
-            </RevealText>
+            </RevealText> */}
           </div>
 
           {/* Article Content */}
           <div className="w-full">
             <RevealText delay={0.4}>
               <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
-                AHCL Signs Exclusive Distribution Agreement with Mikasa Corporation
+                {news.title}
               </h1>
             </RevealText>
-            
+
             <RevealText delay={0.5}>
-              <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[24px]">
-                Abdullah Hashim Company Limited (AHCL), a leading distributor of high-quality machinery and automotive products in Saudi Arabia, is proud to announce a new exclusive distribution partnership with Japan-based Mikasa Corporation. This strategic collaboration is set to significantly bolster the availability of premium light construction equipment across the Kingdom.
-              </p>
-            </RevealText>
-            
-            <RevealText delay={0.6}>
-              <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[24px]">
-                The agreement includes the full suite of Mikasa's world-renowned products, such as soil compactors, rammers, and concrete vibrators. These tools are critical for the rapid infrastructure growth currently taking place in major cities like Riyadh, Jeddah, and the emerging gigaprojects under Vision 2030.
-              </p>
-            </RevealText>
-
-            <RevealText delay={0.7}>
-              <div className="text-[#1E1E1E] text-[1.5rem] font-normal pl-[24px] border-l-[4px] border-[#D1A52A] mb-[24px]">
-                "Partnering with Mikasa aligns with our mission to bring the world's most reliable and innovative machinery solutions to the Saudi market."
-              </div>
-            </RevealText>
-
-            <RevealText delay={0.8}>
-              <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px]">
-                Representatives from both companies gathered at the AHCL headquarters in Jeddah for the formal signing ceremony. "We are excited to work with a partner who shares our commitment to quality and service," stated a Mikasa spokesperson. The partnership will also involve extensive training for AHCL's service technicians to ensure gold-standard maintenance for all Mikasa equipment in the region.
-              </p>
-            </RevealText>
-
-            {/* Tags */}
-            <RevealText delay={0.9}>
-              <ul className="flex flex-wrap gap-[10px]">
-                {["Automotive", "Distribution", "Saudi Arabia", "Construction"].map((tag) => (
-                  <li 
-                    key={tag}
-                    className="rounded-[4px] border border-[#E5E5E5] px-[12px] py-[6px] text-[#666] text-[0.8125rem] font-normal"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+              <div
+                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: news.description }}
+              />
             </RevealText>
           </div>
         </div>
-        </section>
+      </section>
     </>
   );
 }
