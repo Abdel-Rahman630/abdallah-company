@@ -3,8 +3,8 @@
 import Image from "next/image";
 import SubTitle from "@/components/ui/SubTitle";
 import ArrowButtonLink from "@/components/ui/ArrowButtonLink";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 
 export default function WhyJoinUs() {
@@ -14,6 +14,8 @@ export default function WhyJoinUs() {
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const benefits = [
     {
@@ -55,104 +57,148 @@ export default function WhyJoinUs() {
   ];
 
   return (
-    <section className="py-[80px] lg:py-[120px] bg-white">
-      <div className="container mx-auto">
-        
-        <div className="mb-[50px]">
-          <RevealText delay={0.1}>
-            <SubTitle className="!mb-[12px]">Why Join Us</SubTitle>
-          </RevealText>
-          <RevealText delay={0.3}>
-            <h2 className="text-[#1E1E1E] text-[2.5rem] font-bold leading-tight">
-              Build Your Future with AHCL
-            </h2>
-          </RevealText>
-        </div>
-
-        <div className="flex flex-col lg:flex-row gap-[30px] lg:gap-[80px]">
-
-          {/* Left: Image with parallax */}
-          <div className="w-full lg:w-1/2">
-            <RevealImage>
-              <div
-                ref={imgRef}
-                className="relative w-full lg:h-[830px] md:h-[500px] h-[350px] overflow-hidden rounded-[10px]"
-              >
-                <motion.div style={{ y }} className="absolute w-full h-[130%] -top-[15%]">
-                  <Image
-                    src="/careerSection.jpg"
-                    alt="Build Your Future"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </motion.div>
-              </div>
-            </RevealImage>
-          </div>
-
-          {/* Right: Content with reveal animations */}
-          <div className="w-full lg:w-1/2">
-
-            <RevealText delay={0.2}>
-              <p className="text-[#727272] text-[1rem] font-normal md:mb-[48px] mb-[30px] leading-relaxed">
-                At <span className="text-[#1E1E1E] font-bold">AHCL Company</span>, our vision, strong market reputation, commitment to excellence, and passion for innovation set us apart. We believe our people are our greatest asset, which is why we invest in their growth, encourage continuous learning, and cultivate a collaborative culture where talent can thrive. By joining <span className="text-[#1E1E1E] font-bold">AHCL Company</span>, you become part of a high-performing team committed to excellence, innovation, and creating lasting value for our customers, partners, and stakeholders.
-              </p>
+    <>
+      <section id="why-join-us" className="py-[80px] lg:py-[120px] bg-white">
+        <div className="container mx-auto">
+          
+          <div className="mb-[50px]">
+            <RevealText delay={0.1}>
+              <SubTitle className="!mb-[12px]">Why Join Us</SubTitle>
             </RevealText>
-
             <RevealText delay={0.3}>
-              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-[20px] md:mb-[48px] mb-[30px]">
-                <div className="flex-1">
-                  <h3 className="text-[#1E1E1E] text-[1.25rem] font-semibold mb-[8px]">
-                    Best Place to Work Certification Award 2024
-                  </h3>
-                  <p className="text-[#727272] text-[1rem] font-normal leading-relaxed">
-                    Recognized for fostering an exceptional workplace culture built on trust, collaboration, and employee growth.
-                  </p>
-                </div>
-                <div className="shrink-0">
-                  <Image
-                    src="/trophy.png"
-                    alt="Trophy"
-                    width={85}
-                    height={85}
-                    className="object-contain"
-                  />
-                </div>
-              </div>
+              <h2 className="text-[#1E1E1E] text-[2.5rem] font-bold leading-tight">
+                Build Your Future with AHCL
+              </h2>
             </RevealText>
+          </div>
 
-            <ul className="flex flex-col gap-[32px] md:mb-[48px] mb-[30px]">
-              {benefits.map((item, index) => (
-                <RevealText key={index} delay={0.4 * (index + 1)}>
-                  <li className="flex items-start gap-[20px]">
-                    <div className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(209,165,42,0.10)] flex justify-center items-center shrink-0 mt-[2px]">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-[#1E1E1E] text-[1.1rem] font-semibold mb-[8px]">
-                        {item.title}
-                      </h4>
-                      <p className="text-[#727272] text-[1rem] font-normal leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </li>
-                </RevealText>
-              ))}
-            </ul>
+          <div className="flex flex-col lg:flex-row gap-[30px] lg:gap-[80px]">
 
-            <RevealText delay={0.5}>
-              <div className="self-start">
-                <ArrowButtonLink href="#" target="_blank">
-                  Explore Opportunities
-                </ArrowButtonLink>
-              </div>
-            </RevealText>
+            {/* Left: Image with parallax */}
+            <div className="w-full lg:w-1/2">
+              <RevealImage>
+                <div
+                  ref={imgRef}
+                  className="relative w-full lg:h-[830px] md:h-[500px] h-[350px] overflow-hidden rounded-[10px]"
+                >
+                  <motion.div style={{ y }} className="absolute w-full h-[130%] -top-[15%]">
+                    <Image
+                      src="/careerSection.jpg"
+                      alt="Build Your Future"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </motion.div>
+                </div>
+              </RevealImage>
+            </div>
 
+            {/* Right: Content with reveal animations */}
+            <div className="w-full lg:w-1/2">
+
+              <RevealText delay={0.2}>
+                <p className="text-[#727272] text-[1rem] font-normal md:mb-[48px] mb-[30px] leading-relaxed">
+                  At <span className="text-[#1E1E1E] font-bold">AHCL Company</span>, our vision, strong market reputation, commitment to excellence, and passion for innovation set us apart. We believe our people are our greatest asset, which is why we invest in their growth, encourage continuous learning, and cultivate a collaborative culture where talent can thrive. By joining <span className="text-[#1E1E1E] font-bold">AHCL Company</span>, you become part of a high-performing team committed to excellence, innovation, and creating lasting value for our customers, partners, and stakeholders.
+                </p>
+              </RevealText>
+
+              <RevealText delay={0.3}>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-[20px] md:mb-[48px] mb-[30px]">
+                  <div className="flex-1">
+                    <h3 className="text-[#1E1E1E] text-[1.25rem] font-semibold mb-[8px]">
+                      Best Place to Work Certification Award 2024
+                    </h3>
+                    <p className="text-[#727272] text-[1rem] font-normal leading-relaxed">
+                      Recognized for fostering an exceptional workplace culture built on trust, collaboration, and employee growth.
+                    </p>
+                  </div>
+                  <div 
+                    className="shrink-0 cursor-pointer hover:scale-105 transition-transform duration-300"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    <Image
+                      src="/trophy.png"
+                      alt="Trophy"
+                      width={85}
+                      height={85}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              </RevealText>
+
+              <ul className="flex flex-col gap-[32px] md:mb-[48px] mb-[30px]">
+                {benefits.map((item, index) => (
+                  <RevealText key={index} delay={0.4 * (index + 1)}>
+                    <li className="flex items-start gap-[20px]">
+                      <div className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(209,165,42,0.10)] flex justify-center items-center shrink-0 mt-[2px]">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-[#1E1E1E] text-[1.1rem] font-semibold mb-[8px]">
+                          {item.title}
+                        </h4>
+                        <p className="text-[#727272] text-[1rem] font-normal leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </li>
+                  </RevealText>
+                ))}
+              </ul>
+
+              <RevealText delay={0.5}>
+                <div className="self-start">
+                  <ArrowButtonLink href="#" target="_blank">
+                    Explore Opportunities
+                  </ArrowButtonLink>
+                </div>
+              </RevealText>
+
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-4xl w-full max-h-[90vh] rounded-[10px] flex flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black transition-colors"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <Image
+                src="/certificate.png"
+                alt="Best Place to Work Certificate"
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
+

@@ -13,7 +13,7 @@ export default function EventsSection() {
     useEventsSection();
 
   return (
-    <section className="py-[80px] lg:py-[100px] bg-[#F9F9F9]">
+    <section id="events" className="py-[80px] lg:py-[100px] bg-[#F9F9F9]">
       <div className="container mx-auto">
         {/* Header */}
         <div className="mb-[50px]">

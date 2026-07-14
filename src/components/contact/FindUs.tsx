@@ -25,7 +25,7 @@ export default function FindUs() {
   };
 
   return (
-    <section className="bg-[#1E1E1E] py-[100px]">
+    <section id="find-us" className="bg-[#1E1E1E] py-[100px]">
       <div className="container mx-auto">
         <RevealText delay={0.1}>
           <SubTitle className="text-center">OUR LOCATIONS</SubTitle>

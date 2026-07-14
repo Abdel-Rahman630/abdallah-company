@@ -58,7 +58,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         image={item.dropdown.image}
                         onLinkClick={() => setActiveDropdown(null)}
                       />
-                    ) : item.label === "Our Products" ? (
+                    ) : item.label === "Division" ? (
                       <ProductsDropdown />
                     ) : (
                       <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] min-w-[939px] min-h-[418px]">
@@ -109,7 +109,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                 <li key={item.label}>
                   <button
                     onClick={() => {
-                      if (item.dropdown || item.label === "Our Products") {
+                      if (item.dropdown || item.label === "Division") {
                         setMobileActiveMenu(item.label);
                       }
                     }}
@@ -156,7 +156,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                   setMobileOpen(false);
                 }}
               />
-            ) : mobileActiveMenu === "Our Products" ? (
+            ) : mobileActiveMenu === "Division" ? (
               <div className="lg:p-4">
                 <ProductsDropdown isMobile={true} />
               </div>

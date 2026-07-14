@@ -112,7 +112,7 @@ export default function Footer() {
           {/* Column 3: Services */}
           <div>
             <h4 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
-              Our Products
+              Division
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
             </h4>
             <ul className="space-y-[12px]">

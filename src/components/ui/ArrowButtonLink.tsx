@@ -29,7 +29,7 @@ export default function ArrowButtonLink({ href, children, className = "", target
     <Link
       href={href}
       target={target}
-      className={`group inline-flex justify-center items-center gap-[10px] bg-[#D1A52A] text-black rounded-[5px] px-[32px] py-[16px] text-[1rem] font-bold underline self-stretch transition-transform duration-500 hover:scale-105 active:scale-95 ${className}`}
+      className={`group inline-flex justify-center items-center gap-[10px] bg-[#D1A52A] text-black rounded-[5px] px-[32px] py-[16px] text-[1rem] font-bold underline self-stretch ${className}`}
     >
       {children}
       <ArrowIconBlack />

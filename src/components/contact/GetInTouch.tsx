@@ -7,7 +7,7 @@ export default function GetInTouch() {
   const { register, handleSubmit, onSubmit, errors, status, globalError } = useGetInTouch();
 
   return (
-    <section className="py-[100px] bg-white">
+    <section id="get-in-touch" className="py-[100px] bg-white">
       <div className="container mx-auto">
         <div className="w-full flex flex-col lg:flex-row gap-[80px]">
           {/* Left Column - Form */}

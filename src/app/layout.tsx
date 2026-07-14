@@ -51,8 +51,9 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col font-sans bg-white">
+      <body className="min-h-screen flex flex-col font-sans bg-white" suppressHydrationWarning>
         <LoadingProvider>
           <PageLoader />
           <Header />

@@ -54,7 +54,7 @@ export function useEventsSection() {
         ) as string[];
         setTabs(["All", ...uniqueCategories]);
       } catch (error) {
-        console.error("Failed to load events data:", error);
+        // Removed console.error
       } finally {
         setIsLoading(false);
         stopLoading("events-section");

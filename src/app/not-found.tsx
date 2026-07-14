@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ArrowLink from "@/components/ui/ArrowLink";
 
 export default function NotFound() {
   return (
@@ -12,13 +11,14 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="text-[#949494] text-[1rem] md:text-[1.2rem] max-w-[500px] mx-auto mb-10">
-          The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+          The page you are looking for might have been removed, had its name
+          changed, or is temporarily unavailable.
         </p>
-        
+
         <div className="flex justify-center">
           <Link
             href="/"
-            className="group inline-flex justify-center items-center gap-[10px] bg-[#D1A52A] text-black rounded-[5px] px-[32px] py-[16px] text-[1rem] font-bold underline transition-transform duration-500 hover:scale-105 active:scale-95"
+            className="group inline-flex justify-center items-center gap-[10px] bg-[#D1A52A] text-black rounded-[5px] px-[32px] py-[16px] text-[1rem] font-bold underline "
           >
             Back to Home
             <svg

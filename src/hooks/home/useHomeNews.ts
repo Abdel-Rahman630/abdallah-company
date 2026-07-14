@@ -42,7 +42,7 @@ export function useHomeNews() {
         });
         setNewsList(mappedData);
       } catch (error) {
-        console.error("Failed to fetch home news:", error);
+        // Removed console.error
       } finally {
         setIsLoading(false);
         stopLoading("home-news");

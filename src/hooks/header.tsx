@@ -13,23 +13,23 @@ export const navItems = [
         {
           title: "Company Overview",
           text: "AHCL is a trusted leader in automotive and machinery distribution across Saudi Arabia.",
-          link: "/about-us",
+          link: "/about-us#company-overview",
         },
         {
           title: "History & Legacy",
           text: "Since 1945, AHCL has built a legacy of trust and excellence across Saudi Arabia.",
-          link: "/about-us",
+          link: "/about-us#history-legacy",
         },
         {
           title: "Vision, Mission & Values",
           text: "To deliver reliable mobility, machinery, and equipment solutions with exceptional service and customer focus.",
-          link: "/about-us",
+          link: "/about-us#vision-mission",
         },
       ],
     },
   },
   {
-    label: "Our Products",
+    label: "Divisions",
     href: "#products",
     dropdown: null, // handled separately
   },
@@ -43,7 +43,7 @@ export const navItems = [
         {
           title: "News",
           text: "Stay updated with the latest news, announcements, and company highlights from AHCL.",
-          link: "/news",
+          link: "/news#news",
         },
         // {
         //   title: "Press Releases",
@@ -52,7 +52,7 @@ export const navItems = [
         {
           title: "Events",
           text: "Discover the latest events, exhibitions, and activities featuring AHCL.",
-          link: "/news",
+          link: "/news#events",
         },
       ],
     },
@@ -67,7 +67,7 @@ export const navItems = [
         {
           title: "Why AHCL",
           text: "Discover why AHCL is a trusted partner, delivering quality, reliability, and exceptional service across Saudi Arabia.",
-          link: "/careers",
+          link: "/careers#why-join-us",
         },
       ],
     },
@@ -82,7 +82,7 @@ export const navItems = [
         {
           title: "Contact Us",
           text: "Get in touch with our team for inquiries, support, or assistance.",
-          link: "/contact-us",
+          link: "/contact-us#get-in-touch",
         },
         {
           title: "Our Locations",

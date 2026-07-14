@@ -54,7 +54,7 @@ export function useFindUs() {
         setActiveLocation(null);
       }
     } catch (err) {
-      console.error("Failed to fetch locations:", err);
+      // Removed console.error
       setLocations([]);
       setActiveLocation(null);
     } finally {
@@ -86,7 +86,7 @@ export function useFindUs() {
           setCities(Array.from(cits));
         }
       } catch (err) {
-        console.error("Failed to fetch options", err);
+        // Removed console.error
       } finally {
         stopLoading("findus-options");
       }

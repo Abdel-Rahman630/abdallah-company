@@ -36,7 +36,7 @@ export async function apiGet<T>(endpoint: string, options: FetchOptions = {}): P
   }
 
   const data = await response.json() as T;
-  console.log(`[API GET] ${endpoint} Response:`, JSON.stringify(data, null, 2));
+ 
   return data;
 }
 
@@ -60,6 +60,6 @@ export async function apiPost<TBody, TResponse>(
   }
 
   const data = await response.json() as TResponse;
-  console.log(`[API POST] ${endpoint} Response:`, JSON.stringify(data, null, 2));
+
   return data;
 }
