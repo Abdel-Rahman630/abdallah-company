@@ -150,7 +150,7 @@ export default function WhyJoinUs() {
 
               <RevealText delay={0.5}>
                 <div className="self-start">
-                  <ArrowButtonLink href="#" target="_blank">
+                  <ArrowButtonLink href="https://abdullah-hashim-company-ltd.careers-page.com" target="_blank">
                     Explore Opportunities
                   </ArrowButtonLink>
                 </div>

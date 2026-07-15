@@ -508,3 +508,12 @@ body {
   animation: shimmer 1.4s infinite linear;
   border-radius: 4px;
 }
+
+@keyframes loadingLine {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.history-loading-bar {
+  animation: loadingLine 3s linear forwards;
+}

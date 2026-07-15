@@ -37,5 +37,5 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
     return () => observer.disconnect();
   }, [to]);
 
-  return <span ref={nodeRef}>{count}{suffix}</span>;
+  return <span ref={nodeRef}>{count.toLocaleString()}{suffix}</span>;
 };

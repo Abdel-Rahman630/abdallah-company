@@ -31,13 +31,13 @@ export default function OurBranches() {
             </RevealText>
 
             <RevealText delay={0.2}>
-              <h2 className="mb-[34px] uppercase leading-tight text-white text-[2.125rem] font-bold">
+              <h2 className="mb-[34px] uppercase leading-tight text-[#1E1E1E] text-[2.125rem] font-bold">
                 NETWORK AND COVERAGE
               </h2>
             </RevealText>
 
             <RevealText delay={0.3}>
-              <p className="mb-[34px] leading-relaxed text-[#949494] text-[0.8125rem] font-normal">
+              <p className="mb-[34px] leading-relaxed text-[#666] text-[0.8125rem] font-normal">
                 AHCL serves its customers via a network composed of 28
                 AHCL-operated facilities, and 34 dealer facilities. Through its
                 own operated facilities, AHCL can reach approximately 78% of the
@@ -46,7 +46,7 @@ export default function OurBranches() {
             </RevealText>
 
             <RevealText delay={0.4}>
-              <p className="mb-[24px] leading-relaxed text-white text-[0.8125rem] font-normal">
+              <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
                 AHCL-operated facilities are categorized based on the scope of
                 services they provide:
               </p>
@@ -184,7 +184,7 @@ export default function OurBranches() {
                         : "py-4 md:py-0 md:pl-12"
                   }`}
                 >
-                  <span className="text-white text-[2.5rem] font-semibold uppercase mb-[10px] leading-none">
+                  <span className="text-[#1E1E1E] text-[2.5rem] font-semibold uppercase mb-[10px] leading-none">
                     <Counter to={item.to} suffix={item.suffix} />
                   </span>
                   <span className="text-[#656565] text-[0.85rem] font-normal uppercase">

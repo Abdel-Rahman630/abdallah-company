@@ -115,6 +115,9 @@ export default function News() {
                         <h4 className="text-[#1E1E1E] text-[1.1rem] font-medium mb-[8px] leading-tight">
                           {news.title}
                         </h4>
+                        {news.dateStr && (
+                          <span className="text-[#999] text-[0.75rem] font-normal">{news.dateStr}</span>
+                        )}
                       </div>
                     </Link>
                   ))}
@@ -186,7 +189,7 @@ export default function News() {
             <h2 className="text-[#1A1A1A] text-[1.5rem] font-bold uppercase">UPCOMING EVENTS</h2>
           </RevealText>
           <RevealText delay={0.2}>
-            <ArrowLink href="/events" color="black">
+            <ArrowLink href="/news" color="black">
               all events
             </ArrowLink>
           </RevealText>

@@ -25,19 +25,20 @@ export function useHomeNews() {
       try {
         const response = await getNews({ limit: 4, lang: "en" });
         const mappedData = response.data.map((item: any) => {
-          const d = item.publish_date ? new Date(item.publish_date) : new Date();
+          const rawDate = item.publish_date || item.published_at || item.created_at;
+          const d = rawDate ? new Date(rawDate) : new Date();
+          const isValid = !isNaN(d.getTime());
           return {
             id: item.id || item.slug,
-            image: item.cover_image || "/new2.png",
+            image: item.cover_image || "/bg.png",
             subtitle: item.category || "News",
             title: item.title,
             desc: item.short_description || "",
-            dateStr: d.toLocaleString("en-US", {
-              day: "numeric",
-              month: "short",
-            }),
-            day: d.getDate(),
-            monthStr: d.toLocaleString("en-US", { month: "short" }),
+            dateStr: isValid
+              ? d.toLocaleString("en-US", { day: "numeric", month: "short" })
+              : "",
+            day: isValid ? d.getDate() : "",
+            monthStr: isValid ? d.toLocaleString("en-US", { month: "short" }) : "",
           };
         });
         setNewsList(mappedData);

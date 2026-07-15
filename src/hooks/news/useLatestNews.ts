@@ -38,21 +38,19 @@ export function useLatestNews() {
           totalPages = meta.last_page;
         } else if (response.pagination?.totalPages) {
           totalPages = response.pagination.totalPages;
-        } else {
-          // Local pagination fallback if API returns all items ignoring the limit
-          if (rawData.length > ITEMS_PER_PAGE) {
-            totalPages = Math.ceil(rawData.length / ITEMS_PER_PAGE);
-            const startIndex = currentPage * ITEMS_PER_PAGE;
-            rawData = rawData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-          } else {
-            totalPages = 1;
-          }
+        }
+        
+        // Always enforce EXACTLY ITEMS_PER_PAGE items locally if the API returned more
+        if (rawData.length > ITEMS_PER_PAGE) {
+          totalPages = Math.ceil(rawData.length / ITEMS_PER_PAGE);
+          const startIndex = currentPage * ITEMS_PER_PAGE;
+          rawData = rawData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
         }
 
         const mappedData = rawData.map((item: any) => ({
           id: item.id || item.slug,
-          image: item.cover_image || "/firstnew.png",
-          date: item.published_at || item.created_at || "Recent News",
+          image: item.cover_image || "/bg.png",
+          date: item.publish_date || "Recent News",
           title: item.title,
           paragraph: item.short_description || "Read more about this article...",
         }));

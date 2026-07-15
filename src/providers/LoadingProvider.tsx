@@ -24,6 +24,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
 
   // When route changes, reset the minimum time elapsed to show loader again
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMinTimeElapsed(false);
     setIsInitialLoad(true);
     const timer = setTimeout(() => {
@@ -50,6 +51,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (minTimeElapsed && loadingTasks.size === 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsInitialLoad(false);
     }
   }, [minTimeElapsed, loadingTasks.size]);
