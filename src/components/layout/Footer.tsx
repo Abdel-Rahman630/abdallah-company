@@ -25,6 +25,7 @@ export default function Footer() {
               target="_blank"
                 href="https://www.linkedin.com/company/abdullah-hashim-co--ltd-/"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-[18px] border border-[rgba(255,255,255,0.30)] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
+                aria-label="Abdullah Hashim Co. Ltd. LinkedIn"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -60,10 +61,10 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 md:col-span-2">
             {/* Column 2: Quick Links */}
             <div>
-            <h4 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
+            <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
               Quick Links
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
-            </h4>
+            </h2>
             <ul className="space-y-[12px]">
               <li>
                 <Link
@@ -111,10 +112,10 @@ export default function Footer() {
 
           {/* Column 3: Services */}
           <div>
-            <h4 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
+            <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
               Division
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
-            </h4>
+            </h2>
             <ul className="space-y-[12px]">
               <li>
                 <Link
@@ -178,10 +179,10 @@ export default function Footer() {
 
           {/* Column 3: Services */}
           <div>
-            <h4 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
+            <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
               Contact Us
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
-            </h4>
+            </h2>
             <ul className="space-y-[12px]">
               <li>
                 <Link

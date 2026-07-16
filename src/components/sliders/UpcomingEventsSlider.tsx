@@ -23,7 +23,7 @@ export default function UpcomingEventsSlider() {
       try {
         const response = await getEvents({ limit: 20, lang: "en" });
         const data = response.data;
-        console.log("Events fetched data:", data); // Requested by user
+       
         if (!Array.isArray(data) || data.length === 0) return;
 
         const mapped: EventSlideItem[] = data.map((item: EventItem) => {

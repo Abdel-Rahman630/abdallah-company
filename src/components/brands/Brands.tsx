@@ -116,7 +116,7 @@ function BrandCard({
     >
       <div className="relative w-[150px] h-[100px] mb-[6px]">
         <Image
-          src={brand.logo || "/honda.png"}
+          src={brand.logo || "/bg.png"}
           alt={brand.name}
           fill
           className="object-contain"

@@ -7,6 +7,7 @@ export default function VideoSection() {
         muted 
         loop 
         playsInline
+        aria-hidden="true"
       >
         <source src="/banner.mp4" type="video/mp4" />
       </video>
