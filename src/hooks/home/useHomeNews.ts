@@ -1,17 +1,7 @@
 import { useState, useEffect } from "react";
 import { getNews } from "@/services/news.service";
 import { useGlobalLoading } from "@/providers/LoadingProvider";
-
-export type HomeNewsItem = {
-  id: string | number;
-  image: string;
-  subtitle: string;
-  title: string;
-  desc: string;
-  dateStr: string;
-  day: number;
-  monthStr: string;
-};
+import { HomeNewsItem, NewsItem } from "@/types/models";
 
 export function useHomeNews() {
   const [newsList, setNewsList] = useState<HomeNewsItem[]>([]);
@@ -24,16 +14,16 @@ export function useHomeNews() {
       startLoading("home-news");
       try {
         const response = await getNews({ limit: 4, lang: "en" });
-        const mappedData = response.data.map((item: any) => {
+        const mappedData: HomeNewsItem[] = response.data.map((item: NewsItem) => {
           const rawDate = item.publish_date || item.published_at || item.created_at;
           const d = rawDate ? new Date(rawDate) : new Date();
           const isValid = !isNaN(d.getTime());
           return {
-            id: item.id || item.slug,
-            image: item.cover_image || "/bg.png",
+            id: item.slug || item.id,
+            image: item.cover_image || item.cover_image_url || "/bg.png",
             subtitle: item.category || "News",
-            title: item.title,
-            desc: item.short_description || "",
+            title: item.title || "",
+            desc: item.short_description || item.excerpt || "",
             dateStr: isValid
               ? d.toLocaleString("en-US", { day: "numeric", month: "short" })
               : "",
@@ -43,7 +33,7 @@ export function useHomeNews() {
         });
         setNewsList(mappedData);
       } catch (error) {
-        // Removed console.error
+        console.error("Failed to fetch news:", error);
       } finally {
         setIsLoading(false);
         stopLoading("home-news");

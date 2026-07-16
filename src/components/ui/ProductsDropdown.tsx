@@ -2,47 +2,55 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const productsData = [
   {
     title: "Automotive",
+    id: "automotive",
     text: "AHCL is the distributor of Honda products in Saudi Arabia, handling the complete range of Honda products which now includes cars, motorcycles, marine, and power products.",
     keywords: ["Passenger", "Commercial", "Motorcycles"],
     image: "/automotive.png",
   },
   {
     title: "Marine",
+    id: "marine",
     text: "ACHL offers Honda outboard marine engines and their accessories, covering a range of horsepower up to 250 HP. Our customers range from leisure (private and commercial) to fishing businesses.",
     keywords: ["Marine Engines"],
     image: "/marine.png",
   },
   {
     title: "Power Solutions",
+    id: "power-solutions",
     text: "AHCL offers power generators as a robust supplier of power solutions, with more than 30,000 units of generators sold to date. We are the distributor of Kirloskar Oil Engines, a leading brand in the field.",
     keywords: ["Tower Light", "Air Cooled", "Air Compressors"],
     image: "/power.png",
   },
   {
     title: "Agriculture",
+    id: "agriculture",
     text: "Sonalika International tractors Ltd. is India's heavy duty tractor manufacturing company, producing best-selling tractors and well recognized in domestic and international market as the third largest player.",
     keywords: ["De-watering Pump", "Tractors"],
     image: "/agriculture.png",
   },
   {
     title: "Construction Equipment",
+    id: "construction-equipment",
     text: "AHCL offers construction equipment, water pumps, and air compressors built for performance, reliability, and efficiency, backed by expert support and nationwide service.",
     keywords: ["Construction Equipment"],
     image: "/construction.png",
   },
   {
     title: "Material Handling",
+    id: "material-handling",
     text: "AHCL offers reliable material handling equipment designed to improve efficiency, safety, and productivity across warehouses, logistics, and industrial operations.",
     keywords: ["Forklifts"],
     image: "/material.png",
   },
   {
     title: "Water Solutions",
+    id: "water-solutions",
     text: "AHCL provides reliable water solutions, including high-performance pumps and systems designed for efficient water supply, transfer, and management across residential, commercial, and industrial applications.",
     keywords: ["Water Pumps"],
     image: "/water.png",
@@ -60,15 +68,16 @@ export default function ProductsDropdown({ isMobile }: { isMobile?: boolean }) {
         {/* Titles Column */}
         <div className="flex flex-col gap-2">
           {productsData.map((product, index) => (
-            <button
+            <Link
               key={index}
+              href={`/divisions/${product.id}`}
               onClick={() => setActiveIndex(index)}
-              className={`text-left text-[0.9rem] font-medium transition-colors py-1 ${
+              className={`text-left text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
                 activeIndex === index ? "text-white" : "text-[#666]"
               }`}
             >
               {product.title}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -122,7 +131,9 @@ export default function ProductsDropdown({ isMobile }: { isMobile?: boolean }) {
                 activeIndex === index ? "text-white" : "text-[#666]"
               }`}
             >
-              {product.title}
+              <Link href={`/divisions/${product.id}`}>
+                {product.title}
+              </Link>
             </li>
           ))}
         </ul>

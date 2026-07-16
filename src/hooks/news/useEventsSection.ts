@@ -1,16 +1,7 @@
 import { useState, useEffect } from "react";
 import { getEvents } from "@/services/events.service";
 import { useGlobalLoading } from "@/providers/LoadingProvider";
-
-export type EventItem = {
-  id: string | number;
-  image: string;
-  date: string;
-  month: string;
-  title: string;
-  category: string;
-  slug?: string;
-};
+import { EventItem as ApiEventItem, EventSlideItem as EventItem } from "@/types/models";
 
 export function useEventsSection() {
   const [activeTab, setActiveTab] = useState("All");
@@ -26,35 +17,36 @@ export function useEventsSection() {
       try {
         const response = await getEvents({ limit: 50, lang: "en" });
 
-        const mappedData = response.data.map((item: any) => {
-          const eventDate =
-            item.date ||
-            item.start_date ||
-            item.created_at ||
-            new Date().toISOString();
+        const mappedData = response.data.map((item: ApiEventItem) => {
+          // Use starts_at or formatted_date for date display
+          const eventDate = item.starts_at || item.date || item.start_date || item.created_at || new Date().toISOString();
           const d = new Date(eventDate);
           const monthName = d.toLocaleString("en-US", { month: "long" });
           const day = d.getDate().toString();
 
           return {
             id: item.id || item.slug,
-            image: item.cover_image || item.image || "/event1.png",
+            // Use cover_image_url as per API response
+            image: item.cover_image_url || item.cover_image || item.image || "/event1.png",
             date: day,
             month: monthName.substring(0, 3).toLowerCase(),
             title: item.title || "Upcoming Event",
-            category: item.category || monthName,
+            // Use category key from API
+            category: item.category || "other",
             slug: item.slug,
+            isFeatured: item.is_featured ?? true,
           };
         });
 
         setEventsData(mappedData);
 
+        // Build unique tabs from category keys
         const uniqueCategories = Array.from(
           new Set(mappedData.map((e: EventItem) => e.category))
         ) as string[];
         setTabs(["All", ...uniqueCategories]);
       } catch (error) {
-        // Removed console.error
+        // Silently fail
       } finally {
         setIsLoading(false);
         stopLoading("events-section");

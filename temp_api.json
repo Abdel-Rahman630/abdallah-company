@@ -1,0 +1,101 @@
+{
+  "status": true,
+  "message": "Brand Division retrieved successfully.",
+  "meta": [],
+  "data": {
+    "id": 1,
+    "slug": "automotive",
+    "name": "Automotive",
+    "title": "Veniam qui sed duis",
+    "description": "Fugiat corrupti rer",
+    "banner": null,
+    "image": null,
+    "sort_order": 1,
+    "brands": [
+      {
+        "id": 1,
+        "name": "Honda Automobiles",
+        "logo": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/honda-automobiles-logo-20260714194232-xmcgcfnd.png",
+        "title": "Honda Automobiles",
+        "description": "As the exclusive distributor for Honda cars in Saudi Arabia since 1970, Abdullah Hashim Company Ltd. (AHCL) delivers premier Japanese engineering, precision, and long-term reliability to the Kingdom. Our comprehensive passenger vehicle lineup is designed for safety, efficiency, and advanced performance, catering to individuals, families, and corporate fleets. The portfolio includes category-leading sedans like the Accord, Accord Hybrid (e:HEV), Civic, and City; versatile SUVs including the Pilot, CR-V, ZR-V, and HR-V; the premium Odyssey MPV; and the high-performance Civic Type R. These vehicles feature intelligent technology and exceptional residual value. Ownership is backed by an expansive nationwide infrastructure of AHCL service centers and genuine spare parts, ensuring seamless maintenance and peak vehicle performance across KSA.",
+        "images": [
+          {
+            "id": 1,
+            "url": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/honda-automobiles-image-20260714194232-dghu4vyt.png",
+            "sort_order": 1
+          }
+        ],
+        "social_links": {
+          "website": "https://www.byt.biz",
+          "facebook": "https://www.qagulam.cc",
+          "linkedin": "https://www.haga.com",
+          "instagram": "https://www.koxykosatesebe.us"
+        },
+        "sort_order": 1
+      },
+      {
+        "id": 2,
+        "name": "Honda Motorcycle",
+        "logo": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/honda-motorcycle-logo-20260715205223-4kjcvxhk.png",
+        "title": "Honda Motorcycle",
+        "description": "test",
+        "images": [
+          {
+            "id": 2,
+            "url": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/honda-motorcycle-image-20260715205505-p9kzpljy.jpg",
+            "sort_order": 1
+          }
+        ],
+        "social_links": {
+          "website": "https://www.byt.biz",
+          "facebook": "https://www.qagulam.cc",
+          "linkedin": "https://www.haga.com",
+          "instagram": "https://www.koxykosatesebe.us"
+        },
+        "sort_order": 2
+      },
+      {
+        "id": 3,
+        "name": "Aurora Zimmerman",
+        "logo": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/aurora-zimmerman-logo-20260715205702-koqi3l3s.png",
+        "title": "Consectetur et Nam",
+        "description": "Magnam omnis similiq",
+        "images": [
+          {
+            "id": 3,
+            "url": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/aurora-zimmerman-image-20260715205702-t0eqd6yx.png",
+            "sort_order": 1
+          }
+        ],
+        "social_links": {
+          "website": "https://www.jumojase.org",
+          "facebook": "https://www.lobotis.cc",
+          "linkedin": "https://www.tuci.in",
+          "instagram": "https://www.moduja.org.uk"
+        },
+        "sort_order": 3
+      },
+      {
+        "id": 4,
+        "name": "Vera Gilliam",
+        "logo": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/vera-gilliam-logo-20260715205722-2hmslrri.png",
+        "title": "Accusamus tempore p",
+        "description": "Aspernatur alias dol",
+        "images": [
+          {
+            "id": 4,
+            "url": "https://digital-iconcreations.com/ahcl-crm/uploads/cms/brands/vera-gilliam-image-20260715205722-k9jcs9nj.png",
+            "sort_order": 1
+          }
+        ],
+        "social_links": {
+          "website": "https://www.buc.com.au",
+          "facebook": "https://www.cobo.org.au",
+          "linkedin": "https://www.lidasofuk.mobi",
+          "instagram": "https://www.top.net"
+        },
+        "sort_order": 4
+      }
+    ]
+  }
+}

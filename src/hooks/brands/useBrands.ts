@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export interface SocialLink {
   url: string;
-  type: string; // "website" | "linkedin" | "instagram" | "facebook" | ...
+  type: string;
 }
 
 export interface Brand {
@@ -16,7 +16,7 @@ export interface Brand {
   social_links?: SocialLink[];
 }
 
-export function useAutomotiveBrands() {
+export function useBrands() {
   const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
 

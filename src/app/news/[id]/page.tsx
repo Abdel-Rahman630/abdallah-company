@@ -5,6 +5,7 @@ import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
 import { getNewsById } from "@/services/news.service";
 import { notFound } from "next/navigation";
+import ScreenshotButton from "@/components/news/ScreenshotButton";
 
 export const metadata: Metadata = {
   title: "Abdallah Company | News Details",
@@ -46,7 +47,7 @@ export default async function NewsDetailsPage({ params }: PageProps) {
             <RevealText delay={0.1}>
               <Link
                 href="/news"
-                className="group inline-flex items-center gap-[10px] text-black text-[1rem] font-bold uppercase underline"
+                className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
                   className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
@@ -80,7 +81,7 @@ export default async function NewsDetailsPage({ params }: PageProps) {
                 <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
                   Company News
                 </span>
-                <span className="text-[#D1A52A] text-[0.9rem] font-bold">
+                <span className="text-[#D1A52A] text-[0.9rem]">
                   {news.publish_date
                     ? new Date(news.publish_date).toLocaleDateString("en-GB", {
                         day: "numeric",
@@ -92,9 +93,12 @@ export default async function NewsDetailsPage({ params }: PageProps) {
               </div>
             </RevealText>
 
-            {/* <RevealText delay={0.3}>
+            <RevealText delay={0.3}>
               <ul className="flex gap-[8px]">
-                <li>
+                   <li>
+                  <ScreenshotButton />
+                </li>
+                {/* <li>
                   <a href="#" target="_blank" className="w-[32px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M10.0009 1.33203H12.0008V3.99891H10.0009C9.82412 3.99891 9.65456 4.06915 9.52954 4.19419C9.40453 4.31922 9.3343 4.48881 9.3343 4.66563V6.66579H12.0008L11.3342 9.33267H9.3343V14.6664H6.66782V9.33267H4.66797V6.66579H6.66782V4.66563C6.66782 3.78151 7.01899 2.93359 7.64406 2.30842C8.26914 1.68325 9.11692 1.33203 10.0009 1.33203Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
@@ -123,9 +127,9 @@ export default async function NewsDetailsPage({ params }: PageProps) {
                       <path d="M2.66547 3.99881C3.40191 3.99881 3.99891 3.40183 3.99891 2.66542C3.99891 1.92901 3.40191 1.33203 2.66547 1.33203C1.92903 1.33203 1.33203 1.92901 1.33203 2.66542C1.33203 3.40183 1.92903 3.99881 2.66547 3.99881Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                   </a>
-                </li>
+                </li> */}
               </ul>
-            </RevealText> */}
+            </RevealText>
           </div>
 
           {/* Article Content */}

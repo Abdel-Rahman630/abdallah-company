@@ -1,6 +1,7 @@
 import NewsBanner from "@/components/news/NewsBanner";
 import LatestNews from "@/components/news/LatestNews";
 import EventsSection from "@/components/news/EventsSection";
+import Subscribe from "@/components/forms/Subscribe";
 
 import { Metadata } from "next";
 
@@ -14,6 +15,7 @@ export default function NewsPage() {
     <>
       <NewsBanner />
       <LatestNews />
+      <Subscribe />
       <EventsSection />
     </>
   );

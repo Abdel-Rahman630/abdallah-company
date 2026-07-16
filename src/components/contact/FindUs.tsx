@@ -58,7 +58,7 @@ export default function FindUs() {
                   </h4>
                   <a
                     href="mailto:info@ahcl.com.sa"
-                    className="text-[#1E1E1E] text-[1rem] font-normal hover:text-[#D1A52A] transition-colors"
+                    className="text-[#1E1E1E] text-[1rem] font-normal"
                   >
                     info@ahcl.com.sa
                   </a>
@@ -69,7 +69,7 @@ export default function FindUs() {
                   </h4>
                   <a
                     href="tel:0122638200"
-                    className="text-[#1E1E1E] text-[1rem] font-normal hover:text-[#D1A52A] transition-colors"
+                    className="text-[#1E1E1E] text-[1rem] font-normal"
                   >
                     012 263 8200
                   </a>
@@ -117,7 +117,7 @@ export default function FindUs() {
                 id="division-select"
                 value={selectedDivision}
                 onChange={(e) => setSelectedDivision(e.target.value)}
-                className="w-full appearance-none rounded-[4px] border border-[##E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] transition-colors"
+                className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
               >
                 <option value="">Select Division</option>
                 {divisions.map((d) => (
@@ -150,7 +150,7 @@ export default function FindUs() {
                 id="city-select"
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
-                className="w-full appearance-none rounded-[4px] border border-[##E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] transition-colors"
+                className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
               >
                 <option value="">Select City</option>
                 {cities.map((c) => (
@@ -179,16 +179,28 @@ export default function FindUs() {
               onClick={handleFilter}
               disabled={isLoading}
               aria-label="Filter locations"
-              className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[1rem] font-bold uppercase rounded-[4px] hover:bg-[#b8901e] transition-colors flex items-center justify-center gap-[10px] disabled:opacity-50"
+              className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
             >
               Filter
+            </button>
+            <button
+              onClick={() => {
+                setSelectedDivision("");
+                setSelectedCity("");
+                fetchLocations({ division: "", city: "" });
+              }}
+              disabled={isLoading}
+              aria-label="Clear filters"
+              className="w-full md:w-auto bg-transparent border border-[#231F20] px-[32px] py-[16px] text-[#231F20] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
+            >
+              Clear
             </button>
           </div>
         </RevealText>
 
         {/* Locations List and Map */}
         {locations.length === 0 && !isLoading ? (
-          <div className="flex flex-col items-center justify-center p-[60px] border border-[rgba(255,255,255,0.1)] rounded-[16px] bg-[rgba(255,255,255,0.02)]">
+          <div className="flex flex-col items-center justify-center p-[60px] border border-[rgba(255,255,255,0.1)] rounded-[16px] bg-[#E9E9E9]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -217,7 +229,7 @@ export default function FindUs() {
             {/* Left Column - List */}
             <div className="w-full lg:w-[45%] shrink-0">
               <RevealText delay={0.4}>
-                <ul className="flex flex-col h-[500px] overflow-y-auto pr-[16px] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#2c2c2c] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D1A52A] [&::-webkit-scrollbar-thumb]:rounded-full">
+                <ul className="flex flex-col h-[500px] overflow-y-auto pr-[16px] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#E9E9E9] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D1A52A] [&::-webkit-scrollbar-thumb]:rounded-full">
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
                         <li
@@ -236,13 +248,13 @@ export default function FindUs() {
                         <li
                           key={loc.id}
                           onClick={() => setActiveLocation(loc)}
-                          className={`flex items-start gap-[1rem] py-[20px] border-b border-[rgba(255,255,255,0.10)] cursor-pointer transition-colors group ${
+                          className={`flex items-start gap-[1rem] py-[20px] border-b border-[rgba(255,255,255,0.10)] cursor-pointer group ${
                             activeLocation?.id === loc.id
                               ? "bg-[rgba(255,255,255,0.02)] px-[10px]"
-                              : "hover:bg-[rgba(255,255,255,0.02)] px-[10px]"
+                              : "px-[10px]"
                           }`}
                         >
-                          <div className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 group-hover:bg-[#D1A52A] transition-colors">
+                          <div className="w-[40px] h-[40px] rounded-[20px] bg-[#E9E9E9] flex items-center justify-center shrink-0">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -257,7 +269,6 @@ export default function FindUs() {
                                     ? "#1E1E1E"
                                     : "#D1A52A"
                                 }
-                                className="group-hover:stroke-[#1E1E1E] transition-colors"
                                 strokeWidth="2"
                                 strokeLinecap="round"
                               />
@@ -277,7 +288,7 @@ export default function FindUs() {
                                 </span>
                               )} */}
                             </div>
-                            <p className="text-[rgba(255,255,255,0.60)] text-[0.9rem] font-normal leading-relaxed">
+                            <p className="text-[#666666] text-[0.9rem] font-normal leading-relaxed">
                               {loc.paragraph}
                             </p>
                           </div>
@@ -314,7 +325,7 @@ export default function FindUs() {
                           href={activeLocation.googleMapsUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="absolute bottom-[24px] right-[24px] bg-[#1E1E1E] hover:bg-[#D1A52A] text-[#1E1E1E] hover:text-black transition-colors px-[16px] py-[10px] rounded-[8px] shadow-lg flex items-center gap-[8px] text-[0.9rem] font-bold z-10 border border-[rgba(255,255,255,0.1)]"
+                          className="absolute bottom-[24px] right-[24px] bg-[#1E1E1E] text-white px-[16px] py-[10px] rounded-[8px] shadow-lg flex items-center gap-[8px] text-[0.9rem] font-bold z-10 border border-[rgba(255,255,255,0.1)]"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

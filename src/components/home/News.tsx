@@ -4,6 +4,8 @@ import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import Link from "next/link";
+import SectionTitle from "@/components/ui/SectionTitle";
+import SectionSubtitle from "@/components/ui/SectionSubtitle";
 import UpcomingEventsSlider from "@/components/sliders/UpcomingEventsSlider";
 import { useHomeNews } from "@/hooks/home/useHomeNews";
 import { useNewsletter } from "@/hooks/home/useNewsletter";
@@ -19,10 +21,10 @@ export default function News() {
           {/* First Div (Left Side) */}
           <div className="w-full lg:w-1/2">
             <RevealText delay={0.1}>
-              <h3 className="text-[#C9A84C] text-[0.9rem] font-semibold uppercase mb-[12px]">News &amp; Events</h3>
+              <SectionSubtitle className="mb-[12px]">News &amp; Events</SectionSubtitle>
             </RevealText>
             <RevealText delay={0.2}>
-              <h2 className="text-[#1E1E1E] text-[2.5rem] font-bold mb-[24px] md:mb-[50px]">Company Highlights</h2>
+              <SectionTitle className="mb-[24px] md:mb-[50px]">Company Highlights</SectionTitle>
             </RevealText>
 
             <RevealText delay={0.3}>
@@ -125,9 +127,9 @@ export default function News() {
 
             {/* Newsletter Div */}
             <RevealText delay={0.5}>
-              <div className="rounded-[12px] border border-[#686868] bg-[#1E1E1E] flex md:flex-row flex-col md:items-center p-[32px] gap-[1rem]">
+              <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[32px] gap-[1rem]">
                 <div className="flex-1">
-                  <h4 className="text-[#D1A52A] text-[1rem] mb-[8px] font-medium shrink-0">Stay updated with AHCL</h4>
+                  <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium shrink-0">Stay updated with AHCL</h4>
                   <p className="text-[#949494] text-[0.75rem] font-normal">
                     Join our newsletter for exclusive event invites and industry news.
                   </p>
@@ -143,7 +145,7 @@ export default function News() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="flex-1 rounded-l-[3px] bg-[#333] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
+                      className=" border-b-[1px] border-[#C6C6C6] flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
                       disabled={subscribeStatus === "loading"}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleSubscribe();
@@ -189,7 +191,7 @@ export default function News() {
             <h2 className="text-[#1A1A1A] text-[1.5rem] font-bold uppercase">UPCOMING EVENTS</h2>
           </RevealText>
           <RevealText delay={0.2}>
-            <ArrowLink href="/news" color="black">
+            <ArrowLink href="/news#events" color="black">
               all events
             </ArrowLink>
           </RevealText>

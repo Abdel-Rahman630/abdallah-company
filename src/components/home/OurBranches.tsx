@@ -14,6 +14,8 @@ const countdownData = [
   },
   { to: 16, suffix: "+", title: "Showroom" },
   { to: 32, suffix: "+", title: "Service center" },
+  { to: 32, suffix: "+", title: "Spare Part" },
+
 ];
 
 export default function OurBranches() {
@@ -38,17 +40,13 @@ export default function OurBranches() {
 
             <RevealText delay={0.3}>
               <p className="mb-[34px] leading-relaxed text-[#666] text-[0.8125rem] font-normal">
-                AHCL serves its customers via a network composed of 28
-                AHCL-operated facilities, and 34 dealer facilities. Through its
-                own operated facilities, AHCL can reach approximately 78% of the
-                population of Saudi Arabia.
+                AHCL serves its customers via a network composed of 28 AHCL-operated facilities, and 34 dealer facilities. Through its own operated facilities, AHCL can reach approximately 78% of the population of Saudi Arabia.
               </p>
             </RevealText>
 
             <RevealText delay={0.4}>
               <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
-                AHCL-operated facilities are categorized based on the scope of
-                services they provide:
+                AHCL-operated facilities are categorized based on the scope of services they provide:
               </p>
             </RevealText>
 
@@ -86,8 +84,7 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  A facility that provides either sales or service or spare
-                  parts.
+                  Head Office.
                 </span>
               </li>
 
@@ -124,8 +121,7 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  A facility that provides both service and spare parts at the
-                  same location.
+                  Distributor Hub.
                 </span>
               </li>
 
@@ -162,8 +158,7 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  A facility that provides sales, service, and spare parts at
-                  the same location.
+                 Operation Network (Sales, Service centers & spare parts).
                 </span>
               </li>
             </ul>
@@ -180,8 +175,8 @@ export default function OurBranches() {
                     index === 0
                       ? "pb-4 md:pb-0"
                       : index === countdownData.length - 1
-                        ? "pt-4 md:pt-0 md:pl-12"
-                        : "py-4 md:py-0 md:pl-12"
+                        ? "pt-4 md:pt-0 md:pl-6"
+                        : "py-4 md:py-0 md:pl-6"
                   }`}
                 >
                   <span className="text-[#1E1E1E] text-[2.5rem] font-semibold uppercase mb-[10px] leading-none">
@@ -193,7 +188,7 @@ export default function OurBranches() {
                 </div>
               ))}
             </div>
-            <ArrowLink href="/contact-us#find-us">More about our locations</ArrowLink>
+            <ArrowLink href="/contact-us#find-us" color="black">More about our locations</ArrowLink>
           </div>
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}

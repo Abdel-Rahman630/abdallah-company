@@ -17,8 +17,8 @@ export async function getEvents(params?: {
   if (params?.status) query.set("status", params.status);
   if (params?.lang) query.set("lang", params.lang);
 
-  const qs = query.toString() ? `?${query.toString()}` : "";
-  return apiGet<ApiResponse<EventItem[]>>(`/api/cms/events${qs}`, {
+  const qs = query.toString();
+  return apiGet<ApiResponse<EventItem[]>>(`/api/cms/events${qs ? '?' + qs : ''}`, {
     revalidate: 60,
     tags: ["events"],
   });
@@ -29,8 +29,9 @@ export async function getEvents(params?: {
  */
 export async function getEventById(slug: string, lang?: string): Promise<EventItem> {
   const qs = lang ? `?lang=${lang}` : "";
-  return apiGet<EventItem>(`/api/cms/events/${slug}${qs}`, {
+  const res = await apiGet<ApiResponse<EventItem>>(`/api/cms/events/${slug}${qs}`, {
     revalidate: 60,
     tags: ["events", `event-${slug}`],
   });
+  return res.data;
 }

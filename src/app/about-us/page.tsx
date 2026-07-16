@@ -1,7 +1,7 @@
 import PageBanner from "@/components/ui/PageBanner";
 import SubTitle from "@/components/ui/SubTitle";
 import CountDown from "@/components/ui/CountDown";
-import HistorySlider from "@/components/about/HistorySlider";
+import HistorySlider from "@/components/sliders/HistorySlider";
 import Image from "next/image";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import { Metadata } from "next";

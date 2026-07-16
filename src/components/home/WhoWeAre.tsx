@@ -101,8 +101,8 @@ export default function WhoWeAre() {
                     index === 0
                       ? "pb-4 md:pb-0"
                       : index === countdownData.length - 1
-                        ? "pt-4 md:pt-0 md:pl-12"
-                        : "py-4 md:py-0 md:pl-12"
+                        ? "pt-4 md:pt-0 md:pl-8"
+                        : "py-4 md:py-0 md:pl-8"
                   }`}
                 >
                   <span className="text-[#1E1E1E]  text-[3.75rem] font-semibold uppercase mb-[10px] leading-none">

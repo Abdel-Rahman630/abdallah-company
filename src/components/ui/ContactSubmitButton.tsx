@@ -2,7 +2,7 @@ export default function ContactSubmitButton() {
   return (
     <button
       type="submit"
-      className="flex items-center justify-center gap-[10px] w-[max-content] py-[16px] px-[24px] rounded-[4px] bg-[#1E1E1E] text-[#D1A52A] text-[0.7rem] font-bold tracking-[1.5px] uppercase transition-transform active:scale-[0.98] hover:opacity-90"
+      className="flex items-center justify-center gap-[10px] w-[max-content] py-[16px] px-[24px] rounded-[4px] bg-[#1E1E1E] text-[#D1A52A] text-[0.7rem] tracking-[1.5px] uppercase transition-transform active:scale-[0.98] hover:opacity-90"
     >
       send message
       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10" fill="none">

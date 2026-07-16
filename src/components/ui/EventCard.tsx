@@ -40,7 +40,7 @@ export default function EventCard({ id = 1, image, date, month, title }: EventCa
       
       {/* Hover Link */}
       <div className="absolute bottom-[16px] left-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
-        <span className="inline-flex items-center gap-[10px] text-white text-[0.6rem] font-bold uppercase underline">
+        <span className="inline-flex items-center gap-[10px] text-white text-[0.6rem] font-normal uppercase underline">
           <svg
             className="transition-transform duration-500 group-hover:translate-x-1 shrink-0"
             xmlns="http://www.w3.org/2000/svg"

@@ -9,8 +9,10 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 
+import { HistoryItem } from "@/types/models";
+
 export default function HistorySlider() {
-  const [historyData, setHistoryData] = useState<any[]>([]);
+  const [historyData, setHistoryData] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [barKey, setBarKey] = useState(0);

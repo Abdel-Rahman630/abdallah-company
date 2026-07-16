@@ -43,7 +43,7 @@ const ArrowIconBlack = () => (
 );
 
 export default function ArrowLink({ href = "#", children, color = "white", className = "", as = "link" }: ArrowLinkProps) {
-  const classes = `group inline-flex items-center gap-2 text-[1rem] font-bold uppercase underline transition-opacity duration-500 hover:opacity-80 ${
+  const classes = `group inline-flex items-center gap-2 text-[1rem] font-normal uppercase underline transition-opacity duration-500 hover:opacity-80 ${
     color === "black" ? "text-[#1E1E1E]" : "text-white"
   } ${className}`;
 

@@ -41,7 +41,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
               <li key={item.label}>
                 <button
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm font-medium transition-colors whitespace-nowrap cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm transition-colors whitespace-nowrap cursor-pointer ${
                     activeDropdown === item.label ? "bg-[#D1A52A] text-black" : "text-white"
                   }`}
                 >
@@ -58,7 +58,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         image={item.dropdown.image}
                         onLinkClick={() => setActiveDropdown(null)}
                       />
-                    ) : item.label === "Division" ? (
+                    ) : item.label === "Divisions" ? (
                       <ProductsDropdown />
                     ) : (
                       <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] min-w-[939px] min-h-[418px]">
@@ -109,7 +109,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                 <li key={item.label}>
                   <button
                     onClick={() => {
-                      if (item.dropdown || item.label === "Division") {
+                      if (item.dropdown || item.label === "Divisions") {
                         setMobileActiveMenu(item.label);
                       }
                     }}
@@ -156,7 +156,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                   setMobileOpen(false);
                 }}
               />
-            ) : mobileActiveMenu === "Division" ? (
+            ) : mobileActiveMenu === "Divisions" ? (
               <div className="lg:p-4">
                 <ProductsDropdown isMobile={true} />
               </div>

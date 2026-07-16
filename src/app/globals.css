@@ -491,6 +491,11 @@ body {
   font-family: "Inter 28pt";
 }
 
+button {
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
 /* ─── Shimmer / Skeleton Loading ──────────────────────────────────────────── */
 @keyframes shimmer {
   0%   { background-position: -600px 0; }

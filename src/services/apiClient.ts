@@ -1,9 +1,15 @@
 /**
  * Base API client using Next.js native fetch.
  * Integrates with Next.js caching and revalidation system.
+ *
+ * - On the CLIENT: uses relative URLs → goes through the Next.js rewrite proxy (no CORS)
+ * - On the SERVER: uses the full external URL → direct API call
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.ahcl.com.sa";
+const isServer = typeof window === "undefined";
+const API_BASE_URL = isServer
+  ? (process.env.NEXT_PUBLIC_API_URL ?? "https://digital-iconcreations.com/ahcl-crm")
+  : ""; // empty = relative URL, routed through Next.js rewrites
 
 interface FetchOptions extends RequestInit {
   /** Next.js revalidation in seconds. Use 0 for no cache, false for indefinite. */

@@ -2,9 +2,12 @@
 
 import { useGetInTouch } from "@/hooks/contact/useGetInTouch";
 import { RevealText } from "@/components/ui/ScrollReveal";
+import { FormInput } from "@/components/ui/FormInput";
+import { FormSelect } from "@/components/ui/FormSelect";
 
 export default function GetInTouch() {
-  const { register, handleSubmit, onSubmit, errors, status, globalError } = useGetInTouch();
+  const { register, handleSubmit, onSubmit, errors, status, globalError } =
+    useGetInTouch();
 
   return (
     <section id="get-in-touch" className="py-[100px] bg-white">
@@ -13,16 +16,21 @@ export default function GetInTouch() {
           {/* Left Column - Form */}
           <div className="flex-1">
             <RevealText delay={0.1}>
-              <span className="text-[#000] text-[1rem] font-bold uppercase block mb-[8px]">GET IN TOUCH</span>
+              <span className="text-[#000] text-[1rem] font-bold uppercase block mb-[8px]">
+                GET IN TOUCH
+              </span>
             </RevealText>
 
             <RevealText delay={0.2}>
-              <h2 className="text-[#231F20] text-[2.5rem] font-bold mb-[1rem]">Contact Us</h2>
+              <h2 className="text-[#231F20] text-[2.5rem] font-bold mb-[1rem]">
+                Contact Us
+              </h2>
             </RevealText>
 
             <RevealText delay={0.3}>
               <p className="text-[#949494] text-[0.9rem] font-normal mb-[32px]">
-                We'd love to hear from you. Fill out the form and we'll respond as soon as possible.
+                We'd love to hear from you. Fill out the form and we'll respond
+                as soon as possible.
               </p>
             </RevealText>
 
@@ -53,9 +61,12 @@ export default function GetInTouch() {
                   />
                 </svg>
                 <div>
-                  <p className="text-green-800 font-bold text-[0.9rem]">Message sent successfully!</p>
+                  <p className="text-green-800 font-bold text-[0.9rem]">
+                    Message sent successfully!
+                  </p>
                   <p className="text-green-700 text-[0.85rem]">
-                    Thank you for contacting us. We'll get back to you as soon as possible.
+                    Thank you for contacting us. We'll get back to you as soon
+                    as possible.
                   </p>
                 </div>
               </div>
@@ -85,61 +96,80 @@ export default function GetInTouch() {
             )}
 
             <RevealText delay={0.4}>
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[1rem]" noValidate>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-[1rem]"
+                noValidate
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-[1rem]">
                   {/* Name */}
                   <div className="flex flex-col gap-[4px]">
-                    <input
+                    <FormInput
                       type="text"
                       placeholder="Name"
-                      className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full transition-colors ${errors.name ? "border-red-400" : "border-[#E5E5E5]"}`}
+                      error={!!errors.name}
                       {...register("name", { required: "Name is required." })}
                     />
-                    {errors.name && <span className="text-red-500 text-[0.75rem]">{errors.name.message}</span>}
+                    {errors.name && (
+                      <span className="text-red-500 text-[0.75rem]">
+                        {errors.name.message}
+                      </span>
+                    )}
                   </div>
 
                   {/* Division */}
                   <div className="flex flex-col gap-[4px]">
-                    <div className="relative w-full">
-                      <select
-                        className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full appearance-none pr-[40px] transition-colors ${errors.division ? "border-red-400" : "border-[#E5E5E5]"}`}
-                        {...register("division", { required: "Please select a division." })}
-                      >
-                        <option value="">Select Division</option>
-                        <option value="automotive">Automotive &amp; Machinery</option>
-                        <option value="marine">Marine</option>
-                        <option value="other">Other</option>
-                      </select>
-                      <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 9 5" fill="none">
-                          <path d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z" fill="#1E1E1E" />
-                        </svg>
-                      </div>
-                    </div>
-                    {errors.division && <span className="text-red-500 text-[0.75rem]">{errors.division.message}</span>}
+                    <FormSelect
+                      error={!!errors.division}
+                      {...register("division", {
+                        required: "Please select a division.",
+                      })}
+                    >
+                      <option value="">Select Division</option>
+                      <option value="automotive">
+                        Automotive &amp; Machinery
+                      </option>
+                      <option value="marine">Marine</option>
+                      <option value="other">Other</option>
+                    </FormSelect>
+                    {errors.division && (
+                      <span className="text-red-500 text-[0.75rem]">
+                        {errors.division.message}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="flex flex-col gap-[4px]">
-                  <input
+                  <FormInput
                     type="email"
                     placeholder="Email Address"
-                    className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full transition-colors ${errors.email ? "border-red-400" : "border-[#E5E5E5]"}`}
+                    error={!!errors.email}
                     {...register("email", { required: "Email is required." })}
                   />
-                  {errors.email && <span className="text-red-500 text-[0.75rem]">{errors.email.message}</span>}
+                  {errors.email && (
+                    <span className="text-red-500 text-[0.75rem]">
+                      {errors.email.message}
+                    </span>
+                  )}
                 </div>
 
                 {/* Phone */}
                 <div className="flex flex-col gap-[4px]">
-                  <input
+                  <FormInput
                     type="tel"
                     placeholder="Phone Number"
-                    className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full transition-colors ${errors.phone ? "border-red-400" : "border-[#E5E5E5]"}`}
-                    {...register("phone", { required: "Phone number is required." })}
+                    error={!!errors.phone}
+                    {...register("phone", {
+                      required: "Phone number is required.",
+                    })}
                   />
-                  {errors.phone && <span className="text-red-500 text-[0.75rem]">{errors.phone.message}</span>}
+                  {errors.phone && (
+                    <span className="text-red-500 text-[0.75rem]">
+                      {errors.phone.message}
+                    </span>
+                  )}
                 </div>
 
                 {/* Message */}
@@ -147,17 +177,23 @@ export default function GetInTouch() {
                   <textarea
                     placeholder="Your Message"
                     rows={4}
-                    className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full resize-y transition-colors ${errors.message ? "border-red-400" : "border-[#E5E5E5]"}`}
-                    {...register("message", { required: "Message is required." })}
+                    className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full resize-y ${errors.message ? "border-red-400" : "border-[#E5E5E5]"}`}
+                    {...register("message", {
+                      required: "Message is required.",
+                    })}
                   />
-                  {errors.message && <span className="text-red-500 text-[0.75rem]">{errors.message.message}</span>}
+                  {errors.message && (
+                    <span className="text-red-500 text-[0.75rem]">
+                      {errors.message.message}
+                    </span>
+                  )}
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="self-start flex items-center gap-[10px] px-[32px] py-[14px] bg-[#D1A52A] text-[#1E1E1E] text-[0.875rem] font-bold uppercase rounded-[4px] hover:bg-[#b8901e] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="letter-spacing-[1.5px] self-start flex items-center gap-[10px] px-[32px] py-[14px] bg-[#1E1E1E] text-[#D1A52A] text-[0.875rem] uppercase rounded-[4px] "
                 >
                   {status === "loading" ? (
                     <>
@@ -181,10 +217,16 @@ export default function GetInTouch() {
                   ) : (
                     <>
                       Send Message
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10" fill="none">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="13"
+                        height="10"
+                        viewBox="0 0 13 10"
+                        fill="none"
+                      >
                         <path
-                          d="M12.6624 4.24708L8.57908 0.163749C8.46907 0.0574899 8.32171 -0.00130703 8.16877 2.20514e-05C8.01582 0.00135113 7.86951 0.0626998 7.76136 0.170855C7.6532 0.279009 7.59185 0.425316 7.59052 0.578265C7.5892 0.731213 7.64799 0.878564 7.75425 0.988582L10.8418 4.07617H0.583299C0.428589 4.07617 0.280267 4.13762 0.170867 4.24702C0.0614671 4.35642 0 4.50479 0 4.6595C0 4.81421 0.0614671 4.96258 0.170867 5.07198C0.280267 5.18137 0.428589 5.24283 0.583299 5.24283H10.8418L7.75425 8.33042C7.69854 8.38423 7.6541 8.44859 7.62352 8.51976C7.59295 8.59093 7.57686 8.66748 7.57619 8.74493C7.57551 8.82239 7.59027 8.8992 7.6196 8.97089C7.64894 9.04258 7.69225 9.10771 7.74702 9.16248C7.80179 9.21725 7.86692 9.26056 7.93861 9.2899C8.0103 9.31923 8.08711 9.33399 8.16457 9.33331C8.24202 9.33264 8.31857 9.31655 8.38974 9.28597C8.46091 9.2554 8.52527 9.21096 8.57908 9.15525L12.6624 5.07192C12.7718 4.96252 12.8332 4.81418 12.8332 4.6595C12.8332 4.50482 12.7718 4.35647 12.6624 4.24708Z"
-                          fill="#1E1E1E"
+                          d="M12.6624 4.24708L8.57908 0.163749C8.46907 0.0574899 8.32171 -0.00130703 8.16877 2.20514e-05C8.01582 0.00135113 7.86951 0.0626998 7.76136 0.170855C7.6532 0.279009 7.59185 0.425316 7.59052 0.578265C7.5892 0.731213 7.64799 0.878564 7.75425 0.988582L10.8418 4.07617H0.583333C0.428624 4.07617 0.280251 4.13762 0.170854 4.24702C0.0614581 4.35642 0 4.50479 0 4.6595C0 4.81421 0.0614581 4.96258 0.170854 5.07198C0.280251 5.18137 0.428624 5.24283 0.583333 5.24283H10.8418L7.75425 8.33042C7.69854 8.38423 7.6541 8.44859 7.62352 8.51976C7.59295 8.59093 7.57686 8.66748 7.57619 8.74493C7.57551 8.82239 7.59027 8.8992 7.6196 8.97089C7.64894 9.04258 7.69225 9.10771 7.74702 9.16248C7.80179 9.21725 7.86692 9.26056 7.93861 9.2899C8.0103 9.31923 8.08711 9.33399 8.16457 9.33331C8.24202 9.33264 8.31857 9.31655 8.38974 9.28597C8.46091 9.2554 8.52527 9.21096 8.57908 9.15525L12.6624 5.07192C12.7718 4.96252 12.8332 4.81418 12.8332 4.6595C12.8332 4.50482 12.7718 4.35647 12.6624 4.24708Z"
+                          fill="#D1A52A"
                         />
                       </svg>
                     </>
@@ -197,7 +239,9 @@ export default function GetInTouch() {
           {/* Right Column - Info */}
           <div className="w-full lg:w-[400px] shrink-0">
             <RevealText delay={0.3}>
-              <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[1rem]">Follow Our Progress</h3>
+              <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[1rem]">
+                Follow Our Progress
+              </h3>
             </RevealText>
 
             <RevealText delay={0.4}>
@@ -216,31 +260,41 @@ export default function GetInTouch() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-[20px] group w-full"
                   >
-                    <div className="w-[48px] h-[48px] rounded-[24px] bg-[#1E1E1E] flex items-center justify-center shrink-0">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <div className="w-[48px] h-[48px] rounded-[24px] bg-[#F9F9F9] flex items-center justify-center shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
                         <path
                           d="M20.2441 9.75769C19.1188 8.63242 17.5925 8.00025 16.0011 8.00025C14.4097 8.00025 12.8834 8.63242 11.7581 9.75769C10.6328 10.883 10.0006 12.4091 10.0006 14.0005V21.0008H14.001V14.0005C14.001 13.47 14.2117 12.9613 14.5868 12.5862C14.9619 12.2111 15.4706 12.0004 16.0011 12.0004C16.5316 12.0004 17.0403 12.2111 17.4154 12.5862C17.7905 12.9613 18.0013 13.47 18.0013 14.0005V21.0008H22.0016V14.0005C22.0016 12.4091 21.3694 10.883 20.2441 9.75769Z"
-                          stroke="#D1A52A"
-                          strokeWidth="2"
-                          strokeLinecap="round"
+                          stroke="#1E1E1E"
+                          stroke-width="2"
+                          stroke-linecap="round"
                         />
                         <path
                           d="M6.00032 9.00029H2V21.0008H6.00032V9.00029Z"
-                          stroke="#D1A52A"
-                          strokeWidth="2"
-                          strokeLinecap="round"
+                          stroke="#1E1E1E"
+                          stroke-width="2"
+                          stroke-linecap="round"
                         />
                         <path
                           d="M4.00016 6.00017C5.10482 6.00017 6.00032 5.1047 6.00032 4.00008C6.00032 2.89547 5.10482 2 4.00016 2C2.8955 2 2 2.89547 2 4.00008C2 5.1047 2.8955 6.00017 4.00016 6.00017Z"
-                          stroke="#D1A52A"
-                          strokeWidth="2"
-                          strokeLinecap="round"
+                          stroke="#1E1E1E"
+                          stroke-width="2"
+                          stroke-linecap="round"
                         />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">LinkedIn</h4>
-                      <span className="text-[#6B7280] text-[14px] font-normal">Abdullah Hashim Company</span>
+                      <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
+                        LinkedIn
+                      </h4>
+                      <span className="text-[#6B7280] text-[14px] font-normal">
+                        Abdullah Hashim Company
+                      </span>
                     </div>
                   </a>
                 </li>
@@ -249,8 +303,10 @@ export default function GetInTouch() {
 
             {/* Customer Service */}
             <RevealText delay={0.6}>
-              <div className="flex flex-col justify-center px-[24px] py-[32px] gap-[16px] rounded-[10px] bg-[#1E1E1E]">
-                <h4 className="text-[#D1A52A] text-[1.1rem] font-bold">Customer Service</h4>
+              <div className="flex flex-col justify-center px-[24px] py-[32px] gap-[16px] rounded-[10px] bg-[#F9F9F9]">
+                <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
+                  Customer Service
+                </h4>
                 <div className="flex justify-start items-center gap-[12px] flex-wrap">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -258,28 +314,29 @@ export default function GetInTouch() {
                     height="12"
                     viewBox="0 0 15 12"
                     fill="none"
-                    className="shrink-0"
                   >
                     <path
                       d="M14.8004 5.46053L10.0276 0.210534C9.899 0.0739156 9.72677 -0.00168046 9.548 2.83518e-05C9.36923 0.00173717 9.19822 0.0806141 9.0718 0.21967C8.94539 0.358726 8.87368 0.546835 8.87213 0.743483C8.87057 0.940131 8.9393 1.12958 9.0635 1.27103L12.6724 5.24078H0.681825C0.500994 5.24078 0.327569 5.3198 0.199702 5.46045C0.0718349 5.60111 0 5.79187 0 5.99078C0 6.1897 0.0718349 6.38046 0.199702 6.52111C0.327569 6.66177 0.500994 6.74078 0.681825 6.74078H12.6724L9.0635 10.7105C8.99838 10.7797 8.94643 10.8625 8.9107 10.954C8.87496 11.0455 8.85616 11.1439 8.85537 11.2435C8.85458 11.3431 8.87183 11.4418 8.90612 11.534C8.9404 11.6262 8.99103 11.7099 9.05505 11.7803C9.11906 11.8507 9.19519 11.9064 9.27899 11.9442C9.36278 11.9819 9.45256 12.0008 9.54309 12C9.63363 11.9991 9.72309 11.9784 9.80628 11.9391C9.88947 11.8998 9.9647 11.8427 10.0276 11.771L14.8004 6.52103C14.9282 6.38039 15 6.18966 15 5.99078C15 5.79191 14.9282 5.60118 14.8004 5.46053Z"
-                      fill="#D1A52A"
+                      fill="#1E1E1E"
                     />
                   </svg>
                   <a
                     href="tel:920002208"
-                    className="text-[#FFF] text-[1rem] font-semibold"
+                    className="text-[#666666] text-[1rem] font-semibold"
                   >
                     920 002 208
                   </a>
 
                   <a
                     href="tel:8001199988"
-                    className="text-[#FFF] text-[1rem] font-semibold"
+                    className="text-[#666666] text-[1rem] font-semibold"
                   >
                     800 119 9988
                   </a>
                 </div>
-                <p className="text-white/60 text-[0.9rem] font-normal">Available Sun - Thu | 8:00 AM - 5:00 PM</p>
+                <p className="text-[#666666] text-[0.9rem] font-normal">
+                  Available Sun - Thu | 8:00 AM - 5:00 PM
+                </p>
               </div>
             </RevealText>
           </div>

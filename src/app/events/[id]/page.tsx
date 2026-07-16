@@ -1,15 +1,73 @@
+import { getEventById } from "@/services/events.service";
 import NewsBanner from "@/components/news/NewsBanner";
 import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import { Metadata } from "next";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
+import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Abdallah Company | Event Details",
-  description: "Learn more about the latest events at Abdullah Hashim Company.",
-};
+interface PageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
 
-export default function EventDetailsPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    const { id } = await params;
+    const event = await getEventById(id);
+    return {
+      title: `Abdallah Company | ${event.title}`,
+      description: event.excerpt || event.description?.substring(0, 150) || "Event details",
+    };
+  } catch (err) {
+    return {
+      title: "Abdallah Company | Event Details",
+      description: "Learn more about the latest events at Abdullah Hashim Company.",
+    };
+  }
+}
+
+export default async function EventDetailsPage({ params }: PageProps) {
+  const { id } = await params;
+  let event;
+  try {
+    event = await getEventById(id, "en");
+  } catch (error) {
+    return notFound();
+  }
+
+  if (!event) return notFound();
+
+  // Fallback for dates
+  const dateStr = event.starts_at || event.date || event.start_date || event.created_at || new Date().toISOString();
+  const d = new Date(dateStr);
+  const formattedDate = event.formatted_date || d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  
+  // Format time if available
+  let timeStr = "TBA";
+  if (event.starts_at) {
+    const startD = new Date(event.starts_at);
+    timeStr = startD.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+    if (event.ends_at) {
+      const endD = new Date(event.ends_at);
+      timeStr += ` - ${endD.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}`;
+    }
+  } else if (event.time) {
+    timeStr = event.time;
+  }
+
+  // Handle images for slider
+  const images = [];
+  const mainImg = event.cover_image_url || event.cover_image || event.image;
+  if (mainImg) images.push(mainImg);
+  if (Array.isArray(event.images)) {
+    event.images.forEach((img: string) => {
+      if (img !== mainImg) images.push(img);
+    });
+  }
+
   return (
     <>
       <NewsBanner />
@@ -21,7 +79,7 @@ export default function EventDetailsPage() {
             <RevealText delay={0.1}>
               <Link
                 href="/news"
-                className="group inline-flex items-center gap-[10px] text-black text-[1rem] font-bold uppercase underline"
+                className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
                   className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
@@ -47,18 +105,18 @@ export default function EventDetailsPage() {
             {/* Left Column */}
             <div className="w-full lg:w-[65%]">
               {/* Slider */}
-              {/* <div className="w-full">
+              <div className="w-full">
                 <RevealImage delay={0.2}>
-                  <NewsDetailsSlider />
+                  <NewsDetailsSlider images={images} />
                 </RevealImage>
-              </div> */}
+              </div>
 
               {/* Meta Row */}
               <div className="w-full flex items-center pb-[24px]">
                 <RevealText delay={0.3}>
                   <div className="flex gap-[1rem] items-center">
                     <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                      Upcoming Event
+                      {event.computed_status === "upcoming" ? "Upcoming Event" : "Past Event"}
                     </span>
                   </div>
                 </RevealText>
@@ -68,82 +126,25 @@ export default function EventDetailsPage() {
               <div className="w-full mb-[48px]">
                 <RevealText delay={0.4}>
                   <h1 className="text-[#1E1E1E] text-[2.5rem] font-bold mb-[24px] leading-tight">
-                    Saudi Industry Forum 2026
+                    {event.title}
                   </h1>
                 </RevealText>
 
                 <RevealText delay={0.5}>
                   <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed">
-                    Abdullah Hashim Company Limited (AHCL) is proud to announce its participation as a Gold Sponsor at the
-                    upcoming Saudi Industry Forum 2026. This prestigious event brings together the Kingdom's industrial
-                    leaders to discuss the future of manufacturing and infrastructure.
+                    {event.excerpt || event.description}
                   </p>
                 </RevealText>
               </div>
 
-              <div className="w-full mb-[48px]">
-                <RevealText delay={0.6}>
-                  <h2 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[16px] leading-tight">About the Event</h2>
-                </RevealText>
-
-                <RevealText delay={0.7}>
-                  <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[16px]">
-                    The Saudi Industry Forum is a premier platform for industry professionals to exchange knowledge,
-                    explore new technologies, and foster collaborations. As a leading distributor of automotive and
-                    machinery products, AHCL will showcase a wide range of Honda power products and industrial solutions
-                    designed to drive progress.
-                  </p>
-                </RevealText>
-                <RevealText delay={0.8}>
-                  <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed">
-                    Our presence underscores our commitment to Saudi Vision 2030, supporting the localization of industry
-                    and providing reliable equipment for national-scale infrastructure projects.
-                  </p>
-                </RevealText>
-              </div>
-
-              <div className="w-full mb-[48px]">
-                <RevealText delay={0.9}>
-                  <h2 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[24px] leading-tight">What to Expect</h2>
-                </RevealText>
-
-                <RevealText delay={1.0}>
-                  <ul className="flex flex-col gap-[12px]">
-                    {[
-                      "Live demonstrations of new Honda power generators and marine engines.",
-                      "One-on-one sessions with AHCL's technical experts and engineering consultants.",
-                      "Insights into the latest industrial trends and sustainability roadmaps.",
-                      "Networking opportunities with key government and private sector stakeholders.",
-                      "Exclusive reveal of upcoming flagship innovation hubs in the Kingdom.",
-                    ].map((text, idx) => (
-                      <li key={idx} className="flex items-center gap-[12px]">
-                        <svg
-                          className="shrink-0"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M13.3336 4L6.00097 11.3328L2.66797 7.99971"
-                            stroke="#D1A52A"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                        <span className="text-[#727272] text-[1rem] font-normal">{text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </RevealText>
-              </div>
+              {/* Register Interest Form */}
+              <RegisterInterestForm />
             </div>
 
             {/* Right Column (Sidebar) */}
             <div className="w-full lg:w-[30%] shrink-0">
               <RevealText delay={0.3}>
-                <ul className="flex flex-col items-start gap-[32px] p-[32px] rounded-[12px] border border-[#686868] bg-[#1E1E1E] mb-[32px]">
+                <ul className="flex flex-col items-start gap-[32px] mt-[32px] mb-[32px]">
                   
                   {/* Date */}
                   <li className="flex gap-[1rem] items-start w-full">
@@ -151,8 +152,8 @@ export default function EventDetailsPage() {
                       <path d="M6.66667 1.66602V4.99962M13.3333 1.66602V4.99962M2.5 8.33322H17.5M4.16667 3.33282H15.8333C16.7538 3.33282 17.5 4.07907 17.5 4.99962V16.6672C17.5 17.5878 16.7538 18.334 15.8333 18.334H4.16667C3.24619 18.334 2.5 17.5878 2.5 16.6672V4.99962C2.5 4.07907 3.24619 3.33282 4.16667 3.33282Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#949494] text-[0.75rem] font-semibold uppercase pb-[4px]">Date</h4>
-                      <p className="text-white text-[0.9rem] font-normal">5 January 2026</p>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Date</h4>
+                      <p className="text-[#666] text-[0.9rem] font-normal">{formattedDate}</p>
                     </div>
                   </li>
 
@@ -169,8 +170,8 @@ export default function EventDetailsPage() {
                       </defs>
                     </svg>
                     <div>
-                      <h4 className="text-[#949494] text-[0.75rem] font-semibold uppercase pb-[4px]">Time</h4>
-                      <p className="text-white text-[0.9rem] font-normal">9:00 AM – 5:00 PM</p>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Time</h4>
+                      <p className="text-[#666] text-[0.9rem] font-normal">{timeStr}</p>
                     </div>
                   </li>
 
@@ -180,8 +181,8 @@ export default function EventDetailsPage() {
                       <path d="M10.5027 18.1667C12.0526 16.8283 16.6679 12.4945 16.6679 8.3333C16.6679 6.56503 15.9656 4.86918 14.7155 3.61882C13.4654 2.36846 11.7699 1.66602 10.0019 1.66602C8.234 1.66602 6.53848 2.36846 5.28836 3.61882C4.03825 4.86918 3.33594 6.56503 3.33594 8.3333C3.33594 12.4945 7.95131 16.8283 9.50115 18.1667C9.64554 18.2753 9.82129 18.334 10.0019 18.334C10.1826 18.334 10.3583 18.2753 10.5027 18.1667Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#949494] text-[0.75rem] font-semibold uppercase pb-[4px]">Venue</h4>
-                      <p className="text-white text-[0.9rem] font-normal">Riyadh International Convention Center, Riyadh, KSA</p>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Venue</h4>
+                      <p className="text-[#666] text-[0.9rem] font-normal">{event.venue_name || event.venue || "TBA"}</p>
                     </div>
                   </li>
 
@@ -198,21 +199,23 @@ export default function EventDetailsPage() {
                       </defs>
                     </svg>
                     <div>
-                      <h4 className="text-[#949494] text-[0.75rem] font-semibold uppercase pb-[4px]">Category</h4>
-                      <p className="text-white text-[0.9rem] font-normal">Automotive &amp; Machinery</p>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Category</h4>
+                      <p className="text-[#666] text-[0.9rem] font-normal capitalize">{event.category}</p>
                     </div>
                   </li>
 
                   {/* Organizer */}
+                  {event.organizer && (
                   <li className="flex gap-[1rem] items-start w-full">
                     <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M15.8321 17.5V15.8333C15.8321 14.9493 15.4808 14.1014 14.8556 13.4763C14.2304 12.8512 13.3825 12.5 12.4983 12.5H7.49778C6.61362 12.5 5.76568 12.8512 5.14048 13.4763C4.51529 14.1014 4.16406 14.9493 4.16406 15.8333V17.5M13.3318 5.83333C13.3318 7.67428 11.8392 9.16667 9.99806 9.16667C8.1569 9.16667 6.66435 7.67428 6.66435 5.83333C6.66435 3.99238 8.1569 2.5 9.99806 2.5C11.8392 2.5 13.3318 3.99238 13.3318 5.83333Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#949494] text-[0.75rem] font-semibold uppercase pb-[4px]">Organizer</h4>
-                      <p className="text-white text-[0.9rem] font-normal">Saudi Federation for Cybersecurity</p>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Organizer</h4>
+                      <p className="text-[#666] text-[0.9rem] font-normal">{event.organizer}</p>
                     </div>
                   </li>
+                  )}
                 </ul>
               </RevealText>
 
@@ -294,7 +297,7 @@ export default function EventDetailsPage() {
             </div>
           </div>
         </div>
-        </section>
+      </section>
     </>
   );
 }
