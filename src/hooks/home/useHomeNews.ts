@@ -19,7 +19,7 @@ export function useHomeNews() {
           const d = rawDate ? new Date(rawDate) : new Date();
           const isValid = !isNaN(d.getTime());
           return {
-            id: item.slug || item.id,
+            id: item.id,
             image: item.cover_image || item.cover_image_url || "/bg.png",
             subtitle: item.category || "News",
             title: item.title || "",

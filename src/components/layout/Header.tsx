@@ -48,7 +48,7 @@ export default function Header() {
       }
       actions={
         <div className="flex gap-[10px]">
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
 
           <YellowButton target="_blank" href="#" icon={StoreIcon}>
             {t("header.store")}

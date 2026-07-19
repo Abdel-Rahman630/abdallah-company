@@ -37,7 +37,7 @@ export function useLatestNews() {
   const paginatedData = allNews.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const newsData: LatestNewsItem[] = paginatedData.map((item: NewsItem) => ({
-    id: item.slug || item.id,
+    id: item.id,
     image: item.cover_image || item.cover_image_url || "/bg.png",
     date: item.publish_date || item.created_at || "Recent News",
     title: item.title || "",
