@@ -113,7 +113,7 @@ export default function FindUs() {
         {/* Filter Form */}
         <RevealText delay={0.35}>
           <div className="flex flex-wrap md:flex-nowrap gap-[24px] mb-[24px] justify-center items-center">
-            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
+            <div className="relative w-full md:w-1/4">
               <label htmlFor="division-select" className="sr-only">
                 Division
               </label>
@@ -146,7 +146,7 @@ export default function FindUs() {
               </div>
             </div>
 
-            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
+            <div className="relative w-full md:w-1/4">
               <label htmlFor="sub-division-select" className="sr-only">
                 Sub Division
               </label>
@@ -179,7 +179,7 @@ export default function FindUs() {
               </div>
             </div>
 
-            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
+            <div className="relative w-full md:w-1/4">
               <label htmlFor="city-select" className="sr-only">
                 City
               </label>

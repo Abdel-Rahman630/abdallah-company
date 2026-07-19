@@ -14,12 +14,19 @@ export function useOurProducts() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL || ''}/api/cms/home/divisions?lang=${locale}`
         );
+        if (!res.ok) {
+          throw new Error(`Failed to fetch products: ${res.statusText}`);
+        }
         const json = await res.json();
-        if (json.data) {
-          setProducts(json.data);
+        if (json && json.data) {
+          setProducts(Array.isArray(json.data) ? json.data : []);
+        } else if (Array.isArray(json)) {
+          setProducts(json);
+        } else {
+          setProducts([]);
         }
       } catch (err) {
-        console.error(err);
+        console.error("fetchProducts error:", err);
       } finally {
         setLoading(false);
       }

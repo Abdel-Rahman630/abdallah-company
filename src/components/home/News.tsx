@@ -132,7 +132,7 @@ export default function News() {
                   <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium shrink-0">{t("newsletter.title")}</h4>
                   <p className="text-[#949494] text-[0.75rem] font-normal">{t("newsletter.description")}</p>
                 </div>
-                <div className="md:w-[50%] w-full flex flex-col gap-2">
+                <div className="md:w-[50%] w-full flex flex-col gap-0 min-w-0 overflow-hidden">
                   <div className="flex w-full">
                     <label htmlFor="newsletter-email" className="sr-only">
                       Email address
@@ -143,7 +143,7 @@ export default function News() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t("newsletter.placeholder")}
-                      className=" border-b-[1px] border-[#C6C6C6] flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
+                      className="border-b-[1px] border-[#C6C6C6] flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
                       disabled={subscribeStatus === "loading"}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleSubscribe();
@@ -159,34 +159,34 @@ export default function News() {
                       {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}
                     </button>
                   </div>
-                  {/* Status Messages */}
-                  <div id="newsletter-status" aria-live="polite" aria-atomic="true">
+                  {/* Status Messages — full width below the input row */}
+                  <div id="newsletter-status" aria-live="polite" aria-atomic="true" className="w-full">
                     {subscribeStatus === "success" && (
-                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-green-50 border border-green-200">
+                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-green-50 border border-green-200 w-full">
                         <p className="text-green-800 font-bold text-[0.9rem]">{t("newsletterStatus.successTitle")}</p>
                         <p className="text-green-700 text-[0.85rem]">{t("newsletterStatus.successDesc")}</p>
                       </div>
                     )}
                     {subscribeStatus === "already" && (
-                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-blue-50 border border-blue-200">
+                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-blue-50 border border-blue-200 w-full">
                         <p className="text-blue-800 font-bold text-[0.9rem]">{t("newsletterStatus.alreadyTitle")}</p>
                         <p className="text-blue-700 text-[0.85rem]">{t("newsletterStatus.alreadyDesc")}</p>
                       </div>
                     )}
                     {subscribeStatus === "validation" && (
-                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-red-50 border border-red-200">
+                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
                         <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.validationTitle")}</p>
                         <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.validationDesc")}</p>
                       </div>
                     )}
                     {subscribeStatus === "rate_limit" && (
-                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-yellow-50 border border-yellow-200">
+                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-yellow-50 border border-yellow-200 w-full">
                         <p className="text-yellow-800 font-bold text-[0.9rem]">{t("newsletterStatus.rateLimitTitle")}</p>
                         <p className="text-yellow-700 text-[0.85rem]">{t("newsletterStatus.rateLimitDesc")}</p>
                       </div>
                     )}
                     {subscribeStatus === "error" && (
-                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-red-50 border border-red-200">
+                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
                         <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.errorTitle")}</p>
                         <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.errorDesc")}</p>
                       </div>

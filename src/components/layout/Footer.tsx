@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { useOurProducts } from "@/hooks/home/useOurProducts";
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { products, loading } = useOurProducts();
   return (
     <footer className="bg-[#231F20] py-[50px] md:py-[80px]">
       <div className="container mx-auto">
@@ -120,62 +122,24 @@ export default function Footer() {
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
             </h2>
             <ul className="space-y-[12px]">
-              <li>
-                <Link
-                  href="#who-we-are"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.automotive")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#products"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.marine")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#news"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.power")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#who-we-are"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.agriculture")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#products"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.construction")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#news"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.water")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#news"
-                  className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
-                >
-                  {t("footer.divisions.material")}
-                </Link>
-              </li>
+              {loading ? (
+                <li>
+                  <span className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+                    ...
+                  </span>
+                </li>
+              ) : (
+                products.map((product) => (
+                  <li key={product.id}>
+                    <Link
+                      href={`/divisions/${product.slug}`}
+                      className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
+                    >
+                      {product.name}
+                    </Link>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
           </div>
@@ -286,12 +250,12 @@ export default function Footer() {
             </Link>
           </div>
           <div className="lg:order-3 order-1 flex items-center text-[#FFF] text-[0.75rem] font-normal">
-            <Link href="#" className="hover:text-gray-300 transition">
+            <Link href="/privacy-policy" className="hover:text-gray-300 transition">
               {t("footer.privacy")}
             </Link>
             <span className="w-[1px] h-[12px] bg-[rgba(255,255,255,0.30)] mx-[16px]"></span>
-            <Link href="#" className="hover:text-gray-300 transition">
-              {t("footer.terms")}
+            <Link href="/cookies-policy" className="hover:text-gray-300 transition">
+              Cookies Policy
             </Link>
           </div>
         </div>

@@ -279,49 +279,49 @@ export default function AboutUsClient() {
                         </clipPath>
                       </defs>
                     </svg>
-354:                   ),
-355:                 },
-356:                 {
-357:                   title: t("about.values.learningTitle"),
-358:                   desc: t("about.values.learningDesc"),
-359:                   icon: (
-360:                     <svg
-361:                       xmlns="http://www.w3.org/2000/svg"
-362:                       width="20"
-363:                       height="20"
-364:                       viewBox="0 0 20 20"
-365:                       fill="none"
-366:                     >
-367:                       <path
-368:                         d="M18.3321 10.8332V5.83398H13.3317M18.3321 5.83398L11.2482 12.9162L7.08116 8.75018L1.66406 14.166"
-369:                         stroke="#1E1E1E"
-370:                         strokeWidth="2"
-371:                         strokeLinecap="round"
-372:                       />
-373:                     </svg>
-374:                   ),
-375:                 },
-376:               ].map((item, index) => (
-377:                 <RevealText key={index} delay={0.1 * index}>
-378:                   <div className="p-[1rem] rounded-[12px] border border-[#F2F2F2] bg-[#FDFDFD] h-full transition-shadow hover:shadow-md">
-379:                     <span className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(209,165,42,0.07)] mb-[12px] flex items-center justify-center">
-380:                       {item.icon}
-381:                     </span>
-382:                     <h4 className="text-[#1E1E1E] text-[1rem] font-bold tracking-[0.5px] pb-[6px]">
-383:                       {item.title}
-384:                     </h4>
-385:                     <p className="text-[#666] text-[0.8rem] font-normal leading-relaxed">
-386:                       {item.desc}
-387:                     </p>
-388:                   </div>
-389:                 </RevealText>
-390:               ))}
-391:             </div>
-392:           </div>
-393:         </div>
-394:       </section>
-395:       {/* History Slider */}
-396:       <HistorySlider />
-397:     </>
-398:   );
-399: }
+                  ),
+                },
+                {
+                  title: t("about.values.learningTitle"),
+                  desc: t("about.values.learningDesc"),
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M18.3321 10.8332V5.83398H13.3317M18.3321 5.83398L11.2482 12.9162L7.08116 8.75018L1.66406 14.166"
+                        stroke="#1E1E1E"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  ),
+                },
+              ].map((item, index) => (
+                <RevealText key={index} delay={0.1 * index}>
+                  <div className="p-[1rem] rounded-[12px] border border-[#F2F2F2] bg-[#FDFDFD] h-full transition-shadow hover:shadow-md">
+                    <span className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(209,165,42,0.07)] mb-[12px] flex items-center justify-center">
+                      {item.icon}
+                    </span>
+                    <h4 className="text-[#1E1E1E] text-[1rem] font-bold tracking-[0.5px] pb-[6px]">
+                      {item.title}
+                    </h4>
+                    <p className="text-[#666] text-[0.8rem] font-normal leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </RevealText>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* History Slider */}
+      <HistorySlider />
+    </>
+  );
+}

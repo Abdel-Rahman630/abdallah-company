@@ -36,7 +36,7 @@ export default function JoinUs() {
           </div>
           <div className="shrink-0 flex items-center">
             <RevealText delay={0.3}>
-              <YellowButton href="/contact-us#join-us" icon={<ArrowIconBlack />} className="w-[154px]">
+              <YellowButton href="https://abdullah-hashim-company-ltd.careers-page.com/" target="_blank" icon={<ArrowIconBlack />} className="w-[154px]">
                 Join Us
               </YellowButton>
             </RevealText>

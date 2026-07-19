@@ -85,10 +85,9 @@ function SocialIcon({ type }: { type: string }) {
   // Default: website / globe icon
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <g clipPath="url(#web-clip)">
-        <path d="M9.99994 20C15.5139 20 19.9999 15.514 19.9999 10.0001C19.9999 4.48603 15.5139 0 9.99994 0C4.48597 0 0 4.48603 0 10.0001C0 15.514 4.48597 20 9.99994 20Z" fill="#1E1E1E"/>
-      </g>
-      <defs><clipPath id="web-clip"><rect width="20" height="20" fill="white"/></clipPath></defs>
+      <circle cx="10" cy="10" r="8.25" stroke="#1E1E1E" strokeWidth="1.5"/>
+      <ellipse cx="10" cy="10" rx="3.25" ry="8.25" stroke="#1E1E1E" strokeWidth="1.5"/>
+      <path d="M1.75 7.5h16.5M1.75 12.5h16.5" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   );
 }

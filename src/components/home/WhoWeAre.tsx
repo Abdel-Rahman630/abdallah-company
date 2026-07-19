@@ -23,7 +23,7 @@ const countdownData = [
   },
   { to: 33, suffix: "+",   title: (
       <>
-        Branches Kingdom <br /> Wide
+        Branches <br /> Kingdom Wide
       </>
     ) },
   { to: 25, suffix: "+", title: "Brands" },
