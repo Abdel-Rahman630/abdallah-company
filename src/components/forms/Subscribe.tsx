@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Subscribe() {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto lg:pb-[120px] pb-[80px]">
       <div className="rounded-[12px] border border-white bg-[#DFDFDF] p-[32px] grid grid-cols-1 lg:grid-cols-5 gap-[1rem] lg:gap-[32px] items-center">
         {/* Col 1 */}
         <div className="md:col-span-1">

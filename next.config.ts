@@ -11,6 +11,7 @@ const cspHeader = `
   object-src 'none';
   base-uri 'self';
   connect-src 'self' https:;
+  frame-src 'self' https://maps.google.com https://www.google.com;
   frame-ancestors 'none';
 `.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
 

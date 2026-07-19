@@ -8,10 +8,12 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 import { HistoryItem } from "@/types/models";
 
 export default function HistorySlider() {
+  const { locale } = useLanguage();
   const [historyData, setHistoryData] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,7 +24,7 @@ export default function HistorySlider() {
     async function fetchHistory() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/cms/history?lang=en`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/cms/history?lang=${locale}`
         );
         const json = await res.json();
         if (json.data) {
@@ -35,7 +37,7 @@ export default function HistorySlider() {
       }
     }
     fetchHistory();
-  }, []);
+  }, [locale]);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);

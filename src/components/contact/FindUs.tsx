@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useFindUs } from "@/hooks/contact/useFindUs";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import SubTitle from "@/components/ui/SubTitle";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function FindUs() {
   const {
@@ -14,25 +15,28 @@ export default function FindUs() {
     isLoading,
     fetchLocations,
     divisions,
+    subDivisions,
     cities,
   } = useFindUs();
+  const { t } = useLanguage();
 
   const [selectedDivision, setSelectedDivision] = useState("");
+  const [selectedSubDivision, setSelectedSubDivision] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
   const handleFilter = () => {
-    fetchLocations({ division: selectedDivision, city: selectedCity });
+    fetchLocations({ division: selectedDivision, subDivision: selectedSubDivision, city: selectedCity });
   };
 
   return (
     <section id="find-us" className="bg-[#F9F9F9] py-[100px]">
       <div className="container mx-auto">
         <RevealText delay={0.1}>
-          <SubTitle className="text-center">OUR LOCATIONS</SubTitle>
+          <SubTitle className="text-center">{t("contact.locations")}</SubTitle>
         </RevealText>
         <RevealText delay={0.2}>
           <h2 className="text-[#1E1E1E] text-center text-[3rem] font-bold mb-[40px]">
-            Find Us
+            {t("contact.findUs")}
           </h2>
         </RevealText>
 
@@ -42,7 +46,7 @@ export default function FindUs() {
             <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
                 <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  Head Office
+                  {t("contact.headOffice")}
                 </h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Jeddah
@@ -54,7 +58,7 @@ export default function FindUs() {
               <div className="flex gap-[48px] shrink-0">
                 <div>
                   <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
-                    Email Address
+                    {t("contact.emailLabel")}
                   </h4>
                   <a
                     href="mailto:info@ahcl.com.sa"
@@ -65,7 +69,7 @@ export default function FindUs() {
                 </div>
                 <div>
                   <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
-                    Phone Number
+                    {t("contact.phoneLabel")}
                   </h4>
                   <a
                     href="tel:0122638200"
@@ -79,7 +83,7 @@ export default function FindUs() {
             <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
                 <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  Central Region Office
+                  {t("contact.centralOffice")}
                 </h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Riyadh
@@ -92,7 +96,7 @@ export default function FindUs() {
             <div className="flex-1">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
                 <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  Eastern Region Office
+                  {t("contact.easternOffice")}
                 </h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Dammam
@@ -109,7 +113,7 @@ export default function FindUs() {
         {/* Filter Form */}
         <RevealText delay={0.35}>
           <div className="flex flex-wrap md:flex-nowrap gap-[24px] mb-[24px] justify-center items-center">
-            <div className="relative w-[calc(50%-12px)] md:w-1/3">
+            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
               <label htmlFor="division-select" className="sr-only">
                 Division
               </label>
@@ -119,10 +123,10 @@ export default function FindUs() {
                 onChange={(e) => setSelectedDivision(e.target.value)}
                 className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
               >
-                <option value="">Select Division</option>
+                <option value="">{t("contact.selectDivision")}</option>
                 {divisions.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
+                  <option key={d.value} value={d.value}>
+                    {d.label}
                   </option>
                 ))}
               </select>
@@ -142,7 +146,40 @@ export default function FindUs() {
               </div>
             </div>
 
-            <div className="relative w-[calc(50%-12px)] md:w-1/3">
+            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
+              <label htmlFor="sub-division-select" className="sr-only">
+                Sub Division
+              </label>
+              <select
+                id="sub-division-select"
+                value={selectedSubDivision}
+                onChange={(e) => setSelectedSubDivision(e.target.value)}
+                className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
+              >
+                <option value="">{t("contact.selectSubDivision")}</option>
+                {subDivisions.map((d) => (
+                  <option key={d.value} value={d.value}>
+                    {d.label}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="9"
+                  height="5"
+                  viewBox="0 0 9 5"
+                  fill="none"
+                >
+                  <path
+                    d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z"
+                    fill="#1E1E1E"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="relative w-[calc(33.33%-16px)] md:w-1/4">
               <label htmlFor="city-select" className="sr-only">
                 City
               </label>
@@ -152,7 +189,7 @@ export default function FindUs() {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
               >
-                <option value="">Select City</option>
+                <option value="">{t("contact.selectCity")}</option>
                 {cities.map((c) => (
                   <option key={c} value={c}>
                     {c}
@@ -176,24 +213,27 @@ export default function FindUs() {
             </div>
 
             <button
+              type="button"
               onClick={handleFilter}
               disabled={isLoading}
               aria-label="Filter locations"
               className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
             >
-              Filter
+              {t("contact.filter")}
             </button>
             <button
+              type="button"
               onClick={() => {
                 setSelectedDivision("");
+                setSelectedSubDivision("");
                 setSelectedCity("");
-                fetchLocations({ division: "", city: "" });
+                fetchLocations({ division: "", subDivision: "", city: "" });
               }}
               disabled={isLoading}
               aria-label="Clear filters"
               className="w-full md:w-auto bg-transparent border border-[#231F20] px-[32px] py-[16px] text-[#231F20] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
             >
-              Clear
+              {t("contact.clear")}
             </button>
           </div>
         </RevealText>
@@ -218,10 +258,10 @@ export default function FindUs() {
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
             <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[8px]">
-              No Locations Found
+              {t("contact.noLocations")}
             </h3>
-            <p className="text-[rgba(255,255,255,0.6)] text-[1rem]">
-              Please try adjusting your filters to find what you're looking for.
+            <p className="text-[#666] text-[1rem]">
+              {t("contact.noLocationsDesc")}
             </p>
           </div>
         ) : (
@@ -305,12 +345,13 @@ export default function FindUs() {
                   {isLoading || !activeLocation ? (
                     <div className="w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
                       <span className="text-[rgba(255,255,255,0.4)]">
-                        Loading map...
+                        {t("contact.loadingMap")}
                       </span>
                     </div>
                   ) : (
                     <>
                       <iframe
+                        key={activeLocation.id}
                         width="100%"
                         height="500px"
                         frameBorder="0"
@@ -348,7 +389,7 @@ export default function FindUs() {
                               strokeWidth="1.5"
                             />
                           </svg>
-                          Open pin in Google Maps
+                          {t("contact.openInMap")}
                         </a>
                       )}
                     </>

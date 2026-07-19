@@ -1,3 +1,4 @@
+
 // ─── Shared ────────────────────────────────────────────────────────────────
 
 export interface Pagination {
@@ -13,6 +14,48 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
+// ─── i18n ────────────────────────────────────────────────────────────────────
+
+export type Locale = "en" | "ar";
+
+// ─── Forms & Status ──────────────────────────────────────────────────────────
+
+export type SubscribeStatus =
+  | "idle"
+  | "loading"
+  | "success"
+  | "already"
+  | "validation"
+  | "rate_limit"
+  | "error";
+
+export type SubmitStatus = "idle" | "loading" | "success" | "error";
+
+export type ContactFormData = {
+  name: string;
+  division: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+// ─── Locations ───────────────────────────────────────────────────────────────
+
+export type OptionItem = {
+  value: string | number;
+  label: string;
+};
+
+export type Location = {
+  id: number;
+  title: string;
+  span: string;
+  paragraph: string;
+  mapQuery: string;
+  googleMapsUrl: string;
+  division: string;
+  subDivision?: string;
+};
 // ─── News ───────────────────────────────────────────────────────────────────
 
 export interface NewsMediaItem {
@@ -74,9 +117,8 @@ export interface EventItem {
   category: string;
   excerpt?: string;
   cover_image_url?: string;
-  cover_image?: string;
-  image?: string;
   images?: string[];
+  gallery_image_urls?: string[];
   starts_at?: string;
   ends_at?: string;
   formatted_date?: string;
@@ -98,7 +140,6 @@ export interface EventSlideItem {
   date: string;
   month: string;
   title: string;
-  slug?: string;
   isFeatured: boolean;
   category?: string;
 }
@@ -182,6 +223,8 @@ export interface Division {
   description: string;
   banner?: string | null;
   image?: string | null;
+  home_image?: string;
+  slogan?: string;
   sort_order: number;
   brands: Brand[];
 }

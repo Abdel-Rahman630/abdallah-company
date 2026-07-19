@@ -21,23 +21,22 @@ export default function UpcomingEventsSlider() {
     async function fetchEvents() {
       setIsLoading(true);
       try {
-        const response = await getEvents({ limit: 20, lang: "en" });
+        const response = await getEvents({ lang: "en" });
         const data = response.data;
        
         if (!Array.isArray(data) || data.length === 0) return;
 
         const mapped: EventSlideItem[] = data.map((item: EventItem) => {
-          const dateStr = item.starts_at || item.date || item.start_date || item.created_at || new Date().toISOString();
+          const dateStr = item.formatted_date || item.date || item.start_date || item.created_at || new Date().toISOString();
           const d = new Date(dateStr);
           const monthName = d.toLocaleString("en-US", { month: "short" }).toLowerCase();
           const day = d.getDate().toString();
           return {
-            id: item.id || item.slug,
-            image: item.cover_image_url || item.cover_image || item.image || "/event1.png",
+            id: item.id,
+            image: item.cover_image_url || "/bg.png",
             date: day,
             month: monthName,
-            title: item.title || "Upcoming Event",
-            slug: item.slug,
+            title: item.title,
             isFeatured: item.is_featured ?? true,
           };
         });
@@ -84,7 +83,7 @@ export default function UpcomingEventsSlider() {
         className="w-full"
       >
         {events.map((event, idx) => {
-          const href = event.slug ? `/events/${event.slug}` : null;
+          const href = event.id ? `/events/${event.id}` : null;
           const isFeatured = event.isFeatured !== false;
 
           return (

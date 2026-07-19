@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="bg-[#231F20] py-[50px] md:py-[80px]">
       <div className="container mx-auto">
@@ -17,8 +21,7 @@ export default function Footer() {
               className="mb-[24px] "
             />
             <p className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal mb-[24px]">
-              A Legacy of Automotive Excellence across the Kingdom of Saudi
-              Arabia.
+              {t("footer.legacy")}
             </p>
             <div className="flex items-center gap-[12px]">
               <Link
@@ -62,7 +65,7 @@ export default function Footer() {
             {/* Column 2: Quick Links */}
             <div>
             <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
-              Quick Links
+              {t("footer.quickLinks")}
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
             </h2>
             <ul className="space-y-[12px]">
@@ -71,7 +74,7 @@ export default function Footer() {
                   href="/"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Home
+                  {t("footer.home")}
                 </Link>
               </li>
               <li>
@@ -79,7 +82,7 @@ export default function Footer() {
                   href="/about-us"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  About Us
+                  {t("footer.about")}
                 </Link>
               </li>
               <li>
@@ -87,7 +90,7 @@ export default function Footer() {
                   href="/news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  News & Events
+                  {t("footer.news")}
                 </Link>
               </li>
               <li>
@@ -95,7 +98,7 @@ export default function Footer() {
                   href="/careers"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Careers
+                  {t("footer.careers")}
                 </Link>
               </li>
               <li>
@@ -104,7 +107,7 @@ export default function Footer() {
                   target="_blank"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  {"AHCL's Store"}
+                  {t("footer.store")}
                 </Link>
               </li>
             </ul>
@@ -113,7 +116,7 @@ export default function Footer() {
           {/* Column 3: Services */}
           <div>
             <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
-              Division
+              {t("footer.division")}
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
             </h2>
             <ul className="space-y-[12px]">
@@ -122,7 +125,7 @@ export default function Footer() {
                   href="#who-we-are"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Automotive
+                  {t("footer.divisions.automotive")}
                 </Link>
               </li>
               <li>
@@ -130,7 +133,7 @@ export default function Footer() {
                   href="#products"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Marine
+                  {t("footer.divisions.marine")}
                 </Link>
               </li>
               <li>
@@ -138,7 +141,7 @@ export default function Footer() {
                   href="#news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Power solutions
+                  {t("footer.divisions.power")}
                 </Link>
               </li>
               <li>
@@ -146,7 +149,7 @@ export default function Footer() {
                   href="#who-we-are"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Agriculture
+                  {t("footer.divisions.agriculture")}
                 </Link>
               </li>
               <li>
@@ -154,7 +157,7 @@ export default function Footer() {
                   href="#products"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Construction Equipment
+                  {t("footer.divisions.construction")}
                 </Link>
               </li>
               <li>
@@ -162,7 +165,7 @@ export default function Footer() {
                   href="#news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Water Solutions
+                  {t("footer.divisions.water")}
                 </Link>
               </li>
               <li>
@@ -170,7 +173,7 @@ export default function Footer() {
                   href="#news"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
-                  Material handling
+                  {t("footer.divisions.material")}
                 </Link>
               </li>
             </ul>
@@ -180,7 +183,7 @@ export default function Footer() {
           {/* Column 3: Services */}
           <div>
             <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
-              Contact Us
+              {t("footer.contact")}
               <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
             </h2>
             <ul className="space-y-[12px]">
@@ -206,7 +209,7 @@ export default function Footer() {
                       />
                     </svg>
                   </span>
-                  <span>P.O.Box 44, Jeddah 21411,Kingdom Of Saudi Arabia</span>
+                  <span>{t("footer.address")}</span>
                 </Link>
               </li>
               <li>
@@ -235,7 +238,7 @@ export default function Footer() {
                       </clipPath>
                     </defs>
                   </svg>
-                  <span>920002208</span>
+                  <span>{t("footer.phone")}</span>
                 </Link>
               </li>
               <li>
@@ -257,7 +260,7 @@ export default function Footer() {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <span>info@ahcl.com.sa</span>
+                  <span>{t("footer.email")}</span>
                 </Link>
               </li>
             </ul>
@@ -267,11 +270,11 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="pt-[24px] flex flex-col lg:flex-row items-center justify-between gap-4">
           <div className="lg:order-1 order-2 text-[rgba(255,255,255,0.70)] text-[0.75rem] font-normal text-center md:text-left">
-            © 2026 Abdullah Hashim Company LTD. All Rights Reserved.
+            {t("footer.copyright")}
           </div>
           <div className="flex items-center gap-[8px] lg:order-2 order-3">
             <span className="text-[#AAA] text-[0.75rem] font-medium">
-              Designed & Developed by
+              {t("footer.developedBy")}
             </span>
             <Link href="http://icon-creations.com/" target="_blank">
               <Image
@@ -284,11 +287,11 @@ export default function Footer() {
           </div>
           <div className="lg:order-3 order-1 flex items-center text-[#FFF] text-[0.75rem] font-normal">
             <Link href="#" className="hover:text-gray-300 transition">
-              Privacy Policy
+              {t("footer.privacy")}
             </Link>
             <span className="w-[1px] h-[12px] bg-[rgba(255,255,255,0.30)] mx-[16px]"></span>
             <Link href="#" className="hover:text-gray-300 transition">
-              Terms of Use
+              {t("footer.terms")}
             </Link>
           </div>
         </div>

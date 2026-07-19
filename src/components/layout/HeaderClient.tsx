@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useHeader, navItems } from "@/hooks/header";
+import { useHeader, useNavItems } from "@/hooks/header";
 import DropdownPanel from "@/components/ui/DropdownPanel";
 import ProductsDropdown from "@/components/ui/ProductsDropdown";
 
@@ -18,8 +18,9 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
   
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+  const navItems = useNavItems();
 
-  const activeDropdownData = navItems.find((item) => item.label === mobileActiveMenu)?.dropdown;
+  const activeDropdownData = navItems.find((item) => item.key === mobileActiveMenu)?.dropdown;
 
   return (
     <header
@@ -38,18 +39,18 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
         <nav className="hidden min-[1200px]:flex items-center">
           <ul className="flex items-center gap-[10px] p-[4px] rounded-[5px] transition-all duration-300">
             {navItems.map((item) => (
-              <li key={item.label}>
+              <li key={item.key}>
                 <button
-                  onClick={() => toggleDropdown(item.label)}
+                  onClick={() => toggleDropdown(item.key)}
                   className={`flex items-center gap-1.5 px-[8px] py-[4px] rounded-[3px] text-sm transition-colors whitespace-nowrap cursor-pointer ${
-                    activeDropdown === item.label ? "bg-[#D1A52A] text-black" : "text-white"
+                    activeDropdown === item.key ? "bg-[#D1A52A] text-black" : "text-white"
                   }`}
                 >
                   {item.label}
                 </button>
 
                 {/* Dropdown Panel - single unified dropdown */}
-                {activeDropdown === item.label && (
+                {activeDropdown === item.key && (
                   <div className="absolute top-full mt-3 z-50 left-1/2 -translate-x-1/2">
                     {item.dropdown ? (
                       <DropdownPanel
@@ -58,8 +59,8 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                         image={item.dropdown.image}
                         onLinkClick={() => setActiveDropdown(null)}
                       />
-                    ) : item.label === "Divisions" ? (
-                      <ProductsDropdown />
+                    ) : item.key === "divisions" ? (
+                      <ProductsDropdown onClose={() => setActiveDropdown(null)} />
                     ) : (
                       <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] min-w-[939px] min-h-[418px]">
                         {/* Other dropdowns placeholder */}
@@ -106,11 +107,11 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
           <div className={`transition-all duration-300 ${mobileActiveMenu ? "-translate-x-full absolute w-full opacity-0 pointer-events-none" : "translate-x-0 relative opacity-100"}`}>
             <ul className="flex flex-col gap-1 mb-6">
               {navItems.map((item) => (
-                <li key={item.label}>
+                <li key={item.key}>
                   <button
                     onClick={() => {
-                      if (item.dropdown || item.label === "Divisions") {
-                        setMobileActiveMenu(item.label);
+                      if (item.dropdown || item.key === "divisions") {
+                        setMobileActiveMenu(item.key);
                       }
                     }}
                     className="w-full flex items-center justify-between px-3 py-3 text-white text-[0.95rem] font-medium hover:bg-[#2D2D2D] transition-colors cursor-pointer"
@@ -156,9 +157,12 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
                   setMobileOpen(false);
                 }}
               />
-            ) : mobileActiveMenu === "Divisions" ? (
+            ) : mobileActiveMenu === "divisions" ? (
               <div className="lg:p-4">
-                <ProductsDropdown isMobile={true} />
+                <ProductsDropdown isMobile={true} onClose={() => {
+                  setMobileActiveMenu(null);
+                  setMobileOpen(false);
+                }} />
               </div>
             ) : (
               <div className="text-white p-4">

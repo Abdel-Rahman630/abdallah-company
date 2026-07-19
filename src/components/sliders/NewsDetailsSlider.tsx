@@ -15,7 +15,7 @@ export default function NewsDetailsSlider({ images = [] }: Props) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
-  const slides = images.length > 0 ? images : ["/event1.png", "/event2.png", "/event3.png"];
+  const slides = images.length > 0 ? images : ["/bg.png"];
 
   return (
     <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] mb-[40px] rounded-[10px] overflow-hidden">

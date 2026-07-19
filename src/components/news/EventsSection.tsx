@@ -8,8 +8,10 @@ import ArrowLink from "@/components/ui/ArrowLink";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import EventCardSkeleton from "@/components/ui/EventCardSkeleton";
 import { useEventsSection } from "@/hooks/news/useEventsSection";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function EventsSection() {
+  const { t } = useLanguage();
   const { activeTab, setActiveTab, tabs, filtered, isLoading } =
     useEventsSection();
 
@@ -19,10 +21,10 @@ export default function EventsSection() {
         {/* Header */}
         <div className="mb-[50px]">
           <RevealText delay={0.1}>
-            <SubTitle className="!mb-[12px]">UPCOMING EVENTS</SubTitle>
+            <SubTitle className="!mb-[12px]">{t("events.upcoming")}</SubTitle>
           </RevealText>
           <RevealText delay={0.2}>
-            <SectionTitle>Events Calendar</SectionTitle>
+            <SectionTitle>{t("events.calendar")}</SectionTitle>
           </RevealText>
         </div>
 
@@ -31,6 +33,7 @@ export default function EventsSection() {
           <div className="flex flex-wrap gap-[12px] mb-[40px]" role="tablist" aria-label="Event categories">
             {tabs.map((tab) => (
               <button
+                type="button"
                 key={tab}
                 role="tab"
                 aria-selected={activeTab === tab}
@@ -56,7 +59,7 @@ export default function EventsSection() {
           ) : filtered.length > 0 ? (
           filtered.map((event, idx) => {
             const isFeatured = event.isFeatured !== false;
-            const href = event.slug ? `/events/${event.slug}` : null;
+            const href = event.id ? `/events/${event.id}` : null;
 
             return (
               <RevealText key={event.id || idx} delay={0.1 * (idx + 1)}>
@@ -88,7 +91,7 @@ export default function EventsSection() {
                     {/* Hover Link */}
                     <div className="absolute bottom-[16px] left-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
                       <ArrowLink as="span" color="white" className="!text-[0.6rem]">
-                        view more
+                        {t("events.readMore")}
                       </ArrowLink>
                     </div>
                   </Link>

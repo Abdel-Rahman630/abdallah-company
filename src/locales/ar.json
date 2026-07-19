@@ -1,0 +1,85 @@
+{
+  "header": {
+    "store": "AHCL's Store",
+    "home": "Home",
+    "about": "About Us",
+    "divisions": "Divisions",
+    "news": "News & Events",
+    "careers": "Careers",
+    "contact": "Contact Us",
+    "ourProducts": "Our Products",
+    "explore": "Explore"
+  },
+  "footer": {
+    "legacy": "A Legacy of Automotive Excellence across the Kingdom of Saudi Arabia.",
+    "quickLinks": "Quick Links",
+    "division": "Division",
+    "contact": "Contact Us",
+    "home": "Home",
+    "about": "About Us",
+    "news": "News & Events",
+    "careers": "Careers",
+    "store": "AHCL's Store",
+    "divisions": {
+      "automotive": "Automotive",
+      "marine": "Marine",
+      "power": "Power solutions",
+      "agriculture": "Agriculture",
+      "construction": "Construction Equipment",
+      "water": "Water Solutions",
+      "material": "Material handling"
+    },
+    "address": "P.O.Box 44, Jeddah 21411,Kingdom Of Saudi Arabia",
+    "phone": "920002208",
+    "email": "info@ahcl.com.sa",
+    "copyright": "© 2026 Abdullah Hashim Company LTD. All Rights Reserved.",
+    "developedBy": "Designed & Developed by",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "home": {
+    "whoWeAre": "WHO WE ARE",
+    "whoWeAreTitle": "Over 70 Years of Trust in the Saudi Market.",
+    "readMore": "Read More",
+    "brands": "OUR BRANDS",
+    "brandsTitle": "Driving Excellence Through World-Class Brands",
+    "newsTitle": "LATEST NEWS",
+    "newsSubtitle": "News & Events",
+    "productsTitle": "OUR PRODUCTS",
+    "productsSubtitle": "Solutions for Every Industry",
+    "history": "OUR HISTORY",
+    "historyTitle": "A Legacy of Trust"
+  },
+  "newsletter": {
+    "title": "Subscribe To Newsletter",
+    "description": "Signup to receive news & updates from us",
+    "placeholder": "Your Email Address",
+    "subscribe": "Subscribe",
+    "loading": "Subscribing...",
+    "success": "Subscribed!",
+    "error": "Error"
+  },
+  "contact": {
+    "locations": "OUR LOCATIONS",
+    "findUs": "Find Us",
+    "headOffice": "Head Office",
+    "centralOffice": "Central Region Office",
+    "easternOffice": "Eastern Region Office",
+    "emailLabel": "Email Address",
+    "phoneLabel": "Phone Number",
+    "filter": "Filter",
+    "clear": "Clear",
+    "noLocations": "No Locations Found",
+    "noLocationsDesc": "Please try adjusting your filters to find what you're looking for.",
+    "loadingMap": "Loading map...",
+    "openInMap": "Open pin in Google Maps",
+    "selectDivision": "Select Division",
+    "selectSubDivision": "Select Sub Division",
+    "selectCity": "Select City"
+  },
+  "events": {
+    "upcoming": "UPCOMING EVENTS",
+    "calendar": "Events Calendar",
+    "readMore": "Read More"
+  }
+}

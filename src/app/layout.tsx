@@ -5,7 +5,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JoinUs from "@/components/layout/JoinUs";
 import { LoadingProvider } from "@/providers/LoadingProvider";
+import { LanguageProvider } from "@/providers/LanguageProvider";
 import PageLoader from "@/components/ui/PageLoader";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,28 +43,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as "en" | "ar";
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   return (
     <html
-      lang="en"
+      lang={locale}
+      dir={dir}
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col font-sans bg-white" suppressHydrationWarning>
-        <LoadingProvider>
-          <PageLoader />
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <JoinUs />
-          <Footer />
-        </LoadingProvider>
+        <LanguageProvider initialLocale={locale}>
+          <LoadingProvider>
+            <PageLoader />
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <JoinUs />
+            <Footer />
+          </LoadingProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

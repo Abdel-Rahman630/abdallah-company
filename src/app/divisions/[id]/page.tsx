@@ -4,15 +4,16 @@ import { RevealText } from "@/components/ui/ScrollReveal";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDivisionById } from "@/services/divisions.service";
+import { cookies } from "next/headers";
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
+type DynamicPageProps = { params: Promise<{ id: string }> };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
   try {
     const { id } = await params;
-    const data = await getDivisionById(id, "en");
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    const data = await getDivisionById(id, locale);
     return {
       title: `Abdullah Hashim Company | ${data.name || "Divisions"}`,
       description: data.description?.substring(0, 160) || "AHCL divisions.",
@@ -24,12 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function DivisionPage({ params }: Props) {
+export default async function DivisionPage({ params }: DynamicPageProps) {
   const { id } = await params;
 
   let data;
   try {
-    data = await getDivisionById(id, "en");
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    data = await getDivisionById(id, locale);
   } catch (error) {
     console.error("Failed to fetch division:", error);
     notFound();
@@ -39,7 +42,7 @@ export default async function DivisionPage({ params }: Props) {
 
   return (
     <>
-      <PageBanner image={data.banner || "/auto-banner.png"} title={data.name} />
+      <PageBanner image={data.banner || "/bg.png"} title={data.name} />
 
       {/* ── Overview Section ── */}
       <section className="pt-[80px] lg:pt-[120px] pb-[80px]">

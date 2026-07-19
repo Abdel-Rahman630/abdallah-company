@@ -9,6 +9,7 @@ import ArrowLink from "@/components/ui/ArrowLink";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Counter } from "@/hooks/Counter";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const countdownData = [
   {
@@ -20,11 +21,16 @@ const countdownData = [
       </>
     ),
   },
-  { to: 33, suffix: "+", title: "BRANCHES" },
-  { to: 90, suffix: "+", title: "DEALERS" },
+  { to: 33, suffix: "+",   title: (
+      <>
+        Branches Kingdom <br /> Wide
+      </>
+    ) },
+  { to: 25, suffix: "+", title: "Brands" },
 ];
 
 export default function WhoWeAre() {
+  const { t } = useLanguage();
 
 
   return (
@@ -66,13 +72,13 @@ export default function WhoWeAre() {
               <RevealText delay={0.1}>
                 <div className="flex items-center gap-[10px] mb-[11.5px]">
                   <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 object-contain" style={{ width: "auto" }} />
-                  <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">who we are</span>
+                  <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">{t("home.whoWeAre")}</span>
                 </div>
               </RevealText>
 
               <RevealText delay={0.2}>
                 <h2 className="text-[#1E1E1E] text-[2rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
-                  A Legacy of <span className="font-bold">Automotive & machinery distributor</span> Excellence
+                  {t("home.whoWeAreTitle")}
                 </h2>
               </RevealText>
 
@@ -86,7 +92,7 @@ export default function WhoWeAre() {
                 </p>
               </RevealText>
 
-              <ArrowLink href="/about-us" color="black">More on about us</ArrowLink>
+              <ArrowLink href="/about-us" color="black">{t("home.readMore")}</ArrowLink>
             </div>
 
             <div className="contdown  flex md:flex-row flex-col mt-[32px] w-full">

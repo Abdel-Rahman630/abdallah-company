@@ -1,59 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import ArrowLink from "@/components/ui/ArrowLink";
-
-const productsData = [
-  {
-    title: "Automotive",
-    image: "/automotive-demo.png",
-    description:
-      "AHCL is the distributor of Honda products in Saudi Arabia, handling the complete range of Honda products which now includes cars, motorcycles, marine, and power products.",
-  },
-  {
-    title: "Marine",
-    image: "/marine-demo.png",
-    description:
-      "ACHL offers Honda outboard marine engines and their  accessories, covering a range of horsepower up to 250 HP. Our customers range from leisure (private and  commercial) to fishing businesses.",
-  },
-  {
-    title: "Power Solutions",
-    image: "/power-demo.jpg",
-    description:
-      "AHCL offers power generators as a robust supplier of  power solutions, with more than 30,000 units of  generators sold to date. We are the distributor of  Kirloskar Oil Engines, a leading brand in the field.",
-  },
-  {
-    title: "Agriculture",
-    image: "/agriculture-demo.jpg",
-    description:
-      "Sonalika International tractors Ltd. is India's heavy duty tractor manufacturing  company, producing best-selling tractors and well recognized in domestic and  international market as the third largest player.",
-  },
-  {
-    title: "Construction Equipment",
-    image: "/Equipment-demo.jpg",
-    description:
-      "AHCL offers construction equipment, water pumps, and air compressors built for performance, reliability, and efficiency, backed by expert support and nationwide service.",
-  },
-  {
-    title: "Water Solutions",
-    image: "/water-demo.jpg",
-    description:
-      "AHCL provides reliable water solutions, including high-performance pumps and systems designed for efficient water supply, transfer, and management across residential, commercial, and industrial applications.",
-  },
-  {
-    title: "Material Handling",
-    image: "/material-demo.png",
-    description:
-      "AHCL offers reliable material handling equipment designed to improve efficiency, safety, and productivity across warehouses, logistics, and industrial operations.",
-  },
-];
+import { useOurProducts } from "@/hooks/home/useOurProducts";
 
 export default function OurProducts() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const active = productsData[activeIndex];
+  const { products, activeIndex, setActiveIndex, active, loading } = useOurProducts();
+
+  const truncate = (text: string | undefined, max: number) =>
+    text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;
+
+  if (loading || !products || products.length === 0) {
+    return (
+      <section id="products" className="relative overflow-hidden py-[50px] min-h-[500px] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#D1A52A] border-t-transparent rounded-full animate-spin"></div>
+      </section>
+    );
+  }
 
   return (
     <section id="products" className="relative overflow-hidden py-[50px]">
@@ -67,14 +32,17 @@ export default function OurProducts() {
           transition={{ duration: 0.7 }}
           className="absolute inset-0 z-0"
         >
-          <Image
-            src={active.image}
-            alt={active.title}
-            fill
-            className="object-cover md:object-center object-right"
-            priority
-            sizes="100vw"
-          />
+          {active && active.home_image && (
+            <Image
+              src={active.home_image}
+              alt={active.title || active.name}
+              fill
+              className="object-cover md:object-center object-right"
+              priority
+              sizes="100vw"
+              unoptimized
+            />
+          )}
         </motion.div>
       </AnimatePresence>
 
@@ -90,7 +58,7 @@ export default function OurProducts() {
               Our Products
             </p>
             <h2 className="text-white text-[2rem] font-bold">
-              Solutions for Every Industry
+              {active?.slogan || "Solutions for Every Industry"}
             </h2>
           </div>
         </RevealText>
@@ -100,17 +68,18 @@ export default function OurProducts() {
           {/* Pagination Column */}
           <RevealText delay={0.2}>
             <nav className="flex flex-col gap-4 mb-[60px] md:mb-[90px]">
-              {productsData.map((product, index) => (
+              {products.map((product, index) => (
                 <button
+                  type="button"
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`text-left transition-all duration-500 focus:outline-none cursor-pointer w-max px-4 py-2 ${
+                  className={`text-left transition-all duration-500 focus:outline-none w-max px-4 py-2 ${
                     activeIndex === index
                       ? "text-white text-[1.5rem] font-semibold rounded-[5px] bg-white/10 backdrop-blur-[10px]"
                       : "text-[#949494] text-[1.25rem] font-medium"
                   }`}
                 >
-                  {product.title}
+                  {product.name}
                 </button>
               ))}
             </nav>
@@ -130,13 +99,13 @@ export default function OurProducts() {
                 {/* Left: Title + Desc */}
                 <div className="w-full md:w-[50%]">
                   <h3 className="text-white text-[2rem] font-bold uppercase mb-4">
-                    {active.title}
+                    {active?.title}
                   </h3>
                   <p className="md:mb-0 mb-6 text-white text-justify text-[1rem] font-normal">
-                    {active.description}
+                    {truncate(active?.description, 200)}
                   </p>
                 </div>
-                <ArrowLink href="#">More about {active.title}</ArrowLink>
+                <ArrowLink href={`/divisions/${active?.slug}`}>More about {active?.title}</ArrowLink>
               </motion.div>
             </AnimatePresence>
           </div>

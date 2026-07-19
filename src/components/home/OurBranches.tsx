@@ -10,11 +10,11 @@ const countdownData = [
   {
     to: 10,
     suffix: "+",
-    title: <>Cities</>,
+    title: <>Strong network across <br />the Kingdom of Saudi Arabia</>,
   },
-  { to: 16, suffix: "+", title: "Showroom" },
-  { to: 32, suffix: "+", title: "Service center" },
-  { to: 32, suffix: "+", title: "Spare Part" },
+  { to: 22, suffix: "+", title: "Showroom" },
+  { to: 26, suffix: "+", title: "Service center" },
+  { to: 29, suffix: "+", title: "Spare Part" },
 
 ];
 

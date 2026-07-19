@@ -1,4 +1,5 @@
 import { getEventById } from "@/services/events.service";
+import { cookies } from "next/headers";
 import NewsBanner from "@/components/news/NewsBanner";
 import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
@@ -7,16 +8,14 @@ import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
+type DynamicPageProps = { params: Promise<{ id: string }> };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
   try {
     const { id } = await params;
-    const event = await getEventById(id);
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    const event = await getEventById(id, locale);
     return {
       title: `Abdallah Company | ${event.title}`,
       description: event.excerpt || event.description?.substring(0, 150) || "Event details",
@@ -29,11 +28,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function EventDetailsPage({ params }: PageProps) {
+export default async function EventDetailsPage({ params }: DynamicPageProps) {
   const { id } = await params;
   let event;
   try {
-    event = await getEventById(id, "en");
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    event = await getEventById(id, locale);
   } catch (error) {
     return notFound();
   }
@@ -60,10 +61,10 @@ export default async function EventDetailsPage({ params }: PageProps) {
 
   // Handle images for slider
   const images = [];
-  const mainImg = event.cover_image_url || event.cover_image || event.image;
+  const mainImg = event.cover_image_url;
   if (mainImg) images.push(mainImg);
-  if (Array.isArray(event.images)) {
-    event.images.forEach((img: string) => {
+  if (Array.isArray(event.gallery_image_urls)) {
+    event.gallery_image_urls.forEach((img: string) => {
       if (img !== mainImg) images.push(img);
     });
   }
@@ -131,9 +132,10 @@ export default async function EventDetailsPage({ params }: PageProps) {
                 </RevealText>
 
                 <RevealText delay={0.5}>
-                  <p className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed">
-                    {event.excerpt || event.description}
-                  </p>
+                  <div 
+                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>a]:text-blue-600 [&>a]:underline"
+                    dangerouslySetInnerHTML={{ __html: event.description || event.excerpt || "" }} 
+                  />
                 </RevealText>
               </div>
 
@@ -220,7 +222,7 @@ export default async function EventDetailsPage({ params }: PageProps) {
               </RevealText>
 
               {/* Share Event */}
-              <RevealText delay={0.4}>
+              {/* <RevealText delay={0.4}>
                 <div>
                   <h4 className="text-[#949494] text-[0.9rem] font-semibold uppercase mb-[1rem]">share event</h4>
                   <ul className="flex gap-[8px]">
@@ -293,7 +295,7 @@ export default async function EventDetailsPage({ params }: PageProps) {
                     </li>
                   </ul>
                 </div>
-              </RevealText>
+              </RevealText> */}
             </div>
           </div>
         </div>

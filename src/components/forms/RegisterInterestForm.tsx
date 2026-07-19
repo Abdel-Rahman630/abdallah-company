@@ -36,7 +36,7 @@ export default function RegisterInterestForm() {
       </RevealText>
       
       <RevealText delay={0.3}>
-        <p className="text-[#949494] font-['Inter'] text-[0.9rem] font-normal mb-[32px]">
+        <p className="text-[#949494] text-[0.9rem] font-normal mb-[32px]">
           {`Fill out the form and we'll respond as soon as possible.`}
         </p>
       </RevealText>

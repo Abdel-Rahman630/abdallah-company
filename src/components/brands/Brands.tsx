@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Brand, BrandSocialLinks } from "@/types/models";
+import { Brand } from "@/types/models";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import { useEffect, useRef, useState } from "react";
 
@@ -145,10 +145,8 @@ function BrandDetail({ brand }: { brand: Brand }) {
       <RevealImage className="w-full lg:w-[450px] shrink-0 h-[400px] lg:h-[500px] rounded-[10px] overflow-hidden bg-gray-100">
         {images.length > 0 ? (
           <Swiper
-            modules={[Autoplay, Navigation, Pagination]}
+            modules={[Autoplay]}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            navigation
             className="w-full h-full custom-swiper"
             loop={images.length > 1}
           >

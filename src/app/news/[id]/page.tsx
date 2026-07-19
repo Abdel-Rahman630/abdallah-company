@@ -5,6 +5,7 @@ import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
 import { getNewsById } from "@/services/news.service";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import ScreenshotButton from "@/components/news/ScreenshotButton";
 
 export const metadata: Metadata = {
@@ -12,16 +13,14 @@ export const metadata: Metadata = {
   description: "Read the full story from Abdullah Hashim Company.",
 };
 
-interface PageProps {
-  params: Promise<{ id: string }>;
-}
-
-export default async function NewsDetailsPage({ params }: PageProps) {
+export default async function NewsDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   let news;
   try {
-    news = await getNewsById(id, "en");
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    news = await getNewsById(id, locale);
   } catch {
     notFound();
   }

@@ -1,22 +1,9 @@
-"use client";
-
 import { useState, useEffect } from "react";
-
-export interface SocialLink {
-  url: string;
-  type: string;
-}
-
-export interface Brand {
-  id: number | string;
-  title: string;
-  description: string;
-  image: string;
-  logo?: string;
-  social_links?: SocialLink[];
-}
+import { Brand } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export function useBrands() {
+  const { locale } = useLanguage();
   const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +11,7 @@ export function useBrands() {
     async function fetchBrands() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/cms/brands?lang=en`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/cms/brands?lang=${locale}`
         );
         const json = await res.json();
         if (json.data) {
@@ -37,7 +24,7 @@ export function useBrands() {
       }
     }
     fetchBrands();
-  }, []);
+  }, [locale]);
 
   return { brands, loading };
 }

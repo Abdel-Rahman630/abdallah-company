@@ -1,13 +1,6 @@
 import { useState } from "react";
+import { SubscribeStatus } from "@/types/models";
 
-export type SubscribeStatus =
-  | "idle"
-  | "loading"
-  | "success"
-  | "already"
-  | "validation"
-  | "rate_limit"
-  | "error";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "https://api.ahcl.com.sa";

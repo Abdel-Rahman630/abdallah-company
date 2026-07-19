@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-export type ContactFormData = {
-  name: string;
-  division: string;
-  email: string;
-  phone: string;
-  message: string;
-};
-
-type SubmitStatus = "idle" | "loading" | "success" | "error";
-
+import { ContactFormData, SubmitStatus } from "@/types/models";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 export function useGetInTouch() {
