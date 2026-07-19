@@ -14,7 +14,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 export default function News() {
   const { t } = useLanguage();
   const { firstNews, otherNews, isLoading } = useHomeNews();
-  const { email, setEmail, subscribeStatus, handleSubscribe } = useNewsletter();
+  const { email, setEmail, divisionId, setDivisionId, divisions, subscribeStatus, handleSubscribe } = useNewsletter();
 
   return (
     <section id="news" className="py-[50px] lg:py-[100px] bg-white">
@@ -119,9 +119,7 @@ export default function News() {
                         <h4 className="text-[#1E1E1E] text-[1.1rem] font-medium mb-[8px] leading-tight">
                           {news.title}
                         </h4>
-                        {news.dateStr && (
-                          <span className="text-[#999] text-[0.75rem] font-normal">{news.dateStr}</span>
-                        )}
+                        {news.dateStr && <span className="text-[#999] text-[0.75rem] font-normal">{news.dateStr}</span>}
                       </div>
                     </Link>
                   ))}
@@ -132,9 +130,7 @@ export default function News() {
               <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[32px] gap-[1rem]">
                 <div className="flex-1">
                   <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium shrink-0">{t("newsletter.title")}</h4>
-                  <p className="text-[#949494] text-[0.75rem] font-normal">
-                    {t("newsletter.description")}
-                  </p>
+                  <p className="text-[#949494] text-[0.75rem] font-normal">{t("newsletter.description")}</p>
                 </div>
                 <div className="md:w-[50%] w-full flex flex-col gap-2">
                   <div className="flex w-full">
@@ -155,7 +151,7 @@ export default function News() {
                       aria-describedby="newsletter-status"
                     />
                     <button
-                      onClick={handleSubscribe}
+                      onClick={() => handleSubscribe()}
                       disabled={subscribeStatus === "loading" || !email}
                       className="rounded-r-[3px] bg-[#d1a52a] px-[20px] py-[12px] text-[#1E1E1E] text-[0.9rem] font-semibold flex items-center justify-center"
                       aria-label="Subscribe to newsletter"
@@ -166,19 +162,34 @@ export default function News() {
                   {/* Status Messages */}
                   <div id="newsletter-status" aria-live="polite" aria-atomic="true">
                     {subscribeStatus === "success" && (
-                      <span className="text-green-500 text-xs">Successfully subscribed to the newsletter!</span>
+                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-green-50 border border-green-200">
+                        <p className="text-green-800 font-bold text-[0.9rem]">{t("newsletterStatus.successTitle")}</p>
+                        <p className="text-green-700 text-[0.85rem]">{t("newsletterStatus.successDesc")}</p>
+                      </div>
                     )}
                     {subscribeStatus === "already" && (
-                      <span className="text-blue-500 text-xs">You are already subscribed to the newsletter.</span>
+                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-blue-50 border border-blue-200">
+                        <p className="text-blue-800 font-bold text-[0.9rem]">{t("newsletterStatus.alreadyTitle")}</p>
+                        <p className="text-blue-700 text-[0.85rem]">{t("newsletterStatus.alreadyDesc")}</p>
+                      </div>
                     )}
                     {subscribeStatus === "validation" && (
-                      <span className="text-red-500 text-xs">Please enter a valid email address.</span>
+                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-red-50 border border-red-200">
+                        <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.validationTitle")}</p>
+                        <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.validationDesc")}</p>
+                      </div>
                     )}
                     {subscribeStatus === "rate_limit" && (
-                      <span className="text-yellow-500 text-xs">Too many requests. Please try again later.</span>
+                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-yellow-50 border border-yellow-200">
+                        <p className="text-yellow-800 font-bold text-[0.9rem]">{t("newsletterStatus.rateLimitTitle")}</p>
+                        <p className="text-yellow-700 text-[0.85rem]">{t("newsletterStatus.rateLimitDesc")}</p>
+                      </div>
                     )}
                     {subscribeStatus === "error" && (
-                      <span className="text-red-500 text-xs">An error occurred. Please try again.</span>
+                      <div className="mt-[16px] p-[16px] rounded-[8px] bg-red-50 border border-red-200">
+                        <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.errorTitle")}</p>
+                        <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.errorDesc")}</p>
+                      </div>
                     )}
                   </div>
                 </div>

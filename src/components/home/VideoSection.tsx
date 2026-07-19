@@ -1,4 +1,9 @@
+"use client";
+
+import { useLanguage } from "@/providers/LanguageProvider";
+
 export default function VideoSection() {
+  const { t } = useLanguage();
   return (
     <section className="relative h-[700px] w-full">
       <video 
@@ -20,10 +25,10 @@ export default function VideoSection() {
       {/* Text Content */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
         <p className="text-white text-center text-[24px] font-normal mb-4">
-          Abdullah Hashim Company Limited
+          {t("videoSection.title")}
         </p>
         <h1 className="text-white text-[2.5rem] font-bold max-w-[800px] leading-[1.2]">
-          Driving Progress Through Innovation, Quality, and Reliability
+          {t("videoSection.subtitle")}
         </h1>
       </div>
     </section>

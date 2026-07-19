@@ -140,7 +140,7 @@ export default async function EventDetailsPage({ params }: DynamicPageProps) {
               </div>
 
               {/* Register Interest Form */}
-              <RegisterInterestForm />
+              <RegisterInterestForm eventId={event.id} />
             </div>
 
             {/* Right Column (Sidebar) */}

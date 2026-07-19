@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com"),
   title: "Abdallah Company",
   description: "Welcome to Abdallah Company",
   openGraph: {

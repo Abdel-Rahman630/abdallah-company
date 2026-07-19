@@ -11,7 +11,11 @@ interface FormData {
   email: string;
 }
 
-export default function RegisterInterestForm() {
+interface RegisterInterestFormProps {
+  eventId: string | number;
+}
+
+export default function RegisterInterestForm({ eventId }: RegisterInterestFormProps) {
   const {
     register,
     handleSubmit,
@@ -21,10 +25,28 @@ export default function RegisterInterestForm() {
 
   const onSubmit = async (data: FormData) => {
     setStatus("loading");
-    // Simulate API call
-    setTimeout(() => {
-      setStatus("success");
-    }, 1000);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || "https://api.ahcl.com.sa"}/api/cms/events/${eventId}/requests`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: data.name,
+            phone: data.phone,
+            email: data.email,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -48,6 +70,17 @@ export default function RegisterInterestForm() {
           </p>
           <p className="text-green-700 text-[0.85rem]">
             We will get back to you soon.
+          </p>
+        </div>
+      )}
+
+      {status === "error" && (
+        <div className="mb-[24px] p-[16px] rounded-[8px] bg-red-50 border border-red-200">
+          <p className="text-red-800 font-bold text-[0.9rem]">
+            Failed to register.
+          </p>
+          <p className="text-red-700 text-[0.85rem]">
+            Please try again later.
           </p>
         </div>
       )}
