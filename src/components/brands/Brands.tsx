@@ -186,7 +186,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
 
         {socials.length > 0 && (
           <RevealText delay={0.2}>
-            <p className="text-[#949494] text-[0.9rem] font-semibold uppercase mb-[1rem] tracking-wide">
+            <p className="mt-[1rem] text-[#949494] text-[0.9rem] font-semibold uppercase mb-[1rem] tracking-wide">
               Brand Social Media
             </p>
             <ul className="flex gap-[12px] flex-wrap">
