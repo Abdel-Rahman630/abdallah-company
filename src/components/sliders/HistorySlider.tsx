@@ -111,9 +111,11 @@ export default function HistorySlider() {
                   <h4 className="text-white text-[1.5rem] font-medium mb-[1rem]">
                     {item.title}
                   </h4>
-                  <p className="text-white text-justify text-[1rem] font-normal">
-                    {item.description || item.paragraph || item.short_description}
-                  </p>
+               
+                         <p 
+                  className="text-white text-justify text-[1rem] font-normal"
+                  dangerouslySetInnerHTML={{ __html: item.description || item.paragraph || item.short_description || "" }}
+                />
                 </div>
 
                 {/* Navigation */}
