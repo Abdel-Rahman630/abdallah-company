@@ -179,7 +179,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
         </RevealText>
         <RevealText delay={0.1}>
           <p 
-                  className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap"
+                  className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap [&_strong]:text-black [&_strong]:font-bold"
                   dangerouslySetInnerHTML={{ __html: brand.description || "" }}
                 />
         </RevealText>

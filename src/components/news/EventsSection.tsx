@@ -59,7 +59,7 @@ export default function EventsSection() {
           ) : filtered.length > 0 ? (
           filtered.map((event, idx) => {
             const isFeatured = event.isFeatured !== false;
-            const href = event.id ? `/events/${event.id}` : null;
+            const href = event.slug ? `/events/${event.slug}` : (event.id ? `/events/${event.id}` : null);
 
             return (
               <RevealText key={event.id || idx} delay={0.1 * (idx + 1)}>

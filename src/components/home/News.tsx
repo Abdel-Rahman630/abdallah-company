@@ -38,7 +38,7 @@ export default function News() {
                 />
               ) : firstNews ? (
                 <Link
-                  href={`/news/${firstNews.id}`}
+                  href={firstNews.slug ? `/news/${firstNews.slug}` : `/news/${firstNews.id}`}
                   className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[500px] md:h-[645px] bg-cover bg-center group block"
                   style={{ backgroundImage: `url(${firstNews.image})` }}
                   aria-label={`Read more: ${firstNews.title}`}
@@ -100,7 +100,7 @@ export default function News() {
                   ))
                 : otherNews.map((news, idx) => (
                     <Link
-                      href={`/news/${news.id}`}
+                      href={news.slug ? `/news/${news.slug}` : `/news/${news.id}`}
                       key={`news-${idx}`}
                       className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] mb-[32px] last:border-b-0 last:mb-0"
                       aria-label={`Read: ${news.title}`}

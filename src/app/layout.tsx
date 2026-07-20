@@ -20,15 +20,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.vercel.app"),
   title: "Abdallah Company",
   description: "Welcome to Abdallah Company",
+  icons: {
+    icon: [
+      { url: "https://abdallah-company.vercel.app/LOGO2.png", type: "image/x-icon" },
+      { url: "https://abdallah-company.vercel.app/LOGO2.png", type: "image/png" }
+    ],
+    shortcut: "https://abdallah-company.vercel.app/LOGO2.png",
+    apple: "https://abdallah-company.vercel.app/LOGO2.png",
+    other: [
+      {
+        rel: "mask-icon",
+        url: "https://abdallah-company.vercel.app/LOGO2.png",
+        color: "#2196f3",
+      },
+    ],
+  },
   openGraph: {
     title: "Abdallah Company",
     description: "Welcome to Abdallah Company",
+    url: "https://abdallah-company.vercel.app",
+    siteName: "Abdallah Company",
     images: [
       {
-        url: "/bg.png",
+        url: "https://abdallah-company.vercel.app/LOGO2.png",
         width: 1200,
         height: 630,
         alt: "Abdallah Company Logo",
@@ -40,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abdallah Company",
     description: "Welcome to Abdallah Company",
-    images: ["/bg.png"],
+    images: ["https://abdallah-company.vercel.app/LOGO2.png"],
   },
 };
 

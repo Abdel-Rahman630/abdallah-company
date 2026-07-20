@@ -20,6 +20,7 @@ export function useHomeNews() {
           const isValid = !isNaN(d.getTime());
           return {
             id: item.id,
+            slug: item.slug,
             image: item.cover_image || item.cover_image_url || "/bg.png",
             subtitle: item.category || "News",
             title: item.title || "",

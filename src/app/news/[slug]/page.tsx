@@ -3,26 +3,61 @@ import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
-import { getNewsById } from "@/services/news.service";
+import { getNews, getNewsById } from "@/services/news.service";
+import { NewsItem } from "@/types/models";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import ScreenshotButton from "@/components/news/ScreenshotButton";
 
-export const metadata: Metadata = {
-  title: "Abdallah Company | News Details",
-  description: "Read the full story from Abdullah Hashim Company.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  try {
+    const { slug } = await params;
+    const cookieStore = await cookies();
+    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+    
+    const decodedSlug = decodeURIComponent(slug);
+    const res = await getNews({ limit: 100, lang: locale });
+    const matched = (res.data || []).find((n: NewsItem) =>
+      n.slug === decodedSlug || n.slug === slug
+    );
+    if (!matched) return { title: "Abdallah Company | News Details" };
 
-export default async function NewsDetailsPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+    const news = await getNewsById(String(matched.id), locale);
+    return {
+      title: `Abdallah Company | ${news.title}`,
+      description: news.excerpt || news.short_description || "News details",
+    };
+  } catch {
+    return {
+      title: "Abdallah Company | News Details",
+      description: "Read the latest news from Abdullah Hashim Company.",
+    };
+  }
+}
+
+export default async function NewsDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
   let news;
   try {
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    news = await getNewsById(id, locale);
-  } catch {
-    notFound();
+    const decodedSlug = decodeURIComponent(slug);
+    
+    const res = await getNews({ limit: 100, lang: locale });
+    const matched = (res.data || []).find((n: NewsItem) =>
+      n.slug === decodedSlug || n.slug === slug
+    );
+    
+    if (!matched) {
+      console.error(`News not found for slug: ${slug}`);
+      return notFound();
+    }
+    
+    news = await getNewsById(String(matched.id), locale);
+  } catch (err) {
+    console.error("NewsDetailsPage error:", err);
+    return notFound();
   }
 
   // Build the images array from the media array, sorted by sort_order
@@ -141,7 +176,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ id
 
             <RevealText delay={0.5}>
               <div
-                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none"
+                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
                 dangerouslySetInnerHTML={{ __html: news.description }}
               />
             </RevealText>

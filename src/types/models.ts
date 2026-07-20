@@ -91,6 +91,7 @@ export interface SingleNewsResponse {
 
 export type LatestNewsItem = {
   id: string | number;
+  slug?: string;
   image: string;
   date: string;
   title: string;
@@ -99,6 +100,7 @@ export type LatestNewsItem = {
 
 export type HomeNewsItem = {
   id: string | number;
+  slug?: string;
   image: string;
   subtitle: string;
   title: string;
@@ -136,6 +138,7 @@ export interface EventItem {
 
 export interface EventSlideItem {
   id: string | number;
+  slug?: string;
   image: string;
   date: string;
   month: string;

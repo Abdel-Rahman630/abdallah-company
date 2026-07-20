@@ -32,6 +32,7 @@ export default function LatestNews() {
                   <RevealText key={item.id || idx} delay={0.1 * (idx + 1)}>
                     <NewsCard
                       id={item.id}
+                      slug={item.slug}
                       image={item.image}
                       date={item.date}
                       title={item.title}

@@ -1,26 +1,36 @@
-import { getEventById } from "@/services/events.service";
+import { getEvents, getEventById } from "@/services/events.service";
 import { cookies } from "next/headers";
 import NewsBanner from "@/components/news/NewsBanner";
 import Link from "next/link";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import { Metadata } from "next";
+import { EventItem } from "@/types/models";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
+import ScreenshotButton from "@/components/news/ScreenshotButton";
 import { notFound } from "next/navigation";
 
-type DynamicPageProps = { params: Promise<{ id: string }> };
-
-export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
-    const { id } = await params;
+    const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    const event = await getEventById(id, locale);
+    
+    // Try to get event by slug directly using the list endpoint
+    const res = await getEvents({ limit: 100, lang: locale });
+    const decodedSlug = decodeURIComponent(slug);
+    const matched = (res.data || []).find((e: EventItem) => 
+      e.slug === decodedSlug || e.slug === slug
+    );
+    
+    if (!matched) return { title: "Abdallah Company | Event Details" };
+    
+    const event = await getEventById(String(matched.id), locale);
     return {
       title: `Abdallah Company | ${event.title}`,
       description: event.excerpt || event.description?.substring(0, 150) || "Event details",
     };
-  } catch (err) {
+  } catch {
     return {
       title: "Abdallah Company | Event Details",
       description: "Learn more about the latest events at Abdullah Hashim Company.",
@@ -28,14 +38,25 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
   }
 }
 
-export default async function EventDetailsPage({ params }: DynamicPageProps) {
-  const { id } = await params;
+export default async function EventDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   let event;
   try {
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    event = await getEventById(id, locale);
+    const decodedSlug = decodeURIComponent(slug);
+    
+    // Fetch the list to find the matching event by slug
+    const res = await getEvents({ limit: 100, lang: locale });
+    const matched = (res.data || []).find((e: EventItem) => 
+      e.slug === decodedSlug || e.slug === slug
+    );
+    
+    if (!matched) return notFound();
+    
+    event = await getEventById(String(matched.id), locale);
   } catch (error) {
+    console.error("EventDetailsPage error:", error);
     return notFound();
   }
 
@@ -101,7 +122,7 @@ export default async function EventDetailsPage({ params }: DynamicPageProps) {
           </div>
 
           {/* Main Layout: Left Column (Slider + Content) and Right Column (Sidebar) */}
-          <div className="w-full flex flex-col lg:flex-row gap-[5%]">
+          <div id="pdf-content" className="w-full flex flex-col lg:flex-row gap-[5%]">
             
             {/* Left Column */}
             <div className="w-full lg:w-[65%]">
@@ -133,7 +154,7 @@ export default async function EventDetailsPage({ params }: DynamicPageProps) {
 
                 <RevealText delay={0.5}>
                   <div 
-                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>a]:text-blue-600 [&>a]:underline"
+                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>a]:text-blue-600 [&>a]:underline [&_strong]:text-black [&_strong]:font-bold"
                     dangerouslySetInnerHTML={{ __html: event.description || event.excerpt || "" }} 
                   />
                 </RevealText>
@@ -219,6 +240,12 @@ export default async function EventDetailsPage({ params }: DynamicPageProps) {
                   </li>
                   )}
                 </ul>
+              </RevealText>
+              
+              <RevealText delay={0.4}>
+                <div className="mb-[32px]">
+                  <ScreenshotButton targetId="pdf-content" />
+                </div>
               </RevealText>
 
               {/* Share Event */}

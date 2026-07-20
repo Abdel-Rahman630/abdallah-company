@@ -19,12 +19,15 @@ export default function RegisterInterestForm({ eventId }: RegisterInterestFormPr
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (data: FormData) => {
     setStatus("loading");
+    setErrorMessage("");
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL || "https://api.ahcl.com.sa"}/api/cms/events/${eventId}/requests`,
@@ -42,10 +45,24 @@ export default function RegisterInterestForm({ eventId }: RegisterInterestFormPr
       if (response.ok) {
         setStatus("success");
       } else {
+        const errorData = await response.json().catch(() => null);
         setStatus("error");
+        let msg = "Validation error occurred.";
+        if (errorData?.errors) {
+            msg = Object.values(errorData.errors).flat().join(" ");
+        } else if (errorData?.message) {
+            msg = errorData.message;
+        } else if (errorData?.error) {
+            msg = errorData.error;
+        }
+        setErrorMessage(msg);
       }
-    } catch {
+    } catch (err: unknown) {
       setStatus("error");
+      const errorMessage = err instanceof Error ? err.message : "Please check your network and try again.";
+      setErrorMessage(errorMessage);
+    } finally {
+      reset();
     }
   };
 
@@ -80,7 +97,7 @@ export default function RegisterInterestForm({ eventId }: RegisterInterestFormPr
             Failed to register.
           </p>
           <p className="text-red-700 text-[0.85rem]">
-            Please try again later.
+            {errorMessage || "Please try again later."}
           </p>
         </div>
       )}

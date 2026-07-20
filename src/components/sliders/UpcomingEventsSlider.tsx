@@ -33,6 +33,7 @@ export default function UpcomingEventsSlider() {
           const day = d.getDate().toString();
           return {
             id: item.id,
+            slug: item.slug,
             image: item.cover_image_url || "/bg.png",
             date: day,
             month: monthName,
@@ -83,7 +84,7 @@ export default function UpcomingEventsSlider() {
         className="w-full"
       >
         {events.map((event, idx) => {
-          const href = event.id ? `/events/${event.id}` : null;
+          const href = event.slug ? `/events/${event.slug}` : (event.id ? `/events/${event.id}` : null);
           const isFeatured = event.isFeatured !== false;
 
           return (
