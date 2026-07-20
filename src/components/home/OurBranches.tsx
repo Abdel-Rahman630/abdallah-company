@@ -7,11 +7,11 @@ import ArrowLink from "@/components/ui/ArrowLink";
 import SubTitle from "@/components/ui/SubTitle";
 
 const countdownData = [
-  {
-    to: 10,
-    suffix: "+",
-    title: <>Strong network across <br />the Kingdom of Saudi Arabia</>,
-  },
+  // {
+  //   to: 10,
+  //   suffix: "+",
+  //   title: <>Strong network across <br />the Kingdom of Saudi Arabia</>,
+  // },
   { to: 22, suffix: "+", title: "Showroom" },
   { to: 26, suffix: "+", title: "Service center" },
   { to: 29, suffix: "+", title: "Spare Part" },
@@ -38,11 +38,11 @@ export default function OurBranches() {
               </h2>
             </RevealText>
 
-            <RevealText delay={0.3}>
+            {/* <RevealText delay={0.3}>
               <p className="mb-[34px] leading-relaxed text-[#666] text-[0.8125rem] font-normal">
                 AHCL serves its customers via a network composed of 28 AHCL-operated facilities, and 34 dealer facilities. Through its own operated facilities, AHCL can reach approximately 78% of the population of Saudi Arabia.
               </p>
-            </RevealText>
+            </RevealText> */}
 
             <RevealText delay={0.4}>
               <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
@@ -50,7 +50,7 @@ export default function OurBranches() {
               </p>
             </RevealText>
 
-            <ul className="flex flex-col gap-[32px] mb-[32px]">
+            <ul className="flex flex-row gap-[32px] mb-[32px]">
               {/* Item 1 */}
               <li className="flex items-center gap-[17px]">
                 <svg
@@ -158,7 +158,7 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                 Operation Network (Sales, Service centers & spare parts).
+                 Operation Network.
                 </span>
               </li>
             </ul>
@@ -193,7 +193,7 @@ export default function OurBranches() {
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
           <div className="flex-1 w-full lg:w-auto flex flex-col justify-center">
-            <RevealImage className="relative w-full max-w-[727px] h-[300px] md:h-[544px]">
+            <RevealImage className="relative w-full max-w-[900px] h-[400px] md:h-[544px]">
               <Image
                 src="/map.png"
                 alt="Our Branches Map"
