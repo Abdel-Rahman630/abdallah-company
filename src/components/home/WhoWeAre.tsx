@@ -27,7 +27,7 @@ const countdownData = [
         Branches <br /> Kingdom Wide
       </>
     ) },
-  { to: 25, suffix: "+", title: "Brands" },
+  { to: 25, suffix: "", title: "Brands" },
 ];
 
 export default function WhoWeAre() {
