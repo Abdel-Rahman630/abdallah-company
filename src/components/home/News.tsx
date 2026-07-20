@@ -19,7 +19,7 @@ export default function News() {
   return (
     <section id="news" className="py-[50px] lg:py-[100px] bg-white">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-[80px] pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C]">
+        <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[80px] pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C]">
           {/* First Div (Left Side) */}
           <div className="w-full lg:w-1/2">
             <RevealText delay={0.1}>
@@ -127,13 +127,13 @@ export default function News() {
 
             {/* Newsletter Div */}
             <RevealText delay={0.5}>
-              <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[32px] gap-[1rem]">
-                <div className="flex-1">
-                  <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium shrink-0">{t("newsletter.title")}</h4>
+              <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[24px] gap-[1rem]">
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium">{t("newsletter.title")}</h4>
                   <p className="text-[#949494] text-[0.75rem] font-normal">{t("newsletter.description")}</p>
                 </div>
-                <div className="md:w-[50%] w-full flex flex-col gap-0 min-w-0 overflow-hidden">
-                  <div className="flex w-full">
+                <div className="w-full md:max-w-[55%] min-w-0 flex flex-col">
+                  <div className="flex w-full min-w-0">
                     <label htmlFor="newsletter-email" className="sr-only">
                       Email address
                     </label>
@@ -143,7 +143,7 @@ export default function News() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t("newsletter.placeholder")}
-                      className="border-b-[1px] border-[#C6C6C6] flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
+                      className="border-b border-[#C6C6C6] min-w-0 flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
                       disabled={subscribeStatus === "loading"}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleSubscribe();
@@ -153,7 +153,7 @@ export default function News() {
                     <button
                       onClick={() => handleSubscribe()}
                       disabled={subscribeStatus === "loading" || !email}
-                      className="rounded-r-[3px] bg-[#d1a52a] px-[20px] py-[12px] text-[#1E1E1E] text-[0.9rem] font-semibold flex items-center justify-center"
+                      className="shrink-0 rounded-r-[3px] bg-[#d1a52a] px-[16px] py-[12px] text-[#1E1E1E] text-[0.85rem] font-semibold whitespace-nowrap flex items-center justify-center"
                       aria-label="Subscribe to newsletter"
                     >
                       {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}

@@ -450,26 +450,28 @@ body.ar .leftContainer {
   padding-right: 1rem;
 }
 
-@media (min-width: 640px) {
-  .leftContainer { padding-left: calc(50% - 320px + 1rem); }
-  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 320px + 1rem); }
-}
+/* ≥768px → container max-width: 720px → half = 360px + 15px offset */
 @media (min-width: 768px) {
-  .leftContainer { padding-left: calc(50% - 345px + 1rem); }
-  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 345px + 1rem); }
+  .leftContainer { padding-left: calc(50% - 360px + 15px); }
+  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 360px + 15px); }
 }
-@media (min-width: 1024px) {
-  .leftContainer { padding-left: calc(50% - 485px + 1rem); }
-  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 485px + 1rem); }
+/* ≥992px → container max-width: 960px → half = 480px + 15px offset */
+@media (min-width: 992px) {
+  .leftContainer { padding-left: calc(50% - 480px + 15px); }
+  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 480px + 15px); }
 }
-@media (min-width: 1280px) {
-  .leftContainer { padding-left: calc(50% - 640px + 1rem); }
-  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 640px + 1rem); }
+/* ≥1200px → container max-width: 1140px → half = 570px + 15px offset */
+@media (min-width: 1200px) {
+  .leftContainer { padding-left: calc(50% - 570px + 15px); }
+  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 570px + 15px); }
 }
-@media (min-width: 1536px) {
-  .leftContainer { padding-left: calc(50% - 768px + 1rem); }
-  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 768px + 1rem); }
+/* ≥1400px → container max-width: 1320px → half = 660px + 15px offset */
+@media (min-width: 1400px) {
+  .leftContainer { padding-left: calc(50% - 660px + 15px); }
+  body.ar .leftContainer { padding-left: 0; padding-right: calc(50% - 660px + 15px); }
 }
+
+
 
 
 @theme inline {
@@ -567,3 +569,59 @@ button {
 .history-loading-bar {
   animation: loadingLine 3s linear forwards;
 }
+
+/* ─── Policy Pages (Cookies / Privacy) ─── */
+.policy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.policy-heading {
+  color: #1E1E1E;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.policy-text {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.policy-list-item {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  list-style-type: disc;
+}
+
+/* Table header cell */
+.cookie-th {
+  height: 34px;
+  padding: 9px 40px 6px 40px;
+  color: #FFD700;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* Table body cell */
+.cookie-td {
+  padding: 16px 40px;
+  color: #131313;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.policy-link {
+  color: #666;
+  font-weight: 600;
+  text-decoration: underline;
+}
