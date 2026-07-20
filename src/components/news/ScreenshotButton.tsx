@@ -2,27 +2,45 @@
 
 import React from "react";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export default function ScreenshotButton() {
-  const handleDownloadScreenshot = async () => {
+  const handleDownloadPDF = async () => {
     try {
       const canvas = await html2canvas(document.body, {
         useCORS: true,
         scale: 2,
       });
-      const image = canvas.toDataURL("image/png", 1.0);
-      const link = document.createElement("a");
-      link.download = "news-screenshot.png";
-      link.href = image;
-      link.click();
+      const imgData = canvas.toDataURL("image/png", 1.0);
+
+      // Create PDF
+      const doc = new jsPDF("p", "mm", "a4");
+      const imgWidth = 210; // A4 size width in mm
+      const pageHeight = 297; // A4 size height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Handle multi-page PDF generation if canvas height exceeds page height
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      doc.save("news-details.pdf");
     } catch (error) {
-      console.error("Failed to take screenshot", error);
+      console.error("Failed to generate PDF", error);
     }
   };
 
   return (
     <button
-      onClick={handleDownloadScreenshot}
+      onClick={handleDownloadPDF}
       className="w-[123px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center cursor-pointer text-[#666666] text-[0.9rem] font-medium gap-[8px] hover:bg-gray-50 transition-colors"
     >
       <span className="capitalize">Download</span>

@@ -54,8 +54,8 @@ export default function HistorySlider() {
         <Swiper
           modules={[Autoplay, EffectFade, Navigation]}
           effect="fade"
-          // loop
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop
+          autoplay={{ delay: 6000, disableOnInteraction: false }}
           navigation={{
             nextEl: ".history-next",
             prevEl: ".history-prev",
@@ -88,7 +88,7 @@ export default function HistorySlider() {
       <div className="absolute top-[40px] left-0 right-0 z-20 pointer-events-none">
         <div className="container mx-auto text-center px-4">
           <h3 className="text-white text-[1.75rem] font-normal mb-[8px]">History &amp; Legacy</h3>
-          <h2 className="text-white text-[2rem] font-bold">Abdullah Hashim Company Limited</h2>
+          <h2 className="text-white text-[2rem] font-bold">A legacy of trust, growth, <br /> and excellence across generations.</h2>
         </div>
       </div>
 
@@ -106,7 +106,7 @@ export default function HistorySlider() {
                 <div className="max-w-4xl">
                   <div className="flex gap-[24px] items-baseline mb-[1rem]">
                     <span className="text-white text-[4rem] font-normal leading-none">{item.year}</span>
-                    <span className="text-white text-[2.5rem] font-light uppercase leading-none">{item.hijri_year}</span>
+                    <span className="text-white text-[2.5rem] font-light uppercase leading-none">{item.hijri_year}H</span>
                   </div>
                   <h4 className="text-white text-[1.5rem] font-medium mb-[1rem]">
                     {item.title}

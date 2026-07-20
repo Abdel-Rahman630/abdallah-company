@@ -3,7 +3,7 @@
 import Image from "next/image";
 import SubTitle from "@/components/ui/SubTitle";
 import ArrowButtonLink from "@/components/ui/ArrowButtonLink";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -101,7 +101,17 @@ export default function WhyJoinUs() {
 
               <RevealText delay={0.2}>
                 <p className="text-[#727272] text-[1rem] font-normal md:mb-[48px] mb-[30px] leading-relaxed">
-                  {t("careers.desc1")}
+                  {t("careers.desc1").split("AHCL Company").reduce((acc: React.ReactNode[], part: string, index: number, array: string[]) => {
+                    acc.push(part);
+                    if (index < array.length - 1) {
+                      acc.push(
+                        <span key={index} className="font-bold text-[#1E1E1E]">
+                          AHCL Company
+                        </span>
+                      );
+                    }
+                    return acc;
+                  }, [])}
                 </p>
               </RevealText>
 

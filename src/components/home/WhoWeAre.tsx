@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -78,14 +79,24 @@ export default function WhoWeAre() {
 
               <RevealText delay={0.2}>
                 <h2 className="text-[#1E1E1E] text-[2rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
-                  {t("home.whoWeAreTitle")}
+                  {t("home.whoWeAreTitle").split("Automotive & machinery distributor").reduce((acc: React.ReactNode[], part: string, index: number, array: string[]) => {
+                    acc.push(part);
+                    if (index < array.length - 1) {
+                      acc.push(
+                        <span key={index} className="font-bold">
+                          Automotive & machinery distributor
+                        </span>
+                      );
+                    }
+                    return acc;
+                  }, [])}
                 </h2>
               </RevealText>
 
               <RevealText delay={0.3}>
                 <p className="text-[#727272] text-[1rem] font-normal  mb-[32px]">
                   <span className="font-bold text-[#1E1E1E]">Abdullah Hashim Company Limited (AHCL) </span>
-                  is an established automotive and machinery distributor in Saudi Arabia. Since its establishment in
+                  is an established <span className="font-bold text-[#1E1E1E]">Automotive & machinery distributor</span> in Saudi Arabia. Since its establishment in
                   1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to
                   serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA),
                   machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.

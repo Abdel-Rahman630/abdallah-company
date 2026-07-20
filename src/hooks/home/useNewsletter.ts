@@ -3,8 +3,7 @@ import { SubscribeStatus } from "@/types/models";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "https://api.ahcl.com.sa";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 export function useNewsletter() {
   const { locale } = useLanguage();
