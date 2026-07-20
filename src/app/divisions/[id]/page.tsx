@@ -57,9 +57,10 @@ export default async function DivisionPage({ params }: DynamicPageProps) {
                 </h2>
               </RevealText>
               <RevealText delay={0.15}>
-                <p className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap">
-                  {data.description}
-                </p>
+                <div 
+                  className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap [&_strong]:text-black [&_strong]:font-bold"
+                  dangerouslySetInnerHTML={{ __html: data.description || "" }}
+                />
               </RevealText>
             </div>
 
