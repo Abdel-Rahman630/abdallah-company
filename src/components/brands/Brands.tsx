@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay} from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -84,10 +84,28 @@ function SocialIcon({ type }: { type: string }) {
     );
   // Default: website / globe icon
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <circle cx="10" cy="10" r="8.25" stroke="#1E1E1E" strokeWidth="1.5"/>
-      <ellipse cx="10" cy="10" rx="3.25" ry="8.25" stroke="#1E1E1E" strokeWidth="1.5"/>
-      <path d="M1.75 7.5h16.5M1.75 12.5h16.5" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <circle cx="10" cy="10" r="8.25" stroke="#1E1E1E" strokeWidth="1.5" />
+      <ellipse
+        cx="10"
+        cy="10"
+        rx="3.25"
+        ry="8.25"
+        stroke="#1E1E1E"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M1.75 7.5h16.5M1.75 12.5h16.5"
+        stroke="#1E1E1E"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -140,8 +158,8 @@ function BrandDetail({ brand }: { brand: Brand }) {
     .map(([type, url]) => ({ type, url: url as string }));
 
   return (
-    <div className="flex flex-col lg:flex-row gap-[52px] items-start">
-      <RevealImage className="relative overflow-hidden w-full max-w-[900px] h-[400px] md:h-[544px] rounded-[10px] shrink-0 bg-gray-100">
+    <div className="flex flex-col lg:flex-row gap-[35px] lg:gap-[52px] items-start">
+      <RevealImage className="relative overflow-hidden lg:w-[50%] w-full h-[400px] md:h-[544px] rounded-[10px] shrink-0 bg-gray-100">
         {images.length > 0 ? (
           <Swiper
             modules={[Autoplay]}
@@ -178,10 +196,10 @@ function BrandDetail({ brand }: { brand: Brand }) {
           </h3>
         </RevealText>
         <RevealText delay={0.1}>
-          <p 
-                  className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap [&_strong]:text-black [&_strong]:font-bold"
-                  dangerouslySetInnerHTML={{ __html: brand.description || "" }}
-                />
+          <p
+            className="text-[#666] text-[1rem] font-normal leading-relaxed whitespace-pre-wrap [&_strong]:text-black [&_strong]:font-bold"
+            dangerouslySetInnerHTML={{ __html: brand.description || "" }}
+          />
         </RevealText>
 
         {socials.length > 0 && (

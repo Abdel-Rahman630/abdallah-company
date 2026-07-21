@@ -31,19 +31,17 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
         {/* Titles Column */}
         <div className="flex flex-col gap-2">
           {products.map((product, index) => (
-            <Link
+            <button
               key={product.id}
-              href={`/divisions/${product.slug}`}
               onClick={() => {
                 setActiveIndex(index);
-                if (onClose) onClose();
               }}
               className={`text-left text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
                 activeIndex === index ? "text-white" : "text-[#666]"
               }`}
             >
               {product.name}
-            </Link>
+            </button>
           ))}
         </div>
 
@@ -59,7 +57,13 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
               className="flex flex-col gap-2"
             >
               <div className="flex items-center gap-[5px] mb-1">
-                <span className="text-white text-[1rem] font-medium">{activeProduct.name}</span>
+                <Link
+                  href={`/divisions/${activeProduct.slug}`}
+                  onClick={onClose}
+                  className="text-white text-[1rem] font-medium underline"
+                >
+                  {activeProduct.name}
+                </Link>
               </div>
               <p className="text-[#999] text-[0.85rem] leading-relaxed">
                 {truncate(activeProduct.description, 100)}

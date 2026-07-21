@@ -135,7 +135,7 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
           {/* Submenu Panel */}
           <div className={`transition-all duration-300 overflow-x-auto ${mobileActiveMenu ? "translate-x-0 relative opacity-100" : "translate-x-full absolute w-full opacity-0 pointer-events-none"}`}>
             <div className="flex items-center justify-between mb-6">
-              <span className="text-white text-lg font-semibold">{mobileActiveMenu}</span>
+              <span className="text-white text-lg font-semibold capitalize">{mobileActiveMenu}</span>
               <button 
                 onClick={() => setMobileActiveMenu(null)}
                 className="w-12 h-12 flex items-center justify-center text-lg text-white"
