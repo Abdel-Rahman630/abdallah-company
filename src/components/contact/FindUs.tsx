@@ -35,9 +35,7 @@ export default function FindUs() {
           <SubTitle className="text-center">{t("contact.locations")}</SubTitle>
         </RevealText>
         <RevealText delay={0.2}>
-          <h2 className="text-[#1E1E1E] text-center text-[3rem] font-bold mb-[40px]">
-            {t("contact.findUs")}
-          </h2>
+          <h2 className="text-[#1E1E1E] text-center text-[3rem] font-bold mb-[40px]">{t("contact.findUs")}</h2>
         </RevealText>
 
         {/* Head Office Top Bar */}
@@ -45,9 +43,7 @@ export default function FindUs() {
           <div className="flex flex-col lg:flex-row justify-between items-stretch gap-[32px] mb-[40px] pb-[40px] border-b-[4px] border-[rgba(201,168,76,0.8)]">
             <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  {t("contact.headOffice")}
-                </h3>
+                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.headOffice")}</h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Jeddah
                 </span>
@@ -60,10 +56,7 @@ export default function FindUs() {
                   <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
                     {t("contact.emailLabel")}
                   </h4>
-                  <a
-                    href="mailto:info@ahcl.com.sa"
-                    className="text-[#1E1E1E] text-[1rem] font-normal"
-                  >
+                  <a href="mailto:info@ahcl.com.sa" className="text-[#1E1E1E] text-[1rem] font-normal">
                     info@ahcl.com.sa
                   </a>
                 </div>
@@ -71,10 +64,7 @@ export default function FindUs() {
                   <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
                     {t("contact.phoneLabel")}
                   </h4>
-                  <a
-                    href="tel:0122638200"
-                    className="text-[#1E1E1E] text-[1rem] font-normal"
-                  >
+                  <a href="tel:0122638200" className="text-[#1E1E1E] text-[1rem] font-normal">
                     012 263 8200
                   </a>
                 </div>
@@ -82,9 +72,7 @@ export default function FindUs() {
             </div>
             <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  {t("contact.centralOffice")}
-                </h3>
+                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.centralOffice")}</h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Riyadh
                 </span>
@@ -95,16 +83,13 @@ export default function FindUs() {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">
-                  {t("contact.easternOffice")}
-                </h3>
+                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.easternOffice")}</h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Dammam
                 </span>
               </div>
               <p className="text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem]">
-                C5RR+P7W, King Abdulaziz Rd, King Abdul Aziz Seaport, Dammam
-                32212
+                C5RR+P7W, King Abdulaziz Rd, King Abdul Aziz Seaport, Dammam 32212
               </p>
             </div>
           </div>
@@ -131,17 +116,8 @@ export default function FindUs() {
                 ))}
               </select>
               <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="9"
-                  height="5"
-                  viewBox="0 0 9 5"
-                  fill="none"
-                >
-                  <path
-                    d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z"
-                    fill="#1E1E1E"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 9 5" fill="none">
+                  <path d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z" fill="#1E1E1E" />
                 </svg>
               </div>
             </div>
@@ -164,17 +140,8 @@ export default function FindUs() {
                 ))}
               </select>
               <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="9"
-                  height="5"
-                  viewBox="0 0 9 5"
-                  fill="none"
-                >
-                  <path
-                    d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z"
-                    fill="#1E1E1E"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 9 5" fill="none">
+                  <path d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z" fill="#1E1E1E" />
                 </svg>
               </div>
             </div>
@@ -197,17 +164,8 @@ export default function FindUs() {
                 ))}
               </select>
               <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="9"
-                  height="5"
-                  viewBox="0 0 9 5"
-                  fill="none"
-                >
-                  <path
-                    d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z"
-                    fill="#1E1E1E"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 9 5" fill="none">
+                  <path d="M4.33203 4.5L8.66216 0H0.00190401L4.33203 4.5Z" fill="#1E1E1E" />
                 </svg>
               </div>
             </div>
@@ -217,7 +175,7 @@ export default function FindUs() {
               onClick={handleFilter}
               disabled={isLoading}
               aria-label="Filter locations"
-              className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
+              className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] "
             >
               {t("contact.filter")}
             </button>
@@ -231,7 +189,7 @@ export default function FindUs() {
               }}
               disabled={isLoading}
               aria-label="Clear filters"
-              className="w-full md:w-auto bg-transparent border border-[#231F20] px-[32px] py-[16px] text-[#231F20] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] disabled:opacity-50"
+              className="w-full md:w-auto bg-transparent border border-[#231F20] px-[32px] py-[16px] text-[#231F20] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px] "
             >
               {t("contact.clear")}
             </button>
@@ -257,12 +215,8 @@ export default function FindUs() {
               <line x1="12" y1="8" x2="12" y2="12"></line>
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
-            <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[8px]">
-              {t("contact.noLocations")}
-            </h3>
-            <p className="text-[#666] text-[1rem]">
-              {t("contact.noLocationsDesc")}
-            </p>
+            <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[8px]">{t("contact.noLocations")}</h3>
+            <p className="text-[#666] text-[1rem]">{t("contact.noLocationsDesc")}</p>
           </div>
         ) : (
           <div className="flex flex-col lg:flex-row gap-[40px] md:gap-[80px]">
@@ -289,9 +243,7 @@ export default function FindUs() {
                           key={loc.id}
                           onClick={() => setActiveLocation(loc)}
                           className={`flex items-start gap-[1rem] py-[20px] border-b border-[rgba(255,255,255,0.10)] cursor-pointer group ${
-                            activeLocation?.id === loc.id
-                              ? "bg-[rgba(255,255,255,0.02)] px-[10px]"
-                              : "px-[10px]"
+                            activeLocation?.id === loc.id ? "bg-[rgba(255,255,255,0.02)] px-[10px]" : "px-[10px]"
                           }`}
                         >
                           <div className="w-[40px] h-[40px] rounded-[20px] bg-[#E9E9E9] flex items-center justify-center shrink-0">
@@ -304,11 +256,7 @@ export default function FindUs() {
                             >
                               <path
                                 d="M10.5027 18.1667C12.0526 16.8283 16.6679 12.4945 16.6679 8.3333C16.6679 6.56503 15.9656 4.86918 14.7155 3.61882C13.4654 2.36846 11.7699 1.66602 10.0019 1.66602C8.234 1.66602 6.53848 2.36846 5.28836 3.61882C4.03825 4.86918 3.33594 6.56503 3.33594 8.3333C3.33594 12.4945 7.95131 16.8283 9.50115 18.1667C9.64554 18.2753 9.82129 18.334 10.0019 18.334C10.1826 18.334 10.3583 18.2753 10.5027 18.1667Z"
-                                stroke={
-                                  activeLocation?.id === loc.id
-                                    ? "#1E1E1E"
-                                    : "#D1A52A"
-                                }
+                                stroke={activeLocation?.id === loc.id ? "#1E1E1E" : "#D1A52A"}
                                 strokeWidth="2"
                                 strokeLinecap="round"
                               />
@@ -316,9 +264,7 @@ export default function FindUs() {
                           </div>
                           <div>
                             <div className="flex items-center gap-[8px] mb-[4px] flex-wrap">
-                              <h4 className="text-[#1E1E1E] text-[1.25rem] font-bold">
-                                {loc.title}
-                              </h4>
+                              <h4 className="text-[#1E1E1E] text-[1.25rem] font-bold">{loc.title}</h4>
                               <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                                 {loc.span}
                               </span>
@@ -328,9 +274,7 @@ export default function FindUs() {
                                 </span>
                               )} */}
                             </div>
-                            <p className="text-[#666666] text-[0.9rem] font-normal leading-relaxed">
-                              {loc.paragraph}
-                            </p>
+                            <p className="text-[#666666] text-[0.9rem] font-normal leading-relaxed">{loc.paragraph}</p>
                           </div>
                         </li>
                       ))}
@@ -344,9 +288,7 @@ export default function FindUs() {
                 <div className="w-full h-full min-h-[400px] lg:min-h-[500px] rounded-[16px] overflow-hidden bg-[rgba(255,255,255,0.05)] relative group">
                   {isLoading || !activeLocation ? (
                     <div className="w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
-                      <span className="text-[rgba(255,255,255,0.4)]">
-                        {t("contact.loadingMap")}
-                      </span>
+                      <span className="text-[rgba(255,255,255,0.4)]">{t("contact.loadingMap")}</span>
                     </div>
                   ) : (
                     <>
@@ -381,13 +323,7 @@ export default function FindUs() {
                               strokeWidth="2"
                               strokeLinecap="round"
                             />
-                            <circle
-                              cx="10"
-                              cy="8.33398"
-                              r="2.5"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                            />
+                            <circle cx="10" cy="8.33398" r="2.5" stroke="currentColor" strokeWidth="1.5" />
                           </svg>
                           {t("contact.openInMap")}
                         </a>

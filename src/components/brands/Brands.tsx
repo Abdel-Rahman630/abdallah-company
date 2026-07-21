@@ -141,7 +141,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-[52px] items-start">
-      <RevealImage className="w-full lg:w-[450px] shrink-0 h-[400px] lg:h-[500px] rounded-[10px] overflow-hidden bg-gray-100">
+      <RevealImage className="relative overflow-hidden w-full max-w-[900px] h-[400px] md:h-[544px] rounded-[10px] shrink-0 bg-gray-100">
         {images.length > 0 ? (
           <Swiper
             modules={[Autoplay]}
@@ -225,9 +225,9 @@ export default function Brands({ brands }: { brands: Brand[] }) {
 
   const handleBrandClick = (brand: Brand) => {
     setActiveBrand(brand);
-    setTimeout(() => {
-      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
+    // setTimeout(() => {
+    //   detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // }, 50);
   };
 
   if (!brands || brands.length === 0) return null;

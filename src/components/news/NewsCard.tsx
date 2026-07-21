@@ -24,6 +24,7 @@ export default function NewsCard({ image, date, title, paragraph, readMore, id =
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 200px, 523px"
+          unoptimized
         />
       </div>
 

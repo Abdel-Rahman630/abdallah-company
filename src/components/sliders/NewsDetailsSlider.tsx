@@ -36,6 +36,7 @@ export default function NewsDetailsSlider({ images = [] }: Props) {
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 65vw"
+              unoptimized
             />
           </SwiperSlide>
         ))}

@@ -76,7 +76,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       {/* First Column: List of Products */}
       <div className="border-r border-[#666666] flex flex-col shrink-0 min-w-[200px]">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
-          Our Products
+          Divisions
         </p>
         <ul className="flex flex-col gap-[1rem]">
           {products.map((product, index) => (

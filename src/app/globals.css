@@ -614,10 +614,12 @@ button {
 .cookie-td {
   padding: 16px 40px;
   color: #131313;
-  text-align: center;
   font-size: 1rem;
-  font-weight: 600;
   text-transform: capitalize;
+}
+.cookie-td:first-of-type {
+  font-weight: 600;
+
 }
 
 .policy-link {
@@ -630,4 +632,4 @@ button {
 strong, b {
   font-weight: bold;
   color: black;
-}
+}

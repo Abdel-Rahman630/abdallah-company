@@ -74,6 +74,7 @@ export default async function DivisionPage({ params }: DynamicPageProps) {
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 45vw"
+                    unoptimized
                   />
                 </div>
               </div>

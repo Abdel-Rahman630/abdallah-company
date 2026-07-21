@@ -192,14 +192,14 @@ export default function OurBranches() {
           </div>
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
-          <div className="flex-1 w-full lg:w-auto flex flex-col justify-center">
-            <RevealImage className="relative w-full max-w-[900px] h-[400px] md:h-[544px]">
+          <div className="flex-1 w-full lg:w-auto flex flex-col justify-center items-center lg:items-end">
+            <RevealImage className="relative w-full max-w-[700px] lg:max-w-none lg:w-[600px] xl:w-[700px] h-[450px] md:h-[580px] lg:h-[640px]">
               <Image
                 src="/map.png"
                 alt="Our Branches Map"
                 fill
                 className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 55vw"
+                sizes="(max-width: 1024px) 100vw, 700px"
               />
             </RevealImage>
           </div>

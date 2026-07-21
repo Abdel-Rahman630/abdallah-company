@@ -76,7 +76,7 @@ export default function Subscribe() {
               <button
                 type="submit"
                 disabled={subscribeStatus === "loading" || !email || !divisionId}
-                className="w-full lg:w-[150px] h-full bg-[#D1A52A] text-[#1E1E1E] rounded-[4px] py-[16px] px-[16px] text-[0.8rem] uppercase flex justify-center items-center tracking-[1px] disabled:opacity-50"
+                className="w-full lg:w-[150px] h-full bg-[#D1A52A] text-[#1E1E1E] rounded-[4px] py-[16px] px-[16px] text-[0.8rem] uppercase flex justify-center items-center tracking-[1px] "
               >
                 {subscribeStatus === "loading" ? t("newsletter.loading") : "Subscribe"}
               </button>

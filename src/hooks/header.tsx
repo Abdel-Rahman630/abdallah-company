@@ -8,7 +8,7 @@ export function useNavItems() {
   return [
     {
       label: t("header.about"),
-      key: "about",
+      key: t("header.about"),
       href: "/about-us",
       dropdown: {
         sectionTitle: t("header.about"),
@@ -35,12 +35,12 @@ export function useNavItems() {
     {
       label: t("header.divisions"),
       key: "divisions",
-      href: "#products",
+      href: "#divisions",
       dropdown: null,
     },
     {
       label: t("header.news"),
-      key: "news",
+      key: t("header.news"),
       href: "/news",
       dropdown: {
         sectionTitle: t("header.news"),
@@ -61,7 +61,7 @@ export function useNavItems() {
     },
     {
       label: t("header.careers"),
-      key: "careers",
+      key: t("header.careers"),
       href: "/careers",
       dropdown: {
         sectionTitle: t("header.careers"),
@@ -77,7 +77,7 @@ export function useNavItems() {
     },
     {
       label: t("header.contact"),
-      key: "contact",
+      key: t("header.contact"),
       href: "/contact-us",
       dropdown: {
         sectionTitle: t("header.contact"),

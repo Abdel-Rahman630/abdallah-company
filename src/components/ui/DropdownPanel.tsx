@@ -30,9 +30,9 @@ export default function DropdownPanel({ sectionTitle, boxes, image, isMobile, on
     >
       {/* Left column: title + boxes */}
       <div className="flex-1 flex flex-col overflow-hidden border-r border-[#666] pr-[38px] mr-[38px] max-[1020px]:border-none max-[1020px]:pr-0 max-[1020px]:mr-0">
-        <p className="text-[#666] text-[12px] font-semibold uppercase pb-[25px] shrink-0 max-[1020px]:hidden">
+        {/* <p className="text-[#666] text-[12px] font-semibold uppercase pb-[25px] shrink-0 md:hidden">
           {sectionTitle}
-        </p>
+        </p> */}
 
         {/* Boxes */}
         <div className="flex flex-col gap-4 overflow-auto">

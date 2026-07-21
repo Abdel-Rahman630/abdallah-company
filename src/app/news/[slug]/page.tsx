@@ -76,7 +76,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
       <section className="py-[80px] lg:py-[120px] bg-white">
         <div className="w-[80%] md:w-[60%] mx-auto flex flex-col items-center">
 
-          {/* Back Button */}
+          {/* Back Button — outside the PDF capture zone */}
           <div className="self-start mb-[40px]">
             <RevealText delay={0.1}>
               <Link
@@ -101,85 +101,59 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
             </RevealText>
           </div>
 
-          {/* Slider — fed with real media images */}
-          <div className="w-full">
-            <RevealImage delay={0.2}>
-              <NewsDetailsSlider images={sliderImages} />
-            </RevealImage>
-          </div>
+          {/* PDF-capturable article content */}
+          <div id="pdf-content" className="w-full flex flex-col items-center">
 
-          {/* Meta & Share Row */}
-          <div className="w-full flex justify-between items-center pb-[24px]">
-            <RevealText delay={0.3}>
-              <div className="flex gap-[1rem] items-center">
-                <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                  Company News
-                </span>
-                <span className="text-[#D1A52A] text-[0.9rem]">
-                  {news.publish_date
-                    ? new Date(news.publish_date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })
-                    : ""}
-                </span>
-              </div>
-            </RevealText>
+            {/* Slider — fed with real media images */}
+            <div className="w-full">
+              <RevealImage delay={0.2}>
+                <NewsDetailsSlider images={sliderImages} />
+              </RevealImage>
+            </div>
 
-            <RevealText delay={0.3}>
-              <ul className="flex gap-[8px]">
-                   <li>
-                  <ScreenshotButton />
-                </li>
-                {/* <li>
-                  <a href="#" target="_blank" className="w-[32px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center hover:bg-gray-50 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M10.0009 1.33203H12.0008V3.99891H10.0009C9.82412 3.99891 9.65456 4.06915 9.52954 4.19419C9.40453 4.31922 9.3343 4.48881 9.3343 4.66563V6.66579H12.0008L11.3342 9.33267H9.3343V14.6664H6.66782V9.33267H4.66797V6.66579H6.66782V4.66563C6.66782 3.78151 7.01899 2.93359 7.64406 2.30842C8.26914 1.68325 9.11692 1.33203 10.0009 1.33203Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" className="w-[32px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center hover:bg-gray-50 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <g clipPath="url(#clip0_518_3077)">
-                        <path d="M13.333 4.93215C14.1997 4.06544 14.6664 2.66538 14.6664 2.66538C14.6664 2.66538 13.3997 3.46542 12.6663 3.46542C10.6661 1.59866 7.39918 3.19874 7.99923 5.99887C5.73238 6.06554 3.46554 5.06549 1.99875 3.33208C0.331951 6.39888 1.99875 10.3324 5.33235 11.3324C4.2656 12.2658 2.79882 12.7325 1.33203 12.6658C7.06582 16.466 14.3997 11.5991 13.333 4.93215Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_518_3077">
-                          <rect width="16" height="16" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" className="w-[32px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center hover:bg-gray-50 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M13.4948 6.50382C12.7446 5.75364 11.7271 5.3322 10.6661 5.3322C9.60516 5.3322 8.58766 5.75364 7.83746 6.50382C7.08725 7.254 6.66579 8.27146 6.66579 9.33237V13.9992H9.33267V9.33237C9.33267 8.97873 9.47316 8.63958 9.72323 8.38952C9.9733 8.13946 10.3125 7.99898 10.6661 7.99898C11.0198 7.99898 11.3589 8.13946 11.609 8.38952C11.8591 8.63958 11.9996 8.97873 11.9996 9.33237V13.9992H14.6664V9.33237C14.6664 8.27146 14.245 7.254 13.4948 6.50382Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
-                      <path d="M3.99891 5.99889H1.33203V13.9992H3.99891V5.99889Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
-                      <path d="M2.66547 3.99881C3.40191 3.99881 3.99891 3.40183 3.99891 2.66542C3.99891 1.92901 3.40191 1.33203 2.66547 1.33203C1.92903 1.33203 1.33203 1.92901 1.33203 2.66542C1.33203 3.40183 1.92903 3.99881 2.66547 3.99881Z" stroke="#666666" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                  </a>
-                </li> */}
-              </ul>
-            </RevealText>
-          </div>
+            {/* Meta & Share Row */}
+            <div className="w-full flex justify-between items-center pb-[24px]">
+              <RevealText delay={0.3}>
+                <div className="flex gap-[1rem] items-center">
+                  <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
+                    Company News
+                  </span>
+                  <span className="text-[#D1A52A] text-[0.9rem]">
+                    {news.publish_date
+                      ? new Date(news.publish_date).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : ""}
+                  </span>
+                </div>
+              </RevealText>
 
-          {/* Article Content */}
-          <div className="w-full">
-            <RevealText delay={0.4}>
-              <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
-                {news.title}
-              </h1>
-            </RevealText>
+              <RevealText delay={0.3}>
+                <ul className="flex gap-[8px]">
+                  <li>
+                    <ScreenshotButton targetId="pdf-content" />
+                  </li>
+                </ul>
+              </RevealText>
+            </div>
 
-            <RevealText delay={0.5}>
-              <div
-                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
-                dangerouslySetInnerHTML={{ __html: news.description }}
-              />
-            </RevealText>
+            {/* Article Content */}
+            <div className="w-full">
+              <RevealText delay={0.4}>
+                <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
+                  {news.title}
+                </h1>
+              </RevealText>
+
+              <RevealText delay={0.5}>
+                <div
+                  className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
+                  dangerouslySetInnerHTML={{ __html: news.description }}
+                />
+              </RevealText>
+            </div>
           </div>
         </div>
       </section>

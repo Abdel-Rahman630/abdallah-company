@@ -19,16 +19,19 @@ export default function News() {
   return (
     <section id="news" className="py-[50px] lg:py-[100px] bg-white">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[80px] pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C]">
-          {/* First Div (Left Side) */}
-          <div className="w-full lg:w-1/2">
-            <RevealText delay={0.1}>
+        <div className="w-full">
+              <RevealText delay={0.1}>
               <SectionSubtitle className="mb-[12px]">{t("home.newsSubtitle")}</SectionSubtitle>
             </RevealText>
             <RevealText delay={0.2}>
               <SectionTitle className="mb-[24px] md:mb-[50px]">{t("home.newsTitle")}</SectionTitle>
             </RevealText>
-
+          </div>
+        <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[80px] pb-[50px]">
+          
+          {/* First Div (Left Side) */}
+          <div className="w-full lg:w-1/2">
+        
             <RevealText delay={0.3}>
               {isLoading ? (
                 <div
@@ -39,7 +42,7 @@ export default function News() {
               ) : firstNews ? (
                 <Link
                   href={firstNews.slug ? `/news/${firstNews.slug}` : `/news/${firstNews.id}`}
-                  className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[500px] md:h-[645px] bg-cover bg-center group block"
+                  className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[450px] md:h-[565px] bg-cover bg-center group block"
                   style={{ backgroundImage: `url(${firstNews.image})` }}
                   aria-label={`Read more: ${firstNews.title}`}
                 >
@@ -61,10 +64,10 @@ export default function News() {
                     </div>
 
                     <div>
-                      <h3 className="text-white text-[1.6rem] md:text-[2.625rem] font-bold mb-[1rem] leading-tight">
+                      <h3 className="text-white text-[1.6rem] md:text-[1.625rem] font-bold mb-[1rem] leading-tight">
                         {firstNews.title}
                       </h3>
-                      <p className="text-white/80 text-[1rem] md:text-[1.1rem] font-normal leading-relaxed line-clamp-3">
+                      <p className="text-white/80 text-[1rem] font-normal leading-relaxed line-clamp-3">
                         {firstNews.desc}
                       </p>
                     </div>
@@ -79,7 +82,7 @@ export default function News() {
           </div>
 
           {/* Second Div (Right Side) */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-end">
+          <div className="w-full lg:w-1/2 flex flex-col">
             <div className="mb-[24px] md:mb-[50px] flex justify-end">
               <ArrowLink href="/news" color="black">
                 {t("home.readMore")}
@@ -87,7 +90,7 @@ export default function News() {
             </div>
 
             {/* List of News - Scrollable */}
-            <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] mb-[32px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+            <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
               {isLoading
                 ? Array.from({ length: 3 }).map((_, idx) => (
                     <div key={idx} className="flex gap-[20px] mb-[32px]" role="status" aria-label="Loading news">
@@ -111,6 +114,7 @@ export default function News() {
                         width={120}
                         height={120}
                         className="w-[120px] h-[120px] rounded-[8px] object-cover shrink-0"
+                        unoptimized
                       />
                       <div className="flex flex-col">
                         <span className="text-[#C9A84C] text-[0.6875rem] font-semibold uppercase mb-[8px]">
@@ -125,77 +129,80 @@ export default function News() {
                   ))}
             </div>
 
-            {/* Newsletter Div */}
-            <RevealText delay={0.5}>
-              <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[24px] gap-[1rem]">
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium">{t("newsletter.title")}</h4>
-                  <p className="text-[#949494] text-[0.75rem] font-normal">{t("newsletter.description")}</p>
+          </div>
+        </div>
+
+        {/* Newsletter Div */}
+        <div className="pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C] w-full">
+          <RevealText delay={0.5}>
+            <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[24px] gap-[1rem]">
+              <div className="flex-1 min-w-0">
+                <h4 className="text-[#1E1E1E] text-[1rem] mb-[8px] font-medium">{t("newsletter.title")}</h4>
+                <p className="text-[#949494] text-[0.75rem] font-normal">{t("newsletter.description")}</p>
+              </div>
+              <div className="w-full md:max-w-[55%] min-w-0 flex flex-col">
+                <div className="flex w-full min-w-0">
+                  <label htmlFor="newsletter-email" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t("newsletter.placeholder")}
+                    className="border-b border-[#C6C6C6] min-w-0 flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
+                    disabled={subscribeStatus === "loading"}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSubscribe();
+                    }}
+                    aria-describedby="newsletter-status"
+                  />
+                  <button
+                    onClick={() => handleSubscribe()}
+                    disabled={subscribeStatus === "loading" || !email}
+                    className="shrink-0 rounded-r-[3px] bg-[#d1a52a] px-[16px] py-[12px] text-[#1E1E1E] text-[0.85rem] font-semibold whitespace-nowrap flex items-center justify-center"
+                    aria-label="Subscribe to newsletter"
+                  >
+                    {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}
+                  </button>
                 </div>
-                <div className="w-full md:max-w-[55%] min-w-0 flex flex-col">
-                  <div className="flex w-full min-w-0">
-                    <label htmlFor="newsletter-email" className="sr-only">
-                      Email address
-                    </label>
-                    <input
-                      id="newsletter-email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={t("newsletter.placeholder")}
-                      className="border-b border-[#C6C6C6] min-w-0 flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
-                      disabled={subscribeStatus === "loading"}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") handleSubscribe();
-                      }}
-                      aria-describedby="newsletter-status"
-                    />
-                    <button
-                      onClick={() => handleSubscribe()}
-                      disabled={subscribeStatus === "loading" || !email}
-                      className="shrink-0 rounded-r-[3px] bg-[#d1a52a] px-[16px] py-[12px] text-[#1E1E1E] text-[0.85rem] font-semibold whitespace-nowrap flex items-center justify-center"
-                      aria-label="Subscribe to newsletter"
-                    >
-                      {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}
-                    </button>
-                  </div>
-                  {/* Status Messages — full width below the input row */}
-                  <div id="newsletter-status" aria-live="polite" aria-atomic="true" className="w-full">
-                    {subscribeStatus === "success" && (
-                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-green-50 border border-green-200 w-full">
-                        <p className="text-green-800 font-bold text-[0.9rem]">{t("newsletterStatus.successTitle")}</p>
-                        <p className="text-green-700 text-[0.85rem]">{t("newsletterStatus.successDesc")}</p>
-                      </div>
-                    )}
-                    {subscribeStatus === "already" && (
-                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-blue-50 border border-blue-200 w-full">
-                        <p className="text-blue-800 font-bold text-[0.9rem]">{t("newsletterStatus.alreadyTitle")}</p>
-                        <p className="text-blue-700 text-[0.85rem]">{t("newsletterStatus.alreadyDesc")}</p>
-                      </div>
-                    )}
-                    {subscribeStatus === "validation" && (
-                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
-                        <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.validationTitle")}</p>
-                        <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.validationDesc")}</p>
-                      </div>
-                    )}
-                    {subscribeStatus === "rate_limit" && (
-                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-yellow-50 border border-yellow-200 w-full">
-                        <p className="text-yellow-800 font-bold text-[0.9rem]">{t("newsletterStatus.rateLimitTitle")}</p>
-                        <p className="text-yellow-700 text-[0.85rem]">{t("newsletterStatus.rateLimitDesc")}</p>
-                      </div>
-                    )}
-                    {subscribeStatus === "error" && (
-                      <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
-                        <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.errorTitle")}</p>
-                        <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.errorDesc")}</p>
-                      </div>
-                    )}
-                  </div>
+                {/* Status Messages — full width below the input row */}
+                <div id="newsletter-status" aria-live="polite" aria-atomic="true" className="w-full">
+                  {subscribeStatus === "success" && (
+                    <div className="mt-[12px] p-[14px] rounded-[8px] bg-green-50 border border-green-200 w-full">
+                      <p className="text-green-800 font-bold text-[0.9rem]">{t("newsletterStatus.successTitle")}</p>
+                      <p className="text-green-700 text-[0.85rem]">{t("newsletterStatus.successDesc")}</p>
+                    </div>
+                  )}
+                  {subscribeStatus === "already" && (
+                    <div className="mt-[12px] p-[14px] rounded-[8px] bg-blue-50 border border-blue-200 w-full">
+                      <p className="text-blue-800 font-bold text-[0.9rem]">{t("newsletterStatus.alreadyTitle")}</p>
+                      <p className="text-blue-700 text-[0.85rem]">{t("newsletterStatus.alreadyDesc")}</p>
+                    </div>
+                  )}
+                  {subscribeStatus === "validation" && (
+                    <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
+                      <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.validationTitle")}</p>
+                      <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.validationDesc")}</p>
+                    </div>
+                  )}
+                  {subscribeStatus === "rate_limit" && (
+                    <div className="mt-[12px] p-[14px] rounded-[8px] bg-yellow-50 border border-yellow-200 w-full">
+                      <p className="text-yellow-800 font-bold text-[0.9rem]">{t("newsletterStatus.rateLimitTitle")}</p>
+                      <p className="text-yellow-700 text-[0.85rem]">{t("newsletterStatus.rateLimitDesc")}</p>
+                    </div>
+                  )}
+                  {subscribeStatus === "error" && (
+                    <div className="mt-[12px] p-[14px] rounded-[8px] bg-red-50 border border-red-200 w-full">
+                      <p className="text-red-800 font-bold text-[0.9rem]">{t("newsletterStatus.errorTitle")}</p>
+                      <p className="text-red-700 text-[0.85rem]">{t("newsletterStatus.errorDesc")}</p>
+                    </div>
+                  )}
                 </div>
               </div>
-            </RevealText>
-          </div>
+            </div>
+          </RevealText>
         </div>
 
         {/* Upcoming Events Header */}
