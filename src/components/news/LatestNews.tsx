@@ -11,7 +11,7 @@ export default function LatestNews() {
     useLatestNews();
 
   return (
-    <section className="py-[80px] lg:py-[120px] bg-white">
+    <section className="py-[80px] lg:py-[120px] bg-white" id="news">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-[80px]">
           <div className="w-full">
