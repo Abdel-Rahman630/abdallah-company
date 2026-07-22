@@ -4,6 +4,7 @@ import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import { Counter } from "@/hooks/Counter";
 import ArrowLink from "@/components/ui/ArrowLink";
+import CountDown from "@/components/ui/CountDown";
 import SubTitle from "@/components/ui/SubTitle";
 
 const countdownData = [
@@ -38,12 +39,7 @@ export default function OurBranches() {
               </h2>
             </RevealText>
 
-            {/* <RevealText delay={0.3}>
-              <p className="mb-[34px] leading-relaxed text-[#666] text-[0.8125rem] font-normal">
-                AHCL serves its customers via a network composed of 28 AHCL-operated facilities, and 34 dealer facilities. Through its own operated facilities, AHCL can reach approximately 78% of the population of Saudi Arabia.
-              </p>
-            </RevealText> */}
-
+   
             <RevealText delay={0.4}>
               <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
                 AHCL-operated facilities are categorized based on the scope of services they provide:
@@ -162,31 +158,11 @@ export default function OurBranches() {
                 </span>
               </li>
             </ul>
-            {/* Counter Section under image */}
-            <div className="countdown flex md:flex-row flex-col mb-[32px] w-full">
-              {countdownData.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col flex-1 items-center md:items-start text-center md:text-left ${
-                    index !== countdownData.length - 1
-                      ? "border-b border-[#D1A52A] md:border-b-0 md:border-r md:border-[#D1A52A]"
-                      : ""
-                  } ${
-                    index === 0
-                      ? "pb-4 md:pb-0"
-                      : index === countdownData.length - 1
-                        ? "pt-4 md:pt-0 md:pl-6"
-                        : "py-4 md:py-0 md:pl-6"
-                  }`}
-                >
-                  <span className="text-[#1E1E1E] text-[2.5rem] font-semibold uppercase mb-[10px] leading-none">
-                    <Counter to={item.to} suffix={item.suffix} />
-                  </span>
-                  <span className="text-[#656565] text-[0.85rem] font-normal uppercase">
-                    {item.title}
-                  </span>
-                </div>
-              ))}
+            <div className="countdown mb-[32px] w-full">
+              <CountDown 
+                data={countdownData} 
+             
+              />
             </div>
             <ArrowLink href="/contact-us#find-us" color="black">More about our locations</ArrowLink>
           </div>

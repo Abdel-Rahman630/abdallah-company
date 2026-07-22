@@ -41,6 +41,7 @@ export default function Subscribe() {
                 className="w-full h-full rounded-[4px] border border-[#8D8D8D] p-[16px] pr-[40px] text-[#1E1E1E] text-[0.8rem] font-normal bg-transparent outline-none appearance-none"
               >
                 <option value="">{t("contact.selectDivision")}</option>
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {divisions.map((d: any) => (
                   <option key={d.id} value={d.id}>{d.title || d.name}</option>
                 ))}

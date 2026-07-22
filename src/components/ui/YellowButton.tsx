@@ -1,13 +1,5 @@
 import Link from "next/link";
-import { ReactNode } from "react";
-
-interface YellowButtonProps {
-  href: string;
-  children: ReactNode;
-  icon?: ReactNode;
-  className?: string;
-  target?: string;
-}
+import { YellowButtonProps } from "@/types/models";
 
 export default function YellowButton({
   href,

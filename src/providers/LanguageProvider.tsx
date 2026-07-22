@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Locale } from "@/types/models";
 import enTranslations from "@/locales/en.json";
 import arTranslations from "@/locales/ar.json";
-type Translations = typeof enTranslations;
 
 interface LanguageContextProps {
   locale: Locale;
@@ -26,6 +25,7 @@ export function LanguageProvider({
   const router = useRouter();
 
   // Helper to get nested translation keys e.g. "header.store"
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getNestedTranslation = (obj: any, path: string) => {
     return path.split(".").reduce((acc, part) => acc && acc[part], obj);
   };

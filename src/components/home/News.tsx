@@ -24,7 +24,7 @@ export default function News() {
               <SectionSubtitle className="mb-[12px]">{t("home.newsSubtitle")}</SectionSubtitle>
             </RevealText>
             
-            <div className="mb-[24px] md:mb-[50px] flex justify-between items-center">
+            <div className="mb-[24px] md:mb-[50px] flex md:flex-row flex-col justify-between">
               <RevealText delay={0.2}>
               <SectionTitle className="mb-[24px] md:mb-[50px]">{t("home.newsTitle")}</SectionTitle>
             </RevealText>

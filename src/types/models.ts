@@ -1,4 +1,6 @@
 
+import { ReactNode, SelectHTMLAttributes, InputHTMLAttributes } from "react";
+
 // ─── Shared ────────────────────────────────────────────────────────────────
 
 export interface Pagination {
@@ -231,4 +233,129 @@ export interface Division {
   sort_order: number;
   brands: Brand[];
 }
+
+// ─── Component Props ────────────────────────────────────────────────────────
+
+export interface YellowButtonProps {
+  href: string;
+  children: ReactNode;
+  icon?: ReactNode;
+  className?: string;
+  target?: string;
+}
+
+export interface WhiteButtonProps {
+  href: string;
+  children: ReactNode;
+  icon?: ReactNode;
+  className?: string;
+}
+
+export interface SectionTitleProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface SectionSubtitleProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+export interface PageBannerProps {
+  image: string;
+  title: string;
+  alt?: string;
+}
+
+export interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  error?: boolean;
+}
+
+export interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: boolean;
+}
+
+export interface EventCardProps {
+  id?: string | number;
+  image: string;
+  date: string;
+  month: string;
+  title: string;
+}
+
+export interface DropdownPanelBox {
+  title: string;
+  text: string;
+  link?: string;
+}
+
+export interface DropdownPanelProps {
+  sectionTitle: string;
+  boxes: DropdownPanelBox[];
+  image: string;
+  isMobile?: boolean;
+  onLinkClick?: () => void;
+}
+
+export interface CountDownItem {
+  to: number | string;
+  suffix?: string;
+  prefix?: string;
+  title: ReactNode | string;
+}
+
+export interface CountDownProps {
+  data: CountDownItem[];
+}
+
+export interface ArrowLinkProps {
+  href?: string;
+  children: ReactNode;
+  color?: "white" | "black";
+  className?: string;
+  as?: "link" | "span";
+}
+
+export interface ArrowButtonLinkProps {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  target?: string;
+}
+
+export interface NewsDetailsSliderProps {
+  images?: string[];
+}
+
+export interface NewsCardProps {
+  image: string;
+  date: string;
+  title: string;
+  paragraph: string;
+  readMore?: boolean;
+  id?: string | number;
+  slug?: string;
+}
+
+export interface HeaderClientProps {
+  logo: ReactNode;
+  actions: ReactNode;
+}
+
+export interface RegisterInterestFormData {
+  name: string;
+  phone: string;
+  email: string;
+}
+
+export interface RegisterInterestFormProps {
+  eventId: string | number;
+}
+
 

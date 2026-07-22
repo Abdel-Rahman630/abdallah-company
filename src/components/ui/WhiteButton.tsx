@@ -1,12 +1,5 @@
 import Link from "next/link";
-import { ReactNode } from "react";
-
-interface WhiteButtonProps {
-  href: string;
-  children: ReactNode;
-  icon?: ReactNode;
-  className?: string;
-}
+import { WhiteButtonProps } from "@/types/models";
 
 export default function WhiteButton({
   href,

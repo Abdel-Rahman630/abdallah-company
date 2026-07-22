@@ -1,13 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
-interface ArrowLinkProps {
-  href?: string;
-  children: React.ReactNode;
-  color?: "white" | "black";
-  className?: string;
-  as?: "link" | "span";
-}
+import { ArrowLinkProps } from "@/types/models";
 
 const ArrowIconWhite = () => (
   <svg

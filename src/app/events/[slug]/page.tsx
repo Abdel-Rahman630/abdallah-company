@@ -128,9 +128,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
             <div className="w-full lg:w-[65%]">
               {/* Slider */}
               <div className="w-full">
-                <RevealImage delay={0.2}>
-                  <NewsDetailsSlider images={images} />
-                </RevealImage>
+                <NewsDetailsSlider images={images} />
               </div>
 
               {/* Meta Row */}
@@ -241,13 +239,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                   )}
                 </ul>
               </RevealText>
-              
-              <RevealText delay={0.4}>
-                <div className="mb-[32px]">
-                  <ScreenshotButton targetId="pdf-content" />
-                </div>
-              </RevealText>
-
               {/* Share Event */}
               {/* <RevealText delay={0.4}>
                 <div>
@@ -324,6 +315,10 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                 </div>
               </RevealText> */}
             </div>
+          </div>
+
+          <div className="w-full flex justify-end mt-[24px]">
+            <ScreenshotButton targetId="pdf-content" />
           </div>
         </div>
       </section>

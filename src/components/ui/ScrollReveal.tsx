@@ -1,13 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { ReactNode, useRef } from "react";
-
-interface RevealProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}
+import { useRef } from "react";
+import { RevealProps } from "@/types/models";
 
 export function RevealImage({ children, className = "", delay = 0 }: RevealProps) {
   const ref = useRef(null);

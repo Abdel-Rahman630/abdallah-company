@@ -1,16 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArrowLink from "../ui/ArrowLink";
-
-interface NewsCardProps {
-  image: string;
-  date: string;
-  title: string;
-  paragraph: string;
-  readMore?: boolean;
-  id?: string | number;
-  slug?: string;
-}
+import { NewsCardProps } from "@/types/models";
 
 export default function NewsCard({ image, date, title, paragraph, readMore, id = 1, slug }: NewsCardProps) {
   const linkId = slug || id;

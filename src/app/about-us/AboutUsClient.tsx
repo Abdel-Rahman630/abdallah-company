@@ -36,8 +36,8 @@ export default function AboutUsClient() {
           </RevealText>
 
           <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[80px] mb-[50px]">
-            <div className="lg:w-[580px] w-full h-[500px] lg:h-[824px] lg:shrink-0">
-              <RevealImage className="w-full h-full">
+            <div className="lg:w-[580px] w-full h-[500px] lg:h-auto lg:shrink-0 flex flex-col">
+              <RevealImage className="w-full h-full flex-1">
                 <div className="w-full h-full relative rounded-[10px] overflow-hidden">
                   <Image
                     src="/1.png"
@@ -98,7 +98,7 @@ export default function AboutUsClient() {
       {/* Count Section */}
       <section
         id="history-legacy"
-        className="py-[50px]"
+        className="lg:py-[50px] pb-[50px]"
       >
         <div className="container mx-auto">
           <CountDown data={countdownData} />

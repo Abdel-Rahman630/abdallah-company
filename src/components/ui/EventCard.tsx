@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArrowLink from "@/components/ui/ArrowLink";
-
-interface EventCardProps {
-  id?: string | number;
-  image: string;
-  date: string;
-  month: string;
-  title: string;
-}
+import { EventCardProps } from "@/types/models";
 
 export default function EventCard({ id = 1, image, date, month, title }: EventCardProps) {
   return (

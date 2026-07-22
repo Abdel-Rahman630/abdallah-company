@@ -1,9 +1,4 @@
-import { ReactNode } from "react";
-
-interface SectionSubtitleProps {
-  children: ReactNode;
-  className?: string;
-}
+import { SectionSubtitleProps } from "@/types/models";
 
 export default function SectionSubtitle({ children, className = "" }: SectionSubtitleProps) {
   return (

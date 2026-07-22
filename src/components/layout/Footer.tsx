@@ -132,7 +132,7 @@ export default function Footer() {
                 products.map((product) => (
                   <li key={product.id}>
                     <Link
-                      href={`/divisions/${product.slug}`}
+                      href={`/divisions/${product.slug}#${product.slug}`}
                       className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                     >
                       {product.name}

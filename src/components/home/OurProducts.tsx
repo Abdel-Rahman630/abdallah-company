@@ -105,7 +105,7 @@ export default function OurProducts() {
                     {truncate(active?.description, 200)}
                   </p>
                 </div>
-                <ArrowLink href={`/divisions/${active?.slug}`}>More about {active?.title}</ArrowLink>
+                <ArrowLink href={`/divisions/${active?.slug}#${active?.slug}`}>More about {active?.title}</ArrowLink>
               </motion.div>
             </AnimatePresence>
           </div>

@@ -17,7 +17,7 @@ export function useEventsSection() {
     async function fetchEvents() {
       setIsLoading(true);
       try {
-        const params: any = { lang: locale };
+        const params: Record<string, string> = { lang: locale };
         if (activeTab !== "All") params.category = activeTab;
 
         const response = await getEvents(params);
@@ -51,7 +51,7 @@ export function useEventsSection() {
           setTabs(["All", ...uniqueCategories]);
           tabsBuilt.current = true;
         }
-      } catch (error) {
+      } catch {
         // Silently fail
       } finally {
         if (!cancelled) setIsLoading(false);

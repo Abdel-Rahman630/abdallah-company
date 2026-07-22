@@ -101,60 +101,56 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
             </RevealText>
           </div>
 
+      
           {/* PDF-capturable article content */}
           <div id="pdf-content" className="w-full flex flex-col items-center">
 
             {/* Slider — fed with real media images */}
+            {/* Removed RevealImage to prevent html2canvas clip-path issues */}
             <div className="w-full">
-              <RevealImage delay={0.2}>
-                <NewsDetailsSlider images={sliderImages} />
-              </RevealImage>
+              <NewsDetailsSlider images={sliderImages} />
             </div>
+    {/* Meta Data (Top) */}
+          <div className="w-full flex justify-between items-center pb-[24px]">
+            <RevealText delay={0.3}>
+              <div className="flex gap-[1rem] items-center">
+                <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
+                  Company News
+                </span>
+                <span className="text-[#D1A52A] text-[0.9rem]">
+                  {news.publish_date
+                    ? new Date(news.publish_date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : ""}
+                </span>
+              </div>
+            </RevealText>
+               {/* Download Button (Last element in page, outside PDF content so it doesn't print itself) */}
+          <div className=" flex justify-end">
+            <RevealText delay={0.5}>
+            <ScreenshotButton targetId="pdf-content" />
 
-            {/* Meta & Share Row */}
-            <div className="w-full flex justify-between items-center pb-[24px]">
-              <RevealText delay={0.3}>
-                <div className="flex gap-[1rem] items-center">
-                  <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                    Company News
-                  </span>
-                  <span className="text-[#D1A52A] text-[0.9rem]">
-                    {news.publish_date
-                      ? new Date(news.publish_date).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })
-                      : ""}
-                  </span>
-                </div>
-              </RevealText>
-
-              <RevealText delay={0.3}>
-                <ul className="flex gap-[8px]">
-                  <li>
-                    <ScreenshotButton targetId="pdf-content" />
-                  </li>
-                </ul>
-              </RevealText>
-            </div>
+            </RevealText>
+          </div>
+          </div>
 
             {/* Article Content */}
-            <div className="w-full">
-              <RevealText delay={0.4}>
-                <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
-                  {news.title}
-                </h1>
-              </RevealText>
+            <div className="w-full mt-[24px]">
+              <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
+                {news.title}
+              </h1>
 
-              <RevealText delay={0.5}>
-                <div
-                  className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
-                  dangerouslySetInnerHTML={{ __html: news.description }}
-                />
-              </RevealText>
+              <div
+                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
+                dangerouslySetInnerHTML={{ __html: news.description }}
+              />
             </div>
           </div>
+
+       
         </div>
       </section>
     </>

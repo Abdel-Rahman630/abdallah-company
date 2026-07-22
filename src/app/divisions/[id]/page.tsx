@@ -46,7 +46,7 @@ export default async function DivisionPage({ params }: DynamicPageProps) {
       <PageBanner image={data.banner || "/bg.png"} title={data.name} />
 
       {/* ── Overview Section ── */}
-      <section className="pt-[80px] lg:pt-[120px] pb-[80px]">
+      <section className="pt-[80px] lg:pt-[120px] pb-[80px]" id={data.slug}>
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row gap-[30px] lg:gap-[50px] items-start">
             {/* Left – title and description */}

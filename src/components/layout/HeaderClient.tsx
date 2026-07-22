@@ -5,11 +5,7 @@ import { usePathname } from "next/navigation";
 import { useHeader, useNavItems } from "@/hooks/header";
 import DropdownPanel from "@/components/ui/DropdownPanel";
 import ProductsDropdown from "@/components/ui/ProductsDropdown";
-
-interface HeaderClientProps {
-  logo: ReactNode;
-  actions: ReactNode;
-}
+import { HeaderClientProps } from "@/types/models";
 
 export default function HeaderClient({ logo, actions }: HeaderClientProps) {
   const { scrolled, activeDropdown, headerRef, toggleDropdown, setActiveDropdown } = useHeader();

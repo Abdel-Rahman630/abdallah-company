@@ -10,6 +10,7 @@ import ArrowLink from "@/components/ui/ArrowLink";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Counter } from "@/hooks/Counter";
+import CountDown from "@/components/ui/CountDown";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 const countdownData = [
@@ -106,28 +107,11 @@ export default function WhoWeAre() {
               <ArrowLink href="/about-us" color="black">{t("home.readMore")}</ArrowLink>
             </div>
 
-            <div className="contdown  flex md:flex-row flex-col mt-[32px] w-full">
-              {countdownData.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col flex-1 items-center md:items-start text-center md:text-left ${
-                    index !== countdownData.length - 1
-                      ? "border-b border-[#D1A52A] md:border-b-0 md:border-r md:border-[#D1A52A]"
-                      : ""
-                  } ${
-                    index === 0
-                      ? "pb-4 md:pb-0"
-                      : index === countdownData.length - 1
-                        ? "pt-4 md:pt-0 md:pl-8"
-                        : "py-4 md:py-0 md:pl-8"
-                  }`}
-                >
-                  <span className="text-[#1E1E1E]  text-[3.5rem] font-semibold uppercase mb-[10px] leading-none">
-                    <Counter to={item.to} suffix={item.suffix} />
-                  </span>
-                  <span className="text-[#656565]  text-[1rem] font-normal uppercase">{item.title}</span>
-                </div>
-              ))}
+            <div className="contdown mt-[32px] w-full">
+              <CountDown 
+              data={countdownData} 
+      
+            />
             </div>
           </div>
         </div>

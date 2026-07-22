@@ -58,7 +58,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             >
               <div className="flex items-center gap-[5px] mb-1">
                 <Link
-                  href={`/divisions/${activeProduct.slug}`}
+                  href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
                   onClick={onClose}
                   className="text-white text-[1rem] font-medium underline"
                 >
@@ -115,7 +115,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             >
               <div className="flex items-center gap-[5px] mb-[13px]">
                 <Link
-                  href={`/divisions/${activeProduct.slug}`}
+                  href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
                   onClick={onClose}
                   className="text-[#FFF] text-[0.9rem] font-medium hover:underline cursor-pointer"
                 >

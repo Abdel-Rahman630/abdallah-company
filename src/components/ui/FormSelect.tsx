@@ -1,8 +1,5 @@
-import React, { SelectHTMLAttributes, forwardRef } from 'react';
-
-interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  error?: boolean;
-}
+import React, { forwardRef } from 'react';
+import { FormSelectProps } from '@/types/models';
 
 export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
   ({ error, className = '', children, ...props }, ref) => {

@@ -1,10 +1,5 @@
 import Image from "next/image";
-
-interface PageBannerProps {
-  image: string;
-  title: string;
-  alt?: string;
-}
+import { PageBannerProps } from "@/types/models";
 
 export default function PageBanner({ image, title, alt }: PageBannerProps) {
   return (

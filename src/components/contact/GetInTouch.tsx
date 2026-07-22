@@ -29,7 +29,7 @@ export default function GetInTouch() {
 
             <RevealText delay={0.3}>
               <p className="text-[#949494] text-[0.9rem] font-normal mb-[32px]">
-                We'd love to hear from you. Fill out the form and we'll respond
+                We&apos;d love to hear from you. Fill out the form and we&apos;ll respond
                 as soon as possible.
               </p>
             </RevealText>
@@ -65,7 +65,7 @@ export default function GetInTouch() {
                     Message sent successfully!
                   </p>
                   <p className="text-green-700 text-[0.85rem]">
-                    Thank you for contacting us. We'll get back to you as soon
+                    Thank you for contacting us. We&apos;ll get back to you as soon
                     as possible.
                   </p>
                 </div>
@@ -251,7 +251,7 @@ export default function GetInTouch() {
             </RevealText>
 
             <RevealText delay={0.5}>
-              <ul className="flex flex-col gap-[8px] mb-[32px]">
+              <ul className="flex lg:flex-col gap-[8px] mb-[32px]">
                 {/* LinkedIn */}
                 <li className="p-[16px] border border-[#E5E7EB] rounded-[10px] bg-white w-full">
                   <a

@@ -4,16 +4,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import { FormInput } from "@/components/ui/FormInput";
-
-interface FormData {
-  name: string;
-  phone: string;
-  email: string;
-}
-
-interface RegisterInterestFormProps {
-  eventId: string | number;
-}
+import { RegisterInterestFormData, RegisterInterestFormProps } from "@/types/models";
 
 export default function RegisterInterestForm({ eventId }: RegisterInterestFormProps) {
   const {
@@ -21,11 +12,11 @@ export default function RegisterInterestForm({ eventId }: RegisterInterestFormPr
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<RegisterInterestFormData>();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: RegisterInterestFormData) => {
     setStatus("loading");
     setErrorMessage("");
     try {
