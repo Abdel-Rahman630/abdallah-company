@@ -318,7 +318,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
           </div>
 
           <div className="w-full flex justify-end mt-[24px]">
-            <ScreenshotButton targetId="pdf-content" />
+            <ScreenshotButton targetId="pdf-content" filename={event.title} />
           </div>
         </div>
       </section>

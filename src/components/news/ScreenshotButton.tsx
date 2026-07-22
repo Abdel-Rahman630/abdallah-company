@@ -45,7 +45,34 @@ async function proxyImages(element: HTMLElement): Promise<() => void> {
   };
 }
 
-export default function ScreenshotButton({ targetId = "pdf-content" }: { targetId?: string }) {
+function formatPdfFilename(title?: string): string {
+  if (!title || !title.trim()) {
+    return "download.pdf";
+  }
+
+  let cleanTitle = title.trim();
+  if (cleanTitle.toLowerCase().endsWith(".pdf")) {
+    cleanTitle = cleanTitle.slice(0, -4);
+  }
+
+  const formatted = cleanTitle
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+
+  if (!formatted) {
+    return "download.pdf";
+  }
+
+  return `${formatted}.pdf`;
+}
+
+interface ScreenshotButtonProps {
+  targetId?: string;
+  filename?: string;
+}
+
+export default function ScreenshotButton({ targetId = "pdf-content", filename }: ScreenshotButtonProps) {
   const [isDownloading, setIsDownloading] = React.useState(false);
 
   const handleDownloadPDF = async () => {
@@ -88,7 +115,8 @@ export default function ScreenshotButton({ targetId = "pdf-content" }: { targetI
         heightLeft -= pageHeight;
       }
 
-      doc.save("download.pdf");
+      const pdfFilename = formatPdfFilename(filename);
+      doc.save(pdfFilename);
     } catch (error) {
       console.error("Failed to generate PDF", error);
     } finally {

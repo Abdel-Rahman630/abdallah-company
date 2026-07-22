@@ -131,7 +131,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                {/* Download Button (Last element in page, outside PDF content so it doesn't print itself) */}
           <div className=" flex justify-end">
             <RevealText delay={0.5}>
-            <ScreenshotButton targetId="pdf-content" />
+            <ScreenshotButton targetId="pdf-content" filename={news.title} />
 
             </RevealText>
           </div>
