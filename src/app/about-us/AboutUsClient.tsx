@@ -14,7 +14,7 @@ export default function AboutUsClient() {
   const countdownData = [
     { to: 80, suffix: "+", title: "Years of Experience" },
     { to: 33, suffix: "+", title: "BRANCHES" },
-    { to: 90, suffix: "+", title: "DEALERS" },
+    { to: 25, suffix: "", title: "Brands" },
     { to: 1000, suffix: "+", title: "employees" },
   ];
 
