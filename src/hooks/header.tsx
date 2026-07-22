@@ -49,7 +49,7 @@ export function useNavItems() {
           {
             title: "News",
             text: "Stay updated with the latest news, announcements, and company highlights from AHCL.",
-            link: "/news",
+            link: "/news#news",
           },
           {
             title: "Events",
