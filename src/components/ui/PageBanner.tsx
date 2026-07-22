@@ -8,7 +8,7 @@ interface PageBannerProps {
 
 export default function PageBanner({ image, title, alt }: PageBannerProps) {
   return (
-    <section className="relative w-full h-[366px]" aria-label={title}>
+    <section className="relative w-full h-[346px]" aria-label={title}>
       <Image
         src={image}
         alt={alt ?? title}

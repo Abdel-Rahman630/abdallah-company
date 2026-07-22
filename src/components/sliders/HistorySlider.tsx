@@ -55,7 +55,7 @@ export default function HistorySlider() {
           modules={[Autoplay, EffectFade, Navigation]}
           effect="fade"
           loop
-          autoplay={{ delay: 6000, disableOnInteraction: false }}
+          autoplay={{ delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true }}
           navigation={{
             nextEl: ".history-next",
             prevEl: ".history-prev",

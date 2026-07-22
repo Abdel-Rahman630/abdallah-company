@@ -50,7 +50,7 @@ export default function Header() {
         <div className="flex gap-[10px]">
           {/* <LanguageSwitcher /> */}
 
-          <YellowButton target="_blank" href="#" icon={StoreIcon}>
+          <YellowButton target="_blank" href="https://ahcl-store.com.sa/ar" icon={StoreIcon}>
             {t("header.store")}
           </YellowButton>
         </div>

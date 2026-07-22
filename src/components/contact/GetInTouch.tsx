@@ -298,6 +298,44 @@ export default function GetInTouch() {
                     </div>
                   </a>
                 </li>
+                {/* Email */}
+                <li className="p-[16px] border border-[#E5E7EB] rounded-[10px] bg-white w-full">
+                  <a
+                    href="mailto:info@ahcl.com.sa"
+                    className="flex items-center gap-[20px] group w-full"
+                  >
+                    <div className="w-[48px] h-[48px] rounded-[24px] bg-[#F9F9F9] flex items-center justify-center shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div>
+                      <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
+                        Email Address
+                      </h4>
+                      <span className="text-[#6B7280] text-[14px] font-normal">
+                        info@ahcl.com.sa
+                      </span>
+                    </div>
+                  </a>
+                </li>
+                {/* Phone */}
+                <li className="p-[16px] border border-[#E5E7EB] rounded-[10px] bg-white w-full">
+                  <a
+                    href="tel:0122638200"
+                    className="flex items-center gap-[20px] group w-full"
+                  >
+                    <div className="w-[48px] h-[48px] rounded-[24px] bg-[#F9F9F9] flex items-center justify-center shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div>
+                      <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
+                        Phone Number
+                      </h4>
+                      <span className="text-[#6B7280] text-[14px] font-normal">
+                        +012 263 8200
+                      </span>
+                    </div>
+                  </a>
+                </li>
               </ul>
             </RevealText>
 
@@ -307,32 +345,26 @@ export default function GetInTouch() {
                 <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
                   Customer Service
                 </h4>
-                <div className="flex justify-start items-center gap-[12px] flex-wrap">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="12"
-                    viewBox="0 0 15 12"
-                    fill="none"
-                  >
-                    <path
-                      d="M14.8004 5.46053L10.0276 0.210534C9.899 0.0739156 9.72677 -0.00168046 9.548 2.83518e-05C9.36923 0.00173717 9.19822 0.0806141 9.0718 0.21967C8.94539 0.358726 8.87368 0.546835 8.87213 0.743483C8.87057 0.940131 8.9393 1.12958 9.0635 1.27103L12.6724 5.24078H0.681825C0.500994 5.24078 0.327569 5.3198 0.199702 5.46045C0.0718349 5.60111 0 5.79187 0 5.99078C0 6.1897 0.0718349 6.38046 0.199702 6.52111C0.327569 6.66177 0.500994 6.74078 0.681825 6.74078H12.6724L9.0635 10.7105C8.99838 10.7797 8.94643 10.8625 8.9107 10.954C8.87496 11.0455 8.85616 11.1439 8.85537 11.2435C8.85458 11.3431 8.87183 11.4418 8.90612 11.534C8.9404 11.6262 8.99103 11.7099 9.05505 11.7803C9.11906 11.8507 9.19519 11.9064 9.27899 11.9442C9.36278 11.9819 9.45256 12.0008 9.54309 12C9.63363 11.9991 9.72309 11.9784 9.80628 11.9391C9.88947 11.8998 9.9647 11.8427 10.0276 11.771L14.8004 6.52103C14.9282 6.38039 15 6.18966 15 5.99078C15 5.79191 14.9282 5.60118 14.8004 5.46053Z"
-                      fill="#1E1E1E"
-                    />
-                  </svg>
-                  <a
-                    href="tel:920002208"
-                    className="text-[#666666] text-[1rem] font-semibold"
-                  >
-                    920 002 208
-                  </a>
+                <div className="flex flex-col gap-[12px]">
+                  <div className="flex items-center gap-[12px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <a
+                      href="tel:920002208"
+                      className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors"
+                    >
+                      +920 002 208
+                    </a>
+                  </div>
 
-                  <a
-                    href="tel:8001199988"
-                    className="text-[#666666] text-[1rem] font-semibold"
-                  >
-                    800 119 9988
-                  </a>
+                  <div className="flex items-center gap-[12px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <a
+                      href="tel:8001199988"
+                      className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors"
+                    >
+                      +800 119 9988
+                    </a>
+                  </div>
                 </div>
                 <p className="text-[#666666] text-[0.9rem] font-normal">
                   Available Sun - Thu | 8:00 AM - 5:00 PM

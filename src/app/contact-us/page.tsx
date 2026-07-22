@@ -1,4 +1,4 @@
-import ContactBanner from "@/components/contact/ContactBanner";
+import PageBanner from "@/components/ui/PageBanner";
 import GetInTouch from "@/components/contact/GetInTouch";
 import FindUs from "@/components/contact/FindUs";
 import { Metadata } from "next";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactUsPage() {
   return (
     <>
-      <ContactBanner />
+      <PageBanner image="/contactanner.png" title="Contact Us" />
       <GetInTouch />
       <FindUs />
     </>

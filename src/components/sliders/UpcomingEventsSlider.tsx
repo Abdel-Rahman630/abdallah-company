@@ -80,7 +80,7 @@ export default function UpcomingEventsSlider() {
         spaceBetween={30}
         slidesPerView="auto"
         loop={events.length > 3}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         className="w-full"
       >
         {events.map((event, idx) => {

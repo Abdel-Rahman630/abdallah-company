@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://ahcl-store.com.sa/ar"
                   target="_blank"
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >

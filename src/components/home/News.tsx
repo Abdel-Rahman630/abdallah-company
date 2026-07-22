@@ -23,9 +23,15 @@ export default function News() {
               <RevealText delay={0.1}>
               <SectionSubtitle className="mb-[12px]">{t("home.newsSubtitle")}</SectionSubtitle>
             </RevealText>
-            <RevealText delay={0.2}>
+            
+            <div className="mb-[24px] md:mb-[50px] flex justify-between items-center">
+              <RevealText delay={0.2}>
               <SectionTitle className="mb-[24px] md:mb-[50px]">{t("home.newsTitle")}</SectionTitle>
             </RevealText>
+              <ArrowLink href="/news" color="black">
+                {t("home.readMore")}
+              </ArrowLink>
+            </div>
           </div>
         <div className="flex flex-col lg:flex-row gap-[40px] lg:gap-[80px] pb-[50px]">
           
@@ -42,7 +48,7 @@ export default function News() {
               ) : firstNews ? (
                 <Link
                   href={firstNews.slug ? `/news/${firstNews.slug}` : `/news/${firstNews.id}`}
-                  className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[450px] md:h-[565px] bg-cover bg-center group block"
+                  className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[350px] md:h-[490px] bg-cover bg-center group block"
                   style={{ backgroundImage: `url(${firstNews.image})` }}
                   aria-label={`Read more: ${firstNews.title}`}
                 >
@@ -64,10 +70,10 @@ export default function News() {
                     </div>
 
                     <div>
-                      <h3 className="text-white text-[1.6rem] md:text-[1.625rem] font-bold mb-[1rem] leading-tight">
+                      <h3 className="text-white text-[1.3rem] md:text-[1.625rem] font-bold mb-[1rem] leading-tight">
                         {firstNews.title}
                       </h3>
-                      <p className="text-white/80 text-[1rem] font-normal leading-relaxed line-clamp-3">
+                      <p className="text-white/80 text-[0.85rem] md:text-[1rem] font-normal leading-relaxed line-clamp-3">
                         {firstNews.desc}
                       </p>
                     </div>
@@ -83,11 +89,7 @@ export default function News() {
 
           {/* Second Div (Right Side) */}
           <div className="w-full lg:w-1/2 flex flex-col">
-            <div className="mb-[24px] md:mb-[50px] flex justify-end">
-              <ArrowLink href="/news" color="black">
-                {t("home.readMore")}
-              </ArrowLink>
-            </div>
+            
 
             {/* List of News - Scrollable */}
             <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -105,7 +107,7 @@ export default function News() {
                     <Link
                       href={news.slug ? `/news/${news.slug}` : `/news/${news.id}`}
                       key={`news-${idx}`}
-                      className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] mb-[32px] last:border-b-0 last:mb-0"
+                      className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] pt-[32px] last:border-b-0 last:pt-0"
                       aria-label={`Read: ${news.title}`}
                     >
                       <Image

@@ -163,7 +163,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
         {images.length > 0 ? (
           <Swiper
             modules={[Autoplay]}
-            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
             className="w-full h-full custom-swiper"
             loop={images.length > 1}
           >
@@ -243,9 +243,12 @@ export default function Brands({ brands }: { brands: Brand[] }) {
 
   const handleBrandClick = (brand: Brand) => {
     setActiveBrand(brand);
-    // setTimeout(() => {
-    //   detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    // }, 50);
+    setTimeout(() => {
+      if (detailRef.current) {
+        const y = detailRef.current.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 50);
   };
 
   if (!brands || brands.length === 0) return null;
@@ -267,7 +270,7 @@ export default function Brands({ brands }: { brands: Brand[] }) {
               spaceBetween={20}
               slidesPerView="auto"
               loop={brands.length > 4}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
               className="w-full !overflow-visible"
             >
               {brands.map((brand) => (

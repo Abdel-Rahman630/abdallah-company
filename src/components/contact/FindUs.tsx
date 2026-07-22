@@ -43,54 +43,39 @@ export default function FindUs() {
           <div className="flex flex-col lg:flex-row justify-between items-stretch gap-[32px] mb-[40px] pb-[40px] border-b-[4px] border-[rgba(201,168,76,0.8)]">
             <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.headOffice")}</h3>
-                <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
-                  Jeddah
-                </span>
-              </div>
-              <p className="text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem]">
-                44, Jeddah 21411, Madinah Road Al Bawadi Dist, Jeddah
-              </p>
-              <div className="flex gap-[48px] shrink-0">
-                <div>
-                  <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
-                    {t("contact.emailLabel")}
-                  </h4>
-                  <a href="mailto:info@ahcl.com.sa" className="text-[#1E1E1E] text-[1rem] font-normal">
-                    info@ahcl.com.sa
-                  </a>
-                </div>
-                <div>
-                  <h4 className="text-[#D1A52A] text-[0.8rem] font-semibold uppercase mb-[8px]">
-                    {t("contact.phoneLabel")}
-                  </h4>
-                  <a href="tel:0122638200" className="text-[#1E1E1E] text-[1rem] font-normal">
-                    012 263 8200
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
-              <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.centralOffice")}</h3>
+                <h3 className="text-[#1E1E1E] text-[1.3rem] font-bold">{t("contact.centralOffice")}</h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Riyadh
                 </span>
               </div>
-              <p className="text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem]">
-                RMDA4283, 4283 Al Kharj Rd, 7836, Ad Dar Al Baida, Riyadh 14516
-              </p>
+              <a href="https://maps.google.com/?q=RMDA4283,+4283+Al+Kharj+Rd,+7836,+Ad+Dar+Al+Baida,+Riyadh+14516" target="_blank" className="flex items-start gap-[8px] text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem] hover:text-[#D0A42A]">
+                <svg className="shrink-0 mt-[4px]" xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none"><path d="M6.73343 14.2006C7.9733 13.1298 11.6656 9.6628 11.6656 6.33383C11.6656 4.91921 11.1038 3.56253 10.1037 2.56224C9.10357 1.56196 7.74715 1 6.3328 1C4.91845 1 3.56203 1.56196 2.56194 2.56224C1.56185 3.56253 1 4.91921 1 6.33383C1 9.6628 4.6923 13.1298 5.93217 14.2006C6.04768 14.2874 6.18828 14.3344 6.3328 14.3344C6.47732 14.3344 6.61792 14.2874 6.73343 14.2006Z" stroke="#D0A42A" strokeWidth="2" strokeLinecap="round"></path></svg>
+                <span>RMDA4283, 4283 Al Kharj Rd, 7836, Ad Dar Al Baida, Riyadh 14516</span>
+              </a>
+            </div>
+            <div className="flex-1 border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]">
+              <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
+                <h3 className="text-[#1E1E1E] text-[1.3rem] font-bold">{t("contact.headOffice")}</h3>
+                <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
+                  Jeddah
+                </span>
+              </div>
+              <a href="https://maps.google.com/?q=44,+Jeddah+21411,+Madinah+Road+Al+Bawadi+Dist,+Jeddah" target="_blank" className="flex items-start gap-[8px] text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem] hover:text-[#D0A42A]">
+                <svg className="shrink-0 mt-[4px]" xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none"><path d="M6.73343 14.2006C7.9733 13.1298 11.6656 9.6628 11.6656 6.33383C11.6656 4.91921 11.1038 3.56253 10.1037 2.56224C9.10357 1.56196 7.74715 1 6.3328 1C4.91845 1 3.56203 1.56196 2.56194 2.56224C1.56185 3.56253 1 4.91921 1 6.33383C1 9.6628 4.6923 13.1298 5.93217 14.2006C6.04768 14.2874 6.18828 14.3344 6.3328 14.3344C6.47732 14.3344 6.61792 14.2874 6.73343 14.2006Z" stroke="#D0A42A" strokeWidth="2" strokeLinecap="round"></path></svg>
+                <span>44, Jeddah 21411, Madinah Road Al Bawadi Dist, Jeddah</span>
+              </a>
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
-                <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold">{t("contact.easternOffice")}</h3>
+                <h3 className="text-[#1E1E1E] text-[1.3rem] font-bold">{t("contact.easternOffice")}</h3>
                 <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                   Dammam
                 </span>
               </div>
-              <p className="text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem]">
-                C5RR+P7W, King Abdulaziz Rd, King Abdul Aziz Seaport, Dammam 32212
-              </p>
+              <a href="https://maps.google.com/?q=C5RR%2BP7W,+King+Abdulaziz+Rd,+King+Abdul+Aziz+Seaport,+Dammam+32212" target="_blank" className="flex items-start gap-[8px] text-[#666666] text-[1rem] font-normal leading-relaxed mb-[1rem] hover:text-[#D0A42A]">
+                <svg className="shrink-0 mt-[4px]" xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none"><path d="M6.73343 14.2006C7.9733 13.1298 11.6656 9.6628 11.6656 6.33383C11.6656 4.91921 11.1038 3.56253 10.1037 2.56224C9.10357 1.56196 7.74715 1 6.3328 1C4.91845 1 3.56203 1.56196 2.56194 2.56224C1.56185 3.56253 1 4.91921 1 6.33383C1 9.6628 4.6923 13.1298 5.93217 14.2006C6.04768 14.2874 6.18828 14.3344 6.3328 14.3344C6.47732 14.3344 6.61792 14.2874 6.73343 14.2006Z" stroke="#D0A42A" strokeWidth="2" strokeLinecap="round"></path></svg>
+                <span>C5RR+P7W, King Abdulaziz Rd, King Abdul Aziz Seaport, Dammam 32212</span>
+              </a>
             </div>
           </div>
         </RevealText>

@@ -37,7 +37,7 @@ export default function WhoWeAre() {
   return (
     <section
       id="whoWeAre"
-      className="section-padding bg-white"
+      className="py-[80px] bg-white"
     >
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-[26px] lg:gap-[50px]">
@@ -73,12 +73,12 @@ export default function WhoWeAre() {
               <RevealText delay={0.1}>
                 <div className="flex items-center gap-[10px] mb-[11.5px]">
                   <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 object-contain" style={{ width: "auto" }} />
-                  <span className="text-[#1E1E1E] text-[1rem] font-normal  uppercase">{t("home.whoWeAre")}</span>
+                  <span className="text-[#1E1E1E] text-[0.9rem] font-normal  uppercase">{t("home.whoWeAre")}</span>
                 </div>
               </RevealText>
 
               <RevealText delay={0.2}>
-                <h2 className="text-[#1E1E1E] text-[2rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
+                <h2 className="text-[#1E1E1E] text-[1.8rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
                   {t("home.whoWeAreTitle").split("Automotive & machinery distributor").reduce((acc: React.ReactNode[], part: string, index: number, array: string[]) => {
                     acc.push(part);
                     if (index < array.length - 1) {
@@ -94,7 +94,7 @@ export default function WhoWeAre() {
               </RevealText>
 
               <RevealText delay={0.3}>
-                <p className="text-[#727272] text-[1rem] font-normal  mb-[32px]">
+                <p className="text-[#727272] text-[0.95rem] font-normal  mb-[32px]">
                   <span className="font-bold text-[#1E1E1E]">Abdullah Hashim Company Limited (AHCL) </span>
                   is an established <span className="font-bold text-[#1E1E1E]">Automotive & machinery distributor</span> in Saudi Arabia. Since its establishment in
                   1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to
@@ -122,10 +122,10 @@ export default function WhoWeAre() {
                         : "py-4 md:py-0 md:pl-8"
                   }`}
                 >
-                  <span className="text-[#1E1E1E]  text-[3.75rem] font-semibold uppercase mb-[10px] leading-none">
+                  <span className="text-[#1E1E1E]  text-[3.5rem] font-semibold uppercase mb-[10px] leading-none">
                     <Counter to={item.to} suffix={item.suffix} />
                   </span>
-                  <span className="text-[#656565]  text-[1.25rem] font-normal uppercase">{item.title}</span>
+                  <span className="text-[#656565]  text-[1rem] font-normal uppercase">{item.title}</span>
                 </div>
               ))}
             </div>
