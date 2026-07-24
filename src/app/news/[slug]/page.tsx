@@ -37,11 +37,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function NewsDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
 
   let news;
   try {
-    const cookieStore = await cookies();
-    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
     const decodedSlug = decodeURIComponent(slug);
     
     const res = await getNews({ limit: 100, lang: locale });
@@ -131,7 +131,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                {/* Download Button (Last element in page, outside PDF content so it doesn't print itself) */}
           <div className=" flex justify-end">
             <RevealText delay={0.5}>
-            <ScreenshotButton targetId="pdf-content" filename={news.title} />
+            <ScreenshotButton newsSlug={slug} lang={locale} />
 
             </RevealText>
           </div>

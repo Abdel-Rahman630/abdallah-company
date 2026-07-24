@@ -1,135 +1,100 @@
 "use client";
 
-import React from "react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-
-/**
- * Rewrites all <img> elements inside an element so that any external src
- * is fetched via our local proxy, bypassing CORS.
- */
-async function proxyImages(element: HTMLElement): Promise<() => void> {
-  const images = Array.from(element.querySelectorAll<HTMLImageElement>("img"));
-  const originals: Array<{ img: HTMLImageElement; src: string }> = [];
-
-  await Promise.all(
-    images.map(async (img) => {
-      const src = img.src || img.getAttribute("src") || "";
-      // Only proxy absolute external URLs
-      if (!src || src.startsWith("data:") || src.startsWith(window.location.origin)) {
-        return;
-      }
-      originals.push({ img, src });
-      try {
-        const proxyUrl = `/api/proxy-image?url=${encodeURIComponent(src)}`;
-        // Fetch as blob and create a local object URL
-        const res = await fetch(proxyUrl);
-        if (res.ok) {
-          const blob = await res.blob();
-          img.src = URL.createObjectURL(blob);
-        }
-      } catch {
-        // Leave src unchanged if proxy fails
-      }
-    })
-  );
-
-  // Return a cleanup fn to restore original sources and revoke blob URLs
-  return () => {
-    originals.forEach(({ img, src }) => {
-      if (img.src.startsWith("blob:")) {
-        URL.revokeObjectURL(img.src);
-      }
-      img.src = src;
-    });
-  };
-}
-
-function formatPdfFilename(title?: string): string {
-  if (!title || !title.trim()) {
-    return "download.pdf";
-  }
-
-  let cleanTitle = title.trim();
-  if (cleanTitle.toLowerCase().endsWith(".pdf")) {
-    cleanTitle = cleanTitle.slice(0, -4);
-  }
-
-  const formatted = cleanTitle
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "");
-
-  if (!formatted) {
-    return "download.pdf";
-  }
-
-  return `${formatted}.pdf`;
-}
+import React, { useState } from "react";
 
 interface ScreenshotButtonProps {
+  newsSlug?: string;
+  slug?: string;
+  lang?: string;
   targetId?: string;
   filename?: string;
 }
 
-export default function ScreenshotButton({ targetId = "pdf-content", filename }: ScreenshotButtonProps) {
-  const [isDownloading, setIsDownloading] = React.useState(false);
+async function fetchAndDownload(url: string, fallbackFilename: string) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+  }
 
-  const handleDownloadPDF = async () => {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    const data = await response.json();
+    const downloadUrl =
+      data.url ||
+      data.download_url ||
+      data.file ||
+      data.data?.url ||
+      (typeof data.data === "string" ? data.data : null);
+
+    if (downloadUrl) {
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = fallbackFilename;
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+  }
+
+  let filename = fallbackFilename;
+  const disposition = response.headers.get("content-disposition");
+  if (disposition && disposition.includes("filename=")) {
+    const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+    if (match && match[1]) {
+      filename = match[1].replace(/['"]/g, "");
+    }
+  }
+
+  const blob = await response.blob();
+  const blobUrl = window.URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = blobUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  setTimeout(() => window.URL.revokeObjectURL(blobUrl), 2000);
+}
+
+export default function ScreenshotButton({
+  newsSlug,
+  slug,
+  lang = "en",
+}: ScreenshotButtonProps) {
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const effectiveSlug = newsSlug || slug || "";
+
+  const handleDownload = async () => {
+    if (!effectiveSlug) {
+      console.warn("No news slug provided for download.");
+      return;
+    }
+
     setIsDownloading(true);
-    let cleanup: (() => void) | null = null;
     try {
-      const element = document.getElementById(targetId) || document.body;
+      const imagesUrl = `/api/cms/news/${effectiveSlug}/downloads/images`;
+      const pdfUrl = `/api/cms/news/${effectiveSlug}/downloads/pdf?lang=${lang}`;
 
-      // Proxy all external images before capture
-      cleanup = await proxyImages(element);
-
-      // Small delay to allow image re-renders after src swap
-      await new Promise((r) => setTimeout(r, 300));
-
-      const canvas = await html2canvas(element, {
-        useCORS: true,
-        allowTaint: false,
-        scale: 2,
-        logging: false,
-      });
-
-      const imgData = canvas.toDataURL("image/png", 1.0);
-
-      const doc = new jsPDF("p", "mm", "a4");
-      const pdfWidth = 210;
-      const margin = 15;
-      const imgWidth = pdfWidth - margin * 2;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 10;
-
-      doc.addImage(imgData, "PNG", margin, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight - position;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        doc.addPage();
-        doc.addImage(imgData, "PNG", margin, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      const pdfFilename = formatPdfFilename(filename);
-      doc.save(pdfFilename);
+      await Promise.allSettled([
+        fetchAndDownload(pdfUrl, `${effectiveSlug}.pdf`),
+        fetchAndDownload(imagesUrl, `${effectiveSlug}-images.zip`),
+      ]);
     } catch (error) {
-      console.error("Failed to generate PDF", error);
+      console.error("Failed to download files", error);
     } finally {
-      cleanup?.();
       setIsDownloading(false);
     }
   };
 
   return (
     <button
-      onClick={handleDownloadPDF}
+      onClick={handleDownload}
       disabled={isDownloading}
-      className="w-[123px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center cursor-pointer text-[#666666] text-[0.9rem] font-medium gap-[8px]"
+      className="w-[123px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center cursor-pointer text-[#666666] text-[0.9rem] font-medium gap-[8px] hover:bg-gray-50 transition-colors disabled:opacity-50"
     >
       <span className="capitalize">{isDownloading ? "Downloading..." : "Download"}</span>
       {!isDownloading && (

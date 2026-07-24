@@ -141,9 +141,9 @@ function BrandCard({
           unoptimized
         />
       </div>
-      <span className="text-[#231F20] text-center text-[1rem] font-bold leading-tight line-clamp-1 px-2">
+      {/* <span className="text-[#231F20] text-center text-[1rem] font-bold leading-tight line-clamp-1 px-2">
         {brand.name}
-      </span>
+      </span> */}
     </button>
   );
 }

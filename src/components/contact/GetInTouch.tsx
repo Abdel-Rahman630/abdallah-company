@@ -352,7 +352,7 @@ export default function GetInTouch() {
                       href="tel:920002208"
                       className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors"
                     >
-                      +920 002 208
+                      920 002 208
                     </a>
                   </div>
 
@@ -362,13 +362,13 @@ export default function GetInTouch() {
                       href="tel:8001199988"
                       className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors"
                     >
-                      +800 119 9988
+                      800 119 9988
                     </a>
                   </div>
                 </div>
-                <p className="text-[#666666] text-[0.9rem] font-normal">
+                {/* <p className="text-[#666666] text-[0.9rem] font-normal">
                   Available Sun - Thu | 8:00 AM - 5:00 PM
-                </p>
+                </p> */}
               </div>
             </RevealText>
           </div>

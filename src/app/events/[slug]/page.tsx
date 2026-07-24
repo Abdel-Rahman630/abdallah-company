@@ -40,10 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function EventDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+
   let event;
   try {
-    const cookieStore = await cookies();
-    const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
     const decodedSlug = decodeURIComponent(slug);
     
     // Fetch the list to find the matching event by slug
@@ -318,7 +319,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
           </div>
 
           <div className="w-full flex justify-end mt-[24px]">
-            <ScreenshotButton targetId="pdf-content" filename={event.title} />
+            <ScreenshotButton newsSlug={slug} lang={locale} />
           </div>
         </div>
       </section>
