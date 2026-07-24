@@ -57,6 +57,8 @@ export type Location = {
   googleMapsUrl: string;
   division: string;
   subDivision?: string;
+  isMain?: boolean;
+  city?: string;
 };
 // ─── News ───────────────────────────────────────────────────────────────────
 

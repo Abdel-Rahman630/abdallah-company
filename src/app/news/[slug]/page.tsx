@@ -1,6 +1,6 @@
 import NewsBanner from "@/components/news/NewsBanner";
 import Link from "next/link";
-import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
+import { RevealText } from "@/components/ui/ScrollReveal";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import { Metadata } from "next";
 import { getNews, getNewsById } from "@/services/news.service";
@@ -14,22 +14,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    
+
     const decodedSlug = decodeURIComponent(slug);
     const res = await getNews({ limit: 100, lang: locale });
     const matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug
     );
-    if (!matched) return { title: "Abdallah Company | News Details" };
+    if (!matched) return { title: "Abdullah Hashim Company | News Details" };
 
     const news = await getNewsById(String(matched.id), locale);
     return {
-      title: `Abdallah Company | ${news.title}`,
-      description: news.excerpt || news.short_description || "News details",
+      title: `Abdullah Hashim Company | ${news.title}`,
+      description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+      openGraph: {
+        title: `Abdullah Hashim Company | ${news.title}`,
+        description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+        type: "article",
+        images: news.cover_image ? [{ url: news.cover_image, alt: news.title }] : [],
+      },
     };
   } catch {
     return {
-      title: "Abdallah Company | News Details",
+      title: "Abdullah Hashim Company | News Details",
       description: "Read the latest news from Abdullah Hashim Company.",
     };
   }
@@ -43,17 +49,16 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
   let news;
   try {
     const decodedSlug = decodeURIComponent(slug);
-    
+
     const res = await getNews({ limit: 100, lang: locale });
     const matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug
     );
-    
+
     if (!matched) {
-      console.error(`News not found for slug: ${slug}`);
       return notFound();
     }
-    
+
     news = await getNewsById(String(matched.id), locale);
   } catch (err) {
     console.error("NewsDetailsPage error:", err);
@@ -76,7 +81,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
       <section className="py-[80px] lg:py-[120px] bg-white">
         <div className="w-[80%] md:w-[60%] mx-auto flex flex-col items-center">
 
-          {/* Back Button — outside the PDF capture zone */}
+          {/* Back Button */}
           <div className="self-start mb-[40px]">
             <RevealText delay={0.1}>
               <Link
@@ -101,16 +106,12 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
             </RevealText>
           </div>
 
-      
-          {/* PDF-capturable article content */}
-          <div id="pdf-content" className="w-full flex flex-col items-center">
+          {/* Slider */}
+          <div className="w-full">
+            <NewsDetailsSlider images={sliderImages} />
+          </div>
 
-            {/* Slider — fed with real media images */}
-            {/* Removed RevealImage to prevent html2canvas clip-path issues */}
-            <div className="w-full">
-              <NewsDetailsSlider images={sliderImages} />
-            </div>
-    {/* Meta Data (Top) */}
+          {/* Meta Data */}
           <div className="w-full flex justify-between items-center pb-[24px]">
             <RevealText delay={0.3}>
               <div className="flex gap-[1rem] items-center">
@@ -128,29 +129,22 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                 </span>
               </div>
             </RevealText>
-               {/* Download Button (Last element in page, outside PDF content so it doesn't print itself) */}
-          <div className=" flex justify-end">
             <RevealText delay={0.5}>
-            <ScreenshotButton newsSlug={slug} lang={locale} />
-
+              <ScreenshotButton newsSlug={slug} lang={locale} />
             </RevealText>
           </div>
+
+          {/* Article Content */}
+          <div className="w-full mt-[24px]">
+            <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
+              {news.title}
+            </h1>
+
+            <div
+              className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
+              dangerouslySetInnerHTML={{ __html: news.description }}
+            />
           </div>
-
-            {/* Article Content */}
-            <div className="w-full mt-[24px]">
-              <h1 className="text-[#1E1E1E] text-[2.5rem] font-normal mb-[40px] leading-tight">
-                {news.title}
-              </h1>
-
-              <div
-                className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed mb-[40px] prose max-w-none [&_strong]:text-black [&_strong]:font-bold"
-                dangerouslySetInnerHTML={{ __html: news.description }}
-              />
-            </div>
-          </div>
-
-       
         </div>
       </section>
     </>

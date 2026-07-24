@@ -10,6 +10,7 @@ type ApiAny = any;
 export function useFindUs() {
   const { locale } = useLanguage();
   const [locations, setLocations] = useState<Location[]>([]);
+  const [mainLocations, setMainLocations] = useState<Location[]>([]);
   const [activeLocation, setActiveLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,16 +34,27 @@ export function useFindUs() {
       if (json.status && json.data) {
         const mapped: Location[] = json.data.map((item: ApiAny) => ({
           id: item.id,
-          title: item.city || item.branch,
-          span: item.facility_type || "Showroom",
+          title: item.title || item.branch || item.city || "",
+          span: item.facility_type || item.city || "Showroom",
           paragraph: item.address || "",
-          mapQuery: item.address || item.branch || item.city,
+          mapQuery: item.address || item.branch || item.city || "",
           googleMapsUrl: item.google_maps_url || "",
           division: item.division?.label || item.division || "Honda",
           subDivision: item.sub_divisions?.map((s: ApiAny) => s.label).join(", ") || "",
+          isMain: item.is_main === true || item.is_main === 1 || item.is_main === "1" || item.is_main === "true",
+          city: item.city || "",
         }));
 
         setLocations(mapped);
+
+        const mains = mapped.filter((item) => item.isMain);
+        setMainLocations((prev) => {
+          if (!filters || (!filters.division && !filters.subDivision && !filters.city)) {
+            return mains;
+          }
+          return mains.length > 0 ? mains : prev;
+        });
+
         if (mapped.length > 0) {
           setActiveLocation(mapped[0]);
         }
@@ -104,5 +116,5 @@ export function useFindUs() {
 
   const headOfficeLocation = locations.find((l) => l.id === 28 || l.title.toLowerCase().includes("head office")) || null;
 
-  return { locations, activeLocation, setActiveLocation, headOfficeLocation, isLoading, fetchLocations, divisions, subDivisions, cities };
+  return { locations, activeLocation, setActiveLocation, headOfficeLocation, mainLocations, isLoading, fetchLocations, divisions, subDivisions, cities };
 }

@@ -19,45 +19,68 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.vercel.app"),
-  title: "Abdallah Company",
-  description: "Welcome to Abdallah Company",
+  metadataBase: new URL(APP_URL),
+  title: {
+    default: "Abdullah Hashim Company",
+    template: "%s | Abdullah Hashim Company",
+  },
+  description:
+    "Abdullah Hashim Company (AHCL) — a leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors since 1950.",
+  keywords: [
+    "Abdullah Hashim Company",
+    "AHCL",
+    "Saudi Arabia",
+    "automotive",
+    "marine",
+    "agriculture",
+    "industrial",
+    "Honda",
+  ],
+  authors: [{ name: "Abdullah Hashim Company", url: APP_URL }],
   icons: {
     icon: [
-      { url: "https://abdallah-company.vercel.app/LOGO2.png", type: "image/x-icon" },
-      { url: "https://abdallah-company.vercel.app/LOGO2.png", type: "image/png" }
+      { url: "/LOGO2.png", type: "image/png" },
     ],
-    shortcut: "https://abdallah-company.vercel.app/LOGO2.png",
-    apple: "https://abdallah-company.vercel.app/LOGO2.png",
-    other: [
-      {
-        rel: "mask-icon",
-        url: "https://abdallah-company.vercel.app/LOGO2.png",
-        color: "#2196f3",
-      },
-    ],
+    shortcut: "/LOGO2.png",
+    apple: "/LOGO2.png",
   },
   openGraph: {
-    title: "Abdallah Company",
-    description: "Welcome to Abdallah Company",
-    url: "https://abdallah-company.vercel.app",
-    siteName: "Abdallah Company",
+    title: "Abdullah Hashim Company",
+    description:
+      "A leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors.",
+    url: APP_URL,
+    siteName: "Abdullah Hashim Company",
     images: [
       {
-        url: "https://abdallah-company.vercel.app/LOGO2.png",
+        url: "/LOGO2.png",
         width: 1200,
         height: 630,
-        alt: "Abdallah Company Logo",
+        alt: "Abdullah Hashim Company Logo",
       },
     ],
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdallah Company",
-    description: "Welcome to Abdallah Company",
-    images: ["https://abdallah-company.vercel.app/LOGO2.png"],
+    title: "Abdullah Hashim Company",
+    description:
+      "A leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors.",
+    images: ["/LOGO2.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -74,7 +97,6 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
       suppressHydrationWarning
     >
