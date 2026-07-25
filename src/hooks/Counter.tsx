@@ -11,7 +11,7 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) { 
-          
+
           let startTime: number | null = null;
           const duration = 2000;
           const step = (timestamp: number) => {
@@ -22,6 +22,7 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
             setCount(Math.floor(easeOutProgress * to));
             if (progress < 1) {
               window.requestAnimationFrame(step);
+              
             }
           };
 
