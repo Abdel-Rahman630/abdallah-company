@@ -6,11 +6,12 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
   const [count, setCount] = useState(0);
   const nodeRef = useRef<HTMLSpanElement>(null);
 
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting) { 
+          
           let startTime: number | null = null;
           const duration = 2000;
           const step = (timestamp: number) => {
