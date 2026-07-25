@@ -6,6 +6,7 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
   const [count, setCount] = useState(0);
   const nodeRef = useRef<HTMLSpanElement>(null);
 
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
