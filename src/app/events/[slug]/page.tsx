@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const res = await getEvents({ limit: 100, lang: locale });
     const decodedSlug = decodeURIComponent(slug);
     const matched = (res.data || []).find((e: EventItem) => 
-      e.slug === decodedSlug || e.slug === slug
+      e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
     );
     
     if (!matched) return { title: "Abdallah Company | Event Details" };
@@ -49,7 +49,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
     // Fetch the list to find the matching event by slug
     const res = await getEvents({ limit: 100, lang: locale });
     const matched = (res.data || []).find((e: EventItem) => 
-      e.slug === decodedSlug || e.slug === slug
+      e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
     );
     
     if (!matched) return notFound();

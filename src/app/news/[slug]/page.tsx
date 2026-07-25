@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const decodedSlug = decodeURIComponent(slug);
     const res = await getNews({ limit: 100, lang: locale });
     const matched = (res.data || []).find((n: NewsItem) =>
-      n.slug === decodedSlug || n.slug === slug
+      n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
     if (!matched) return { title: "Abdullah Hashim Company | News Details" };
 
@@ -52,7 +52,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
 
     const res = await getNews({ limit: 100, lang: locale });
     const matched = (res.data || []).find((n: NewsItem) =>
-      n.slug === decodedSlug || n.slug === slug
+      n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
 
     if (!matched) {
