@@ -26,6 +26,7 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
             }
           };
 
+          
           window.requestAnimationFrame(step);
           observer.disconnect();
         }
