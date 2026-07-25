@@ -7,7 +7,6 @@ import { Metadata } from "next";
 import { EventItem } from "@/types/models";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
-import ScreenshotButton from "@/components/news/ScreenshotButton";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -318,9 +317,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
             </div>
           </div>
 
-          <div className="w-full flex justify-end mt-[24px]">
-            <ScreenshotButton newsSlug={slug} lang={locale} />
-          </div>
+      
         </div>
       </section>
     </>

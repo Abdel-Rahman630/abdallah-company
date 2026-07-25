@@ -289,6 +289,7 @@ export interface EventCardProps {
   date: string;
   month: string;
   title: string;
+  disabled?: boolean;
 }
 
 export interface DropdownPanelBox {

@@ -3,15 +3,47 @@ import Link from "next/link";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { EventCardProps } from "@/types/models";
 
-export default function EventCard({ id = 1, image, date, month, title }: EventCardProps) {
+export default function EventCard({ id = 1, image, date, month, title, disabled }: EventCardProps) {
+  if (disabled) {
+    return (
+      <div className="block relative w-[260px] h-[222px] rounded-[5px] overflow-hidden shrink-0 cursor-default opacity-80" aria-label={`${title} (not available)`}>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover scale-110"
+          sizes="260px"
+          unoptimized
+        />
+        {/* Permanently dark overlay (same as hover state) */}
+        <div className="absolute inset-0 bg-event-overlay" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+        {/* Date Badge */}
+        <span className="absolute top-[24px] left-0 w-[109px] h-[47px] rounded-r-[5px] border-t border-r border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
+          <span className="text-[2rem] font-bold leading-none">{date}</span>
+          {month && <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{month}</span>}
+        </span>
+        {/* Title shifted up as if hovered */}
+        <h3 className="absolute bottom-[16px] left-1/2 -translate-x-1/2 -translate-y-8 w-[90%] text-white text-[1rem] font-semibold z-10">
+          {title}
+        </h3>
+        {/* Disabled badge */}
+        <div className="absolute bottom-[16px] left-[16px] w-full flex z-10">
+          <span className="text-white/50 text-[0.6rem] font-normal uppercase">Coming soon</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Link href={`/events/${id}`} className="block group relative w-[260px] h-[222px] rounded-[5px] overflow-hidden cursor-pointer">
+    <Link href={`/events/${id}`} className="block group relative w-[260px] h-[222px] rounded-[5px] overflow-hidden cursor-pointer shrink-0">
       <Image
         src={image}
         alt={title}
         fill
         className="object-cover transition-transform duration-700 group-hover:scale-110"
         sizes="260px"
+        unoptimized
       />
       
       {/* Default Overlay */}
@@ -23,7 +55,7 @@ export default function EventCard({ id = 1, image, date, month, title }: EventCa
       {/* Date Badge */}
       <span className="absolute top-[24px] left-0 w-[109px] h-[47px] rounded-r-[5px] border-t border-r border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
         <span className="text-[2rem] font-bold leading-none">{date}</span>
-        <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{month}</span>
+        {month && <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{month}</span>}
       </span>
       
       {/* Title */}
