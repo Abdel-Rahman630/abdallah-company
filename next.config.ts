@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "https://digital-iconcreations.com/ahcl-crm";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://cms.ahcl.com.sa";
 
 const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https:;
+  img-src 'self' blob: data: https: http://cms.ahcl.com.sa;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -19,8 +19,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "digital-iconcreations.com",
+        protocol: "http",
+        hostname: "cms.ahcl.com.sa",
       },
     ],
   },
