@@ -12,7 +12,6 @@ export const Counter = ({ to, suffix = "" }: { to: number; suffix?: string }) =>
         if (entries[0].isIntersecting) {
           let startTime: number | null = null;
           const duration = 2000;
-
           const step = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
