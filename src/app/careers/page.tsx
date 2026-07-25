@@ -1,7 +1,6 @@
 import WhyJoinUs from "@/components/careers/WhyJoinUs";
 import { Metadata } from "next";
 import PageBanner from "@/components/ui/PageBanner";
-import { useLanguage } from "@/providers/LanguageProvider";
 
 export const metadata: Metadata = {
   title: "Abdallah Company | Careers",
@@ -9,11 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function CareersPage() {
-    const { t } = useLanguage();
-  
   return (
     <>
-      <PageBanner image="/careers.png" title={t("careers.title")} />
+      <PageBanner image="/careers.png" title="Careers" />
       <WhyJoinUs />
     </>
   );
