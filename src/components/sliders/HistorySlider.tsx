@@ -24,7 +24,7 @@ export default function HistorySlider() {
     async function fetchHistory() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/cms/history?lang=${locale}`
+          `${process.env.NEXT_PUBLIC_API_URL || ''}/api/cms/history?lang=${locale}`
         );
         const json = await res.json();
         if (json.data) {
@@ -94,7 +94,7 @@ export default function HistorySlider() {
 
       {/* Bottom Content */}
       <div className="absolute bottom-[80px] left-0 right-0 z-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative">
           {historyData.map((item, idx) => (
             <div
               key={`content-${idx}`}

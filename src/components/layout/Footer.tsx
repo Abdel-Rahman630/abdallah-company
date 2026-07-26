@@ -16,9 +16,9 @@ export default function Footer() {
           {/* Column 1: Logo & Socials */}
           <div>
             <Image
-              src="/footer-logo.png"
+              src="/mainLogo.png"
               alt="Footer Logo"
-              width={228}
+              width={228} 
               height={50}
               className="mb-[24px] "
             />

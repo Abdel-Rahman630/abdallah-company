@@ -567,7 +567,7 @@ button {
 }
 
 .history-loading-bar {
-  animation: loadingLine 3s linear forwards;
+  animation: loadingLine 5s linear forwards;
 }
 
 /* ─── Policy Pages (Cookies / Privacy) ─── */

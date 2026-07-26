@@ -81,7 +81,7 @@ export default function WhyJoinUs() {
               <RevealImage>
                 <div
                   ref={imgRef}
-                  className="relative w-full lg:h-[830px] md:h-[500px] h-[350px] overflow-hidden rounded-[10px]"
+                  className="relative w-full lg:h-[870px] md:h-[500px] h-[350px] overflow-hidden rounded-[10px]"
                 >
                   <motion.div style={{ y }} className="absolute w-full h-[130%] -top-[15%]">
                     <Image

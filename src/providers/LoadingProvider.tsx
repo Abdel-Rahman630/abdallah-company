@@ -29,7 +29,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     setIsInitialLoad(true);
     const timer = setTimeout(() => {
       setMinTimeElapsed(true);
-    }, 600); // 600ms minimum display time
+    }, 2500); // 2500ms minimum display time to wait for data/images
     return () => clearTimeout(timer);
   }, [pathname]);
 

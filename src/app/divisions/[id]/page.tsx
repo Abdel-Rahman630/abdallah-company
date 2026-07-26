@@ -1,4 +1,4 @@
-import PageBanner from "@/components/ui/PageBanner";
+import DivisionsBanner from "@/components/ui/DivisionsBanner";
 import Brands from "@/components/brands/Brands";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import { Metadata } from "next";
@@ -43,7 +43,7 @@ export default async function DivisionPage({ params }: DynamicPageProps) {
 
   return (
     <>
-      <PageBanner image={data.banner || "/bg.png"} title={data.name} />
+      <DivisionsBanner image={data.banner || "/bg.png"} title={data.name} />
 
       {/* ── Overview Section ── */}
       <section className="pt-[80px] lg:pt-[120px] pb-[80px]" id={data.slug}>

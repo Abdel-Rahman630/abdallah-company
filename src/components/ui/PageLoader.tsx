@@ -31,7 +31,7 @@ export default function PageLoader() {
     >
       <div className="relative w-[200px] h-[60px] animate-pulse">
         <Image
-          src="/header-logo.png"
+          src="/mainLogo.png"
           alt="AHCL Logo"
           fill
           className="object-contain"

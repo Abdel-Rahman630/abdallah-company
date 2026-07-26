@@ -71,14 +71,14 @@ export default function FindUs() {
                             : ""
                         }`}
                       >
-                        <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
+                        {/* <div className="flex items-center gap-[12px] mb-[1rem] flex-wrap">
                           <h3 className="text-[#1E1E1E] text-[1.3rem] font-bold">{loc.title}</h3>
                           {loc.span && (
                             <span className="rounded-[4px] bg-[#E9E9E9] text-[#1E1E1E] text-[0.7rem] font-bold uppercase px-[8px] py-[4px]">
                               {loc.span}
                             </span>
                           )}
-                        </div>
+                        </div> */}
                         {mapUrl ? (
                           <a
                             href={mapUrl}

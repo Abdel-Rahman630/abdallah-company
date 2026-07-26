@@ -37,7 +37,7 @@ export default function Header() {
       logo={
         <Link href="/" className="shrink-0 cursor-pointer block w-[180px] lg:w-[227px]">
           <Image
-            src="/header-logo.png"
+            src="/mainLogo.png"
             alt="AHCL Logo"
             width={227}
             height={50}
