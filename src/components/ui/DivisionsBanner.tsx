@@ -11,7 +11,7 @@ export default function DivisionsBanner({ image, title, alt }: PageBannerProps) 
         className="object-cover"
         priority
         sizes="100vw"
-        
+        unoptimized
       />
       <div className="absolute inset-0 bg-[#000000] opacity-20 z-10" aria-hidden="true" />
       <div className="container mx-auto h-full relative z-20">

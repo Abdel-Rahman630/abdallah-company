@@ -40,7 +40,7 @@ export default function OurProducts() {
               className="object-cover md:object-center object-right"
               priority
               sizes="100vw"
-              
+              unoptimized
             />
           )}
         </motion.div>

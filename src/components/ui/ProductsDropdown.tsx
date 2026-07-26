@@ -155,7 +155,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
               fill
               className="object-cover"
               sizes="258px"
-              
+              unoptimized
             />
           </motion.div>
         </AnimatePresence>
