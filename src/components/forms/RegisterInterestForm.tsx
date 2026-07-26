@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import { FormInput } from "@/components/ui/FormInput";
 import { RegisterInterestFormData, RegisterInterestFormProps } from "@/types/models";
+import { submitEventRequest } from "@/services/events.service";
 
 export default function RegisterInterestForm({ eventId }: RegisterInterestFormProps) {
   const {
@@ -20,37 +21,16 @@ export default function RegisterInterestForm({ eventId }: RegisterInterestFormPr
     setStatus("loading");
     setErrorMessage("");
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "https://api.ahcl.com.sa"}/api/cms/events/${eventId}/requests`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: data.name,
-            phone: data.phone,
-            email: data.email,
-          }),
-        }
-      );
+      await submitEventRequest(eventId, {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+      });
 
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        const errorData = await response.json().catch(() => null);
-        setStatus("error");
-        let msg = "Validation error occurred.";
-        if (errorData?.errors) {
-            msg = Object.values(errorData.errors).flat().join(" ");
-        } else if (errorData?.message) {
-            msg = errorData.message;
-        } else if (errorData?.error) {
-            msg = errorData.error;
-        }
-        setErrorMessage(msg);
-      }
-    } catch (err: unknown) {
+      setStatus("success");
+    } catch (err: any) {
       setStatus("error");
-      const errorMessage = err instanceof Error ? err.message : "Please check your network and try again.";
+      const errorMessage = err?.message || "Please check your network and try again.";
       setErrorMessage(errorMessage);
     } finally {
       reset();

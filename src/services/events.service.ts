@@ -1,4 +1,4 @@
-import { apiGet } from "./apiClient";
+import { apiGet, apiPost } from "./apiClient";
 import type { ApiResponse, EventItem } from "@/types/models";
 
 /**
@@ -36,4 +36,14 @@ export async function getEventById(id: string | number, lang?: string): Promise<
     tags: ["events", `event-${id}`],
   });
   return res.data;
+}
+
+/**
+ * Submits an event interest request.
+ */
+export async function submitEventRequest(
+  eventId: string | number,
+  data: { name: string; phone: string; email: string }
+): Promise<any> {
+  return apiPost(`/api/cms/events/${eventId}/requests`, data);
 }
