@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getNews } from "@/services/news.service";
 import { useGlobalLoading } from "@/providers/LoadingProvider";
 import { HomeNewsItem, NewsItem } from "@/types/models";
+import { formatDateParts } from "@/lib/utils";
 
 export function useHomeNews() {
   const [newsList, setNewsList] = useState<HomeNewsItem[]>([]);
@@ -16,8 +17,7 @@ export function useHomeNews() {
         const response = await getNews({ limit: 4, lang: "en" });
         const mappedData: HomeNewsItem[] = response.data.map((item: NewsItem) => {
           const rawDate = item.publish_date || item.published_at || item.created_at;
-          const d = rawDate ? new Date(rawDate) : new Date();
-          const isValid = !isNaN(d.getTime());
+          const { dayNum, monthShort, monthShortUpper } = formatDateParts(rawDate);
           return {
             id: item.id,
             slug: item.slug,
@@ -25,11 +25,9 @@ export function useHomeNews() {
             subtitle: item.category || "News",
             title: item.title || "",
             desc: item.short_description || item.excerpt || "",
-            dateStr: isValid
-              ? d.toLocaleString("en-US", { day: "numeric", month: "short" })
-              : "",
-            day: isValid ? d.getDate() : "",
-            monthStr: isValid ? d.toLocaleString("en-US", { month: "short" }) : "",
+            dateStr: `${monthShort} ${dayNum}`,
+            day: dayNum,
+            monthStr: monthShortUpper,
           };
         });
         setNewsList(mappedData);

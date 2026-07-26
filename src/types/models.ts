@@ -238,6 +238,11 @@ export interface Division {
 
 // ─── Component Props ────────────────────────────────────────────────────────
 
+export interface IconProps {
+  className?: string;
+  color?: string;
+}
+
 export interface YellowButtonProps {
   href: string;
   children: ReactNode;
@@ -304,6 +309,19 @@ export interface DropdownPanelProps {
   image: string;
   isMobile?: boolean;
   onLinkClick?: () => void;
+}
+
+export interface DropdownPanelData {
+  sectionTitle: string;
+  boxes: DropdownPanelBox[];
+  image: string;
+}
+
+export interface NavItem {
+  key: string;
+  label: string;
+  href?: string;
+  dropdown?: DropdownPanelData | null;
 }
 
 export interface CountDownItem {

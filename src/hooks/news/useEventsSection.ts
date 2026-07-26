@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { getEvents } from "@/services/events.service";
 import { EventItem as ApiEventItem, EventSlideItem as EventItem } from "@/types/models";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { formatDateParts } from "@/lib/utils";
 
 export function useEventsSection() {
   const { locale } = useLanguage();
@@ -24,16 +25,14 @@ export function useEventsSection() {
         if (cancelled) return;
 
         const mappedData = response.data.map((item: ApiEventItem) => {
-          const eventDate = item.starts_at || item.date || item.start_date || item.created_at || new Date().toISOString();
-          const d = new Date(eventDate);
-          const monthName = d.toLocaleString("en-US", { month: "long" });
-          const day = d.getDate().toString();
+          const eventDate = item.starts_at || item.date || item.start_date || item.created_at;
+          const { day, monthShort } = formatDateParts(eventDate);
 
           return {
             id: item.id || item.slug,
             image: item.cover_image_url || "/bg.png",
             date: day,
-            month: monthName.substring(0, 3).toLowerCase(),
+            month: monthShort.toLowerCase(),
             title: item.title || "Upcoming Event",
             category: item.category || "other",
             slug: item.slug,

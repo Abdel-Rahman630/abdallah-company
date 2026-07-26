@@ -2,7 +2,7 @@
 
 import { Counter } from "@/hooks/Counter";
 import { RevealText } from "@/components/ui/ScrollReveal";
-import { CountDownItem, CountDownProps } from "@/types/models";
+import { CountDownProps } from "@/types/models";
 
 export default function CountDown({
   data

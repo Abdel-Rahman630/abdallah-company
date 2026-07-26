@@ -4,8 +4,18 @@ import { useLanguage } from "@/providers/LanguageProvider";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ApiAny = any;
+interface ApiLocation {
+  id: number;
+  title?: string;
+  branch?: string;
+  city?: string;
+  facility_type?: string;
+  address?: string;
+  google_maps_url?: string;
+  division?: string | { label: string; value: string | number };
+  sub_divisions?: { label: string; value: string | number }[];
+  is_main?: boolean | number | string;
+}
 
 export function useFindUs() {
   const { locale } = useLanguage();
@@ -32,15 +42,15 @@ export function useFindUs() {
       const json = await res.json();
 
       if (json.status && json.data) {
-        const mapped: Location[] = json.data.map((item: ApiAny) => ({
+        const mapped: Location[] = json.data.map((item: ApiLocation) => ({
           id: item.id,
           title: item.title || item.branch || item.city || "",
           span: item.facility_type || item.city || "Showroom",
           paragraph: item.address || "",
           mapQuery: item.address || item.branch || item.city || "",
           googleMapsUrl: item.google_maps_url || "",
-          division: item.division?.label || item.division || "Honda",
-          subDivision: item.sub_divisions?.map((s: ApiAny) => s.label).join(", ") || "",
+          division: typeof item.division === 'object' && item.division !== null ? item.division.label : item.division || "Honda",
+          subDivision: item.sub_divisions?.map((s) => s.label).join(", ") || "",
           isMain: item.is_main === true || item.is_main === 1 || item.is_main === "1" || item.is_main === "true",
           city: item.city || "",
         }));
@@ -87,7 +97,7 @@ export function useFindUs() {
           const subDivMap = new Map<string | number, string>();
           const cits = new Set<string>();
 
-          json.data.forEach((item: ApiAny) => {
+          json.data.forEach((item: ApiLocation) => {
             if (item.division && typeof item.division === 'object') {
               divMap.set(item.division.value, item.division.label);
             } else if (typeof item.division === 'string') {
@@ -95,7 +105,7 @@ export function useFindUs() {
             }
 
             if (item.sub_divisions && Array.isArray(item.sub_divisions)) {
-              item.sub_divisions.forEach((sub: ApiAny) => {
+              item.sub_divisions.forEach((sub) => {
                 subDivMap.set(sub.value, sub.label);
               });
             }

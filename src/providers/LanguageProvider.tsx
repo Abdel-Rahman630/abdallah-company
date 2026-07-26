@@ -25,9 +25,13 @@ export function LanguageProvider({
   const router = useRouter();
 
   // Helper to get nested translation keys e.g. "header.store"
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getNestedTranslation = (obj: any, path: string) => {
-    return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+  const getNestedTranslation = (obj: Record<string, unknown>, path: string): string | undefined => {
+    return path.split(".").reduce((acc: unknown, part: string) => {
+      if (acc && typeof acc === "object" && part in acc) {
+        return (acc as Record<string, unknown>)[part];
+      }
+      return undefined;
+    }, obj) as string | undefined;
   };
 
   const t = (key: string) => {

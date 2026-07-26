@@ -8,6 +8,7 @@ import { EventItem } from "@/types/models";
 import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
 import { notFound } from "next/navigation";
+import { formatFullDate, formatTime } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
@@ -63,18 +64,15 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
   if (!event) return notFound();
 
   // Fallback for dates
-  const dateStr = event.starts_at || event.date || event.start_date || event.created_at || new Date().toISOString();
-  const d = new Date(dateStr);
-  const formattedDate = event.formatted_date || d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const dateStr = event.starts_at || event.date || event.start_date || event.created_at;
+  const formattedDate = event.formatted_date || formatFullDate(dateStr, "en-US");
   
   // Format time if available
   let timeStr = "TBA";
   if (event.starts_at) {
-    const startD = new Date(event.starts_at);
-    timeStr = startD.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+    timeStr = formatTime(event.starts_at, "en-US");
     if (event.ends_at) {
-      const endD = new Date(event.ends_at);
-      timeStr += ` - ${endD.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}`;
+      timeStr += ` - ${formatTime(event.ends_at, "en-US")}`;
     }
   } else if (event.time) {
     timeStr = event.time;

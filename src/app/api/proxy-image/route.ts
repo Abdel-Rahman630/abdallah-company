@@ -1,13 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const url = req.nextUrl.searchParams.get("url");
-  if (!url) {
+  const urlParam = req.nextUrl.searchParams.get("url");
+  if (!urlParam) {
     return new NextResponse("Missing url param", { status: 400 });
   }
 
   try {
-    const res = await fetch(url, {
+    const parsedUrl = new URL(urlParam);
+    
+    // Parse the allowed API domain from environment
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+    let apiDomain = "";
+    try {
+      if (apiUrl) {
+        apiDomain = new URL(apiUrl).hostname;
+      }
+    } catch {
+      // Ignore if apiUrl is not a valid URL
+    }
+
+    const ALLOWED_DOMAINS = [
+      "localhost",
+      "127.0.0.1",
+      apiDomain,
+      "admin.ahcl.com.sa",
+      "ahcl.com.sa"
+    ].filter(Boolean);
+
+    if (!ALLOWED_DOMAINS.includes(parsedUrl.hostname)) {
+      return new NextResponse("Forbidden: Domain not allowed", { status: 403 });
+    }
+
+    if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
+      return new NextResponse("Forbidden: Protocol not allowed", { status: 403 });
+    }
+
+    const res = await fetch(parsedUrl.toString(), {
       headers: {
         // Some servers require a User-Agent
         "User-Agent": "Mozilla/5.0",

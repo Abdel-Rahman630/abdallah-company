@@ -8,6 +8,7 @@ import { NewsItem } from "@/types/models";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import ScreenshotButton from "@/components/news/ScreenshotButton";
+import { formatFullDate } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
@@ -120,11 +121,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                 </span>
                 <span className="text-[#D1A52A] text-[0.9rem]">
                   {news.publish_date
-                    ? new Date(news.publish_date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })
+                    ? formatFullDate(news.publish_date, "en-GB")
                     : ""}
                 </span>
               </div>

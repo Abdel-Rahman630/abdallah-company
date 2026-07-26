@@ -6,10 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
-
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { Counter } from "@/hooks/Counter";
 import CountDown from "@/components/ui/CountDown";
 import { useLanguage } from "@/providers/LanguageProvider";
 

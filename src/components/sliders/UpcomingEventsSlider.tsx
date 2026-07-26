@@ -13,6 +13,7 @@ import EventCard from "@/components/ui/EventCard";
 
 import { getEvents } from "@/services/events.service";
 import { EventItem, EventSlideItem } from "@/types/models";
+import { formatDateParts } from "@/lib/utils";
 
 export default function UpcomingEventsSlider() {
   const [events, setEvents] = useState<EventSlideItem[]>([]);
@@ -28,16 +29,14 @@ export default function UpcomingEventsSlider() {
         if (!Array.isArray(data) || data.length === 0) return;
 
         const mapped: EventSlideItem[] = data.map((item: EventItem) => {
-          const dateStr = item.formatted_date || item.date || item.start_date || item.created_at || new Date().toISOString();
-          const d = new Date(dateStr);
-          const monthName = d.toLocaleString("en-US", { month: "short" }).toLowerCase();
-          const day = d.getDate().toString();
+          const dateStr = item.formatted_date || item.date || item.start_date || item.created_at;
+          const { day, monthShort } = formatDateParts(dateStr);
           return {
             id: item.id,
             slug: item.slug,
             image: item.cover_image_url || "/bg.png",
             date: day,
-            month: monthName,
+            month: monthShort.toLowerCase(),
             title: item.title,
             isFeatured: item.is_featured ?? true,
           };

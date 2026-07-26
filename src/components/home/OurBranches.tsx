@@ -2,21 +2,14 @@
 
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
-import { Counter } from "@/hooks/Counter";
 import ArrowLink from "@/components/ui/ArrowLink";
 import CountDown from "@/components/ui/CountDown";
 import SubTitle from "@/components/ui/SubTitle";
 
 const countdownData = [
-  // {
-  //   to: 10,
-  //   suffix: "+",
-  //   title: <>Strong network across <br />the Kingdom of Saudi Arabia</>,
-  // },
   { to: 22, suffix: "+", title: "Showroom" },
   { to: 26, suffix: "+", title: "Service center" },
   { to: 29, suffix: "+", title: "Spare Part" },
-
 ];
 
 export default function OurBranches() {
