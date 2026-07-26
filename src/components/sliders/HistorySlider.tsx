@@ -74,7 +74,7 @@ export default function HistorySlider() {
                   className="object-cover"
                   sizes="100vw"
                   priority={idx === 0}
-                  unoptimized
+                  
                 />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,30,30,0.60)_0%,rgba(30,30,30,0.00)_50%),linear-gradient(180deg,rgba(30,30,30,0.00)_0%,#1E1E1E_100%)]" />

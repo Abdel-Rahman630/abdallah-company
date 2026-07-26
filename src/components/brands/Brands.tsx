@@ -138,7 +138,7 @@ function BrandCard({
           fill
           className="object-contain"
           sizes="150px"
-          unoptimized
+          
         />
       </div>
       {/* <span className="text-[#231F20] text-center text-[1rem] font-bold leading-tight line-clamp-1 px-2">
@@ -176,7 +176,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
                     fill
                     className="object-cover object-right"
                     sizes="(max-width:1024px) 100vw, 450px"
-                    unoptimized
+                    
                   />
                 </div>
               </SwiperSlide>
