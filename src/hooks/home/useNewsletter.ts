@@ -3,7 +3,7 @@ import { SubscribeStatus } from "@/types/models";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+const API_BASE_URL = typeof window === "undefined" ? (process.env.NEXT_PUBLIC_API_URL || "") : "";
 
 export function useNewsletter() {
   const { locale } = useLanguage();

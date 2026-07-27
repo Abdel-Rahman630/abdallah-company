@@ -62,9 +62,6 @@
   "contact": {
     "locations": "OUR LOCATIONS",
     "findUs": "Find Us",
-    "headOffice": "Head Office",
-    "centralOffice": "Central Region Office",
-    "easternOffice": "Eastern Region Office",
     "emailLabel": "Email Address",
     "phoneLabel": "Phone Number",
     "filter": "Filter",
@@ -99,18 +96,14 @@
     "valuesTitle": "The Principles that Drive Everything We Do",
     "valuesDesc": "The principles that have guided Abdullah Hashim Company Limited for over 80 years of heritage and excellence in the region.",
     "values": {
-      "integrityTitle": "INTEGRITY",
-      "integrityDesc": "We conduct business with honesty and transparency in every interaction.",
-      "qualityTitle": "QUALITY & PRECISION",
-      "qualityDesc": "Setting the highest standards in quality for our products and the services we provide.",
-      "commitmentTitle": "COMMITMENT TO CUSTOMERS",
-      "commitmentDesc": "Building lasting partnerships based on trust and shared success.",
-      "creativityTitle": "CREATIVITY & INNOVATION",
-      "creativityDesc": "Continuously evolving our solutions to meet the changing needs of the global market.",
-      "collaborationTitle": "COLLABORATION",
-      "collaborationDesc": "Fostering an environment of open communication and teamwork across all departments.",
-      "learningTitle": "CONTINUOUS LEARNING",
-      "learningDesc": "Embracing lifelong learning and using data to drive constant improvement."
+      "integrityTitle": "Integrity",
+      "integrityDesc": "We build trust through honest, transparent, and strictly accountable business practices.",
+      "commitmentTitle": "Customer Excellence",
+      "commitmentDesc": "We consistently exceed expectations by delivering exceptional service and superior quality.",
+      "creativityTitle": "Performance & Collaboration",
+      "creativityDesc": "We drive outstanding results through innovative teamwork, continuous improvement, and operational excellence.",
+      "collaborationTitle": "Community Impact",
+      "collaborationDesc": "We positively impact society through ethical practices, environmental stewardship, and meaningful contributions."
     }
   },
   "careers": {

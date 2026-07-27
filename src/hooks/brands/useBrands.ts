@@ -11,7 +11,7 @@ export function useBrands() {
     async function fetchBrands() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || ''}/api/cms/brands?lang=${locale}`
+          `/api/cms/brands?lang=${locale}`
         );
         const json = await res.json();
         if (json.data) {

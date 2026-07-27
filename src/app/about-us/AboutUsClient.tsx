@@ -165,7 +165,7 @@ export default function AboutUsClient() {
               </p>
             </RevealText>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
               {[
                 {
                   title: t("about.values.integrityTitle"),
@@ -187,33 +187,7 @@ export default function AboutUsClient() {
                     </svg>
                   ),
                 },
-                {
-                  title: t("about.values.qualityTitle"),
-                  desc: t("about.values.qualityDesc"),
-                  icon: (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                    >
-                      <g clipPath="url(#clip0_876_3765)">
-                        <path
-                          d="M9.99806 18.334C14.6008 18.334 18.3321 14.6028 18.3321 10C18.3321 5.39727 14.6008 1.66602 9.99806 1.66602C5.39532 1.66602 1.66406 5.39727 1.66406 10C1.66406 14.6028 5.39532 18.334 9.99806 18.334Z"
-                          stroke="#1E1E1E"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_876_3765">
-                          <rect width="20" height="20" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  ),
-                },
+            
                 {
                   title: t("about.values.commitmentTitle"),
                   desc: t("about.values.commitmentDesc"),
@@ -281,29 +255,9 @@ export default function AboutUsClient() {
                     </svg>
                   ),
                 },
-                {
-                  title: t("about.values.learningTitle"),
-                  desc: t("about.values.learningDesc"),
-                  icon: (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                    >
-                      <path
-                        d="M18.3321 10.8332V5.83398H13.3317M18.3321 5.83398L11.2482 12.9162L7.08116 8.75018L1.66406 14.166"
-                        stroke="#1E1E1E"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  ),
-                },
               ].map((item, index) => (
                 <RevealText key={index} delay={0.1 * index}>
-                  <div className="p-[1rem] rounded-[12px] border border-[#F2F2F2] bg-[#FDFDFD] h-full transition-shadow hover:shadow-md">
+                  <div className="p-[1rem] rounded-[12px] border border-[#F2F2F2] bg-[#FDFDFD] h-full">
                     <span className="w-[40px] h-[40px] rounded-[20px] bg-[rgba(209,165,42,0.07)] mb-[12px] flex items-center justify-center">
                       {item.icon}
                     </span>

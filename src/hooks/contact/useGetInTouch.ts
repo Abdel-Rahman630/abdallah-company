@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ContactFormData, SubmitStatus } from "@/types/models";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+const API_BASE_URL = typeof window === "undefined" ? (process.env.NEXT_PUBLIC_API_URL || "") : "";
 
 export function useGetInTouch() {
   const {

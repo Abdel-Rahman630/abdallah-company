@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { OptionItem, Location } from "@/types/models";
 import { useLanguage } from "@/providers/LanguageProvider";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+const API_BASE_URL = typeof window === "undefined" ? (process.env.NEXT_PUBLIC_API_URL || "") : "";
 
 interface ApiLocation {
   id: number;
@@ -51,7 +51,7 @@ export function useFindUs() {
           googleMapsUrl: item.google_maps_url || "",
           division: typeof item.division === 'object' && item.division !== null ? item.division.label : item.division || "Honda",
           subDivision: item.sub_divisions?.map((s) => s.label).join(", ") || "",
-          isMain: item.is_main === true || item.is_main === 1 || item.is_main === "1" || item.is_main === "true",
+          isMain: item.is_main === true,
           city: item.city || "",
         }));
 
@@ -124,7 +124,5 @@ export function useFindUs() {
     fetchOptions();
   }, [fetchLocations, locale]);
 
-  const headOfficeLocation = locations.find((l) => l.id === 28 || l.title.toLowerCase().includes("head office")) || null;
-
-  return { locations, activeLocation, setActiveLocation, headOfficeLocation, mainLocations, isLoading, fetchLocations, divisions, subDivisions, cities };
+  return { locations, activeLocation, setActiveLocation, mainLocations, isLoading, fetchLocations, divisions, subDivisions, cities };
 }

@@ -24,7 +24,7 @@ export default function HistorySlider() {
     async function fetchHistory() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || ''}/api/cms/history?lang=${locale}`
+          `/api/cms/history?lang=${locale}`
         );
         const json = await res.json();
         if (json.data) {
