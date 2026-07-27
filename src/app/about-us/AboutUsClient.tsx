@@ -165,7 +165,7 @@ export default function AboutUsClient() {
               </p>
             </RevealText>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
               {[
                 {
                   title: t("about.values.integrityTitle"),
