@@ -9,7 +9,7 @@ import SubTitle from "@/components/ui/SubTitle";
 const countdownData = [
   { to: 22, suffix: "+", title: "Showroom" },
   { to: 26, suffix: "+", title: "Service center" },
-  { to: 29, suffix: "+", title: "Spare Part" },
+  { to: 29, suffix: "+", title: "Spare Part's" },
 ];
 
 export default function OurBranches() {
@@ -33,11 +33,11 @@ export default function OurBranches() {
             </RevealText>
 
    
-            <RevealText delay={0.4}>
+            {/* <RevealText delay={0.4}>
               <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
                 AHCL-operated facilities are categorized based on the scope of services they provide:
               </p>
-            </RevealText>
+            </RevealText> */}
 
             <ul className="flex flex-row gap-[32px] mb-[32px]">
               {/* Item 1 */}
@@ -110,7 +110,7 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  Distributor Hub.
+                  Distribution Hubs.
                 </span>
               </li>
 
