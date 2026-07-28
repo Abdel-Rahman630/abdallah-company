@@ -2,15 +2,9 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { Locale } from "@/types/models";
+import { Locale, LanguageContextProps } from "@/types/models";
 import enTranslations from "@/locales/en.json";
 import arTranslations from "@/locales/ar.json";
-
-interface LanguageContextProps {
-  locale: Locale;
-  t: (key: string) => string;
-  setLocale: (locale: Locale) => void;
-}
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 

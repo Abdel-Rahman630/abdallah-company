@@ -1,20 +1,5 @@
 import React from "react";
-
-interface LocationsFilterProps {
-  divisions: any[];
-  subDivisions: any[];
-  cities: any[];
-  selectedDivision: string;
-  setSelectedDivision: (val: string) => void;
-  selectedSubDivision: string;
-  setSelectedSubDivision: (val: string) => void;
-  selectedCity: string;
-  setSelectedCity: (val: string) => void;
-  handleFilter: () => void;
-  isLoading: boolean;
-  fetchLocations: (params: any) => void;
-  t: (key: string) => string;
-}
+import { LocationsFilterProps } from "@/types/models";
 
 export default function LocationsFilter({
   divisions,

@@ -31,8 +31,6 @@ export default function FindUs() {
     fetchLocations({ division: selectedDivision, subDivision: selectedSubDivision, city: selectedCity });
   };
 
-  console.log(locations)
-
   return (
     <section id="find-us" className="bg-[#F9F9F9] py-[100px]">
       <div className="container mx-auto">

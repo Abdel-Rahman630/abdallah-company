@@ -1,11 +1,5 @@
 import React from "react";
-
-interface LocationsListProps {
-  isLoading: boolean;
-  locations: any[];
-  activeLocation: any;
-  setActiveLocation: (loc: any) => void;
-}
+import { LocationsListProps } from "@/types/models";
 
 export default function LocationsList({
   isLoading,

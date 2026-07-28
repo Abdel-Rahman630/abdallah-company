@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
-interface ScreenshotButtonProps {
-  newsSlug?: string;
-  slug?: string;
-  lang?: string;
-  targetId?: string;
-  filename?: string;
-}
+import { ScreenshotButtonProps } from "@/types/models";
 
 async function fetchAndDownload(url: string, fallbackFilename: string) {
   const response = await fetch(url);

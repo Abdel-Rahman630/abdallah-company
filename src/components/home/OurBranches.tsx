@@ -32,7 +32,6 @@ export default function OurBranches() {
               </h2>
             </RevealText>
 
-   
             {/* <RevealText delay={0.4}>
               <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
                 AHCL-operated facilities are categorized based on the scope of services they provide:
@@ -147,28 +146,28 @@ export default function OurBranches() {
                   />
                 </svg>
                 <span className="text-[#949494] text-[0.8125rem] font-normal">
-                 Operation Network.
+                  Operation Network.
                 </span>
               </li>
             </ul>
             <div className="countdown mb-[32px] w-full">
-              <CountDown 
-                data={countdownData} 
-             
-              />
+              <CountDown data={countdownData} />
             </div>
-            <ArrowLink href="/contact-us#find-us" color="black">More about our locations</ArrowLink>
+            <ArrowLink href="/contact-us#find-us" color="black">
+              More about our locations
+            </ArrowLink>
           </div>
 
           {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
           <div className="flex-1 w-full lg:w-auto flex flex-col justify-center items-center lg:items-end">
             <RevealImage className="relative w-full max-w-[700px] lg:max-w-none lg:w-[600px] xl:w-[700px] h-[450px] md:h-[580px] lg:h-[640px]">
               <Image
-                src="/map.png"
+                src="/map.svg"
                 alt="Our Branches Map"
                 fill
                 className="object-contain"
                 sizes="(max-width: 1024px) 100vw, 700px"
+                unoptimized
               />
             </RevealImage>
           </div>

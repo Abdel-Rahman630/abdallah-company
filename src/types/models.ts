@@ -379,4 +379,66 @@ export interface RegisterInterestFormProps {
   eventId: string | number;
 }
 
+export interface FetchOptions extends RequestInit {
+  /** Next.js revalidation in seconds. Use 0 for no cache, false for indefinite. */
+  revalidate?: number | false;
+  /** Next.js cache tags for on-demand revalidation */
+  tags?: string[];
+}
+
+export interface LanguageContextProps {
+  locale: Locale;
+  t: (key: string) => string;
+  setLocale: (locale: Locale) => void;
+}
+
+export interface ApiLocation {
+  id: number;
+  title?: string;
+  branch?: string;
+  city?: string;
+  facility_type?: string;
+  address?: string;
+  google_maps_url?: string;
+  division?: string | { label: string; value: string | number };
+  sub_divisions?: { label: string; value: string | number }[];
+  is_main?: boolean | number | string;
+}
+
+export interface ScreenshotButtonProps {
+  newsSlug?: string;
+  slug?: string;
+  lang?: string;
+  targetId?: string;
+  filename?: string;
+}
+
+export interface LocationsMapProps {
+  isLoading: boolean;
+  activeLocation: any;
+  t: (key: string) => string;
+}
+
+export interface LocationsListProps {
+  isLoading: boolean;
+  locations: any[];
+  activeLocation: any;
+  setActiveLocation: (loc: any) => void;
+}
+
+export interface LocationsFilterProps {
+  divisions: any[];
+  subDivisions: any[];
+  cities: any[];
+  selectedDivision: string;
+  setSelectedDivision: (val: string) => void;
+  selectedSubDivision: string;
+  setSelectedSubDivision: (val: string) => void;
+  selectedCity: string;
+  setSelectedCity: (val: string) => void;
+  handleFilter: () => void;
+  isLoading: boolean;
+  fetchLocations: (params: any) => void;
+  t: (key: string) => string;
+}
 

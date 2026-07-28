@@ -1,21 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { OptionItem, Location } from "@/types/models";
+import { OptionItem, Location, ApiLocation } from "@/types/models";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 const API_BASE_URL = typeof window === "undefined" ? (process.env.NEXT_PUBLIC_API_URL || "") : "";
-
-interface ApiLocation {
-  id: number;
-  title?: string;
-  branch?: string;
-  city?: string;
-  facility_type?: string;
-  address?: string;
-  google_maps_url?: string;
-  division?: string | { label: string; value: string | number };
-  sub_divisions?: { label: string; value: string | number }[];
-  is_main?: boolean | number | string;
-}
 
 export function useFindUs() {
   const { locale } = useLanguage();

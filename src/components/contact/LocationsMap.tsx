@@ -1,10 +1,5 @@
 import React from "react";
-
-interface LocationsMapProps {
-  isLoading: boolean;
-  activeLocation: any;
-  t: (key: string) => string;
-}
+import { LocationsMapProps } from "@/types/models";
 
 export default function LocationsMap({ isLoading, activeLocation, t }: LocationsMapProps) {
   return (
