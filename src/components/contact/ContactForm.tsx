@@ -127,7 +127,11 @@ export default function ContactForm() {
                   Automotive &amp; Machinery
                 </option>
                 <option value="marine">Marine</option>
-                <option value="other">Other</option>
+                <option value="power_solutions">Power Solutions</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="construction_equipment">Construction Equipment</option>
+                <option value="water_solutions">Water Solutions</option>
+                <option value="material_handling">Material Handling</option>
               </FormSelect>
               {errors.division && (
                 <span className="text-red-500 text-[0.75rem]">
