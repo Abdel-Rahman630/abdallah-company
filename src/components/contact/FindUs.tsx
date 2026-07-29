@@ -6,8 +6,6 @@ import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import SubTitle from "@/components/ui/SubTitle";
 import { useLanguage } from "@/providers/LanguageProvider";
 import LocationsFilter from "./LocationsFilter";
-import LocationsList from "./LocationsList";
-import LocationsMap from "./LocationsMap";
 
 export default function FindUs() {
   const {
@@ -44,7 +42,7 @@ export default function FindUs() {
         {/* Head Office Top Bar */}
         {(mainLocations.length > 0 || isLoading) && (
           <RevealText delay={0.3}>
-            <div className="flex flex-col lg:flex-row justify-between items-stretch gap-[32px] mb-[40px] pb-[40px] border-b-[4px] border-[rgba(201,168,76,0.8)]">
+            <div className="flex flex-col lg:flex-row justify-between items-stretch gap-[32px] mb-[40px] pb-[40px] border-b-[4px] border-[#E5E5E5]">
               {isLoading && mainLocations.length === 0
                 ? Array.from({ length: 3 }).map((_, idx) => (
                     <div
@@ -128,7 +126,7 @@ export default function FindUs() {
           </RevealText>
         )}
 
-        {/* Filter Form */}
+        {/* Filter Form and Results */}
         <RevealText delay={0.35}>
           <LocationsFilter
             divisions={divisions}
@@ -144,53 +142,9 @@ export default function FindUs() {
             isLoading={isLoading}
             fetchLocations={fetchLocations}
             t={t}
+            locations={locations.filter((loc) => !loc.isMain)}
           />
         </RevealText>
-
-        {/* Locations List and Map */}
-        {locations.length === 0 && !isLoading ? (
-          <div className="flex flex-col items-center justify-center p-[60px] border border-[rgba(255,255,255,0.1)] rounded-[16px] bg-[#E9E9E9]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#D1A52A"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mb-4"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-            <h3 className="text-[#1E1E1E] text-[1.5rem] font-bold mb-[8px]">{t("contact.noLocations")}</h3>
-            <p className="text-[#666] text-[1rem]">{t("contact.noLocationsDesc")}</p>
-          </div>
-        ) : (
-          <div className="flex flex-col lg:flex-row gap-[40px] md:gap-[80px]">
-            {/* Left Column - List */}
-            <div className="w-full lg:w-[45%] shrink-0">
-              <RevealText delay={0.4}>
-                <LocationsList
-                  isLoading={isLoading}
-                  locations={locations.filter((loc) => !loc.isMain)}
-                  activeLocation={activeLocation}
-                  setActiveLocation={setActiveLocation}
-                />
-              </RevealText>
-            </div>
-
-            {/* Right Column - Map */}
-            <div className="w-full flex-1 min-h-[400px] lg:min-h-[500px]">
-              <RevealImage delay={0.5}>
-                <LocationsMap isLoading={isLoading} activeLocation={activeLocation} t={t} />
-              </RevealImage>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

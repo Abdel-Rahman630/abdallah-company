@@ -20,7 +20,7 @@ export default function ContactSocials() {
       </RevealText>
 
       <RevealText delay={0.5}>
-        <ul className="flex lg:flex-col gap-[8px] mb-[32px]">
+        <ul className="flex flex-col gap-[8px] mb-[32px]">
           {/* LinkedIn */}
           <li className="p-[16px] border border-[#E5E7EB] rounded-[10px] bg-white w-full">
             <a

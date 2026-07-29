@@ -40,7 +40,8 @@ export function useFindUs() {
           subDivision: item.sub_divisions?.map((s) => s.label).join(", ") || "",
           isMain: item.is_main === true,
           city: item.city || "",
-        }));
+          sortOrder: typeof item.sort_order === 'number' ? item.sort_order : 9999,
+        })).sort((a: { sortOrder: number; }, b: { sortOrder: number; }) => a.sortOrder - b.sortOrder);
 
         setLocations(mapped);
 

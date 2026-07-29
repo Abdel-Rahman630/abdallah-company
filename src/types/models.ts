@@ -59,6 +59,7 @@ export type Location = {
   subDivision?: string;
   isMain?: boolean;
   city?: string;
+  sortOrder?: number;
 };
 // ─── News ───────────────────────────────────────────────────────────────────
 
@@ -403,6 +404,7 @@ export interface ApiLocation {
   division?: string | { label: string; value: string | number };
   sub_divisions?: { label: string; value: string | number }[];
   is_main?: boolean | number | string;
+  sort_order?: number;
 }
 
 export interface ScreenshotButtonProps {
