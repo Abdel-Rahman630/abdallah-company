@@ -4,12 +4,12 @@ import { LocationsFilterProps, Location } from "@/types/models";
 
 export default function LocationsFilter({
   divisions,
-  subDivisions,
+  departments,
   cities,
   selectedDivision,
   setSelectedDivision,
-  selectedSubDivision,
-  setSelectedSubDivision,
+  selectedDepartment,
+  setSelectedDepartment,
   selectedCity,
   setSelectedCity,
   handleFilter,
@@ -78,17 +78,17 @@ export default function LocationsFilter({
           </div>
 
           <div className="relative w-full md:w-1/4">
-            <label htmlFor="sub-division-select" className="sr-only">
-              Sub Division
+            <label htmlFor="department-select" className="sr-only">
+              Department
             </label>
             <select
-              id="sub-division-select"
-              value={selectedSubDivision}
-              onChange={(e) => setSelectedSubDivision(e.target.value)}
+              id="department-select"
+              value={selectedDepartment}
+              onChange={(e) => setSelectedDepartment(e.target.value)}
               className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
             >
-              <option value="">{t("contact.selectSubDivision")}</option>
-              {subDivisions.map((d) => (
+              <option value="">{t("contact.selectDepartment")}</option>
+              {departments.map((d) => (
                 <option key={d.value} value={d.value}>
                   {d.label}
                 </option>
@@ -156,7 +156,7 @@ export default function LocationsFilter({
             type="button"
             onClick={() => {
               setSelectedDivision("");
-              setSelectedSubDivision("");
+              setSelectedDepartment("");
               setSelectedCity("");
               fetchLocations({ division: "", subDivision: "", city: "" });
             }}
@@ -178,8 +178,11 @@ export default function LocationsFilter({
         {locations.length === 0 ? (
           <div className="flex p-[35px] lg:p-[50px] flex-col rounded-[5px] bg-[#FFF] items-center justify-center border border-[#E5E5E5]">
             <span className="text-[#1E1E1E] text-[1.5rem] font-semibold">
-              There is no locations
+              {t("contact.noLocations")}
             </span>
+            <p className="text-[#666666] text-[1rem] mt-2">
+              {t("contact.noLocationsDesc")}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-[40px] gap-y-[40px]">
@@ -230,7 +233,10 @@ export default function LocationsFilter({
                       href={mapUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-[10px] justify-end"
+                      onClick={(e) => mapUrl === "#" && e.preventDefault()}
+                      className={`flex items-center gap-[10px] justify-end ${
+                        mapUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

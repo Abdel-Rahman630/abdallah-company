@@ -398,11 +398,12 @@ export interface ApiLocation {
   title?: string;
   branch?: string;
   city?: string;
+  city_id?: number;
   facility_type?: string;
   address?: string;
   google_maps_url?: string;
-  division?: string | { label: string; value: string | number };
-  sub_divisions?: { label: string; value: string | number }[];
+  division?: { value: string | number; key: string; label: string }[];
+  department?: { value: string | number; key: string; label: string }[];
   is_main?: boolean | number | string;
   sort_order?: number;
 }
@@ -429,13 +430,13 @@ export interface LocationsListProps {
 }
 
 export interface LocationsFilterProps {
-  divisions: any[];
-  subDivisions: any[];
-  cities: any[];
+  divisions: OptionItem[];
+  departments: OptionItem[];
+  cities: string[];
   selectedDivision: string;
   setSelectedDivision: (val: string) => void;
-  selectedSubDivision: string;
-  setSelectedSubDivision: (val: string) => void;
+  selectedDepartment: string;
+  setSelectedDepartment: (val: string) => void;
   selectedCity: string;
   setSelectedCity: (val: string) => void;
   handleFilter: () => void;
@@ -444,3 +445,9 @@ export interface LocationsFilterProps {
   t: (key: string) => string;
 }
 
+export interface LocationsApiResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: ApiLocation[];
+}

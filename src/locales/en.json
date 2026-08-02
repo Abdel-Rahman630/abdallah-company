@@ -72,6 +72,7 @@
     "openInMap": "Open pin in Google Maps",
     "selectDivision": "Select Division",
     "selectSubDivision": "Select Sub Division",
+    "selectDepartment": "Select Department",
     "selectCity": "Select City"
   },
   "events": {

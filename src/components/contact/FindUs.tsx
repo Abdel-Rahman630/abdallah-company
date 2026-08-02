@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useFindUs } from "@/hooks/contact/useFindUs";
-import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
+import { RevealText } from "@/components/ui/ScrollReveal";
 import SubTitle from "@/components/ui/SubTitle";
 import { useLanguage } from "@/providers/LanguageProvider";
 import LocationsFilter from "./LocationsFilter";
@@ -15,19 +14,18 @@ export default function FindUs() {
     mainLocations,
     isLoading,
     fetchLocations,
+    handleFilter,
     divisions,
-    subDivisions,
+    departments,
     cities,
+    selectedDivision,
+    setSelectedDivision,
+    selectedDepartment,
+    setSelectedDepartment,
+    selectedCity,
+    setSelectedCity,
   } = useFindUs();
   const { t } = useLanguage();
-
-  const [selectedDivision, setSelectedDivision] = useState("");
-  const [selectedSubDivision, setSelectedSubDivision] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-
-  const handleFilter = () => {
-    fetchLocations({ division: selectedDivision, subDivision: selectedSubDivision, city: selectedCity });
-  };
 
   return (
     <section id="find-us" className="bg-[#F9F9F9] py-[100px]">
@@ -130,12 +128,19 @@ export default function FindUs() {
         <RevealText delay={0.35}>
           <LocationsFilter
             divisions={divisions}
-            subDivisions={subDivisions}
+            departments={departments}
             cities={cities}
             selectedDivision={selectedDivision}
-            setSelectedDivision={setSelectedDivision}
-            selectedSubDivision={selectedSubDivision}
-            setSelectedSubDivision={setSelectedSubDivision}
+            setSelectedDivision={(val) => {
+              setSelectedDivision(val);
+              setSelectedDepartment("");
+              setSelectedCity("");
+            }}
+            selectedDepartment={selectedDepartment}
+            setSelectedDepartment={(val) => {
+              setSelectedDepartment(val);
+              setSelectedCity("");
+            }}
             selectedCity={selectedCity}
             setSelectedCity={setSelectedCity}
             handleFilter={handleFilter}
