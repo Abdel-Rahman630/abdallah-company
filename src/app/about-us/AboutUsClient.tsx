@@ -40,7 +40,7 @@ export default function AboutUsClient() {
               <RevealImage className="w-full h-full flex-1">
                 <div className="w-full h-full relative rounded-[10px] overflow-hidden">
                   <Image
-                    src="/1.png"
+                    src="/aboutSection.png"
                     alt="Company Overview"
                     fill
                     className="object-cover"
