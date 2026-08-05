@@ -19,10 +19,11 @@ export default function LocationsFilter({
   locations = [],
 }: LocationsFilterProps & { locations?: Location[] }) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [hasFiltered, setHasFiltered] = useState(false);
   const [prevLocationsLength, setPrevLocationsLength] = useState(
     locations.length,
   );
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
   const pageCount = Math.ceil(locations.length / itemsPerPage);
 
   // Reset page when filter results change
@@ -51,7 +52,11 @@ export default function LocationsFilter({
             <select
               id="division-select"
               value={selectedDivision}
-              onChange={(e) => setSelectedDivision(e.target.value)}
+              onChange={(e) => {
+                setSelectedDivision(e.target.value);
+                setSelectedDepartment("");
+                setSelectedCity("");
+              }}
               className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
             >
               <option value="">{t("contact.selectDivision")}</option>
@@ -84,15 +89,20 @@ export default function LocationsFilter({
             <select
               id="department-select"
               value={selectedDepartment}
-              onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
+              onChange={(e) => {
+                setSelectedDepartment(e.target.value);
+                setSelectedCity("");
+              }}
+              disabled={!selectedDivision}
+              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDivision ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <option value="">{t("contact.selectDepartment")}</option>
-              {departments.map((d) => (
-                <option key={d.value} value={d.value}>
-                  {d.label}
-                </option>
-              ))}
+              {selectedDivision &&
+                departments.map((d) => (
+                  <option key={d.value} value={d.value}>
+                    {d.label}
+                  </option>
+                ))}
             </select>
             <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
               <svg
@@ -118,14 +128,16 @@ export default function LocationsFilter({
               id="city-select"
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
+              disabled={!selectedDepartment}
+              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDepartment ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <option value="">{t("contact.selectCity")}</option>
-              {cities.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
+              {selectedDepartment &&
+                cities.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
             </select>
             <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
               <svg
@@ -145,7 +157,10 @@ export default function LocationsFilter({
 
           <button
             type="button"
-            onClick={handleFilter}
+            onClick={() => {
+              setHasFiltered(true);
+              handleFilter();
+            }}
             disabled={isLoading}
             aria-label="Filter locations"
             className="w-full md:w-auto bg-[#D1A52A] px-[32px] py-[16px] text-[#1E1E1E] text-[0.875rem] rounded-[4px] flex items-center justify-center gap-[10px]"
@@ -155,6 +170,7 @@ export default function LocationsFilter({
           <button
             type="button"
             onClick={() => {
+              setHasFiltered(false);
               setSelectedDivision("");
               setSelectedDepartment("");
               setSelectedCity("");
@@ -170,6 +186,7 @@ export default function LocationsFilter({
       </div>
 
       {/* Results Section */}
+      {hasFiltered && (
       <div className="flex flex-col w-full">
         <p className="text-[#231F20] text-[1rem] font-normal pb-[8px] border-b border-[#E5E5E5] mb-[40px]">
           ({locations.length}) Locations Found
@@ -185,7 +202,7 @@ export default function LocationsFilter({
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-x-[40px] gap-y-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[40px]">
             {currentItems.map((loc) => {
               const mapUrl =
                 loc.googleMapsUrl ||
@@ -195,12 +212,13 @@ export default function LocationsFilter({
 
               return (
                 <div key={loc.id} className="flex flex-col">
-                  <div className="flex p-[35px] lg:p-[50px] flex-col rounded-[5px] bg-[#FFF]">
-                    <div className="text-[#1E1E1E] text-[2rem] font-semibold mb-[1rem]">
+                  <div className="flex p-[35px] flex-col rounded-[5px] bg-[#FFF]">
+                    <div className="text-[#1E1E1E] text-[1.5rem] font-semibold mb-[1rem]">
                       {loc.title}
                     </div>
-                    <div className="flex items-center gap-[12px] mb-[32px]">
-                      <svg
+                    <div className="mb-[24px]">
+                     {/* <div className="mb-[8px] flex items-center gap-2">
+                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"
@@ -222,7 +240,8 @@ export default function LocationsFilter({
                       <span className="text-[#1E1E1E] text-[1.2rem] font-semibold">
                         Address:
                       </span>
-                      <p className="text-[#231F20] text-[1.2rem] font-normal mb-[0]">
+                     </div> */}
+                      <p className="text-[#231F20] text-[1rem] font-normal mb-[0]">
                       {loc.paragraph}
                     </p>
                     </div>
@@ -234,9 +253,7 @@ export default function LocationsFilter({
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => mapUrl === "#" && e.preventDefault()}
-                      className={`flex items-center gap-[10px] justify-end ${
-                        mapUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`flex items-center gap-[10px]`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -330,6 +347,7 @@ export default function LocationsFilter({
           </nav>
         )}
       </div>
+      )}
     </div>
   );
 }

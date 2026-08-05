@@ -4,18 +4,14 @@ import Image from "next/image";
 import SubTitle from "@/components/ui/SubTitle";
 import ArrowButtonLink from "@/components/ui/ArrowButtonLink";
 import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function WhyJoinUs() {
   const { t } = useLanguage();
   const imgRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: imgRef,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -83,7 +79,6 @@ export default function WhyJoinUs() {
                   ref={imgRef}
                   className="relative w-full lg:h-[870px] md:h-[500px] h-[350px] overflow-hidden rounded-[10px]"
                 >
-                  <motion.div style={{ y }} className="absolute w-full h-[130%] -top-[15%]">
                     <Image
                       src="/careerSection.jpg"
                       alt="Build Your Future"
@@ -91,7 +86,7 @@ export default function WhyJoinUs() {
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
-                  </motion.div>
+                  
                 </div>
               </RevealImage>
             </div>
