@@ -17,7 +17,7 @@ export async function apiGet<T>(endpoint: string, options: FetchOptions = {}): P
   const { revalidate, tags, ...fetchOptions } = options;
 
   const nextOptions: { next?: { revalidate?: number | false; tags?: string[] } } = {};
-  if (revalidate !== undefined || tags) {
+  if (isServer && (revalidate !== undefined || tags)) {
     nextOptions.next = {};
     if (revalidate !== undefined) nextOptions.next.revalidate = revalidate;
     if (tags) nextOptions.next.tags = tags;

@@ -23,7 +23,7 @@ export default function LocationsFilter({
   const [prevLocationsLength, setPrevLocationsLength] = useState(
     locations.length,
   );
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
   const pageCount = Math.ceil(locations.length / itemsPerPage);
 
   // Reset page when filter results change
@@ -202,7 +202,7 @@ export default function LocationsFilter({
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[40px] gap-y-[40px]">
             {currentItems.map((loc) => {
               const mapUrl =
                 loc.googleMapsUrl ||
@@ -211,12 +211,12 @@ export default function LocationsFilter({
                   : "#");
 
               return (
-                <div key={loc.id} className="flex flex-col">
-                  <div className="flex p-[35px] flex-col rounded-[5px] bg-[#FFF]">
-                    <div className="text-[#1E1E1E] text-[1.5rem] font-semibold mb-[1rem]">
+                <div key={loc.id} className="flex flex-col h-full">
+                  <div className="flex h-full md:min-h-[292px] p-[35px] flex-col justify-between rounded-[5px] bg-[#FFF]">
+                    <div className="text-[#1E1E1E] text-[1.5rem] font-semibold">
                       {loc.title}
                     </div>
-                    <div className="mb-[24px]">
+                    <div>
                      {/* <div className="mb-[8px] flex items-center gap-2">
                        <svg
                         xmlns="http://www.w3.org/2000/svg"
