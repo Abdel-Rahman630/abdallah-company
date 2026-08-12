@@ -64,7 +64,7 @@ export default function ContactSocials() {
           {/* Phone */}
           <li className="p-[16px] border border-[#E5E7EB] rounded-[10px] bg-white w-full">
             <a
-              href="tel:966126621500 "
+              href="tel:966126621500"
               className="flex items-center gap-[20px] group w-full"
             >
               <div className="w-[48px] h-[48px] rounded-[24px] bg-[#F9F9F9] flex items-center justify-center shrink-0">
@@ -75,7 +75,7 @@ export default function ContactSocials() {
                   Phone Number
                 </h4>
                 <span className="text-[#6B7280] text-[14px] font-normal">
-                  +966 126 621 500 
+                  +966 12 6621500
                 </span>
               </div>
             </a>
