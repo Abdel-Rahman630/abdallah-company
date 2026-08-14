@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -101,6 +102,19 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col font-sans bg-white" suppressHydrationWarning>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N4S2XRZPK7"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N4S2XRZPK7');
+          `}
+        </Script>
         <LanguageProvider initialLocale={locale}>
           <LoadingProvider>
             <PageLoader />
