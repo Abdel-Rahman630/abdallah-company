@@ -15,7 +15,7 @@ import { getEvents } from "@/services/events.service";
 import { EventItem, EventSlideItem } from "@/types/models";
 import { formatDateParts } from "@/lib/utils";
 
-export default function UpcomingEventsSlider() {
+export default function UpcomingEventsSlider({ onEventsFetched }: { onEventsFetched?: (hasEvents: boolean) => void }) {
   const [events, setEvents] = useState<EventSlideItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,7 +26,10 @@ export default function UpcomingEventsSlider() {
         const response = await getEvents({ lang: "en" });
         const data = response.data;
        
-        if (!Array.isArray(data) || data.length === 0) return;
+        if (!Array.isArray(data) || data.length === 0) {
+          onEventsFetched?.(false);
+          return;
+        }
 
         const mapped: EventSlideItem[] = data.map((item: EventItem) => {
           const dateStr = item.formatted_date || item.date || item.start_date || item.created_at;
@@ -42,8 +45,10 @@ export default function UpcomingEventsSlider() {
           };
         });
         setEvents(mapped);
+        onEventsFetched?.(true);
       } catch (error) {
         console.error("Failed to fetch events:", error);
+        onEventsFetched?.(false);
       } finally {
         setIsLoading(false);
       }
@@ -65,11 +70,7 @@ export default function UpcomingEventsSlider() {
 
   if (events.length === 0) {
     return (
-      <div className="leftContainer py-[8px]">
-        <p className="text-[#727272] text-[0.95rem] font-normal">
-          There are no upcoming events right now. Stay tuned for future announcements.
-        </p>
-      </div>
+      null
     );
   }
 

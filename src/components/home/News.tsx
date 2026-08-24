@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { RevealText } from "@/components/ui/ScrollReveal";
@@ -12,6 +13,7 @@ import { useNewsletter } from "@/hooks/home/useNewsletter";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function News() {
+  const [hasEvents, setHasEvents] = useState(true);
   const { t } = useLanguage();
   const { firstNews, otherNews, isLoading } = useHomeNews();
   const { email, setEmail, divisionId, setDivisionId, divisions, subscribeStatus, handleSubscribe } = useNewsletter();
@@ -135,7 +137,7 @@ export default function News() {
         </div>
 
         {/* Newsletter Div */}
-        <div className="pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C] w-full">
+        <div className={` ${hasEvents && "pb-[50px] mb-[50px] border-b-[4px] border-[#C9A84C]"}  w-full`}> 
           <RevealText delay={0.5}>
             <div className="rounded-[12px] border border-[#C6C6C6] flex md:flex-row flex-col md:items-center p-[24px] gap-[1rem]">
               <div className="flex-1 min-w-0">
@@ -208,19 +210,21 @@ export default function News() {
         </div>
 
         {/* Upcoming Events Header */}
-        <div className="flex items-center justify-between mb-[40px]">
-          <RevealText delay={0.1}>
-            <h2 className="text-[#1A1A1A] text-[1.5rem] font-bold uppercase">{t("events.upcoming")}</h2>
-          </RevealText>
-          <RevealText delay={0.2}>
-            <ArrowLink href="/news#events" color="black">
-              {t("events.readMore")}
-            </ArrowLink>
-          </RevealText>
-        </div>
+        {hasEvents && (
+          <div className="flex items-center justify-between mb-[40px]">
+            <RevealText delay={0.1}>
+              <h2 className="text-[#1A1A1A] text-[1.5rem] font-bold uppercase">{t("events.upcoming")}</h2>
+            </RevealText>
+            <RevealText delay={0.2}>
+              <ArrowLink href="/news#events" color="black">
+                {t("events.readMore")}
+              </ArrowLink>
+            </RevealText>
+          </div>
+        )}
       </div>
 
-      <UpcomingEventsSlider />
+      <UpcomingEventsSlider onEventsFetched={setHasEvents} />
     </section>
   );
 }
