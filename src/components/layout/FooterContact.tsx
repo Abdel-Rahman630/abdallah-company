@@ -14,6 +14,7 @@ export default function FooterContact({ t }: { t: (key: string) => string }) {
       <ul className="space-y-[12px]">
         <li>
           <Link
+            prefetch={false}
             target="_blank"
             href="/contact-us"
             className="flex items-start gap-[10px] text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
