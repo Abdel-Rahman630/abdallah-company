@@ -36,7 +36,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
   }
 
   return (
-    <Link href={`/events/${id}`} className="block group relative w-[260px] h-[222px] rounded-[5px] overflow-hidden cursor-pointer shrink-0">
+    <Link href={`/events/${id}`} prefetch={false} className="block group relative w-[260px] h-[222px] rounded-[5px] overflow-hidden cursor-pointer shrink-0">
       <Image
         src={image}
         alt={title}

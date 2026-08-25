@@ -51,6 +51,7 @@ export default function News({
               {firstNews ? (
                 <Link
                   href={firstNews.slug ? `/news/${firstNews.slug}` : `/news/${firstNews.id}`}
+                  prefetch={false}
                   className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[350px] md:h-[490px] bg-cover bg-center group block"
                   style={{ backgroundImage: `url(${firstNews.image})` }}
                   aria-label={`Read more: ${firstNews.title}`}
@@ -99,6 +100,7 @@ export default function News({
               {otherNews.map((news, idx) => (
                     <Link
                       href={news.slug ? `/news/${news.slug}` : `/news/${news.id}`}
+                      prefetch={false}
                       key={`news-${idx}`}
                       className="flex gap-[20px] border-b border-[#E5E5E5] pb-[1rem] pt-[32px] last:border-b-0 last:pt-0"
                       aria-label={`Read: ${news.title}`}

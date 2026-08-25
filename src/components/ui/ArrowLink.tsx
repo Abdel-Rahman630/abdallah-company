@@ -18,7 +18,7 @@ export default function ArrowLink({ href = "#", children, color = "white", class
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} prefetch={false} className={classes}>
       {children}
       <ArrowIcon color={color} />
     </Link>
