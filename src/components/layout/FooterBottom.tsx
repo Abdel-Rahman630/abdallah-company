@@ -15,11 +15,11 @@ export default function FooterBottom({ t }: { t: (key: string) => string }) {
         </Link>
       </div>
       <div className="lg:order-3 order-1 flex items-center text-[#FFF] text-[0.75rem] font-normal">
-        <Link href="/privacy-policy" className="hover:text-gray-300 transition">
+        <Link href="/privacy-policy" prefetch={false} className="hover:text-gray-300 transition">
           {t("footer.privacy")}
         </Link>
         <span className="w-[1px] h-[12px] bg-[rgba(255,255,255,0.30)] mx-[16px]"></span>
-        <Link href="/cookies-policy" className="hover:text-gray-300 transition">
+        <Link href="/cookies-policy" prefetch={false} className="hover:text-gray-300 transition">
           Cookies Policy
         </Link>
       </div>
