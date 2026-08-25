@@ -1,39 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Division } from "@/types/models";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { useDivisions } from "@/providers/DivisionsProvider";
 
-export function useOurProducts() {
-  const { locale } = useLanguage();
-  const [products, setProducts] = useState<Division[]>([]);
+/**
+ * Manages active product selection for the Our Products section.
+ *
+ * - Divisions data comes from DivisionsProvider (fetched once on the server in layout.tsx).
+ * - initialProducts allows the home page to pre-select with server-fetched data.
+ * - Zero client-side fetch — no redundant network requests.
+ */
+export function useOurProducts(initialProducts?: Division[]) {
+  const contextDivisions = useDivisions();
+  const products = (initialProducts && initialProducts.length > 0)
+    ? initialProducts
+    : contextDivisions;
+
   const [activeIndex, setActiveIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const res = await fetch(
-          `/api/cms/home/divisions?lang=${locale}`
-        );
-        if (!res.ok) {
-          throw new Error(`Failed to fetch products: ${res.statusText}`);
-        }
-        const json = await res.json();
-        if (json && json.data) {
-          setProducts(Array.isArray(json.data) ? json.data : []);
-        } else if (Array.isArray(json)) {
-          setProducts(json);
-        } else {
-          setProducts([]);
-        }
-      } catch (err) {
-        console.error("fetchProducts error:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchProducts();
-  }, [locale]);
-
   const active = products[activeIndex] || null;
 
   return {
@@ -41,6 +23,6 @@ export function useOurProducts() {
     activeIndex,
     setActiveIndex,
     active,
-    loading,
+    loading: false,
   };
 }

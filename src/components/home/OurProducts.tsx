@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { useOurProducts } from "@/hooks/home/useOurProducts";
+import { Division } from "@/types/models";
 
-export default function OurProducts() {
-  const { products, activeIndex, setActiveIndex, active, loading } = useOurProducts();
+export default function OurProducts({ initialProducts = [] }: { initialProducts?: Division[] }) {
+  const { products, activeIndex, setActiveIndex, active, loading } = useOurProducts(initialProducts);
 
   const truncate = (text: string | undefined, max: number) =>
     text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;

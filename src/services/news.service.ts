@@ -1,6 +1,20 @@
 import { apiGet } from "./apiClient";
 import type { ApiResponse, NewsItem, SingleNewsResponse } from "@/types/models";
 
+const REVALIDATE_TIME = 900; // 1 hour
+
+/**
+ * Fetches the 4 latest news articles for the home page.
+ * Called from Server Components — cached for 1 hour.
+ */
+export async function getHomeNews(lang: string = "en"): Promise<NewsItem[]> {
+  const res = await apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news?limit=4&lang=${lang}`, {
+    revalidate: REVALIDATE_TIME,
+    tags: ["news", "home-news"],
+  });
+  return Array.isArray(res?.data) ? res.data : [];
+}
+
 /**
  * Fetches a paginated list of news articles.
  */
@@ -18,7 +32,7 @@ export async function getNews(params?: {
 
   const qs = query.toString() ? `?${query.toString()}` : "";
   return apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news${qs}`, {
-    revalidate: 60,
+    revalidate: REVALIDATE_TIME,
     tags: ["news"],
   });
 }

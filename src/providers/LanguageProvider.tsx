@@ -6,7 +6,9 @@ import { Locale, LanguageContextProps } from "@/types/models";
 import enTranslations from "@/locales/en.json";
 import arTranslations from "@/locales/ar.json";
 
-const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextProps | undefined>(
+  undefined,
+);
 
 export function LanguageProvider({
   children,
@@ -19,7 +21,10 @@ export function LanguageProvider({
   const router = useRouter();
 
   // Helper to get nested translation keys e.g. "header.store"
-  const getNestedTranslation = (obj: Record<string, unknown>, path: string): string | undefined => {
+  const getNestedTranslation = (
+    obj: Record<string, unknown>,
+    path: string,
+  ): string | undefined => {
     return path.split(".").reduce((acc: unknown, part: string) => {
       if (acc && typeof acc === "object" && part in acc) {
         return (acc as Record<string, unknown>)[part];
@@ -34,13 +39,13 @@ export function LanguageProvider({
   };
 
   const setLocale = (newLocale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=3159000`;
     setLocaleState(newLocale);
-    
+
     // Update HTML attributes for client-side immediate feedback
     document.documentElement.lang = newLocale;
     document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
-    
+
     router.refresh(); // Refresh the server components to use new locale
   };
 

@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://cms.ahcl.com.sa";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "https://cms.ahcl.com.sa";
 
 const cspHeader = `
   default-src 'self';
@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http",
+        hostname: "cms.ahcl.com.sa",
+      },
+      {
+        protocol: "https",
         hostname: "cms.ahcl.com.sa",
       },
     ],
@@ -44,6 +48,15 @@ const nextConfig: NextConfig = {
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+      {
+        source: "/:path*.(mp4|png|jpg|jpeg|svg|gif|ico|webp)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

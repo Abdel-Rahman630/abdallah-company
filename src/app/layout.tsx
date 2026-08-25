@@ -7,8 +7,10 @@ import Footer from "@/components/layout/Footer";
 import JoinUs from "@/components/layout/JoinUs";
 import { LoadingProvider } from "@/providers/LoadingProvider";
 import { LanguageProvider } from "@/providers/LanguageProvider";
+import { DivisionsProvider } from "@/providers/DivisionsProvider";
 import PageLoader from "@/components/ui/PageLoader";
 import { cookies } from "next/headers";
+import { getHomeDivisions } from "@/services/divisions.service";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,6 +96,9 @@ export default async function RootLayout({
   const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as "en" | "ar";
   const dir = locale === "ar" ? "rtl" : "ltr";
 
+  // Fetch divisions once on the server — shared across Header, Footer, and all pages.
+  const divisions = await getHomeDivisions().catch(() => []);
+
   return (
     <html
       lang={locale}
@@ -116,15 +121,17 @@ export default async function RootLayout({
           `}
         </Script>
         <LanguageProvider initialLocale={locale}>
-          <LoadingProvider>
-            <PageLoader />
-            <Header />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <JoinUs />
-            <Footer />
-          </LoadingProvider>
+          <DivisionsProvider divisions={divisions}>
+            <LoadingProvider>
+              <PageLoader />
+              <Header />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <JoinUs />
+              <Footer />
+            </LoadingProvider>
+          </DivisionsProvider>
         </LanguageProvider>
       </body>
     </html>

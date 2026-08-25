@@ -11,11 +11,18 @@ import UpcomingEventsSlider from "@/components/sliders/UpcomingEventsSlider";
 import { useHomeNews } from "@/hooks/home/useHomeNews";
 import { useNewsletter } from "@/hooks/home/useNewsletter";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { EventItem, NewsItem } from "@/types/models";
 
-export default function News() {
-  const [hasEvents, setHasEvents] = useState(true);
+export default function News({
+  initialNews = [],
+  initialEvents = [],
+}: {
+  initialNews?: NewsItem[];
+  initialEvents?: EventItem[];
+}) {
+  const [hasEvents, setHasEvents] = useState(initialEvents.length > 0);
   const { t } = useLanguage();
-  const { firstNews, otherNews, isLoading } = useHomeNews();
+  const { firstNews, otherNews } = useHomeNews(initialNews);
   const { email, setEmail, divisionId, setDivisionId, divisions, subscribeStatus, handleSubscribe } = useNewsletter();
 
   return (
@@ -41,13 +48,7 @@ export default function News() {
           <div className="w-full lg:w-1/2">
         
             <RevealText delay={0.3}>
-              {isLoading ? (
-                <div
-                  className="shimmer h-[645px] w-full rounded-[15px]"
-                  role="status"
-                  aria-label="Loading featured news"
-                />
-              ) : firstNews ? (
+              {firstNews ? (
                 <Link
                   href={firstNews.slug ? `/news/${firstNews.slug}` : `/news/${firstNews.id}`}
                   className="relative rounded-[15px] overflow-hidden flex flex-col justify-end p-[32px] md:p-[48px] h-[350px] md:h-[490px] bg-cover bg-center group block"
@@ -95,17 +96,7 @@ export default function News() {
 
             {/* List of News - Scrollable */}
             <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-              {isLoading
-                ? Array.from({ length: 3 }).map((_, idx) => (
-                    <div key={idx} className="flex gap-[20px] mb-[32px]" role="status" aria-label="Loading news">
-                      <div className="shimmer w-[120px] h-[120px] rounded-[8px] shrink-0" />
-                      <div className="flex flex-col flex-1 gap-2 py-2">
-                        <div className="shimmer h-[12px] w-[60px] rounded" />
-                        <div className="shimmer h-[20px] w-full rounded" />
-                      </div>
-                    </div>
-                  ))
-                : otherNews.map((news, idx) => (
+              {otherNews.map((news, idx) => (
                     <Link
                       href={news.slug ? `/news/${news.slug}` : `/news/${news.id}`}
                       key={`news-${idx}`}
@@ -224,7 +215,7 @@ export default function News() {
         )}
       </div>
 
-      <UpcomingEventsSlider onEventsFetched={setHasEvents} />
+      <UpcomingEventsSlider initialEvents={initialEvents} onEventsFetched={setHasEvents} />
     </section>
   );
 }

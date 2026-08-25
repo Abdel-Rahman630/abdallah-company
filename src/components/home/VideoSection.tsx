@@ -8,14 +8,14 @@ export default function VideoSection() {
     <section className="relative h-[700px] w-full">
       <video 
         className="w-full h-full object-cover"
+        src="/banner4.mp4"
         autoPlay 
         muted 
         loop 
         playsInline
+        poster="/banner6.png"
         aria-hidden="true"
-      >
-        <source src="/banner.mp4" type="video/mp4" />
-      </video>
+      />
 
       {/* Overlay Layer */}
       <div 

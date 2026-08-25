@@ -1,9 +1,23 @@
 import { apiGet, apiPost } from "./apiClient";
 import type { ApiResponse, EventItem } from "@/types/models";
 
+const REVALIDATE_TIME = 900; // 1 hour
+
+/**
+ * Fetches upcoming events for the home page slider.
+ * Called from Server Components — cached for 1 hour.
+ */
+export async function getHomeEvents(lang: string = "en"): Promise<EventItem[]> {
+  const res = await apiGet<ApiResponse<EventItem[]>>(`/api/cms/events?lang=${lang}`, {
+    revalidate: REVALIDATE_TIME,
+    tags: ["events", "home-events"],
+  });
+  return Array.isArray(res?.data) ? res.data : [];
+}
+
 /**
  * Fetches a paginated list of events.
- * Called from Server Components — cached for 60s.
+ * Called from Server Components — cached for 1 hour.
  */
 export async function getEvents(params?: {
   page?: number;
@@ -21,7 +35,7 @@ export async function getEvents(params?: {
 
   const qs = query.toString();
   return apiGet<ApiResponse<EventItem[]>>(`/api/cms/events${qs ? '?' + qs : ''}`, {
-    revalidate: 60,
+    revalidate: REVALIDATE_TIME,
     tags: ["events"],
   });
 }
@@ -38,12 +52,20 @@ export async function getEventById(id: string | number, lang?: string): Promise<
   return res.data;
 }
 
+export interface EventRequestResponse {
+  status: boolean;
+  message: string;
+}
+
 /**
  * Submits an event interest request.
  */
 export async function submitEventRequest(
   eventId: string | number,
   data: { name: string; phone: string; email: string }
-): Promise<any> {
-  return apiPost(`/api/cms/events/${eventId}/requests`, data);
+): Promise<EventRequestResponse> {
+  return apiPost<{ name: string; phone: string; email: string }, EventRequestResponse>(
+    `/api/cms/events/${eventId}/requests`,
+    data
+  );
 }
