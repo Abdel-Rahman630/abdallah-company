@@ -20,27 +20,27 @@ export default function FooterLinks({
         </h2>
         <ul className="space-y-[12px]">
           <li>
-            <Link href="/" className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+            <Link href="/" prefetch={false} className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
               {t("footer.home")}
             </Link>
           </li>
           <li>
-            <Link href="/about-us" className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+            <Link href="/about-us" prefetch={false} className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
               {t("footer.about")}
             </Link>
           </li>
           <li>
-            <Link href="/news" className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+            <Link href="/news" prefetch={false} className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
               {t("footer.news")}
             </Link>
           </li>
           <li>
-            <Link href="/careers" className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+            <Link href="/careers" prefetch={false} className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
               {t("footer.careers")}
             </Link>
           </li>
           <li>
-            <Link href="https://ahcl-store.com.sa/ar" target="_blank" className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
+            <Link href="https://ahcl-store.com.sa/ar" target="_blank" prefetch={false} className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition">
               {t("footer.store")}
             </Link>
           </li>
@@ -65,6 +65,7 @@ export default function FooterLinks({
               <li key={product.id}>
                 <Link
                   href={`/divisions/${product.slug}#${product.slug}`}
+                  prefetch={false}
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >
                   {product.name}

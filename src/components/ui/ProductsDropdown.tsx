@@ -61,6 +61,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
                 <Link
                   href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
                   onClick={onClose}
+                  prefetch={false}
                   className="text-white text-[1rem] font-medium underline"
                 >
                   {activeProduct.name}
@@ -118,6 +119,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
                 <Link
                   href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
                   onClick={onClose}
+                  prefetch={false}
                   className="text-[#FFF] text-[0.9rem] font-medium hover:underline cursor-pointer"
                 >
                   {activeProduct.title}

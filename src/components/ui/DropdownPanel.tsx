@@ -22,11 +22,13 @@ export default function DropdownPanel({ sectionTitle, boxes, image, isMobile, on
             <div className="flex gap-4 max-[1020px]:flex-col">
               {boxes.slice(0, 2).map((box, i) => {
                 const Wrapper = box.link ? Link : "div";
+                const isLink = !!box.link;
                 return (
                   <Wrapper
                     key={i}
                     href={box.link || "#"}
                     onClick={onLinkClick}
+                    {...(isLink ? { prefetch: false } : {})}
                     className="flex-1 cursor-pointer rounded-[5px] bg-[#2D2D2D] p-[10px] hover:bg-[#383838] transition-colors block"
                   >
                     <div className="flex items-center gap-[5px] pb-[13px]">
@@ -42,10 +44,12 @@ export default function DropdownPanel({ sectionTitle, boxes, image, isMobile, on
 
           {boxes.length === 1 && (() => {
             const Wrapper = boxes[0].link ? Link : "div";
+            const isLink = !!boxes[0].link;
             return (
               <Wrapper 
                 href={boxes[0].link || "#"}
                 onClick={onLinkClick}
+                {...(isLink ? { prefetch: false } : {})}
                 className="cursor-pointer rounded-[5px] bg-[#2D2D2D] p-[10px] hover:bg-[#383838] transition-colors block"
               >
                 <div className="flex items-center gap-[5px] pb-[13px]">
@@ -59,11 +63,13 @@ export default function DropdownPanel({ sectionTitle, boxes, image, isMobile, on
 
           {boxes.slice(2).map((box, i) => {
             const Wrapper = box.link ? Link : "div";
+            const isLink = !!box.link;
             return (
               <Wrapper
                 key={i}
                 href={box.link || "#"}
                 onClick={onLinkClick}
+                {...(isLink ? { prefetch: false } : {})}
                 className="cursor-pointer rounded-[5px] bg-[#2D2D2D] p-[10px] hover:bg-[#383838] transition-colors block"
               >
                 <div className="flex items-center gap-[5px] pb-[13px]">
