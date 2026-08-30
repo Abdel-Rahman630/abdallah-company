@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         alt: "Abdullah Hashim Company Logo",
       },
     ],
-    type: "website",
+    type: "Abdullah Hashim Company Limited | Official Website",
     locale: "en_US",
   },
   twitter: {
