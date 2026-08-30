@@ -21,6 +21,7 @@ export default async function Home() {
     getHomeNews(lang),
     getHomeEvents(lang),
   ]);
+  
 
   const initialNews = newsResult.status === "fulfilled" ? newsResult.value : [];
   const initialEvents =
