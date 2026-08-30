@@ -196,7 +196,7 @@ export interface JobItem {
   description: string;
   postedAt: string;
 }
-
+   
 // ─── Divisions & Brands ──────────────────────────────────────────────────────
 
 export interface BrandImage {
