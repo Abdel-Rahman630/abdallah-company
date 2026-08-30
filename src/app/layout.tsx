@@ -27,22 +27,21 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "Abdullah Hashim Company",
-    template: "%s | Abdullah Hashim Company",
+    default: "Abdullah Hashim Company Limited |  Officeial Website",
+    template: "%s | Abdullah Hashim Company Limited",
   },
   description:
-    "Abdullah Hashim Company (AHCL) — a leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors since 1950.",
+    "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
   keywords: [
-    "Abdullah Hashim Company",
+    "Abdullah Hashim Company Limited",
     "AHCL",
     "Saudi Arabia",
     "automotive",
-    "marine",
-    "agriculture",
-    "industrial",
+    "machinery",
+    "commercial trucks",
     "Honda",
   ],
-  authors: [{ name: "Abdullah Hashim Company", url: APP_URL }],
+  authors: [{ name: "Icon Creations" }],
   icons: {
     icon: [
       { url: "/LOGO2.png", type: "image/png" },
@@ -51,11 +50,11 @@ export const metadata: Metadata = {
     apple: "/LOGO2.png",
   },
   openGraph: {
-    title: "Abdullah Hashim Company",
+    title: "Abdullah Hashim Company Limited |  Officeial Website",
     description:
-      "A leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors.",
+      "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
     url: APP_URL,
-    siteName: "Abdullah Hashim Company",
+    siteName: "Abdullah Hashim Company Limited",
     images: [
       {
         url: "/LOGO2.png",
@@ -69,9 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdullah Hashim Company",
+    title: "Abdullah Hashim Company Limited |  Officeial Website",
     description:
-      "A leading Saudi conglomerate delivering excellence across automotive, marine, agriculture, and industrial sectors.",
+      "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
     images: ["/LOGO2.png"],
   },
   robots: {
