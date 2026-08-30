@@ -27,7 +27,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "Abdullah Hashim Company Limited |  Officeial Website",
+    default: "Abdullah Hashim Company Limited | Official Website",
     template: "%s | Abdullah Hashim Company Limited",
   },
   description:
@@ -43,14 +43,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Icon Creations" }],
   icons: {
-    icon: [
-      { url: "/LOGO2.png", type: "image/png" },
-    ],
+    icon: [{ url: "/LOGO2.png", type: "image/png" }],
     shortcut: "/LOGO2.png",
     apple: "/LOGO2.png",
   },
   openGraph: {
-    title: "Abdullah Hashim Company Limited |  Officeial Website",
+    title: "Abdullah Hashim Company Limited | Official Website",
     description:
       "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
     url: APP_URL,
@@ -63,12 +61,12 @@ export const metadata: Metadata = {
         alt: "Abdullah Hashim Company Logo",
       },
     ],
-    type: "Abdullah Hashim Company Limited | Official Website",
+    type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdullah Hashim Company Limited |  Officeial Website",
+    title: "Abdullah Hashim Company Limited | Official Website",
     description:
       "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
     images: ["/LOGO2.png"],
@@ -107,10 +105,7 @@ export default async function RootLayout({
     >
       <body className="min-h-screen flex flex-col font-sans bg-white" suppressHydrationWarning>
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-N4S2XRZPK7"
-          strategy="afterInteractive"
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-N4S2XRZPK7" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -124,9 +119,7 @@ export default async function RootLayout({
             <LoadingProvider>
               <PageLoader />
               <Header />
-              <main className="flex-grow">
-                {children}
-              </main>
+              <main className="flex-grow">{children}</main>
               <JoinUs />
               <Footer />
             </LoadingProvider>
