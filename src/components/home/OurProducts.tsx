@@ -6,12 +6,10 @@ import { RevealText } from "@/components/ui/ScrollReveal";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { useOurProducts } from "@/hooks/home/useOurProducts";
 import { Division } from "@/types/models";
+import { truncateText } from "@/lib/utils";
 
 export default function OurProducts({ initialProducts = [] }: { initialProducts?: Division[] }) {
   const { products, activeIndex, setActiveIndex, active, loading } = useOurProducts(initialProducts);
-
-  const truncate = (text: string | undefined, max: number) =>
-    text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;
 
   if (loading || !products || products.length === 0) {
     return (
@@ -38,7 +36,7 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
               src={active.home_image}
               alt={active.title || active.name}
               fill
-              className="object-cover md:object-center object-right"
+              className="object-cover md:object-center ltr:object-right rtl:object-left"
               priority
               sizes="100vw"
               unoptimized
@@ -72,9 +70,9 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
               {products.map((product, index) => (
                 <button
                   type="button"
-                  key={index}
+                  key={product.id || index}
                   onClick={() => setActiveIndex(index)}
-                  className={`text-left transition-all duration-500 focus:outline-none w-max px-4 py-2 ${
+                  className={`text-start transition-all duration-500 focus:outline-none w-max px-4 py-2 ${
                     activeIndex === index
                       ? "text-white text-[1.5rem] font-semibold rounded-[5px] bg-white/10 backdrop-blur-[10px]"
                       : "text-[#949494] text-[1.25rem] font-medium"
@@ -103,7 +101,7 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
                     {active?.title}
                   </h3>
                   <p className="md:mb-0 mb-6 text-white text-justify text-[1rem] font-normal">
-                    {truncate(active?.description, 200)}
+                    {truncateText(active?.description, 200)}
                   </p>
                 </div>
                 <ArrowLink href={`/divisions/${active?.slug}#${active?.slug}`}>More about {active?.title}</ArrowLink>

@@ -36,3 +36,33 @@ export function formatTime(dateStr?: string | null, locale: string = "en-US"): s
     hour12: true,
   });
 }
+
+/**
+ * Formats full CMS external URLs (e.g. https://www.ahcl.com.sa/about-us)
+ * to internal route paths (e.g. /about-us) if applicable.
+ */
+export function formatCtaUrl(url?: string): string {
+  if (!url) return "#";
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    try {
+      const parsed = new URL(url);
+      if (
+        parsed.hostname.includes("ahcl.com.sa") ||
+        parsed.hostname.includes("digital-iconcreations.com")
+      ) {
+        return (parsed.pathname || "/") + (parsed.hash || "");
+      }
+    } catch {
+      return url;
+    }
+  }
+  return url;
+}
+
+/**
+ * Truncates a string to a maximum number of characters, appending an ellipsis.
+ */
+export function truncateText(text: string | undefined, max: number): string {
+  if (!text) return "";
+  return text.length > max ? text.substring(0, max).trimEnd() + "\u2026" : text;
+}

@@ -8,7 +8,7 @@ export default function LocationsList({
   setActiveLocation,
 }: LocationsListProps) {
   return (
-    <ul className="flex flex-col h-[500px] overflow-y-auto pr-[16px] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#E9E9E9] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D1A52A] [&::-webkit-scrollbar-thumb]:rounded-full">
+    <ul className="flex flex-col h-[500px] overflow-y-auto pe-[16px] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#E9E9E9] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D1A52A] [&::-webkit-scrollbar-thumb]:rounded-full">
       {isLoading
         ? Array.from({ length: 5 }).map((_, i) => (
             <li

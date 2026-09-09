@@ -5,8 +5,13 @@ import { RevealText } from "@/components/ui/ScrollReveal";
 import SubTitle from "@/components/ui/SubTitle";
 import { useLanguage } from "@/providers/LanguageProvider";
 import LocationsFilter from "./LocationsFilter";
+import type { LocationsIntroSectionFields } from "@/types/models";
 
-export default function FindUs() {
+interface FindUsProps {
+  fields?: LocationsIntroSectionFields | null;
+}
+
+export default function FindUs({ fields }: FindUsProps) {
   const {
     locations,
     activeLocation,
@@ -27,14 +32,17 @@ export default function FindUs() {
   } = useFindUs();
   const { t } = useLanguage();
 
+  const headTitle = fields?.head_title || t("contact.locations");
+  const findUsTitle = fields?.title || t("contact.findUs");
+
   return (
     <section id="find-us" className="bg-[#F9F9F9] py-[100px]">
       <div className="container mx-auto">
         <RevealText delay={0.1}>
-          <SubTitle className="text-center">{t("contact.locations")}</SubTitle>
+          <SubTitle className="text-center">{headTitle}</SubTitle>
         </RevealText>
         <RevealText delay={0.2}>
-          <h2 className="text-[#1E1E1E] text-center text-[3rem] font-bold mb-[40px]">{t("contact.findUs")}</h2>
+          <h2 className="text-[#1E1E1E] text-center text-[3rem] font-bold mb-[40px]">{findUsTitle}</h2>
         </RevealText>
 
         {/* Head Office Top Bar */}
@@ -66,7 +74,7 @@ export default function FindUs() {
                         key={loc.id}
                         className={`flex-1 ${
                           !isLast
-                            ? "border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-r lg:border-[#D1A52A] lg:pr-[32px]"
+                            ? "border-b border-[#D1A52A] pb-[32px] lg:border-b-0 lg:pb-0 lg:border-e lg:border-[#D1A52A] lg:pe-[32px]"
                             : ""
                         }`}
                       >

@@ -38,7 +38,7 @@ export default function Subscribe() {
                 value={divisionId}
                 onChange={(e) => setDivisionId(e.target.value)}
                 disabled={subscribeStatus === "loading"}
-                className="w-full h-full rounded-[4px] border border-[#8D8D8D] p-[16px] pr-[40px] text-[#1E1E1E] text-[0.8rem] font-normal bg-transparent outline-none appearance-none"
+                className="w-full h-full rounded-[4px] border border-[#8D8D8D] p-[16px] pe-[40px] text-[#1E1E1E] text-[0.8rem] font-normal bg-transparent outline-none appearance-none"
               >
                 <option value="">{t("contact.selectDivision")}</option>
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -47,7 +47,7 @@ export default function Subscribe() {
                 ))}
               </select>
               {/* Custom dropdown arrow */}
-              <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="9"

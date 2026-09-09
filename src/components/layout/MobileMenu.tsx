@@ -30,7 +30,7 @@ export default function MobileMenu({
         {/* Main Links */}
         <div
           className={`transition-all duration-300 ${
-            mobileActiveMenu ? "-translate-x-full absolute w-full opacity-0 pointer-events-none" : "translate-x-0 relative opacity-100"
+            mobileActiveMenu ? "ltr:-translate-x-full rtl:translate-x-full absolute w-full opacity-0 pointer-events-none" : "translate-x-0 relative opacity-100"
           }`}
         >
           <ul className="flex flex-col gap-1 mb-6">
@@ -45,7 +45,7 @@ export default function MobileMenu({
                   className="w-full flex items-center justify-between px-3 py-3 text-white text-[0.95rem] font-medium hover:bg-[#2D2D2D] transition-colors cursor-pointer"
                 >
                   <span>{item.label}</span>
-                  <svg className="w-4 h-4 -rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none">
+                  <svg className="w-4 h-4 -rotate-90 rtl:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none">
                     <path d="M1 1L5 5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
@@ -60,7 +60,7 @@ export default function MobileMenu({
         {/* Submenu Panel */}
         <div
           className={`transition-all duration-300 overflow-x-auto ${
-            mobileActiveMenu ? "translate-x-0 relative opacity-100" : "translate-x-full absolute w-full opacity-0 pointer-events-none"
+            mobileActiveMenu ? "translate-x-0 relative opacity-100" : "ltr:translate-x-full rtl:-translate-x-full absolute w-full opacity-0 pointer-events-none"
           }`}
         >
           <div className="flex items-center justify-between mb-6">
@@ -69,7 +69,7 @@ export default function MobileMenu({
               onClick={() => setMobileActiveMenu(null)}
               className="w-12 h-12 flex items-center justify-center text-lg text-white"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>

@@ -16,7 +16,7 @@ export default function FooterLinks({
       <div>
         <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
           {t("footer.quickLinks")}
-          <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
+          <span className="absolute bottom-0 start-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
         </h2>
         <ul className="space-y-[12px]">
           <li>
@@ -51,7 +51,7 @@ export default function FooterLinks({
       <div>
         <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
           {t("footer.division")}
-          <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
+          <span className="absolute bottom-0 start-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
         </h2>
         <ul className="space-y-[12px]">
           {loading ? (

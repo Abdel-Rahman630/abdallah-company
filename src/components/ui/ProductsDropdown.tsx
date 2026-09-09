@@ -37,7 +37,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
               onClick={() => {
                 setActiveIndex(index);
               }}
-              className={`text-left text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
+              className={`text-start text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
                 activeIndex === index ? "text-white" : "text-[#666]"
               }`}
             >
@@ -80,7 +80,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
   return (
     <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] flex min-w-[939px] min-h-[418px]">
       {/* First Column: List of Products */}
-      <div className="border-r border-[#666666] flex flex-col shrink-0 min-w-[200px]">
+      <div className="border-e border-[#666666] flex flex-col shrink-0 min-w-[200px]">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
           Divisions
         </p>
@@ -100,7 +100,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       </div>
 
       {/* Second Column: Content Details */}
-      <div className="flex-1 pl-[38px] pb-[30px] flex flex-col relative overflow-hidden">
+      <div className="flex-1 ps-[38px] pb-[30px] flex flex-col relative overflow-hidden">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
           Explore
         </p>
@@ -137,7 +137,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       </div>
 
       {/* Third Column: Image */}
-      <div className="shrink-0 w-[258px] h-[342px] rounded-[5px] overflow-hidden relative ml-[38px]">
+      <div className="shrink-0 w-[258px] h-[342px] rounded-[5px] overflow-hidden relative ms-[38px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}

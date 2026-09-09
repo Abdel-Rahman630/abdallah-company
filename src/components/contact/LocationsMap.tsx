@@ -26,7 +26,7 @@ export default function LocationsMap({ isLoading, activeLocation, t }: Locations
               href={activeLocation.googleMapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="absolute bottom-[24px] right-[24px] bg-[#1E1E1E] text-white px-[16px] py-[10px] rounded-[8px] shadow-lg flex items-center gap-[8px] text-[0.9rem] font-bold z-10 border border-[rgba(255,255,255,0.1)]"
+              className="absolute bottom-[24px] end-[24px] bg-[#1E1E1E] text-white px-[16px] py-[10px] rounded-[8px] shadow-lg flex items-center gap-[8px] text-[0.9rem] font-bold z-10 border border-[rgba(255,255,255,0.1)]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

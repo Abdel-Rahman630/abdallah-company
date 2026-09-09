@@ -451,3 +451,262 @@ export interface LocationsApiResponse {
   meta: unknown[];
   data: ApiLocation[];
 }
+
+// ─── Home CMS ────────────────────────────────────────────────────────────────
+
+export interface HomeCmsSeo {
+  title: string;
+  description: string;
+  og_image: string;
+}
+
+export interface HeroSectionFields {
+  hero_image: string;
+  video: string;
+  title: string;
+  subtitle: string;
+}
+
+export interface WhoWeAreGalleryItem {
+  id: string;
+  image: string;
+  alt_text: string;
+  sort_order: number;
+}
+
+export interface StatisticItem {
+  id: string;
+  value: string;
+  suffix: string;
+  label: string;
+  sort_order: number;
+}
+
+export interface WhoWeAreSectionFields {
+  section_icon?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  gallery?: WhoWeAreGalleryItem[];
+  cta_label?: string;
+  cta_url?: string;
+  statistics?: StatisticItem[];
+}
+
+export interface NetworkLegendItem {
+  id?: string;
+  type: string;
+  label: string;
+  sort_order: number;
+}
+
+export interface NetworkCoverageSectionFields {
+  eyebrow?: string;
+  title?: string;
+  map_image?: string;
+  map_alt?: string;
+  legend_items?: NetworkLegendItem[];
+  statistics?: StatisticItem[];
+  cta_label?: string;
+  cta_url?: string;
+}
+
+export interface HomeCmsSection<T = unknown> {
+  key: "hero_section" | "who_we_are_section" | "network_coverage_section" | string;
+  type: string;
+  sort_order: number;
+  fields: T;
+}
+
+export interface HomeCmsData {
+  key: string;
+  title: string;
+  slug: string;
+  seo: HomeCmsSeo;
+  sections: HomeCmsSection[];
+}
+
+export interface HomeCmsResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: HomeCmsData;
+}
+
+// ─── About CMS ───────────────────────────────────────────────────────────────
+
+export interface AboutBannerSectionFields {
+  banner_image?: string;
+  image_alt?: string;
+  title?: string;
+}
+
+export interface CompanyOverviewSectionFields {
+  head_title?: string;
+  title?: string;
+  sub_title?: string;
+  image?: string;
+  image_alt?: string;
+  description?: string;
+  statistics?: StatisticItem[];
+}
+
+export interface MissionVisionSectionFields {
+  image?: string;
+  image_alt?: string;
+  mission_title?: string;
+  mission_description?: string;
+  vision_title?: string;
+  vision_description?: string;
+}
+
+export interface ValuesSectionFields {
+  head_title?: string;
+  title?: string;
+  description?: string;
+  integrity_title?: string;
+  integrity_description?: string;
+  customer_excellence_title?: string;
+  customer_excellence_description?: string;
+  performance_collaboration_title?: string;
+  performance_collaboration_description?: string;
+  community_impact_title?: string;
+  community_impact_description?: string;
+}
+
+export interface AboutCmsSection<T = unknown> {
+  key: "banner_section" | "company_overview_section" | "mission_vision_section" | "values_section" | string;
+  type: string;
+  sort_order: number;
+  fields: T;
+}
+
+export interface AboutCmsData {
+  key: string;
+  title: string;
+  slug: string;
+  seo: HomeCmsSeo;
+  sections: AboutCmsSection[];
+}
+
+export interface AboutCmsResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: AboutCmsData;
+}
+
+// ─── Careers CMS ─────────────────────────────────────────────────────────────
+
+export interface CareersBannerSectionFields {
+  banner_image: string;
+  image_alt: string;
+  title: string;
+}
+
+export interface BenefitItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  sort_order: number;
+  is_active: boolean;
+}
+
+export interface WhyJoinUsSectionFields {
+  head_title: string;
+  title: string;
+  image: string;
+  image_alt: string;
+  description: string;
+  second_title: string;
+  second_description: string;
+  award_badge_image: string;
+  award_badge_alt: string;
+  award_certificate_image: string;
+  award_certificate_alt: string;
+  benefits: BenefitItem[];
+  cta_label: string;
+  cta_url: string;
+}
+
+export interface CareersCmsSection<T = unknown> {
+  key: "banner_section" | "why_join_us_section" | string;
+  type: string;
+  sort_order: number;
+  fields: T;
+}
+
+export interface CareersCmsData {
+  key: string;
+  title: string;
+  slug: string;
+  seo: HomeCmsSeo;
+  sections: CareersCmsSection[];
+}
+
+export interface CareersCmsResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: CareersCmsData;
+}
+
+// ─── Contact CMS ──────────────────────────────────────────────────────────────
+
+export interface ContactBannerSectionFields {
+  banner_image: string;
+  image_alt: string;
+  title: string;
+}
+
+export interface ContactSectionFields {
+  head_title: string;
+  title: string;
+  description: string;
+  name_placeholder: string;
+  division_placeholder: string;
+  email_placeholder: string;
+  phone_placeholder: string;
+  message_placeholder: string;
+  submit_label: string;
+  follow_title: string;
+  follow_description: string;
+  linkedin_title: string;
+  linkedin_value: string;
+  linkedin_url: string;
+  email_title: string;
+  contact_email: string;
+  phone_title: string;
+  contact_phone: string;
+  customer_service_title: string;
+  customer_service_phone: string;
+}
+
+export interface LocationsIntroSectionFields {
+  head_title: string;
+  title: string;
+  network_title: string;
+}
+
+export interface ContactCmsSection<T = unknown> {
+  key: "banner_section" | "contact_section" | "locations_intro_section" | string;
+  type: string;
+  sort_order: number;
+  fields: T;
+}
+
+export interface ContactCmsData {
+  key: string;
+  title: string;
+  slug: string;
+  seo: HomeCmsSeo;
+  sections: ContactCmsSection[];
+}
+
+export interface ContactCmsResponse {
+  status: boolean;
+  message: string;
+  meta: unknown[];
+  data: ContactCmsData;
+}

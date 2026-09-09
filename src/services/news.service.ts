@@ -8,11 +8,16 @@ const REVALIDATE_TIME = 900; // 1 hour
  * Called from Server Components — cached for 1 hour.
  */
 export async function getHomeNews(lang: string = "en"): Promise<NewsItem[]> {
-  const res = await apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news?limit=4&lang=${lang}`, {
-    revalidate: REVALIDATE_TIME,
-    tags: ["news", "home-news"],
-  });
-  return Array.isArray(res?.data) ? res.data : [];
+  try {
+    const res = await apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news?limit=4&lang=${lang}`, {
+      revalidate: REVALIDATE_TIME,
+      tags: ["news", "home-news"],
+    });
+    return Array.isArray(res?.data) ? res.data : [];
+  } catch (error) {
+    console.error("Error fetching home news:", error);
+    return [];
+  }
 }
 
 /**
@@ -24,27 +29,37 @@ export async function getNews(params?: {
   category?: string;
   lang?: string;
 }): Promise<ApiResponse<NewsItem[]>> {
-  const query = new URLSearchParams();
-  if (params?.page) query.set("page", String(params.page));
-  if (params?.limit) query.set("limit", String(params.limit));
-  if (params?.category) query.set("category", params.category);
-  if (params?.lang) query.set("lang", params.lang);
+  try {
+    const query = new URLSearchParams();
+    if (params?.page) query.set("page", String(params.page));
+    if (params?.limit) query.set("limit", String(params.limit));
+    if (params?.category) query.set("category", params.category);
+    if (params?.lang) query.set("lang", params.lang);
 
-  const qs = query.toString() ? `?${query.toString()}` : "";
-  return apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news${qs}`, {
-    revalidate: REVALIDATE_TIME,
-    tags: ["news"],
-  });
+    const qs = query.toString() ? `?${query.toString()}` : "";
+    return await apiGet<ApiResponse<NewsItem[]>>(`/api/cms/news${qs}`, {
+      revalidate: REVALIDATE_TIME,
+      tags: ["news"],
+    });
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return { message: "Failed to fetch news", data: [] };
+  }
 }
 
 /**
  * Fetches a single news article by ID.
  * Endpoint: GET /api/cms/news/{news_id}?lang=en
  */
-export async function getNewsById(id: string | number, lang = "en"): Promise<NewsItem> {
-  const response = await apiGet<SingleNewsResponse>(
-    `/api/cms/news/${id}?lang=${lang}`,
-    { revalidate: 60, tags: ["news", `news-${id}`] }
-  );
-  return response.data;
+export async function getNewsById(id: string | number, lang = "en"): Promise<NewsItem | null> {
+  try {
+    const response = await apiGet<SingleNewsResponse>(
+      `/api/cms/news/${id}?lang=${lang}`,
+      { revalidate: 60, tags: ["news", `news-${id}`] }
+    );
+    return response?.data || null;
+  } catch (error) {
+    console.error(`Error fetching news ${id}:`, error);
+    return null;
+  }
 }

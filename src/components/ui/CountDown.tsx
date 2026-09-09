@@ -36,19 +36,19 @@ export default function CountDown({
 
         const borderClasses = [
           "border-[#D1A52A]",
-          // mobile/tablet: right border on left column
-          smIsLeftCol ? "border-r" : "border-r-0",
+          // mobile/tablet: right/end border on left column
+          smIsLeftCol ? "border-e" : "border-e-0",
           // mobile/tablet: bottom border between rows (not last row)
           !smIsLastRow ? "border-b" : "border-b-0",
-          // lg: reset bottom, apply right border to all except last
-          !lgIsLast ? "lg:border-r" : "lg:border-r-0",
+          // lg: reset bottom, apply right/end border to all except last
+          !lgIsLast ? "lg:border-e" : "lg:border-e-0",
           "lg:border-b-0",
         ].join(" ");
 
         return (
           <div
             key={index}
-            className={`flex flex-col items-center text-center lg:items-start lg:text-left px-4 py-6 lg:py-0 ${borderClasses}`}
+            className={`flex flex-col items-center text-center lg:items-start lg:text-start px-4 py-6 lg:py-0 ${borderClasses}`}
           >
             <RevealText delay={0.1 * index}>
               <span className={`text-[#1E1E1E] text-[1.5rem] md:text-[2.5rem] font-semibold uppercase mb-[10px] leading-none block`}>

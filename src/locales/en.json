@@ -1,14 +1,11 @@
 {
   "header": {
     "store": "AHCL's Store",
-    "home": "Home",
     "about": "About Us",
     "divisions": "Divisions",
     "news": "News & Events",
     "careers": "Careers",
-    "contact": "Contact Us",
-    "ourProducts": "Divisions",
-    "explore": "Explore"
+    "contact": "Contact Us"
   },
   "footer": {
     "legacy": "A Legacy of Automotive Excellence across the Kingdom of Saudi Arabia.",
@@ -20,15 +17,6 @@
     "news": "News & Events",
     "careers": "Careers",
     "store": "AHCL's Store",
-    "divisions": {
-      "automotive": "Automotive",
-      "marine": "Marine",
-      "power": "Power solutions",
-      "agriculture": "Agriculture",
-      "construction": "Construction Equipment",
-      "water": "Water Solutions",
-      "material": "Material handling"
-    },
     "address": "P.O.Box 44, Jeddah 21411,Kingdom Of Saudi Arabia",
     "phone": "+920002208",
     "email": "info@ahcl.com.sa",
@@ -38,17 +26,9 @@
     "terms": "Terms of Use"
   },
   "home": {
-    "whoWeAre": "WHO WE ARE",
-    "whoWeAreTitle": "A Legacy of Automotive & machinery distributor Excellence",
     "readMore": "Read More",
-    "brands": "OUR BRANDS",
-    "brandsTitle": "Driving Excellence Through World-Class Brands",
     "newsTitle": "LATEST NEWS",
-    "newsSubtitle": "News & Events",
-    "productsTitle": "OUR PRODUCTS",
-    "productsSubtitle": "Solutions for Every Industry",
-    "history": "OUR HISTORY",
-    "historyTitle": "A Legacy of Trust"
+    "newsSubtitle": "News & Events"
   },
   "newsletter": {
     "title": "Subscribe To Newsletter",
@@ -62,8 +42,6 @@
   "contact": {
     "locations": "OUR LOCATIONS",
     "findUs": "Find Us",
-    "emailLabel": "Email Address",
-    "phoneLabel": "Phone Number",
     "filter": "Filter",
     "clear": "Clear",
     "noLocations": "No Locations Found",
@@ -79,56 +57,6 @@
     "upcoming": "UPCOMING EVENTS",
     "calendar": "Events Calendar",
     "readMore": "Read More"
-  },
-  "about": {
-    "title": "About us",
-    "companyOverview": "Company Overview",
-    "mainTitle": "About Abdullah Hashim Company Limited",
-    "subtitle": "Driving Progress Through Innovation, Quality, and Reliability",
-    "desc1": "established in 1940, is a respected business entity in the Kingdom of Saudi Arabia, operating through two primary divisions: Automotive and Euipment. The Auto & Equip Division is committed to delivering premium industrial solutions by representing globally recognized brands. Our focus on service excellence and technical integrity ensures our customers receive superior products, expert support, and an exceptional overall experience.",
-    "desc2": "- Auto & Equip Division is a leading provider of advanced industrial equipment and solutions across Saudi Arabia. With a diversified portfolio serving sectors such as construction, mining, energy, and logistics, Equipment Division partners with globally established manufacturers—including Yanmar, Yale, Bendi, Xylem, DP-Pumps, LUBI, Kirloskar, ELGi, and many others to offer reliable, high-performance machinery tailored to local market needs.",
-    "desc3": "We are dedicated to delivering value through quality products, dependable after-sales service, and deep technical expertise. Our integrated approach ensures that clients benefit from end-to-end support, including installation, training, and spare parts availability.",
-    "desc4": "Auto & Equip Division plays a vital role in supporting the Kingdom’s industrial transformation and infrastructure development. By fostering innovation, embracing sustainable practices, and investing in human capital, Auto & Equip Division aligns with national goals to diversify the economy and enhance the role of the private sector in driving long-term growth.",
-    "missionTitle": "OUR MISSION",
-    "missionDesc": "To provide reliable, high quality and innovative products and services in Saudi Arabia, by representing leading brands in the mobility and machinery industry, and to create a distinguished experience for our customers and our team, to benefit all stakeholders.",
-    "visionTitle": "OUR VISION",
-    "visionDesc": "We harness our resources for the benefit of people.",
-    "valuesSubtitle": "our values",
-    "valuesTitle": "The Principles that Drive Everything We Do",
-    "valuesDesc": "The principles that have guided Abdullah Hashim Company Limited for over 80 years of heritage and excellence in the region.",
-    "values": {
-      "integrityTitle": "Integrity",
-      "integrityDesc": "We build trust through honest, transparent, and strictly accountable business practices.",
-      "commitmentTitle": "Customer Excellence",
-      "commitmentDesc": "We consistently exceed expectations by delivering exceptional service and superior quality.",
-      "creativityTitle": "Performance & Collaboration",
-      "creativityDesc": "We drive outstanding results through innovative teamwork, continuous improvement, and operational excellence.",
-      "collaborationTitle": "Community Impact",
-      "collaborationDesc": "We positively impact society through ethical practices, environmental stewardship, and meaningful contributions."
-    }
-  },
-  "careers": {
-    "title": "Careers",
-    "whyJoinSubtitle": "Why Join Us",
-    "whyJoinTitle": "Build Your Future with AHCL",
-    "desc1": "At AHCL Company, our vision, strong market reputation, commitment to excellence, and passion for innovation set us apart. We believe our people are our greatest asset, which is why we invest in their growth, encourage continuous learning, and cultivate a collaborative culture where talent can thrive. By joining AHCL Company, you become part of a high-performing team committed to excellence, innovation, and creating lasting value for our customers, partners, and stakeholders.",
-    "awardTitle": "Best Place to Work Certification Award 2024",
-    "awardDesc": "Recognized for fostering an exceptional workplace culture built on trust, collaboration, and employee growth.",
-    "explore": "Explore Opportunities",
-    "benefits": {
-      "growthTitle": "Career Growth",
-      "growthDesc": "Structured paths for advancement and professional development across all sectors.",
-      "benefitsTitle": "Competitive Benefits",
-      "benefitsDesc": "A comprehensive package that supports your well-being and long-term security.",
-      "cultureTitle": "Inclusive Culture",
-      "cultureDesc": "A workspace where diverse perspectives are valued and every voice is heard.",
-      "learningTitle": "Learning & Development",
-      "learningDesc": "Access to world-class training programs and industry certifications."
-    }
-  },
-  "videoSection": {
-    "title": "Abdullah Hashim Company Limited",
-    "subtitle": "Driving Progress Through Innovation, Quality, and Reliability"
   },
   "newsletterStatus": {
     "successTitle": "Successfully subscribed!",

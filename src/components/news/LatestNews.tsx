@@ -54,12 +54,12 @@ export default function LatestNews() {
                   onPageChange={({ selected }) => setCurrentPage(selected)}
                   forcePage={currentPage}
                   previousLabel={
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="rotate-180" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="rotate-180 rtl:rotate-0 transition-transform" aria-hidden="true">
                       <path fillRule="evenodd" clipRule="evenodd" d="M9.58586 8.00008L4.29297 2.70718L5.70718 1.29297L12.4143 8.00008L5.70718 14.7072L4.29297 13.293L9.58586 8.00008Z" fill="#D1A52A"/>
                     </svg>
                   }
                   nextLabel={
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="rtl:rotate-180 transition-transform" aria-hidden="true">
                       <path fillRule="evenodd" clipRule="evenodd" d="M9.58586 8.00008L4.29297 2.70718L5.70718 1.29297L12.4143 8.00008L5.70718 14.7072L4.29297 13.293L9.58586 8.00008Z" fill="#D1A52A"/>
                     </svg>
                   }

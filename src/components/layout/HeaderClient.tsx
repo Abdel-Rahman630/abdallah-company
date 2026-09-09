@@ -23,8 +23,8 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
       ref={headerRef}
       className={`fixed z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? "top-0 left-0 w-full py-[15px] min-[1200px]:py-[25px] bg-[#1E1E1E]"
-          : `top-[15px] left-[15px] w-[calc(100%-30px)] py-[15px] min-[1200px]:top-0 min-[1200px]:left-0 min-[1200px]:w-full min-[1200px]:rounded-none min-[1200px]:py-[25px] bg-[#1E1E1E] ${
+          ? "top-0 start-0 w-full py-[15px] min-[1200px]:py-[25px] bg-[#1E1E1E]"
+          : `top-[15px] start-[15px] w-[calc(100%-30px)] py-[15px] min-[1200px]:top-0 min-[1200px]:start-0 min-[1200px]:w-full min-[1200px]:rounded-none min-[1200px]:py-[25px] bg-[#1E1E1E] ${
               isHomepage
                 ? "min-[1200px]:bg-transparent"
                 : "min-[1200px]:bg-[rgba(30,30,30,0.20)] min-[1200px]:backdrop-blur-[0px]"

@@ -3,7 +3,7 @@ import { ArrowButtonLinkProps } from "@/types/models";
 
 const ArrowIconBlack = () => (
   <svg
-    className="transition-transform duration-500 group-hover:translate-x-1 shrink-0"
+    className="transition-transform duration-500 ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 shrink-0"
     xmlns="http://www.w3.org/2000/svg"
     width="13"
     height="10"

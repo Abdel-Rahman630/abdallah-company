@@ -1,18 +1,63 @@
 "use client";
 
+import React, { useMemo } from "react";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import ArrowLink from "@/components/ui/ArrowLink";
 import CountDown from "@/components/ui/CountDown";
 import SubTitle from "@/components/ui/SubTitle";
+import type { NetworkCoverageSectionFields, CountDownItem } from "@/types/models";
+import { formatCtaUrl } from "@/lib/utils";
 
-const countdownData = [
-  { to: 22, suffix: "+", title: "Showroom" },
-  { to: 26, suffix: "+", title: "Service center" },
-  { to: 29, suffix: "+", title: "Spare Part's" },
-];
+interface OurBranchesProps {
+  fields?: NetworkCoverageSectionFields | null;
+}
 
-export default function OurBranches() {
+const getLegendColor = (type: string, index: number) => {
+  switch (type) {
+    case "head_office":
+      return "#D1A52A";
+    case "distribution_hub":
+      return "#EF4444";
+    case "operation_network":
+      return "#10B981";
+    default: {
+      const fallbackColors = ["#D1A52A", "#EF4444", "#10B981"];
+      return fallbackColors[index % fallbackColors.length];
+    }
+  }
+};
+export default function OurBranches({ fields }: OurBranchesProps) {
+  const eyebrow = fields?.eyebrow;
+  const title = fields?.title;
+  const mapImage = fields?.map_image;
+  const mapAlt = fields?.map_alt || "Branches Map";
+  const ctaLabel = fields?.cta_label;
+  const ctaUrl = formatCtaUrl(fields?.cta_url);
+
+  const legendItems = useMemo(() => {
+    if (fields?.legend_items && fields.legend_items.length > 0) {
+      return fields.legend_items
+        .slice()
+        .sort((a, b) => a.sort_order - b.sort_order);
+    }
+    return [];
+  }, [fields?.legend_items]);
+
+  const countdownData = useMemo<CountDownItem[]>(() => {
+    if (fields?.statistics && fields.statistics.length > 0) {
+      return fields.statistics
+        .slice()
+        .sort((a, b) => a.sort_order - b.sort_order)
+        .map((stat) => ({
+          to: parseInt(stat.value.replace(/,/g, ""), 10) || stat.value,
+          suffix: stat.suffix || "",
+          title: stat.label,
+        }));
+    }
+    return [];
+  }, [fields?.statistics]);
+
   return (
     <section
       id="branches"
@@ -20,159 +65,99 @@ export default function OurBranches() {
     >
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-[50px] lg:gap-[100px] items-center">
-          {/* First Div: Content — order-2 on mobile, order-1 on lg */}
+          {/* First Div: Content */}
           <div className="flex-1 py-[24px]">
-            <RevealText delay={0.1}>
-              <SubTitle>OUR BRANCHES</SubTitle>
-            </RevealText>
+            {eyebrow && (
+              <RevealText delay={0.1}>
+                <SubTitle>{eyebrow}</SubTitle>
+              </RevealText>
+            )}
 
-            <RevealText delay={0.2}>
-              <h2 className="mb-[34px] uppercase leading-tight text-[#1E1E1E] text-[2.125rem] font-bold">
-                NETWORK AND COVERAGE
-              </h2>
-            </RevealText>
+            {title && (
+              <RevealText delay={0.2}>
+                <h2 className="mb-[34px] uppercase leading-tight text-[#1E1E1E] text-[2.125rem] font-bold">
+                  {title}
+                </h2>
+              </RevealText>
+            )}
 
-            {/* <RevealText delay={0.4}>
-              <p className="mb-[24px] leading-relaxed text-[#1E1E1E] text-[0.8125rem] font-normal">
-                AHCL-operated facilities are categorized based on the scope of services they provide:
-              </p>
-            </RevealText> */}
+            {legendItems.length > 0 && (
+              <ul className="flex flex-row flex-wrap gap-[32px] mb-[32px]">
+                {legendItems.map((item, index) => {
+                  const color = getLegendColor(item.type, index);
+                  return (
+                    <li key={item.id || index} className="flex items-center gap-[17px]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="29"
+                        height="29"
+                        viewBox="0 0 29 29"
+                        fill="none"
+                        className="shrink-0"
+                      >
+                        <circle
+                          cx="14.4293"
+                          cy="14.4293"
+                          r="14.4293"
+                          fill={color}
+                          fillOpacity="0.22"
+                        />
+                        <circle
+                          cx="14.4293"
+                          cy="14.4293"
+                          r="13.7734"
+                          stroke={color}
+                          strokeOpacity="0.55"
+                          strokeWidth="1.31175"
+                        />
+                        <circle
+                          cx="14.4298"
+                          cy="14.4279"
+                          r="6.55875"
+                          fill={color}
+                        />
+                      </svg>
+                      <span className="text-[#949494] text-[0.8125rem] font-normal">
+                        {item.label}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
 
-            <ul className="flex flex-row gap-[32px] mb-[32px]">
-              {/* Item 1 */}
-              <li className="flex items-center gap-[17px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="29"
-                  height="29"
-                  viewBox="0 0 29 29"
-                  fill="none"
-                  className="shrink-0"
-                >
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="14.4293"
-                    fill="#D1A52A"
-                    fillOpacity="0.22"
-                  />
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="13.7734"
-                    stroke="#D1A52A"
-                    strokeOpacity="0.55"
-                    strokeWidth="1.31175"
-                  />
-                  <circle
-                    cx="14.4298"
-                    cy="14.4279"
-                    r="6.55875"
-                    fill="#D1A52A"
-                  />
-                </svg>
-                <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  Head Office.
-                </span>
-              </li>
+            {countdownData.length > 0 && (
+              <div className="countdown mb-[32px] w-full">
+                <CountDown data={countdownData} />
+              </div>
+            )}
 
-              {/* Item 2 */}
-              <li className="flex items-center gap-[17px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="29"
-                  height="29"
-                  viewBox="0 0 29 29"
-                  fill="none"
-                  className="shrink-0"
-                >
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="14.4293"
-                    fill="#EF4444"
-                    fillOpacity="0.22"
-                  />
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="13.7734"
-                    stroke="#EF4444"
-                    strokeOpacity="0.55"
-                    strokeWidth="1.31175"
-                  />
-                  <circle
-                    cx="14.4298"
-                    cy="14.4279"
-                    r="6.55875"
-                    fill="#EF4444"
-                  />
-                </svg>
-                <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  Distribution Hubs.
-                </span>
-              </li>
+            {ctaLabel && ctaUrl && (
+              <ArrowLink href={ctaUrl} color="black">
+                {ctaLabel}
+              </ArrowLink>
+            )}
+          </div>
 
-              {/* Item 3 */}
-              <li className="flex items-center gap-[17px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="29"
-                  height="29"
-                  viewBox="0 0 29 29"
-                  fill="none"
-                  className="shrink-0"
-                >
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="14.4293"
-                    fill="#10B981"
-                    fillOpacity="0.22"
-                  />
-                  <circle
-                    cx="14.4293"
-                    cy="14.4293"
-                    r="13.7734"
-                    stroke="#10B981"
-                    strokeOpacity="0.55"
-                    strokeWidth="1.31175"
-                  />
-                  <circle
-                    cx="14.4298"
-                    cy="14.4279"
-                    r="6.55875"
-                    fill="#10B981"
-                  />
-                </svg>
-                <span className="text-[#949494] text-[0.8125rem] font-normal">
-                  Operation Network.
-                </span>
-              </li>
-            </ul>
-            <div className="countdown mb-[32px] w-full">
-              <CountDown data={countdownData} />
+          {/* Second Div: Image */}
+          {mapImage && (
+            <div className="flex-1 w-full lg:w-auto flex flex-col justify-center items-center lg:items-end">
+              <RevealImage className="relative w-full max-w-[700px] lg:max-w-none lg:w-[600px] xl:w-[700px] h-[450px] md:h-[580px] lg:h-[640px]">
+                <Image
+                  src={mapImage}
+                  alt={mapAlt}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 700px"
+                  unoptimized
+                />
+              </RevealImage>
             </div>
-            <ArrowLink href="/contact-us#find-us" color="black">
-              More about our locations
-            </ArrowLink>
-          </div>
-
-          {/* Second Div: Image — order-1 on mobile, order-2 on lg */}
-          <div className="flex-1 w-full lg:w-auto flex flex-col justify-center items-center lg:items-end">
-            <RevealImage className="relative w-full max-w-[700px] lg:max-w-none lg:w-[600px] xl:w-[700px] h-[450px] md:h-[580px] lg:h-[640px]">
-              <Image
-                src="/map.svg"
-                alt="Our Branches Map"
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 700px"
-                unoptimized
-              />
-            </RevealImage>
-          </div>
+          )}
         </div>
       </div>
     </section>
   );
 }
+
+

@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!matched) return { title: "Abdallah Company | Event Details" };
     
     const event = await getEventById(String(matched.id), locale);
+    if (!event) return { title: "Abdallah Company | Event Details" };
     return {
       title: `Abdallah Company | ${event.title}`,
       description: event.excerpt || event.description?.substring(0, 150) || "Event details",
@@ -102,7 +103,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                 className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
-                  className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
+                  className="transition-transform duration-500 ltr:group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 shrink-0"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"
@@ -150,7 +151,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
 
                 <RevealText delay={0.5}>
                   <div 
-                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>a]:text-blue-600 [&>a]:underline [&_strong]:text-black [&_strong]:font-bold"
+                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ms-6 [&>h3]:text-xl [&>h3]:font-bold [&>a]:text-blue-600 [&>a]:underline [&_strong]:text-black [&_strong]:font-bold"
                     dangerouslySetInnerHTML={{ __html: event.description || event.excerpt || "" }} 
                   />
                 </RevealText>

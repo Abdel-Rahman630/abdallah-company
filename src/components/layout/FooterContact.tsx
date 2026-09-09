@@ -9,13 +9,14 @@ export default function FooterContact({ t }: { t: (key: string) => string }) {
     <div>
       <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
         {t("footer.contact")}
-        <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
+        <span className="absolute bottom-0 start-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
       </h2>
       <ul className="space-y-[12px]">
         <li>
           <Link
             prefetch={false}
             target="_blank"
+            rel="noopener noreferrer"
             href="/contact-us"
             className="flex items-start gap-[10px] text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
           >
@@ -27,7 +28,7 @@ export default function FooterContact({ t }: { t: (key: string) => string }) {
         </li>
         <li>
           <Link
-            href="telto:920002208"
+            href="tel:920002208"
             className="flex items-center gap-[10px] text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
           >
             <PhoneIcon />

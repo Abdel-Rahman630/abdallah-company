@@ -40,14 +40,14 @@ export default function NewsDetailsSlider({ images = [] }: NewsDetailsSliderProp
       </Swiper>
 
       {/* Custom Navigation */}
-      <div className="absolute left-[24px] bottom-[24px] z-20 flex gap-[8px]">
+      <div className="absolute start-[24px] bottom-[24px] z-20 flex gap-[8px]">
         <button className="custom-prev-button w-[32px] h-[32px] bg-white rounded-[4px] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path fillRule="evenodd" clipRule="evenodd" d="M11.7073 13.293L10.293 14.7072L3.58594 8.00008L10.293 1.29297L11.7073 2.70718L6.41436 8.00008L11.7073 13.293Z" fill="#1E1E1E"/>
           </svg>
         </button>
         <button className="custom-next-button w-[32px] h-[32px] bg-white rounded-[4px] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path fillRule="evenodd" clipRule="evenodd" d="M4.29274 13.293L5.70696 14.7072L12.4141 8.00008L5.70696 1.29297L4.29274 2.70718L9.58564 8.00008L4.29274 13.293Z" fill="#1E1E1E"/>
           </svg>
         </button>

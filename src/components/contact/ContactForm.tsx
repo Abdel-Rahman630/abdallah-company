@@ -5,31 +5,48 @@ import { useGetInTouch } from "@/hooks/contact/useGetInTouch";
 import { FormInput } from "@/components/ui/FormInput";
 import { FormSelect } from "@/components/ui/FormSelect";
 import { RevealText } from "@/components/ui/ScrollReveal";
+import type { ContactSectionFields } from "@/types/models";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  fields?: ContactSectionFields | null;
+}
+
+export default function ContactForm({ fields }: ContactFormProps) {
   const { register, handleSubmit, onSubmit, errors, status, globalError } =
     useGetInTouch();
+
+  const headTitle = fields?.head_title || "GET IN TOUCH";
+  const title = fields?.title || "Contact Us";
+  const description = fields?.description;
+  const namePlaceholder = fields?.name_placeholder || "Name";
+  const divisionPlaceholder = fields?.division_placeholder || "Select Division";
+  const emailPlaceholder = fields?.email_placeholder || "Email Address";
+  const phonePlaceholder = fields?.phone_placeholder || "Phone Number";
+  const messagePlaceholder = fields?.message_placeholder || "Your Message";
+  const submitLabel = fields?.submit_label || "SEND MESSAGE";
 
   return (
     <div className="flex-1">
       <RevealText delay={0.1}>
         <span className="text-[#000] text-[1rem] font-bold uppercase block mb-[8px]">
-          GET IN TOUCH
+          {headTitle}
         </span>
       </RevealText>
 
       <RevealText delay={0.2}>
         <h2 className="text-[#231F20] text-[2.5rem] font-bold mb-[1rem]">
-          Contact Us
+          {title}
         </h2>
       </RevealText>
 
-      <RevealText delay={0.3}>
-        <p className="text-[#949494] text-[0.9rem] font-normal mb-[32px]">
-          We&apos;d love to hear from you. Fill out the form and we&apos;ll respond
-          as soon as possible.
-        </p>
-      </RevealText>
+      {description ? (
+        <RevealText delay={0.3}>
+          <div
+            className="text-[#949494] text-[0.9rem] font-normal mb-[32px] [&_p]:m-0"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        </RevealText>
+      ) : null}
 
       {/* Success Message */}
       {status === "success" && (
@@ -103,7 +120,7 @@ export default function ContactForm() {
             <div className="flex flex-col gap-[4px]">
               <FormInput
                 type="text"
-                placeholder="Name"
+                placeholder={namePlaceholder}
                 error={!!errors.name}
                 {...register("name", { required: "Name is required." })}
               />
@@ -122,7 +139,7 @@ export default function ContactForm() {
                   required: "Please select a division.",
                 })}
               >
-                <option value="">Select Division</option>
+                <option value="">{divisionPlaceholder}</option>
                 <option value="automotive">
                   Automotive &amp; Machinery
                 </option>
@@ -145,7 +162,7 @@ export default function ContactForm() {
           <div className="flex flex-col gap-[4px]">
             <FormInput
               type="email"
-              placeholder="Email Address"
+              placeholder={emailPlaceholder}
               error={!!errors.email}
               {...register("email", { required: "Email is required." })}
             />
@@ -160,7 +177,7 @@ export default function ContactForm() {
           <div className="flex flex-col gap-[4px]">
             <FormInput
               type="tel"
-              placeholder="Phone Number"
+              placeholder={phonePlaceholder}
               error={!!errors.phone}
               {...register("phone", {
                 required: "Phone number is required.",
@@ -176,7 +193,7 @@ export default function ContactForm() {
           {/* Message */}
           <div className="flex flex-col gap-[4px]">
             <textarea
-              placeholder="Your Message"
+              placeholder={messagePlaceholder}
               rows={4}
               className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full resize-y ${
                 errors.message ? "border-red-400" : "border-[#E5E5E5]"
@@ -219,8 +236,9 @@ export default function ContactForm() {
               </>
             ) : (
               <>
-                Send Message
+                {submitLabel}
                 <svg
+                  className="shrink-0 rtl:rotate-180 transition-transform"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"

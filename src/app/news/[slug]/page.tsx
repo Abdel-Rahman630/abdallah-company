@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!matched) return { title: "Abdullah Hashim Company | News Details" };
 
     const news = await getNewsById(String(matched.id), locale);
+    if (!news) return { title: "Abdullah Hashim Company | News Details" };
     return {
       title: `Abdullah Hashim Company | ${news.title}`,
       description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
@@ -66,6 +67,8 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
     return notFound();
   }
 
+  if (!news) return notFound();
+
   // Build the images array from the media array, sorted by sort_order
   const mediaImages = (news.media ?? [])
     .slice()
@@ -90,7 +93,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                 className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
-                  className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
+                  className="transition-transform duration-500 ltr:group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 shrink-0"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"

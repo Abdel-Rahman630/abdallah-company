@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
     const data = await getDivisionById(id, locale);
+    if (!data) return { title: "Abdullah Hashim Company | Divisions" };
     return {
       title: `Abdullah Hashim Company | ${data.name || "Divisions"}`,
       description: data.description?.substring(0, 160) || "AHCL divisions.",

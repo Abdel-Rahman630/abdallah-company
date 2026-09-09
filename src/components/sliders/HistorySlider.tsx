@@ -85,7 +85,7 @@ export default function HistorySlider() {
       </div>
 
       {/* Static Top Title */}
-      <div className="absolute top-[40px] left-0 right-0 z-20 pointer-events-none">
+      <div className="absolute top-[40px] inset-x-0 z-20 pointer-events-none">
         <div className="container mx-auto text-center px-4">
           <h3 className="text-white text-[1.75rem] font-normal mb-[8px]">History &amp; Legacy</h3>
           <h2 className="text-white text-[2rem] font-bold">A legacy of trust, growth, <br /> and excellence across generations.</h2>
@@ -93,7 +93,7 @@ export default function HistorySlider() {
       </div>
 
       {/* Bottom Content */}
-      <div className="absolute bottom-[80px] left-0 right-0 z-20">
+      <div className="absolute bottom-[80px] inset-x-0 z-20">
         <div className="container mx-auto px-4 relative">
           {historyData.map((item, idx) => (
             <div
@@ -124,7 +124,7 @@ export default function HistorySlider() {
                     className="history-prev flex items-center justify-center cursor-pointer opacity-100 hover:opacity-80 transition-opacity disabled:opacity-20"
                     aria-label="Previous slide"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                       <path d="M28 0C30.2091 0 32 1.79086 32 4V28C32 30.2091 30.2091 32 28 32H4C1.79086 32 0 30.2091 0 28V4C0 1.79086 1.79086 0 4 0H28ZM11.5859 16L18.293 22.707L19.707 21.293L14.4141 16L19.707 10.707L18.293 9.29297L11.5859 16Z" fill="white" />
                     </svg>
                   </button>
@@ -132,7 +132,7 @@ export default function HistorySlider() {
                     className="history-next flex items-center justify-center cursor-pointer opacity-100 hover:opacity-80 transition-opacity disabled:opacity-20"
                     aria-label="Next slide"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                       <path d="M4 0C1.79086 0 0 1.79086 0 4V28C0 30.2091 1.79086 32 4 32H28C30.2091 32 32 30.2091 32 28V4C32 1.79086 30.2091 0 28 0H4ZM20.4141 16L13.707 22.707L12.293 21.293L17.5859 16L12.293 10.707L13.707 9.29297L20.4141 16Z" fill="white" />
                     </svg>
                   </button>
@@ -141,7 +141,7 @@ export default function HistorySlider() {
                 {/* Loading bar — key forces re-mount to restart animation */}
                 <div
                   key={`bar-${barKey}`}
-                  className="history-loading-bar absolute bottom-[-3px] left-0 h-[3px] bg-white"
+                  className="history-loading-bar absolute bottom-[-3px] start-0 h-[3px] bg-white"
                 />
               </div>
             </div>
