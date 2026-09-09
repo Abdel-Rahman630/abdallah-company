@@ -94,7 +94,7 @@ export default async function RootLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   // Fetch divisions once on the server — shared across Header, Footer, and all pages.
-  const divisions = await getHomeDivisions().catch(() => []);
+  const divisions = await getHomeDivisions(locale).catch(() => []);
 
   return (
     <html

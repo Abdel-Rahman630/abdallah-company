@@ -28,7 +28,7 @@ export default function LanguageSwitcher() {
           </clipPath>
         </defs>
       </svg>
-      <span className="text-[#FFF] text-[0.8125rem] font-normal uppercase">{locale === "en" ? "En" : "Ar"}</span>
+      <span className="text-[#FFF] text-[0.8125rem] font-normal uppercase">{locale === "en" ? "Ar" : "En"}</span>
     </button>
   );
 }

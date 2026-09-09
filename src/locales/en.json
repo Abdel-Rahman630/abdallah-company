@@ -23,12 +23,15 @@
     "copyright": "© 2026 Abdullah Hashim Company LTD. All Rights Reserved.",
     "developedBy": "Designed & Developed by",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "cookiesPolicy": "Cookies Policy"
   },
   "home": {
     "readMore": "Read More",
     "newsTitle": "LATEST NEWS",
-    "newsSubtitle": "News & Events"
+    "newsSubtitle": "News & Events",
+    "ourProducts": "Our Products",
+    "noNews": "No news available"
   },
   "newsletter": {
     "title": "Subscribe To Newsletter",
@@ -51,12 +54,17 @@
     "selectDivision": "Select Division",
     "selectSubDivision": "Select Sub Division",
     "selectDepartment": "Select Department",
-    "selectCity": "Select City"
+    "selectCity": "Select City",
+    "findOurNetwork": "Find Our Network",
+    "getDirections": "Get Directions",
+    "locationsFound": "Locations Found"
   },
   "events": {
     "upcoming": "UPCOMING EVENTS",
     "calendar": "Events Calendar",
-    "readMore": "Read More"
+    "readMore": "Read More",
+    "noEventsAll": "There are no events right now. Stay tuned for upcoming announcements.",
+    "noEventsCategory": "There are no events in this category right now."
   },
   "newsletterStatus": {
     "successTitle": "Successfully subscribed!",
@@ -69,5 +77,49 @@
     "rateLimitDesc": "Please try again later.",
     "errorTitle": "Subscription failed",
     "errorDesc": "An error occurred. Please try again."
+  },
+  "joinUs": {
+    "title": "Join Abdullah Hashim Company Limited",
+    "description": "Join our team and build your future with AHCL. Explore exciting career opportunities and grow with us.",
+    "button": "Join Us"
+  },
+  "history": {
+    "subtitle": "History & Legacy",
+    "title": "A legacy of trust, growth,",
+    "titleLine2": "and excellence across generations."
+  },
+  "nav": {
+    "about": {
+      "overviewTitle": "Company Overview",
+      "overviewText": "AHCL is a trusted leader in automotive and machinery distribution across Saudi Arabia.",
+      "historyTitle": "History & Legacy",
+      "historyText": "Since 1945, AHCL has built a legacy of trust and excellence across Saudi Arabia.",
+      "visionTitle": "Vision, Mission & Values",
+      "visionText": "To deliver reliable mobility, machinery, and equipment solutions with exceptional service and customer focus."
+    },
+    "news": {
+      "newsTitle": "News",
+      "newsText": "Stay updated with the latest news, announcements, and company highlights from AHCL.",
+      "eventsTitle": "Events",
+      "eventsText": "Discover the latest events, exhibitions, and activities featuring AHCL."
+    },
+    "careers": {
+      "whyTitle": "Why AHCL",
+      "whyText": "Discover why AHCL is a trusted partner, delivering quality, reliability, and exceptional service across Saudi Arabia."
+    },
+    "contact": {
+      "contactTitle": "Contact Us",
+      "contactText": "Get in touch with our team for inquiries, support, or assistance.",
+      "locationsTitle": "Our Locations",
+      "locationsText": "Find AHCL showrooms, service centers, and branches across Saudi Arabia."
+    }
+  },
+  "divisions": {
+    "label": "Divisions",
+    "explore": "Explore"
+  },
+  "news": {
+    "latestNews": "LATEST NEWS",
+    "noNews": "No news available at the moment."
   }
 }
