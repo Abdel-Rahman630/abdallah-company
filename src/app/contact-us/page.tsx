@@ -23,20 +23,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
   const contactCms = await getContactCmsData(lang);
 
-  if (!contactCms?.seo) {
-    return {
-      title: "Abdullah Hashim Company Limited | Contact Us",
-      description: "Get in touch with Abdullah Hashim Company. Find our locations and contact information.",
-    };
-  }
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = contactCms?.seo?.title || contactCms?.title || (lang === "ar" ? "تواصل معنا" : "Contact Us");
+  const description = contactCms?.seo?.description || (lang === "ar"
+    ? "تواصل مع شركة عبد الله هاشم المحدودة. اعثر على مواقعنا ومعلومات التواصل."
+    : "Get in touch with Abdullah Hashim Company. Find our locations and contact information.");
 
   return {
-    title: contactCms.seo.title || contactCms.title || "Contact Us",
-    description: contactCms.seo.description || undefined,
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
     openGraph: {
-      title: contactCms.seo.title || contactCms.title || "Contact Us",
-      description: contactCms.seo.description || undefined,
-      images: contactCms.seo.og_image ? [{ url: contactCms.seo.og_image }] : [],
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+      images: contactCms?.seo?.og_image ? [{ url: contactCms.seo.og_image }] : [{ url: "/LOGO2.png" }],
     },
   };
 }

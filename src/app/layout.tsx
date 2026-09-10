@@ -24,65 +24,91 @@ const geistMono = Geist_Mono({
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://abdallah-company.com";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(APP_URL),
-  title: {
-    default: "Abdullah Hashim Company Limited | Official Website",
-    template: "%s | Abdullah Hashim Company Limited",
-  },
-  description:
-    "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
-  keywords: [
-    "Abdullah Hashim Company Limited | Official Website",
-    "AHCL",
-    "Saudi Arabia",
-    "automotive",
-    "machinery",
-    "commercial trucks",
-    "Honda",
-  ],
-  authors: [{ name: "Icon Creations" }],
-  icons: {
-    icon: [{ url: "/LOGO2.png", type: "image/png" }],
-    shortcut: "/LOGO2.png",
-    apple: "/LOGO2.png",
-  },
-  openGraph: {
-    title: "Abdullah Hashim Company Limited | Official Website",
-    description:
-      "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
-    url: APP_URL,
-    siteName: "Abdullah Hashim Company Limited | Official Website",
-    images: [
-      {
-        url: "/LOGO2.png",
-        width: 1200,
-        height: 630,
-        alt: "Abdullah Hashim Company Logo",
-      },
-    ],
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Abdullah Hashim Company Limited | Official Website",
-    description:
-      "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA), machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.",
-    images: ["/LOGO2.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const locale = (cookieStore.get("NEXT_LOCALE")?.value || "en") as "en" | "ar";
+  const isAr = locale === "ar";
+
+  const titleDefault = isAr
+    ? "شركة عبد الله هاشم المحدودة | الموقع الرسمي"
+    : "Abdullah Hashim Company Limited | Official Website";
+  const titleTemplate = isAr
+    ? "%s | شركة عبد الله هاشم المحدودة"
+    : "%s | Abdullah Hashim Company Limited";
+  const siteName = isAr
+    ? "شركة عبد الله هاشم المحدودة"
+    : "Abdullah Hashim Company Limited";
+  const description = isAr
+    ? "شركة عبد الله هاشم المحدودة (AHCL) موزّع متميز للسيارات والآلات في المملكة العربية السعودية منذ عام 1945."
+    : "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia. Since its establishment in 1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to serve a large customer base in the kingdom.";
+
+  return {
+    metadataBase: new URL(APP_URL),
+    title: {
+      default: titleDefault,
+      template: titleTemplate,
+    },
+    description,
+    keywords: isAr
+      ? [
+          "شركة عبد الله هاشم المحدودة | الموقع الرسمي",
+          "AHCL",
+          "السعودية",
+          "سيارات",
+          "معدات",
+          "شاحنات تجارية",
+          "هوندا",
+        ]
+      : [
+          "Abdullah Hashim Company Limited | Official Website",
+          "AHCL",
+          "Saudi Arabia",
+          "automotive",
+          "machinery",
+          "commercial trucks",
+          "Honda",
+        ],
+    authors: [{ name: "Icon Creations" }],
+    icons: {
+      icon: [{ url: "/LOGO2.png", type: "image/png" }],
+      shortcut: "/LOGO2.png",
+      apple: "/LOGO2.png",
+    },
+    openGraph: {
+      title: titleDefault,
+      description,
+      url: APP_URL,
+      siteName,
+      images: [
+        {
+          url: "/LOGO2.png",
+          width: 1200,
+          height: 630,
+          alt: isAr ? "شعار شركة عبد الله هاشم" : "Abdullah Hashim Company Logo",
+        },
+      ],
+      type: "website",
+      locale: isAr ? "ar_SA" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titleDefault,
+      description,
+      images: ["/LOGO2.png"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 export default async function RootLayout({
   children,

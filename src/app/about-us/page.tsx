@@ -10,20 +10,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
   const aboutCms = await getAboutCmsData(lang);
 
-  if (!aboutCms?.seo) {
-    return {
-      title: "Abdullah Hashim Company Limited | About Us",
-      description: "Driving Progress Through Innovation, Quality, and Reliability",
-    };
-  }
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = aboutCms?.seo?.title || aboutCms?.title || (lang === "ar" ? "من نحن" : "About Us");
+  const description = aboutCms?.seo?.description || (lang === "ar"
+    ? "تعرف على تاريخ ورؤية شركة عبد الله هاشم المحدودة في المملكة العربية السعودية."
+    : "Driving Progress Through Innovation, Quality, and Reliability.");
 
   return {
-    title: aboutCms.seo.title || aboutCms.title || "About Us",
-    description: aboutCms.seo.description || undefined,
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
     openGraph: {
-      title: aboutCms.seo.title || aboutCms.title || "About Us",
-      description: aboutCms.seo.description || undefined,
-      images: aboutCms.seo.og_image ? [{ url: aboutCms.seo.og_image }] : [],
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+      images: aboutCms?.seo?.og_image ? [{ url: aboutCms.seo.og_image }] : [{ url: "/LOGO2.png" }],
     },
   };
 }

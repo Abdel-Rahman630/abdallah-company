@@ -15,14 +15,20 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
     const data = await getDivisionById(id, locale);
-    if (!data) return { title: "Abdullah Hashim Company | Divisions" };
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const fallbackDesc = locale === "ar" ? "أقسام شركة عبد الله هاشم المحدودة." : "AHCL divisions.";
+
+    if (!data) return { title: `${siteTitle} | ${locale === "ar" ? "الأقسام" : "Divisions"}` };
+
+    const desc = data.description ? data.description.replace(/<[^>]*>/g, "").substring(0, 160) : fallbackDesc;
+
     return {
-      title: `Abdullah Hashim Company | ${data.name || "Divisions"}`,
-      description: data.description?.substring(0, 160) || "AHCL divisions.",
+      title: `${siteTitle} | ${data.name || (locale === "ar" ? "الأقسام" : "Divisions")}`,
+      description: desc,
     };
-  } catch (error) {
+  } catch {
     return {
-      title: "Abdullah Hashim Company | Divisions",
+      title: "Abdullah Hashim Company Limited | Divisions",
     };
   }
 }

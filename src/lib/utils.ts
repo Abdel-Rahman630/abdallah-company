@@ -64,7 +64,8 @@ export function formatCtaUrl(url?: string): string {
  */
 export function truncateText(text: string | undefined, max: number): string {
   if (!text) return "";
-  return text.length > max ? text.substring(0, max).trimEnd() + "\u2026" : text;
+  const clean = text.replace(/<[^>]*>/g, "").trim();
+  return clean.length > max ? clean.substring(0, max).trimEnd() + "\u2026" : clean;
 }
 
 /**

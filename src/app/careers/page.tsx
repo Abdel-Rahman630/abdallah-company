@@ -21,20 +21,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
   const careersCms = await getCareersCmsData(lang);
 
-  if (!careersCms?.seo) {
-    return {
-      title: "Abdullah Hashim Company Limited | Careers",
-      description: "Explore career opportunities at Abdullah Hashim Company and join our team.",
-    };
-  }
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = careersCms?.seo?.title || careersCms?.title || (lang === "ar" ? "الوظائف" : "Careers");
+  const description = careersCms?.seo?.description || (lang === "ar"
+    ? "استكشف فرص العمل في شركة عبد الله هاشم المحدودة وانضم إلى فريقنا."
+    : "Explore career opportunities at Abdullah Hashim Company and join our team.");
 
   return {
-    title: careersCms.seo.title || careersCms.title || "Careers",
-    description: careersCms.seo.description || undefined,
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
     openGraph: {
-      title: careersCms.seo.title || careersCms.title || "Careers",
-      description: careersCms.seo.description || undefined,
-      images: careersCms.seo.og_image ? [{ url: careersCms.seo.og_image }] : [],
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+      images: careersCms?.seo?.og_image ? [{ url: careersCms.seo.og_image }] : [{ url: "/LOGO2.png" }],
     },
   };
 }

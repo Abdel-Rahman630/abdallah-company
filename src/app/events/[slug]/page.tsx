@@ -16,25 +16,44 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    
-    // Try to get event by slug directly using the list endpoint
-    const res = await getEvents({ limit: 100, lang: locale });
+
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const siteName = siteTitle;
     const decodedSlug = decodeURIComponent(slug);
-    const matched = (res.data || []).find((e: EventItem) => 
+
+    let res = await getEvents({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((e: EventItem) =>
       e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
     );
-    
-    if (!matched) return { title: "Abdallah Company | Event Details" };
-    
+
+    if (!matched) {
+      const fallbackRes = await getEvents({ limit: 100 });
+      matched = (fallbackRes.data || []).find((e: EventItem) =>
+        e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
+      );
+    }
+
+    if (!matched) return { title: `${siteTitle} | ${locale === "ar" ? "الفعاليات" : "Event Details"}` };
+
     const event = await getEventById(String(matched.id), locale);
-    if (!event) return { title: "Abdallah Company | Event Details" };
+    if (!event) return { title: `${siteTitle} | ${locale === "ar" ? "الفعاليات" : "Event Details"}` };
+
+    const description = event.excerpt || (event.description ? event.description.replace(/<[^>]*>/g, "").substring(0, 160) : (locale === "ar" ? "تعرف على أحدث الفعاليات من شركة عبد الله هاشم المحدودة." : "Learn more about the latest events at Abdullah Hashim Company."));
+
     return {
-      title: `Abdallah Company | ${event.title}`,
-      description: event.excerpt || event.description?.substring(0, 150) || "Event details",
+      title: `${siteTitle} | ${event.title}`,
+      description,
+      openGraph: {
+        title: `${siteTitle} | ${event.title}`,
+        description,
+        siteName,
+        images: event.cover_image_url ? [{ url: event.cover_image_url }] : [],
+      },
     };
   } catch {
+    const siteTitle = "Abdullah Hashim Company Limited";
     return {
-      title: "Abdallah Company | Event Details",
+      title: `${siteTitle} | Event Details`,
       description: "Learn more about the latest events at Abdullah Hashim Company.",
     };
   }

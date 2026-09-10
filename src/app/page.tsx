@@ -29,19 +29,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
   const homeCms = await getHomeCmsData(lang);
 
-  if (!homeCms?.seo) {
-    return {
-      title: "Abdullah Hashim Company Limited",
-    };
-  }
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = homeCms?.seo?.title || homeCms?.title || (lang === "ar" ? "الموقع الرسمي" : "Official Website");
+  const description = homeCms?.seo?.description || (lang === "ar"
+    ? "شركة عبد الله هاشم المحدودة (AHCL) موزّع متميز للسيارات والآلات في المملكة العربية السعودية."
+    : "Abdullah Hashim Company Limited (AHCL) is an established Automotive & machinery distributor in Saudi Arabia.");
 
   return {
-    title: homeCms.seo.title || homeCms.title || "Homepage",
-    description: homeCms.seo.description || undefined,
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
     openGraph: {
-      title: homeCms.seo.title || homeCms.title || "Homepage",
-      description: homeCms.seo.description || undefined,
-      images: homeCms.seo.og_image ? [{ url: homeCms.seo.og_image }] : [],
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+      images: homeCms?.seo?.og_image ? [{ url: homeCms.seo.og_image }] : [{ url: "/LOGO2.png" }],
     },
   };
 }

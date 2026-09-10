@@ -92,7 +92,7 @@ export default function HistorySlider() {
       <div className="absolute top-[40px] inset-x-0 z-20 pointer-events-none">
         <div className="container mx-auto text-center px-4">
           <h3 className="text-white text-[1.75rem] font-normal mb-[8px]">{t("history.subtitle")}</h3>
-          <h2 className="text-white text-[2rem] font-bold">{t("history.title")} <br /> {t("history.titleLine2")}</h2>
+          <h2 className="text-white text-[2rem] font-bold">{t("history.title")} <br className="rtl:hidden" /> {t("history.titleLine2")}</h2>
         </div>
       </div>
 

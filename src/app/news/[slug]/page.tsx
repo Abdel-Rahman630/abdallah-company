@@ -16,30 +16,45 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-
     const decodedSlug = decodeURIComponent(slug);
-    const res = await getNews({ limit: 100, lang: locale });
-    const matched = (res.data || []).find((n: NewsItem) =>
+
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const fallbackDesc = locale === "ar" ? "اقرأ أحدث الأخبار من شركة عبد الله هاشم المحدودة." : "Read the latest news from Abdullah Hashim Company Limited.";
+
+    let res = await getNews({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
-    if (!matched) return { title: "Abdullah Hashim Company | News Details" };
+
+    if (!matched) {
+      const fallbackRes = await getNews({ limit: 100 });
+      matched = (fallbackRes.data || []).find((n: NewsItem) =>
+        n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
+      );
+    }
+
+    if (!matched) return { title: `${siteTitle} | ${locale === "ar" ? "الأخبار" : "News Details"}` };
 
     const news = await getNewsById(String(matched.id), locale);
-    if (!news) return { title: "Abdullah Hashim Company | News Details" };
+    if (!news) return { title: `${siteTitle} | ${locale === "ar" ? "الأخبار" : "News Details"}` };
+
+    const desc = news.excerpt || news.short_description || (news.description ? news.description.replace(/<[^>]*>/g, "").substring(0, 160) : fallbackDesc);
+
     return {
-      title: `Abdullah Hashim Company | ${news.title}`,
-      description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+      title: `${siteTitle} | ${news.title}`,
+      description: desc,
       openGraph: {
-        title: `Abdullah Hashim Company | ${news.title}`,
-        description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+        title: `${siteTitle} | ${news.title}`,
+        description: desc,
         type: "article",
         images: news.cover_image ? [{ url: news.cover_image, alt: news.title }] : [],
       },
     };
   } catch {
+    const siteTitle = "Abdullah Hashim Company Limited";
     return {
-      title: "Abdullah Hashim Company | News Details",
-      description: "Read the latest news from Abdullah Hashim Company.",
+      title: `${siteTitle} | News Details`,
+      description: "Read the latest news from Abdullah Hashim Company Limited.",
     };
   }
 }
@@ -54,10 +69,17 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
   try {
     const decodedSlug = decodeURIComponent(slug);
 
-    const res = await getNews({ limit: 100, lang: locale });
-    const matched = (res.data || []).find((n: NewsItem) =>
+    let res = await getNews({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
+
+    if (!matched) {
+      const fallbackRes = await getNews({ limit: 100 });
+      matched = (fallbackRes.data || []).find((n: NewsItem) =>
+        n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
+      );
+    }
 
     if (!matched) {
       return notFound();
