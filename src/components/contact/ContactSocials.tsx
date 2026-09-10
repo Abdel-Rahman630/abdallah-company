@@ -98,7 +98,7 @@ export default function ContactSocials({ fields }: ContactSocialsProps) {
                 <h4 className="text-[#1E1E1E] text-[1.1rem] font-bold">
                   {phoneTitle}
                 </h4>
-                <span className="text-[#6B7280] text-[14px] font-normal">
+                <span className="text-[#6B7280] text-[14px] font-normal inline-block" dir="ltr" style={{ direction: "ltr" }}>
                   {contactPhone}
                 </span>
               </div>
@@ -118,7 +118,9 @@ export default function ContactSocials({ fields }: ContactSocialsProps) {
               <PhoneIcon color="#1E1E1E" className="w-[16px] h-[16px]" />
               <a
                 href={`tel:${customerServicePhone.replace(/\s+/g, "")}`}
-                className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors"
+                className="text-[#666666] text-[1rem] font-semibold hover:text-[#D1A52A] transition-colors inline-block"
+                dir="ltr"
+                style={{ direction: "ltr" }}
               >
                 {customerServicePhone}
               </a>

@@ -7,7 +7,7 @@ export default function SubTitle({
 }) {
   return (
     <h3
-      className={`mb-[8px] uppercase text-[#D1A52A] text-[0.6875rem] font-medium tracking-[2.5px] ${className}`}
+      className={`mb-[8px] uppercase text-[#D1A52A] text-[0.6875rem] rtl:text-[1rem] font-medium tracking-[2.5px] ${className}`}
     >
       {children}
     </h3>

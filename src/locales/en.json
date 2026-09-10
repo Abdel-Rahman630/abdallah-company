@@ -76,8 +76,16 @@
     "divisionRequired": "Please select a division.",
     "emailRequired": "Email is required.",
     "phoneRequired": "Phone number is required.",
-    "messageRequired": "Message is required.",
-    "yourMessage": "Your Message"
+    "yourMessage": "Your Message",
+    "divisionOptions": {
+      "automotive": "Automotive & Machinery",
+      "marine": "Marine",
+      "powerSolutions": "Power Solutions",
+      "agriculture": "Agriculture",
+      "constructionEquipment": "Construction Equipment",
+      "waterSolutions": "Water Solutions",
+      "materialHandling": "Material Handling"
+    }
   },
   "events": {
     "all": "All",

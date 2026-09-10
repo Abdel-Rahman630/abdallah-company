@@ -50,8 +50,8 @@ export default async function ContactUsPage() {
   const contactFields = getSectionFields<ContactSectionFields>(contactData?.sections, "contact_section");
   const locationsIntroFields = getSectionFields<LocationsIntroSectionFields>(contactData?.sections, "locations_intro_section");
 
-  const bannerImage = bannerFields?.banner_image || "/contactanner.png";
-  const bannerTitle = bannerFields?.title || "Contact Us";
+  const bannerImage = bannerFields?.banner_image;
+  const bannerTitle = bannerFields?.title;
 
   return (
     <>

@@ -47,8 +47,8 @@ export default async function CareersPage() {
   const bannerFields = getSectionFields<CareersBannerSectionFields>(careersData?.sections, "banner_section");
   const whyJoinUsFields = getSectionFields<WhyJoinUsSectionFields>(careersData?.sections, "why_join_us_section");
 
-  const bannerImage = bannerFields?.banner_image || "/careers.png";
-  const bannerTitle = bannerFields?.title || "Careers";
+  const bannerImage = bannerFields?.banner_image;
+  const bannerTitle = bannerFields?.title;
 
   return (
     <>

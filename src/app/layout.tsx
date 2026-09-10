@@ -114,17 +114,17 @@ export default async function RootLayout({
             gtag('config', 'G-N4S2XRZPK7');
           `}
         </Script>
-        <LanguageProvider initialLocale={locale}>
-          <DivisionsProvider divisions={divisions}>
-            <LoadingProvider>
-              <PageLoader />
+        <LoadingProvider>
+          <PageLoader />
+          <LanguageProvider initialLocale={locale}>
+            <DivisionsProvider divisions={divisions}>
               <Header />
               <main className="flex-grow">{children}</main>
               <JoinUs />
               <Footer />
-            </LoadingProvider>
-          </DivisionsProvider>
-        </LanguageProvider>
+            </DivisionsProvider>
+          </LanguageProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

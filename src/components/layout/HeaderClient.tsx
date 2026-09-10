@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useHeader, useNavItems } from "@/hooks/header";
 import { HeaderClientProps } from "@/types/models";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 
@@ -46,35 +47,38 @@ export default function HeaderClient({ logo, actions }: HeaderClientProps) {
         {/* Column 3: Actions (desktop) */}
         <div className="hidden min-[1200px]:flex">{actions}</div>
 
-        {/* Burger button (mobile/tablet) */}
-        <button
-          className="min-[1200px]:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] transition-colors z-50 relative cursor-pointer"
-          onClick={() => {
-            if (mobileOpen) {
-              setMobileOpen(false);
-              setTimeout(() => setMobileActiveMenu(null), 500);
-            } else {
-              setMobileOpen(true);
-            }
-          }}
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
-              mobileOpen ? "rotate-45 translate-y-[8px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
-              mobileOpen ? "-rotate-45 -translate-y-[8px]" : ""
-            }`}
-          />
-        </button>
+        {/* Mobile controls (Language switcher & Burger button) */}
+        <div className="flex items-center gap-4 min-[1200px]:hidden">
+          <LanguageSwitcher />
+          <button
+            className="flex flex-col justify-center items-center w-10 h-10 gap-[6px] transition-colors z-50 relative cursor-pointer"
+            onClick={() => {
+              if (mobileOpen) {
+                setMobileOpen(false);
+                setTimeout(() => setMobileActiveMenu(null), 500);
+              } else {
+                setMobileOpen(true);
+              }
+            }}
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
+                mobileOpen ? "rotate-45 translate-y-[8px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
+                mobileOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] rounded-full transition-all duration-300 bg-white ${
+                mobileOpen ? "-rotate-45 -translate-y-[8px]" : ""
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Drawer */}

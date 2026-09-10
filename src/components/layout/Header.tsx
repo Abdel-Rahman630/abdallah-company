@@ -35,7 +35,7 @@ export default function Header() {
       }
       actions={
         <div className="flex items-center gap-[10px]">
-          <LanguageSwitcher />
+          <LanguageSwitcher className="hidden min-[1200px]:flex" />
 
           <YellowButton target="_blank" href="https://ahcl-store.com.sa/ar" icon={StoreIcon}>
             {t("header.store")}

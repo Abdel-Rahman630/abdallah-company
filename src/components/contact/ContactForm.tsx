@@ -141,15 +141,13 @@ export default function ContactForm({ fields }: ContactFormProps) {
                 })}
               >
                 <option value="">{divisionPlaceholder}</option>
-                <option value="automotive">
-                  Automotive &amp; Machinery
-                </option>
-                <option value="marine">Marine</option>
-                <option value="power_solutions">Power Solutions</option>
-                <option value="agriculture">Agriculture</option>
-                <option value="construction_equipment">Construction Equipment</option>
-                <option value="water_solutions">Water Solutions</option>
-                <option value="material_handling">Material Handling</option>
+                <option value="automotive">{t("contact.divisionOptions.automotive")}</option>
+                <option value="marine">{t("contact.divisionOptions.marine")}</option>
+                <option value="power_solutions">{t("contact.divisionOptions.powerSolutions")}</option>
+                <option value="agriculture">{t("contact.divisionOptions.agriculture")}</option>
+                <option value="construction_equipment">{t("contact.divisionOptions.constructionEquipment")}</option>
+                <option value="water_solutions">{t("contact.divisionOptions.waterSolutions")}</option>
+                <option value="material_handling">{t("contact.divisionOptions.materialHandling")}</option>
               </FormSelect>
               {errors.division && (
                 <span className="text-red-500 text-[0.75rem]">

@@ -3,7 +3,7 @@
 import React from "react";
 import { useLanguage } from "@/providers/LanguageProvider";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ className = "" }: { className?: string }) {
   const { locale, setLocale } = useLanguage();
 
   const toggleLanguage = (e: React.MouseEvent) => {
@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-[8px] cursor-pointer bg-transparent border-none p-0 outline-none"
+      className={`flex items-center gap-[8px] cursor-pointer bg-transparent border-none p-0 outline-none ${className}`}
       aria-label="Toggle Language"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

@@ -276,8 +276,8 @@ export interface RevealProps {
 }
 
 export interface PageBannerProps {
-  image: string;
-  title: string;
+  image?: string;
+  title?: string;
   alt?: string;
 }
 

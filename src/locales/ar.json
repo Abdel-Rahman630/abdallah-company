@@ -1,6 +1,6 @@
 {
   "header": {
-    "store": "متجر AHCL",
+    "store": "متجر شركة عبد الله هاشم المحدودة",
     "about": "من نحن",
     "divisions": "الأقسام",
     "news": "الأخبار والفعاليات",
@@ -16,7 +16,7 @@
     "about": "من نحن",
     "news": "الأخبار والفعاليات",
     "careers": "الوظائف",
-    "store": "متجر AHCL",
+    "store": "متجر شركة عبد الله هاشم المحدودة",
     "address": "ص.ب 44، جدة 21411، المملكة العربية السعودية",
     "phone": "+920002208",
     "email": "info@ahcl.com.sa",
@@ -76,8 +76,16 @@
     "divisionRequired": "يرجى اختيار القسم.",
     "emailRequired": "البريد الإلكتروني مطلوب.",
     "phoneRequired": "رقم الهاتف مطلوب.",
-    "messageRequired": "الرسالة مطلوبة.",
-    "yourMessage": "رسالتك"
+    "yourMessage": "رسالتك",
+    "divisionOptions": {
+      "automotive": "السيارات",
+      "marine": "البحري",
+      "powerSolutions": "حلول الطاقة",
+      "agriculture": "الزراعة",
+      "constructionEquipment": "معدات البناء",
+      "waterSolutions": "حلول المياه",
+      "materialHandling": " مناولة المواد"
+    }
   },
   "events": {
     "all": "الكل",

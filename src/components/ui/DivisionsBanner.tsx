@@ -2,11 +2,14 @@ import Image from "next/image";
 import { PageBannerProps } from "@/types/models";
 
 export default function DivisionsBanner({ image, title, alt }: PageBannerProps) {
+  const displayImage = image || "/contactanner.png";
+  const displayTitle = title || "";
+
   return (
-    <section className="relative w-full h-[346px]" aria-label={title}>
+    <section className="relative w-full h-[346px]" aria-label={displayTitle}>
       <Image
-        src={image}
-        alt={alt ?? title}
+        src={displayImage}
+        alt={alt ?? displayTitle}
         fill
         className="object-cover"
         priority
@@ -16,7 +19,7 @@ export default function DivisionsBanner({ image, title, alt }: PageBannerProps) 
       <div className="absolute inset-0 bg-[#000000] opacity-20 z-10" aria-hidden="true" />
       <div className="container mx-auto h-full relative z-20">
         <h1 className="absolute bottom-[50px] start-4 lg:start-0 text-[#FFF] text-[3rem] font-bold z-20 capitalize">
-          {title}
+          {displayTitle}
         </h1>
       </div>
     </section>

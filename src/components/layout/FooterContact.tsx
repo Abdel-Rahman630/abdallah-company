@@ -32,7 +32,7 @@ export default function FooterContact({ t }: { t: (key: string) => string }) {
             className="flex items-center gap-[10px] text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
           >
             <PhoneIcon />
-            <span>{t("footer.phone")}</span>
+            <span dir="ltr" style={{ direction: "ltr" }}>{t("footer.phone")}</span>
           </Link>
         </li>
         <li>
