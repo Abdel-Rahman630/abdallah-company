@@ -1,25 +1,29 @@
+"use client";
+
 import React from "react";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import { LinkedInIcon } from "@/components/icons/LinkedInIcon";
 import { MailIcon } from "@/components/icons/MailIcon";
 import { PhoneIcon } from "@/components/icons/PhoneIcon";
 import type { ContactSectionFields } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 interface ContactSocialsProps {
   fields?: ContactSectionFields | null;
 }
 
 export default function ContactSocials({ fields }: ContactSocialsProps) {
-  const followTitle = fields?.follow_title || "Follow Our Progress";
+  const { t } = useLanguage();
+  const followTitle = fields?.follow_title || t("contact.followTitle");
   const followDescription = fields?.follow_description;
   const linkedInTitle = fields?.linkedin_title || "LinkedIn";
   const linkedInValue = fields?.linkedin_value || "Abdullah Hashim Company";
   const linkedInUrl = fields?.linkedin_url || "https://www.linkedin.com/company/abdullah-hashim-co--ltd-/";
-  const emailTitle = fields?.email_title || "Email Address";
+  const emailTitle = fields?.email_title || t("contact.emailTitle");
   const contactEmail = fields?.contact_email || "info@ahcl.com.sa";
-  const phoneTitle = fields?.phone_title || "Phone Number";
+  const phoneTitle = fields?.phone_title || t("contact.phoneTitle");
   const contactPhone = fields?.contact_phone || "+966 12 6621500";
-  const customerServiceTitle = fields?.customer_service_title || "Customer Service";
+  const customerServiceTitle = fields?.customer_service_title || t("contact.customerServiceTitle");
   const customerServicePhone = fields?.customer_service_phone || "920 002 208";
 
   return (

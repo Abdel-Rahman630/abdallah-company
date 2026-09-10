@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { EventCardProps } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function EventCard({ id = 1, image, date, month, title, disabled }: EventCardProps) {
+  const { t } = useLanguage();
   if (disabled) {
     return (
       <div className="block relative w-[260px] h-[222px] rounded-[5px] overflow-hidden shrink-0 cursor-default opacity-80" aria-label={`${title} (not available)`}>
@@ -29,7 +33,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
         </h3>
         {/* Disabled badge */}
         <div className="absolute bottom-[16px] start-[16px] w-full flex z-10">
-          <span className="text-white/50 text-[0.6rem] font-normal uppercase">Coming soon</span>
+          <span className="text-white/50 text-[0.6rem] font-normal uppercase">{t("events.comingSoon")}</span>
         </div>
       </div>
     );
@@ -79,7 +83,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
               fill="white"
             />
           </svg>
-          view more
+          {t("events.viewMore")}
         </span>
       </div>
     </Link>

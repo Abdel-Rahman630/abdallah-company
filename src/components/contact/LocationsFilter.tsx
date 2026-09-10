@@ -42,7 +42,7 @@ export default function LocationsFilter({
       {/* Filter Form Wrapper */}
       <div className="lg:py-[50px] lg:px-[100px] md:py-[35px] md:px-[70px] py-[30px] px-[25px] bg-[white] rounded-[10px] mb-[40px]">
         <h2 className="text-[#1E1E1E] text-center text-[2rem] font-bold mb-[40px]">
-          Find Our Network
+          {t("contact.findOurNetwork")}
         </h2>
         <div className="flex flex-wrap md:flex-nowrap gap-[24px] mb-[24px]">
           <div className="relative w-full md:w-1/4">
@@ -189,7 +189,7 @@ export default function LocationsFilter({
       {hasFiltered && (
       <div className="flex flex-col w-full">
         <p className="text-[#231F20] text-[1rem] font-normal pb-[8px] border-b border-[#E5E5E5] mb-[40px]">
-          ({locations.length}) Locations Found
+          ({locations.length}) {t("contact.locationsFound")}
         </p>
 
         {locations.length === 0 ? (
@@ -277,7 +277,7 @@ export default function LocationsFilter({
                         </defs>
                       </svg>
                       <span className="text-[#231F20] text-[1rem] font-bold">
-                        Get Directions
+                        {t("contact.getDirections")}
                       </span>
                     </a>
                   </div>

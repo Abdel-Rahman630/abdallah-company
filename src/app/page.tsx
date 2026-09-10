@@ -6,6 +6,7 @@ import News from "@/components/home/News";
 import { getHomeNews } from "@/services/news.service";
 import { getHomeEvents } from "@/services/events.service";
 import { getHomeCmsData } from "@/services/home.service";
+import { getHomeDivisions } from "@/services/divisions.service";
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
 import type {
@@ -49,16 +50,18 @@ export default async function Home() {
   const cookieStore = await cookies();
   const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
 
-  // Fetch home CMS page data, news, and events in parallel
-  const [cmsResult, newsResult, eventsResult] = await Promise.allSettled([
+  // Fetch home CMS page data, news, events, and divisions in parallel
+  const [cmsResult, newsResult, eventsResult, divisionsResult] = await Promise.allSettled([
     getHomeCmsData(lang),
     getHomeNews(lang),
     getHomeEvents(lang),
+    getHomeDivisions(lang),
   ]);
 
   const homeCmsData = cmsResult.status === "fulfilled" ? cmsResult.value : null;
   const initialNews = newsResult.status === "fulfilled" ? newsResult.value : [];
   const initialEvents = eventsResult.status === "fulfilled" ? eventsResult.value : [];
+  const initialDivisions = divisionsResult.status === "fulfilled" ? divisionsResult.value : [];
 
   const heroFields = getSectionFields<HeroSectionFields>(homeCmsData?.sections, "hero_section");
   const whoWeAreFields = getSectionFields<WhoWeAreSectionFields>(homeCmsData?.sections, "who_we_are_section");
@@ -68,7 +71,7 @@ export default async function Home() {
     <>
       <VideoSection fields={heroFields} />
       <WhoWeAre fields={whoWeAreFields} />
-      <OurProducts />
+      <OurProducts initialProducts={initialDivisions} />
       <OurBranches fields={networkFields} />
       <News initialNews={initialNews} initialEvents={initialEvents} />
     </>

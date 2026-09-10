@@ -3,12 +3,14 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { RevealText } from "@/components/ui/ScrollReveal";
-import ArrowLink from "@/components/ui/ArrowLink";
-import { useOurProducts } from "@/hooks/home/useOurProducts";
+import { useLanguage } from "@/providers/LanguageProvider";
 import { Division } from "@/types/models";
-import { truncateText } from "@/lib/utils";
+import { truncateText, normalizeImageUrl } from "@/lib/utils";
+import { useOurProducts } from "@/hooks/home/useOurProducts";
+import ArrowLink from "@/components/ui/ArrowLink";
 
 export default function OurProducts({ initialProducts = [] }: { initialProducts?: Division[] }) {
+  const { t } = useLanguage();
   const { products, activeIndex, setActiveIndex, active, loading } = useOurProducts(initialProducts);
 
   if (loading || !products || products.length === 0) {
@@ -18,6 +20,8 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
       </section>
     );
   }
+
+  const activeImage = active?.home_image ? normalizeImageUrl(active.home_image) : "";
 
   return (
     <section id="products" className="relative overflow-hidden py-[50px]">
@@ -31,9 +35,9 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
           transition={{ duration: 0.7 }}
           className="absolute inset-0 z-0"
         >
-          {active && active.home_image && (
+          {activeImage && (
             <Image
-              src={active.home_image}
+              src={activeImage}
               alt={active.title || active.name}
               fill
               className="object-cover md:object-center ltr:object-right rtl:object-left"
@@ -54,10 +58,10 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
         <RevealText delay={0.1}>
           <div className="mb-[32px] text-center">
             <p className="mb-2 text-white text-center text-[1.75rem] font-normal">
-              Our Products
+              {t("home.ourProducts")}
             </p>
             <h2 className="text-white text-[2rem] font-bold">
-              {active?.slogan || "Solutions for Every Industry"}
+              {active?.slogan || t("home.productsSubtitle")}
             </h2>
           </div>
         </RevealText>
@@ -72,7 +76,7 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
                   type="button"
                   key={product.id || index}
                   onClick={() => setActiveIndex(index)}
-                  className={`text-start transition-all duration-500 focus:outline-none w-max px-4 py-2 ${
+                  className={`text-start transition-all duration-500 focus:outline-none w-max px-4 py-2 cursor-pointer ${
                     activeIndex === index
                       ? "text-white text-[1.5rem] font-semibold rounded-[5px] bg-white/10 backdrop-blur-[10px]"
                       : "text-[#949494] text-[1.25rem] font-medium"
@@ -104,7 +108,9 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
                     {truncateText(active?.description, 200)}
                   </p>
                 </div>
-                <ArrowLink href={`/divisions/${active?.slug}#${active?.slug}`}>More about {active?.title}</ArrowLink>
+                <ArrowLink href={`/divisions/${active?.slug}#${active?.slug}`}>
+                  {t("home.moreAbout")} {active?.title || active?.name}
+                </ArrowLink>
               </motion.div>
             </AnimatePresence>
           </div>

@@ -63,17 +63,22 @@ export default function MobileMenu({
             mobileActiveMenu ? "translate-x-0 relative opacity-100" : "ltr:translate-x-full rtl:-translate-x-full absolute w-full opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-white text-lg font-semibold capitalize">{mobileActiveMenu}</span>
-            <button
-              onClick={() => setMobileActiveMenu(null)}
-              className="w-12 h-12 flex items-center justify-center text-lg text-white"
-            >
-              <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          </div>
+          {(() => {
+            const activeItem = navItems.find((item) => item.key === mobileActiveMenu);
+            return (
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-white text-lg font-semibold">{activeItem?.label || mobileActiveMenu}</span>
+                <button
+                  onClick={() => setMobileActiveMenu(null)}
+                  className="w-12 h-12 flex items-center justify-center text-lg text-white"
+                >
+                  <svg className="rtl:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              </div>
+            );
+          })()}
 
           {activeDropdownData ? (
             <DropdownPanel

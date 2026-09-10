@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import { Brand } from "@/types/models";
 import { RevealText, RevealImage } from "@/components/ui/ScrollReveal";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { normalizeImageUrl } from "@/lib/utils";
 
 /* ─── Social icon map ─── */
 function SocialIcon({ type }: { type: string }) {
@@ -159,7 +161,7 @@ function BrandCard({
     >
       <div className="relative w-[150px] h-[100px] mb-[6px]">
         <Image
-          src={brand.logo || "/bg.png"}
+          src={normalizeImageUrl(brand.logo) || "/bg.png"}
           alt={brand.name}
           fill
           className="object-contain"
@@ -167,15 +169,13 @@ function BrandCard({
           unoptimized
         />
       </div>
-      {/* <span className="text-[#231F20] text-center text-[1rem] font-bold leading-tight line-clamp-1 px-2">
-        {brand.name}
-      </span> */}
     </button>
   );
 }
 
 /* ─── Brand Detail Section ─── */
 function BrandDetail({ brand }: { brand: Brand }) {
+  const { t } = useLanguage();
   const images = brand.images && brand.images.length > 0 ? brand.images : [];
 
   // Format social links object into array of {type, url}
@@ -196,7 +196,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
               <SwiperSlide key={img.id}>
                 <div className="relative w-full h-full">
                   <Image
-                    src={img.url}
+                    src={normalizeImageUrl(img.url)}
                     alt={brand.title}
                     fill
                     className="object-cover object-right"
@@ -209,7 +209,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
           </Swiper>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">
-            No image available
+            {t("divisions.noImage")}
           </div>
         )}
       </RevealImage>
@@ -230,7 +230,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
         {socials.length > 0 && (
           <RevealText delay={0.2}>
             <p className="mt-[1rem] text-[#949494] text-[0.9rem] font-semibold uppercase mb-[1rem] tracking-wide">
-              Brand Social Media
+              {t("divisions.brandSocial")}
             </p>
             <ul className="flex gap-[12px] flex-wrap">
               {socials.map((link, i) => (
@@ -256,6 +256,7 @@ function BrandDetail({ brand }: { brand: Brand }) {
 
 /* ─── Main Brands Section ─── */
 export default function Brands({ brands }: { brands: Brand[] }) {
+  const { t } = useLanguage();
   const [activeBrand, setActiveBrand] = useState<Brand | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
 
@@ -285,7 +286,7 @@ export default function Brands({ brands }: { brands: Brand[] }) {
         <div className="container mx-auto">
           <RevealText>
             <h2 className="text-[#231F20] text-[2.5rem] font-bold mb-[40px]">
-              Brands
+              {t("divisions.brands")}
             </h2>
           </RevealText>
 

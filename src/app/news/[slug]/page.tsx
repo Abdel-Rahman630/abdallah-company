@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import ScreenshotButton from "@/components/news/ScreenshotButton";
 import { formatFullDate } from "@/lib/utils";
+import { getT } from "@/lib/getT";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
@@ -47,6 +48,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
   const { slug } = await params;
   const cookieStore = await cookies();
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+  const t = getT(locale);
 
   let news;
   try {
@@ -105,7 +107,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                     fill="#1E1E1E"
                   />
                 </svg>
-                back to news &amp; events
+                {t("news.backToNews")}
               </Link>
             </RevealText>
           </div>
@@ -120,7 +122,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
             <RevealText delay={0.3}>
               <div className="flex gap-[1rem] items-center">
                 <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                  Company News
+                  {t("news.companyNews")}
                 </span>
                 <span className="text-[#D1A52A] text-[0.9rem]">
                   {news.publish_date

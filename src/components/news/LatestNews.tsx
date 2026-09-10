@@ -5,8 +5,10 @@ import NewsCard from "@/components/news/NewsCard";
 import NewsCardSkeleton from "@/components/ui/NewsCardSkeleton";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import { useLatestNews } from "@/hooks/news/useLatestNews";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function LatestNews() {
+  const { t } = useLanguage();
   const { newsData, pageCount, currentPage, setCurrentPage, isLoading } =
     useLatestNews();
 
@@ -17,7 +19,7 @@ export default function LatestNews() {
           <div className="w-full">
             <RevealText delay={0.1}>
               <h2 className="text-[#1E1E1E] text-[2.5rem] font-bold leading-tight mb-[40px]">
-                LATEST NEWS
+                {t("news.latestNews")}
               </h2>
             </RevealText>
 
@@ -42,7 +44,7 @@ export default function LatestNews() {
                   </RevealText>
                 ))
               ) : (
-                <div className="text-gray-500">No news available at the moment.</div>
+                <div className="text-gray-500">{t("news.noNews")}</div>
               )}
             </div>
 

@@ -20,7 +20,7 @@ export default function FooterBottom({ t }: { t: (key: string) => string }) {
         </Link>
         <span className="w-[1px] h-[12px] bg-[rgba(255,255,255,0.30)] mx-[16px]"></span>
         <Link href="/cookies-policy" prefetch={false} className="hover:text-gray-300 transition">
-          Cookies Policy
+          {t("footer.cookiesPolicy")}
         </Link>
       </div>
     </div>

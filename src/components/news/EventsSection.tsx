@@ -45,7 +45,7 @@ export default function EventsSection() {
                     : "text-[#858585] border-[#D3D3D3] hover:bg-[#D1A52A] hover:text-black hover:border-[#D1A52A]"
                 }`}
               >
-                {tab}
+                {tab === "All" ? t("events.all") : tab}
               </button>
             ))}
           </div>
@@ -82,8 +82,8 @@ export default function EventsSection() {
               </svg>
               <p className="text-[#727272] text-[1rem] font-normal text-center">
                 {activeTab === "All"
-                  ? "There are no events right now. Stay tuned for upcoming announcements."
-                  : `There are no events in the "${activeTab}" category right now.`}
+                  ? t("events.noEventsAll")
+                  : t("events.noEventsCategory")}
               </p>
             </div>
           )}

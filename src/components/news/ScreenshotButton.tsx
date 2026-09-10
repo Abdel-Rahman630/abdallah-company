@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ScreenshotButtonProps } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 async function fetchAndDownload(url: string, fallbackFilename: string) {
   const response = await fetch(url);
@@ -57,6 +58,7 @@ export default function ScreenshotButton({
   slug,
   lang = "en",
 }: ScreenshotButtonProps) {
+  const { t } = useLanguage();
   const [isDownloading, setIsDownloading] = useState(false);
 
   const effectiveSlug = newsSlug || slug || "";
@@ -89,7 +91,7 @@ export default function ScreenshotButton({
       disabled={isDownloading}
       className="w-[123px] h-[32px] rounded-[16px] border border-[#E5E5E5] flex items-center justify-center cursor-pointer text-[#666666] text-[0.9rem] font-medium gap-[8px] hover:bg-gray-50 transition-colors disabled:opacity-50"
     >
-      <span className="capitalize">{isDownloading ? "Downloading..." : "Download"}</span>
+      <span className="capitalize">{isDownloading ? t("news.downloading") : t("news.download")}</span>
       {!isDownloading && (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <rect x="7" y="2" width="2" height="9" rx="1" fill="#666666" />

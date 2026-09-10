@@ -6,24 +6,26 @@ import { FormInput } from "@/components/ui/FormInput";
 import { FormSelect } from "@/components/ui/FormSelect";
 import { RevealText } from "@/components/ui/ScrollReveal";
 import type { ContactSectionFields } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 interface ContactFormProps {
   fields?: ContactSectionFields | null;
 }
 
 export default function ContactForm({ fields }: ContactFormProps) {
+  const { t } = useLanguage();
   const { register, handleSubmit, onSubmit, errors, status, globalError } =
     useGetInTouch();
 
   const headTitle = fields?.head_title || "GET IN TOUCH";
-  const title = fields?.title || "Contact Us";
+  const title = fields?.title || t("header.contact");
   const description = fields?.description;
-  const namePlaceholder = fields?.name_placeholder || "Name";
-  const divisionPlaceholder = fields?.division_placeholder || "Select Division";
-  const emailPlaceholder = fields?.email_placeholder || "Email Address";
-  const phonePlaceholder = fields?.phone_placeholder || "Phone Number";
-  const messagePlaceholder = fields?.message_placeholder || "Your Message";
-  const submitLabel = fields?.submit_label || "SEND MESSAGE";
+  const namePlaceholder = fields?.name_placeholder || t("eventForm.namePlaceholder");
+  const divisionPlaceholder = fields?.division_placeholder || t("contact.selectDivision");
+  const emailPlaceholder = fields?.email_placeholder || t("eventForm.emailPlaceholder");
+  const phonePlaceholder = fields?.phone_placeholder || t("eventForm.phonePlaceholder");
+  const messagePlaceholder = fields?.message_placeholder || t("contact.yourMessage");
+  const submitLabel = fields?.submit_label || t("contact.sendMessage");
 
   return (
     <div className="flex-1">
@@ -76,11 +78,10 @@ export default function ContactForm({ fields }: ContactFormProps) {
           </svg>
           <div>
             <p className="text-green-800 font-bold text-[0.9rem]">
-              Message sent successfully!
+              {t("contact.successTitle")}
             </p>
             <p className="text-green-700 text-[0.85rem]">
-              Thank you for contacting us. We&apos;ll get back to you as soon
-              as possible.
+              {t("contact.successDesc")}
             </p>
           </div>
         </div>
@@ -122,7 +123,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
                 type="text"
                 placeholder={namePlaceholder}
                 error={!!errors.name}
-                {...register("name", { required: "Name is required." })}
+                {...register("name", { required: t("contact.nameRequired") })}
               />
               {errors.name && (
                 <span className="text-red-500 text-[0.75rem]">
@@ -136,7 +137,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
               <FormSelect
                 error={!!errors.division}
                 {...register("division", {
-                  required: "Please select a division.",
+                  required: t("contact.divisionRequired"),
                 })}
               >
                 <option value="">{divisionPlaceholder}</option>
@@ -164,7 +165,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
               type="email"
               placeholder={emailPlaceholder}
               error={!!errors.email}
-              {...register("email", { required: "Email is required." })}
+              {...register("email", { required: t("contact.emailRequired") })}
             />
             {errors.email && (
               <span className="text-red-500 text-[0.75rem]">
@@ -180,7 +181,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
               placeholder={phonePlaceholder}
               error={!!errors.phone}
               {...register("phone", {
-                required: "Phone number is required.",
+                required: t("contact.phoneRequired"),
               })}
             />
             {errors.phone && (
@@ -199,7 +200,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
                 errors.message ? "border-red-400" : "border-[#E5E5E5]"
               }`}
               {...register("message", {
-                required: "Message is required.",
+                required: t("contact.messageRequired"),
               })}
             />
             {errors.message && (
@@ -232,7 +233,7 @@ export default function ContactForm({ fields }: ContactFormProps) {
                     strokeLinecap="round"
                   />
                 </svg>
-                Sending...
+                {t("contact.sending")}
               </>
             ) : (
               <>

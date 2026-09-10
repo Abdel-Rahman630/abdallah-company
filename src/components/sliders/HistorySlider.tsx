@@ -9,11 +9,11 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import { useLanguage } from "@/providers/LanguageProvider";
-
 import { HistoryItem } from "@/types/models";
+import { normalizeImageUrl } from "@/lib/utils";
 
 export default function HistorySlider() {
-  const { locale } = useLanguage();
+  const { locale, t } = useLanguage();
   const [historyData, setHistoryData] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -21,22 +21,26 @@ export default function HistorySlider() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
     async function fetchHistory() {
       try {
-        const res = await fetch(
-          `/api/cms/history?lang=${locale}`
-        );
+        const res = await fetch(`/api/cms/history?lang=${locale}`);
         const json = await res.json();
-        if (json.data) {
-          setHistoryData(json.data);
+        if (!cancelled && json.data && Array.isArray(json.data)) {
+          const sanitized = json.data.map((item: HistoryItem) => ({
+            ...item,
+            image: item.image ? normalizeImageUrl(item.image) : item.image,
+          }));
+          setHistoryData(sanitized);
         }
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
     fetchHistory();
+    return () => { cancelled = true; };
   }, [locale]);
 
   const handleSlideChange = (swiper: SwiperType) => {

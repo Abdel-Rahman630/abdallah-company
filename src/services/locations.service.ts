@@ -10,7 +10,7 @@ export async function getLocations(lang: string = "en"): Promise<ApiLocation[]> 
   try {
     const res = await apiGet<LocationsApiResponse>(
       `/api/cms/locations?lang=${encodeURIComponent(lang)}`,
-      { revalidate: 300, tags: ["locations"] }
+      { revalidate: 300, tags: ["locations", `locations-${lang}`] }
     );
 
     if (!res?.status || !Array.isArray(res?.data)) return [];

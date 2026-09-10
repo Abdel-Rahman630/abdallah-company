@@ -31,6 +31,8 @@
     "newsTitle": "LATEST NEWS",
     "newsSubtitle": "News & Events",
     "ourProducts": "Our Products",
+    "productsSubtitle": "Solutions for Every Industry",
+    "moreAbout": "More about",
     "noNews": "No news available"
   },
   "newsletter": {
@@ -41,6 +43,10 @@
     "loading": "Subscribing...",
     "success": "Subscribed!",
     "error": "Error"
+  },
+  "subscribeSection": {
+    "title": "Stay Updated With AHCL",
+    "desc": "Join our newsletter for exclusive event invites and industry news."
   },
   "contact": {
     "locations": "OUR LOCATIONS",
@@ -57,14 +63,55 @@
     "selectCity": "Select City",
     "findOurNetwork": "Find Our Network",
     "getDirections": "Get Directions",
-    "locationsFound": "Locations Found"
+    "locationsFound": "Locations Found",
+    "followTitle": "Follow Our Progress",
+    "emailTitle": "Email Address",
+    "phoneTitle": "Phone Number",
+    "customerServiceTitle": "Customer Service",
+    "sendMessage": "SEND MESSAGE",
+    "sending": "Sending...",
+    "successTitle": "Message sent successfully!",
+    "successDesc": "Thank you for contacting us. We'll get back to you as soon as possible.",
+    "nameRequired": "Name is required.",
+    "divisionRequired": "Please select a division.",
+    "emailRequired": "Email is required.",
+    "phoneRequired": "Phone number is required.",
+    "messageRequired": "Message is required.",
+    "yourMessage": "Your Message"
   },
   "events": {
+    "all": "All",
     "upcoming": "UPCOMING EVENTS",
     "calendar": "Events Calendar",
     "readMore": "Read More",
     "noEventsAll": "There are no events right now. Stay tuned for upcoming announcements.",
-    "noEventsCategory": "There are no events in this category right now."
+    "noEventsCategory": "There are no events in this category right now.",
+    "backToNews": "back to news & events",
+    "upcomingEvent": "Upcoming Event",
+    "pastEvent": "Past Event",
+    "date": "Date",
+    "time": "Time",
+    "venue": "Venue",
+    "category": "Category",
+    "organizer": "Organizer",
+    "comingSoon": "Coming soon",
+    "viewMore": "view more"
+  },
+  "eventForm": {
+    "title": "Register Interest",
+    "desc": "Fill out the form and we'll respond as soon as possible.",
+    "successTitle": "Successfully registered!",
+    "successDesc": "We will get back to you soon.",
+    "errorTitle": "Failed to register.",
+    "errorDesc": "Please try again later.",
+    "namePlaceholder": "Name",
+    "phonePlaceholder": "Phone Number",
+    "emailPlaceholder": "Email address",
+    "nameRequired": "Name is required.",
+    "phoneRequired": "Phone number is required.",
+    "emailRequired": "Email is required.",
+    "sending": "Sending...",
+    "send": "send"
   },
   "newsletterStatus": {
     "successTitle": "Successfully subscribed!",
@@ -116,10 +163,17 @@
   },
   "divisions": {
     "label": "Divisions",
-    "explore": "Explore"
+    "explore": "Explore",
+    "brands": "Brands",
+    "brandSocial": "Brand Social Media",
+    "noImage": "No image available"
   },
   "news": {
     "latestNews": "LATEST NEWS",
-    "noNews": "No news available at the moment."
+    "noNews": "No news available at the moment.",
+    "backToNews": "back to news & events",
+    "companyNews": "Company News",
+    "download": "Download",
+    "downloading": "Downloading..."
   }
 }

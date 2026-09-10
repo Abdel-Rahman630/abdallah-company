@@ -24,13 +24,15 @@
     "developedBy": "تصميم وتطوير",
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الاستخدام",
-    "cookiesPolicy": "سياسة الكوكيز"
+    "cookiesPolicy": "سياسة ملفات تعريف الارتباط"
   },
   "home": {
     "readMore": "اقرأ المزيد",
     "newsTitle": "أحدث الأخبار",
     "newsSubtitle": "الأخبار والفعاليات",
     "ourProducts": "منتجاتنا",
+    "productsSubtitle": "حلول لكل قطاع",
+    "moreAbout": "المزيد عن",
     "noNews": "لا توجد أخبار"
   },
   "newsletter": {
@@ -41,6 +43,10 @@
     "loading": "جارٍ الاشتراك...",
     "success": "تم الاشتراك!",
     "error": "حدث خطأ"
+  },
+  "subscribeSection": {
+    "title": "ابقَ على اطلاع مع شركة عبدالله هاشم",
+    "desc": "انضم إلى نشرتنا الإخبارية للحصول على دعوات الفعاليات الحصرية وأخبار الصناعة."
   },
   "contact": {
     "locations": "مواقعنا",
@@ -57,14 +63,55 @@
     "selectCity": "اختر المدينة",
     "findOurNetwork": "اعثر على شبكتنا",
     "getDirections": "الحصول على الاتجاهات",
-    "locationsFound": "موقع تم العثور عليه"
+    "locationsFound": "موقع تم العثور عليه",
+    "followTitle": "تابع مسيرتنا",
+    "emailTitle": "البريد الإلكتروني",
+    "phoneTitle": "رقم الهاتف",
+    "customerServiceTitle": "خدمة العملاء",
+    "sendMessage": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال...",
+    "successTitle": "تم إرسال الرسالة بنجاح!",
+    "successDesc": "شكرًا لتواصلك معنا. سنقوم بالرد عليك في أقرب وقت ممكن.",
+    "nameRequired": "الاسم مطلوب.",
+    "divisionRequired": "يرجى اختيار القسم.",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "phoneRequired": "رقم الهاتف مطلوب.",
+    "messageRequired": "الرسالة مطلوبة.",
+    "yourMessage": "رسالتك"
   },
   "events": {
+    "all": "الكل",
     "upcoming": "الفعاليات القادمة",
     "calendar": "تقويم الفعاليات",
     "readMore": "اقرأ المزيد",
     "noEventsAll": "لا توجد فعاليات الآن. ترقبوا الإعلانات القادمة.",
-    "noEventsCategory": "لا توجد فعاليات في هذه الفئة الآن."
+    "noEventsCategory": "لا توجد فعاليات في هذه الفئة الآن.",
+    "backToNews": "العودة إلى الأخبار والفعاليات",
+    "upcomingEvent": "فعالية قادمة",
+    "pastEvent": "فعالية سابقة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "venue": "المكان",
+    "category": "الفئة",
+    "organizer": "المنظم",
+    "comingSoon": "قريبًا",
+    "viewMore": "عرض المزيد"
+  },
+  "eventForm": {
+    "title": "سجل اهتمامك",
+    "desc": "املأ النموذج وسنقوم بالرد عليك في أقرب وقت ممكن.",
+    "successTitle": "تم التسجيل بنجاح!",
+    "successDesc": "سنتواصل معك قريبًا.",
+    "errorTitle": "فشل التسجيل.",
+    "errorDesc": "يرجى المحاولة مرة أخرى لاحقًا.",
+    "namePlaceholder": "الاسم",
+    "phonePlaceholder": "رقم الهاتف",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "nameRequired": "الاسم مطلوب.",
+    "phoneRequired": "رقم الهاتف مطلوب.",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "sending": "جارٍ الإرسال...",
+    "send": "إرسال"
   },
   "newsletterStatus": {
     "successTitle": "تم الاشتراك بنجاح!",
@@ -116,10 +163,17 @@
   },
   "divisions": {
     "label": "الأقسام",
-    "explore": "استكشف"
+    "explore": "استكشف",
+    "brands": "العلامات التجارية",
+    "brandSocial": "وسائل التواصل الاجتماعي للعلامة التجارية",
+    "noImage": "لا توجد صورة متاحة"
   },
   "news": {
     "latestNews": "أحدث الأخبار",
-    "noNews": "لا توجد أخبار في الوقت الحالي."
+    "noNews": "لا توجد أخبار في الوقت الحالي.",
+    "backToNews": "العودة إلى الأخبار والفعاليات",
+    "companyNews": "أخبار الشركة",
+    "download": "تحميل",
+    "downloading": "جارٍ التحميل..."
   }
 }

@@ -6,11 +6,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOurProducts } from "@/hooks/home/useOurProducts";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const truncate = (text: string, max: number) =>
   text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;
 
 export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boolean; onClose?: () => void }) {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const { products, loading } = useOurProducts();
 
@@ -82,7 +84,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       {/* First Column: List of Products */}
       <div className="border-e border-[#666666] flex flex-col shrink-0 min-w-[200px]">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
-          Divisions
+          {t("divisions.label")}
         </p>
         <ul className="flex flex-col gap-[1rem]">
           {products.map((product, index) => (
@@ -102,7 +104,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       {/* Second Column: Content Details */}
       <div className="flex-1 ps-[38px] pb-[30px] flex flex-col relative overflow-hidden">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
-          Explore
+          {t("divisions.explore")}
         </p>
 
         <div className="flex-1 relative">

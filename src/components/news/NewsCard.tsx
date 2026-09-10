@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import ArrowLink from "../ui/ArrowLink";
 import { NewsCardProps } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function NewsCard({ image, date, title, paragraph, readMore, id = 1, slug }: NewsCardProps) {
+  const { t } = useLanguage();
   const linkId = slug || id;
   const content = (
     <div className="flex flex-col md:flex-row gap-[40px] lg:gap-[80px] items-center">
@@ -30,7 +34,7 @@ export default function NewsCard({ image, date, title, paragraph, readMore, id =
         <p className="text-[#727272] text-[1rem] font-normal leading-[1.7] mb-[24px] md:mb-[32px]">
           {paragraph}
         </p>
-        {readMore && <ArrowLink href={`/news/${linkId}`} as="span" color="black" className="font-normal">Read More</ArrowLink>}
+        {readMore && <ArrowLink href={`/news/${linkId}`} as="span" color="black" className="font-normal">{t("home.readMore")}</ArrowLink>}
       </div>
     </div>
   );

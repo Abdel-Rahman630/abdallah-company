@@ -1,14 +1,15 @@
 import { useMemo } from "react";
 import { HomeNewsItem, NewsItem } from "@/types/models";
-import { formatDateParts } from "@/lib/utils";
+import { formatDateParts, normalizeImageUrl } from "@/lib/utils";
 
 function mapNewsItem(item: NewsItem): HomeNewsItem {
   const rawDate = item.publish_date || item.published_at || item.created_at;
   const { dayNum, monthShort, monthShortUpper } = formatDateParts(rawDate);
+  const rawImg = item.cover_image || item.cover_image_url;
   return {
     id: item.id,
     slug: item.slug,
-    image: item.cover_image || item.cover_image_url || "/bg.png",
+    image: rawImg ? normalizeImageUrl(rawImg) : "/bg.png",
     subtitle: item.category || "News",
     title: item.title || "",
     desc: item.short_description || item.excerpt || "",
