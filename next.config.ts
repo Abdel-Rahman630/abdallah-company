@@ -6,7 +6,7 @@ const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https: http://cms.ahcl.com.sa https://digital-iconcreations.com;
+  img-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa https://digital-iconcreations.com;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';

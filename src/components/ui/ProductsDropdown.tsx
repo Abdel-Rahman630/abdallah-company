@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOurProducts } from "@/hooks/home/useOurProducts";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { normalizeImageUrl } from "@/lib/utils";
 
 const truncate = (text: string, max: number) =>
   text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;
@@ -150,7 +151,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             className="absolute inset-0"
           >
             <Image
-              src={activeProduct.home_image || "/bg.png"}
+              src={normalizeImageUrl(activeProduct.home_image) || "/bg.png"}
               alt={activeProduct.title}
               fill
               className="object-cover"

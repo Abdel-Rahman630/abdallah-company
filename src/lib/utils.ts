@@ -69,24 +69,37 @@ export function truncateText(text: string | undefined, max: number): string {
 
 /**
  * Normalizes CMS image URLs to ensure valid, accessible HTTPS URLs.
- * - Converts legacy cms.ahcl.com.sa or direct /uploads/ URLs to valid https://digital-iconcreations.com/ahcl-crm/uploads/ paths
- * - Converts http:// to https:// for digital-iconcreations.com
- * - Prepends full base URL for relative upload paths
+ * - Division images (/uploads/cms/divisions/) are served from https://cms.ahcl.com.sa
+ * - Page images (/uploads/cms/pages/) are served from https://digital-iconcreations.com/ahcl-crm
+ * - Ensures http:// is converted to https://
+ * - Correctly handles relative upload paths
  */
 export function normalizeImageUrl(url?: string | null): string {
   if (!url) return "";
   let cleanUrl = url.trim();
 
-  // 1. Convert legacy/invalid cms.ahcl.com.sa/uploads/ to working ahcl-crm path
-  cleanUrl = cleanUrl.replace(/https?:\/\/cms\.ahcl\.com\.sa\/uploads\//g, "https://digital-iconcreations.com/ahcl-crm/uploads/");
+  // 1. Division images MUST be hosted on cms.ahcl.com.sa
+  if (cleanUrl.includes("/uploads/cms/divisions/") || cleanUrl.includes("/uploads/divisions/")) {
+    if (cleanUrl.startsWith("http://") || cleanUrl.startsWith("https://")) {
+      cleanUrl = cleanUrl.replace(/https?:\/\/[^\/]+(?:\/ahcl-crm)?\/uploads\//g, "https://cms.ahcl.com.sa/uploads/");
+    } else {
+      if (cleanUrl.startsWith("/uploads/")) {
+        cleanUrl = `https://cms.ahcl.com.sa${cleanUrl}`;
+      } else if (cleanUrl.startsWith("uploads/")) {
+        cleanUrl = `https://cms.ahcl.com.sa/${cleanUrl}`;
+      } else if (cleanUrl.startsWith("/")) {
+        cleanUrl = `https://cms.ahcl.com.sa${cleanUrl}`;
+      }
+    }
+    return cleanUrl.replace(/^http:\/\//g, "https://");
+  }
 
-  // 2. Convert digital-iconcreations.com/uploads/ (missing ahcl-crm) to digital-iconcreations.com/ahcl-crm/uploads/
-  cleanUrl = cleanUrl.replace(/https?:\/\/digital-iconcreations\.com\/uploads\//g, "https://digital-iconcreations.com/ahcl-crm/uploads/");
+  // 2. For pages (e.g. /pages/home/): convert cms.ahcl.com.sa to digital-iconcreations.com/ahcl-crm
+  if (cleanUrl.includes("/uploads/cms/pages/")) {
+    cleanUrl = cleanUrl.replace(/https?:\/\/cms\.ahcl\.com\.sa\/uploads\//g, "https://digital-iconcreations.com/ahcl-crm/uploads/");
+  }
 
-  // 3. Ensure http:// is converted to https:// for digital-iconcreations.com
-  cleanUrl = cleanUrl.replace(/^http:\/\/digital-iconcreations\.com/g, "https://digital-iconcreations.com");
-
-  // 4. Handle relative upload paths
+  // 3. Handle relative upload paths
   if (cleanUrl.startsWith("/ahcl-crm/uploads/")) {
     cleanUrl = `https://digital-iconcreations.com${cleanUrl}`;
   } else if (cleanUrl.startsWith("/uploads/")) {
@@ -94,6 +107,9 @@ export function normalizeImageUrl(url?: string | null): string {
   } else if (cleanUrl.startsWith("uploads/")) {
     cleanUrl = `https://digital-iconcreations.com/ahcl-crm/${cleanUrl}`;
   }
+
+  // Ensure http -> https
+  cleanUrl = cleanUrl.replace(/^http:\/\//g, "https://");
 
   return cleanUrl;
 }
