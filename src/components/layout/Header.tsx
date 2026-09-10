@@ -6,7 +6,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 
 import YellowButton from "@/components/ui/YellowButton";
 import HeaderClient from "./HeaderClient";
-// import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 const StoreIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -35,7 +35,7 @@ export default function Header() {
       }
       actions={
         <div className="flex items-center gap-[10px]">
-          {/* <LanguageSwitcher /> */}
+          <LanguageSwitcher />
 
           <YellowButton target="_blank" href="https://ahcl-store.com.sa/ar" icon={StoreIcon}>
             {t("header.store")}
