@@ -21,7 +21,7 @@ export default function CountDown({
   // For mobile/tablet (2 cols): right border on left col, bottom border between rows
   const smCols = 2;
   const smTotalRows = Math.ceil(data.length / smCols);
-
+  console.log(data)
   return (
     <div className={`mx-auto grid grid-cols-2 ${lgColsClass} w-full`}>
       {data.map((item, index) => {
@@ -44,7 +44,7 @@ export default function CountDown({
           !lgIsLast ? "lg:border-e" : "lg:border-e-0",
           "lg:border-b-0",
         ].join(" ");
-
+   
         return (
           <div
             key={index}
