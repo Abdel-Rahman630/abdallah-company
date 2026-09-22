@@ -64,7 +64,7 @@ export default function FooterLinks({
             products.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/divisions/${product.slug}#${product.slug}`}
+                  href={`/divisions/${product.slug || product.id}#${product.slug || product.id}`}
                   prefetch={false}
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >

@@ -108,7 +108,7 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
                     {truncateText(active?.description, 200)}
                   </p>
                 </div>
-                <ArrowLink href={`/divisions/${active?.slug}#${active?.slug}`}>
+                <ArrowLink href={`/divisions/${active?.slug || active?.id}#${active?.slug || active?.id}`}>
                   {t("home.moreAbout")} {active?.title || active?.name}
                 </ArrowLink>
               </motion.div>

@@ -48,15 +48,61 @@ export async function getHomeDivisions(lang: string = "en"): Promise<Division[]>
  * Fetches a single division by slug or id.
  */
 export async function getDivisionById(id: string, lang: string = "en"): Promise<Division | null> {
+  if (!id) return null;
+  const cleanId = decodeURIComponent(id).trim();
+
+  // 1. Primary Attempt: direct endpoint fetch
   try {
-    const res = await apiGet<ApiResponse<Division>>(`/api/cms/divisions/${id}?lang=${lang}`, {
+    const res = await apiGet<ApiResponse<Division>>(`/api/cms/divisions/${encodeURIComponent(cleanId)}?lang=${lang}`, {
       revalidate: 60,
-      tags: ["divisions", `division-${id}`, `division-${id}-${lang}`],
+      tags: ["divisions", `division-${cleanId}`, `division-${cleanId}-${lang}`],
     });
-    return res?.data ? sanitizeDivision(res.data) : null;
+    if (res?.data) return sanitizeDivision(res.data);
   } catch (error) {
-    console.error(`Error fetching division ${id}:`, error);
-    return null;
+    console.warn(`Direct API fetch for division "${cleanId}" (${lang}) failed, using fallback match:`, error);
   }
+
+  // 2. Fallback Attempt: search within home divisions list for requested language
+  try {
+    const list = await getHomeDivisions(lang);
+    const match = list.find(
+      (d) =>
+        String(d.id) === cleanId ||
+        d.slug === cleanId ||
+        d.slug === id ||
+        (d.name && d.name.toLowerCase() === cleanId.toLowerCase())
+    );
+    if (match) return match;
+
+    // 3. Secondary Fallback: search within English home divisions (in case slug is English)
+    if (lang !== "en") {
+      const enList = await getHomeDivisions("en");
+      const enMatch = enList.find(
+        (d) =>
+          String(d.id) === cleanId ||
+          d.slug === cleanId ||
+          d.slug === id ||
+          (d.name && d.name.toLowerCase() === cleanId.toLowerCase())
+      );
+      if (enMatch) {
+        // Try fetching division by numeric ID in requested lang
+        try {
+          const resById = await apiGet<ApiResponse<Division>>(`/api/cms/divisions/${enMatch.id}?lang=${lang}`, {
+            revalidate: 60,
+            tags: ["divisions", `division-${enMatch.id}`, `division-${enMatch.id}-${lang}`],
+          });
+          if (resById?.data) return sanitizeDivision(resById.data);
+        } catch {
+          // Ignore and fallback to list matching by ID
+        }
+        const matchById = list.find((d) => d.id === enMatch.id);
+        if (matchById) return matchById;
+      }
+    }
+  } catch (fallbackError) {
+    console.error(`Fallback search for division "${cleanId}" failed:`, fallbackError);
+  }
+
+  return null;
 }
 
