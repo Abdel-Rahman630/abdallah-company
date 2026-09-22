@@ -76,10 +76,10 @@ export default function OurProducts({ initialProducts = [] }: { initialProducts?
                   type="button"
                   key={product.id || index}
                   onClick={() => setActiveIndex(index)}
-                  className={`text-start transition-all duration-500 focus:outline-none w-max px-4 py-2 cursor-pointer ${
+                  className={`text-white text-start transition-all duration-500 focus:outline-none w-max px-4 py-2 cursor-pointer ${
                     activeIndex === index
-                      ? "text-white text-[1.5rem] font-semibold rounded-[5px] bg-white/10 backdrop-blur-[10px]"
-                      : "text-[#949494] text-[1.25rem] font-medium"
+                      ? "text-[1.5rem] font-semibold rounded-[5px] bg-white/20 backdrop-blur-[40px]"
+                      : "text-[1.25rem] font-medium"
                   }`}
                 >
                   {product.name}
