@@ -89,11 +89,17 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             <li
               key={product.id}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`cursor-pointer transition-colors text-[0.9rem] font-normal ${
-                activeIndex === index ? "text-white" : "text-[#666]"
-              }`}
             >
-              {product.name}
+              <Link
+                href={`/divisions/${product.slug || product.id}#${product.slug || product.id}`}
+                onClick={onClose}
+                prefetch={false}
+                className={`cursor-pointer transition-colors text-[0.9rem] font-normal ${
+                  activeIndex === index ? "text-white" : "text-[#666]"
+                }`}
+              >
+                {product.name}
+              </Link>
             </li>
           ))}
         </ul>
@@ -127,7 +133,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
                 <ArrowIcon />
               </div>
               <div className="mb-[20px]">
-                <p className="text-[#666] text-justify text-[0.85rem] font-medium leading-relaxed">
+                <p className="text-[#a1a1a1] text-justify text-[0.85rem] font-medium leading-relaxed">
                   {truncate(activeProduct.description, 100)}
                 </p>
               </div>
