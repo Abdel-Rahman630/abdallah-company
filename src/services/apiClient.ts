@@ -7,11 +7,8 @@
  */
 
 const isServer = typeof window === "undefined";
-const rawApi = process.env.NEXT_PUBLIC_API_URL?.trim();
 const resolvedApi =
-  rawApi && !rawApi.includes("cms.ahcl.com.sa")
-    ? rawApi
-    : "https://digital-iconcreations.com/ahcl-crm";
+  process.env.NEXT_PUBLIC_API_URL?.trim() || "https://cms.ahcl.com.sa";
 
 const API_BASE_URL = isServer ? resolvedApi : ""; // empty = relative URL, routed through Next.js rewrites
 
