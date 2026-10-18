@@ -7,9 +7,13 @@
  */
 
 const isServer = typeof window === "undefined";
-const API_BASE_URL = isServer
-  ? (process.env.NEXT_PUBLIC_API_URL || "https://digital-iconcreations.com/ahcl-crm")
-  : ""; // empty = relative URL, routed through Next.js rewrites
+const rawApi = process.env.NEXT_PUBLIC_API_URL?.trim();
+const resolvedApi =
+  rawApi && !rawApi.includes("cms.ahcl.com.sa")
+    ? rawApi
+    : "https://digital-iconcreations.com/ahcl-crm";
+
+const API_BASE_URL = isServer ? resolvedApi : ""; // empty = relative URL, routed through Next.js rewrites
 
 import { FetchOptions } from "@/types/models";
 

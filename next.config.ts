@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "https://digital-iconcreations.com/ahcl-crm";
+const rawApi = process.env.NEXT_PUBLIC_API_URL?.trim();
+const API_BASE =
+  rawApi && !rawApi.includes("cms.ahcl.com.sa")
+    ? rawApi
+    : "https://digital-iconcreations.com/ahcl-crm";
 
 const cspHeader = `
   default-src 'self';
