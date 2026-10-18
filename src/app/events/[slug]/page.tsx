@@ -9,30 +9,51 @@ import NewsDetailsSlider from "@/components/sliders/NewsDetailsSlider";
 import RegisterInterestForm from "@/components/forms/RegisterInterestForm";
 import { notFound } from "next/navigation";
 import { formatFullDate, formatTime } from "@/lib/utils";
+import { getT } from "@/lib/getT";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
     const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    
-    // Try to get event by slug directly using the list endpoint
-    const res = await getEvents({ limit: 100, lang: locale });
+
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const siteName = siteTitle;
     const decodedSlug = decodeURIComponent(slug);
-    const matched = (res.data || []).find((e: EventItem) => 
+
+    let res = await getEvents({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((e: EventItem) =>
       e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
     );
-    
-    if (!matched) return { title: "Abdallah Company | Event Details" };
-    
+
+    if (!matched) {
+      const fallbackRes = await getEvents({ limit: 100 });
+      matched = (fallbackRes.data || []).find((e: EventItem) =>
+        e.slug === decodedSlug || e.slug === slug || String(e.id) === decodedSlug || String(e.id) === slug
+      );
+    }
+
+    if (!matched) return { title: `${siteTitle} | ${locale === "ar" ? "الفعاليات" : "Event Details"}` };
+
     const event = await getEventById(String(matched.id), locale);
+    if (!event) return { title: `${siteTitle} | ${locale === "ar" ? "الفعاليات" : "Event Details"}` };
+
+    const description = event.excerpt || (event.description ? event.description.replace(/<[^>]*>/g, "").substring(0, 160) : (locale === "ar" ? "تعرف على أحدث الفعاليات من شركة عبد الله هاشم المحدودة." : "Learn more about the latest events at Abdullah Hashim Company."));
+
     return {
-      title: `Abdallah Company | ${event.title}`,
-      description: event.excerpt || event.description?.substring(0, 150) || "Event details",
+      title: `${siteTitle} | ${event.title}`,
+      description,
+      openGraph: {
+        title: `${siteTitle} | ${event.title}`,
+        description,
+        siteName,
+        images: event.cover_image_url ? [{ url: event.cover_image_url }] : [],
+      },
     };
   } catch {
+    const siteTitle = "Abdullah Hashim Company Limited";
     return {
-      title: "Abdallah Company | Event Details",
+      title: `${siteTitle} | Event Details`,
       description: "Learn more about the latest events at Abdullah Hashim Company.",
     };
   }
@@ -42,6 +63,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
   const { slug } = await params;
   const cookieStore = await cookies();
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+  const t = getT(locale);
 
   let event;
   try {
@@ -102,7 +124,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                 className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
-                  className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
+                  className="transition-transform duration-500 ltr:group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 shrink-0"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"
@@ -114,7 +136,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                     fill="#1E1E1E"
                   />
                 </svg>
-                back to news &amp; events
+                {t("events.backToNews")}
               </Link>
             </RevealText>
           </div>
@@ -134,7 +156,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                 <RevealText delay={0.3}>
                   <div className="flex gap-[1rem] items-center">
                     <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                      {event.computed_status === "upcoming" ? "Upcoming Event" : "Past Event"}
+                      {event.computed_status === "upcoming" ? t("events.upcomingEvent") : t("events.pastEvent")}
                     </span>
                   </div>
                 </RevealText>
@@ -150,7 +172,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
 
                 <RevealText delay={0.5}>
                   <div 
-                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-6 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>a]:text-blue-600 [&>a]:underline [&_strong]:text-black [&_strong]:font-bold"
+                    className="text-[#333] text-[1rem] font-normal text-justify leading-relaxed [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ms-6 [&>h3]:text-xl [&>h3]:font-bold [&>a]:text-blue-600 [&>a]:underline [&_strong]:text-black [&_strong]:font-bold"
                     dangerouslySetInnerHTML={{ __html: event.description || event.excerpt || "" }} 
                   />
                 </RevealText>
@@ -171,7 +193,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                       <path d="M6.66667 1.66602V4.99962M13.3333 1.66602V4.99962M2.5 8.33322H17.5M4.16667 3.33282H15.8333C16.7538 3.33282 17.5 4.07907 17.5 4.99962V16.6672C17.5 17.5878 16.7538 18.334 15.8333 18.334H4.16667C3.24619 18.334 2.5 17.5878 2.5 16.6672V4.99962C2.5 4.07907 3.24619 3.33282 4.16667 3.33282Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Date</h4>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">{t("events.date")}</h4>
                       <p className="text-[#666] text-[0.9rem] font-normal">{formattedDate}</p>
                     </div>
                   </li>
@@ -189,7 +211,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                       </defs>
                     </svg>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Time</h4>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">{t("events.time")}</h4>
                       <p className="text-[#666] text-[0.9rem] font-normal">{timeStr}</p>
                     </div>
                   </li>
@@ -200,7 +222,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                       <path d="M10.5027 18.1667C12.0526 16.8283 16.6679 12.4945 16.6679 8.3333C16.6679 6.56503 15.9656 4.86918 14.7155 3.61882C13.4654 2.36846 11.7699 1.66602 10.0019 1.66602C8.234 1.66602 6.53848 2.36846 5.28836 3.61882C4.03825 4.86918 3.33594 6.56503 3.33594 8.3333C3.33594 12.4945 7.95131 16.8283 9.50115 18.1667C9.64554 18.2753 9.82129 18.334 10.0019 18.334C10.1826 18.334 10.3583 18.2753 10.5027 18.1667Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Venue</h4>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">{t("events.venue")}</h4>
                       <p className="text-[#666] text-[0.9rem] font-normal">{event.venue_name || event.venue || "TBA"}</p>
                     </div>
                   </li>
@@ -218,7 +240,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                       </defs>
                     </svg>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Category</h4>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">{t("events.category")}</h4>
                       <p className="text-[#666] text-[0.9rem] font-normal capitalize">{event.category}</p>
                     </div>
                   </li>
@@ -230,7 +252,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                       <path d="M15.8321 17.5V15.8333C15.8321 14.9493 15.4808 14.1014 14.8556 13.4763C14.2304 12.8512 13.3825 12.5 12.4983 12.5H7.49778C6.61362 12.5 5.76568 12.8512 5.14048 13.4763C4.51529 14.1014 4.16406 14.9493 4.16406 15.8333V17.5M13.3318 5.83333C13.3318 7.67428 11.8392 9.16667 9.99806 9.16667C8.1569 9.16667 6.66435 7.67428 6.66435 5.83333C6.66435 3.99238 8.1569 2.5 9.99806 2.5C11.8392 2.5 13.3318 3.99238 13.3318 5.83333Z" stroke="#D1A52A" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     <div>
-                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">Organizer</h4>
+                      <h4 className="text-[#1E1E1E] text-[0.75rem] font-semibold uppercase pb-[4px]">{t("events.organizer")}</h4>
                       <p className="text-[#666] text-[0.9rem] font-normal">{event.organizer}</p>
                     </div>
                   </li>

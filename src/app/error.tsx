@@ -11,7 +11,7 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Intentionally omitting console.log(error) as requested
+
   }, [error]);
 
   return (

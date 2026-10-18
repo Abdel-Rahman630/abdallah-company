@@ -96,7 +96,7 @@ export default function News({
             
 
             {/* List of News - Scrollable */}
-            <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+            <div className="flex flex-col flex-1 overflow-y-auto max-h-[500px] pe-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
               {otherNews.map((news, idx) => (
                     <Link
                       href={news.slug ? `/news/${news.slug}` : `/news/${news.id}`}
@@ -148,7 +148,7 @@ export default function News({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("newsletter.placeholder")}
-                    className="border-b border-[#C6C6C6] min-w-0 flex-1 rounded-l-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
+                    className="border-b border-[#C6C6C6] min-w-0 flex-1 rounded-s-[3px] bg-[#F2F2F2] px-[10px] py-[12px] text-[#727272] text-[0.9rem] outline-none placeholder:text-[#727272] placeholder:font-normal"
                     disabled={subscribeStatus === "loading"}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") handleSubscribe();
@@ -158,7 +158,7 @@ export default function News({
                   <button
                     onClick={() => handleSubscribe()}
                     disabled={subscribeStatus === "loading" || !email}
-                    className="shrink-0 rounded-r-[3px] bg-[#d1a52a] px-[16px] py-[12px] text-[#1E1E1E] text-[0.85rem] font-semibold whitespace-nowrap flex items-center justify-center"
+                    className="shrink-0 rounded-e-[3px] bg-[#d1a52a] px-[16px] py-[12px] text-[#1E1E1E] text-[0.85rem] font-semibold whitespace-nowrap flex items-center justify-center"
                     aria-label="Subscribe to newsletter"
                   >
                     {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}

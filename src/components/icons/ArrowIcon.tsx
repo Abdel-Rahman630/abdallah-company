@@ -5,7 +5,7 @@ export function ArrowIcon({ className = "", color = "white" }: IconProps) {
   const finalColor = color === "black" ? "#1E1E1E" : color;
   return (
     <svg
-      className={`shrink-0 ${className}`}
+      className={`shrink-0 rtl:rotate-180 transition-transform ${className}`}
       xmlns="http://www.w3.org/2000/svg"
       width="13"
       height="10"

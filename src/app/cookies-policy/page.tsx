@@ -1,9 +1,26 @@
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
-export const metadata: Metadata = {
-  title: "Abdullah Hashim Company | Cookies Policy",
-  description: "Learn how Abdullah Hashim Company uses cookies and similar technologies on our website.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = lang === "ar" ? "سياسة ملفات تعريف الارتباط" : "Cookies Policy";
+  const description = lang === "ar"
+    ? "تعرف على كيفية استخدام شركة عبد الله هاشم المحدودة لملفات تعريف الارتباط والتقنيات المشابهة."
+    : "Learn how Abdullah Hashim Company uses cookies and similar technologies on our website.";
+
+  return {
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
+    openGraph: {
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+    },
+  };
+}
 
 export default function CookiesPolicyPage() {
   return (

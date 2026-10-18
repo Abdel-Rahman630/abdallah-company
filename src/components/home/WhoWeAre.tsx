@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { RevealImage, RevealText } from "@/components/ui/ScrollReveal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -9,108 +9,123 @@ import ArrowLink from "@/components/ui/ArrowLink";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import CountDown from "@/components/ui/CountDown";
-import { useLanguage } from "@/providers/LanguageProvider";
+import type { WhoWeAreSectionFields, CountDownItem } from "@/types/models";
+import { formatCtaUrl } from "@/lib/utils";
 
-const countdownData = [
-  {
-    to: 80,
-    suffix: "+",
-    title: (
-      <>
-        Years of <br /> Experience
-      </>
-    ),
-  },
-  { to: 33, suffix: "+",   title: (
-      <>
-        Branches <br /> Kingdom Wide
-      </>
-    ) },
-  { to: 25, suffix: "", title: "Brands" },
-];
+interface WhoWeAreProps {
+  fields?: WhoWeAreSectionFields | null;
+}
 
-export default function WhoWeAre() {
-  const { t } = useLanguage();
+export default function WhoWeAre({ fields }: WhoWeAreProps) {
+  const galleryItems = useMemo(() => {
+    if (fields?.gallery && fields.gallery.length > 0) {
+      return fields.gallery.slice().sort((a, b) => a.sort_order - b.sort_order);
+    }
+    return [];
+  }, [fields?.gallery]);
 
+  const countdownData = useMemo<CountDownItem[]>(() => {
+    if (fields?.statistics && fields.statistics.length > 0) {
+      return fields.statistics
+        .slice()
+        .sort((a, b) => a.sort_order - b.sort_order)
+        .map((stat) => ({
+          to: parseInt(stat.value.replace(/,/g, ""), 10) || stat.value,
+          suffix: stat.suffix || "",
+          title: stat.label,
+        }));
+    }
+    return [];
+  }, [fields?.statistics]);
+
+  const eyebrow = fields?.eyebrow;
+  const titleHtml = fields?.title;
+  const descHtml = fields?.description;
+  const ctaLabel = fields?.cta_label;
+  const ctaUrl = formatCtaUrl(fields?.cta_url);
 
   return (
-    <section
-      id="whoWeAre"
-      className="py-[80px] bg-white"
-    >
+    <section id="whoWeAre" className="py-[80px] bg-white">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-[26px] lg:gap-[50px]">
-          {/* Left Slider - 30% Width */}
-          <div className="w-full lg:w-[40%] lg:h-auto h-[350px]">
-            <RevealImage className="h-full">
-              <Swiper
-                modules={[Autoplay, EffectFade]}
-                effect="fade"
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                }}
-                loop={true}
-                className="w-full h-full overflow-hidden shadow-sm rounded-[10px]"
-              >
-                {[1, 2, 3, 4, 5, 6].map((num) => (
-                  <SwiperSlide key={num}>
-                    <div className="relative h-full w-full">
-                      <div className="w-full h-full relative">
-                        <Image src={`/${num}.png`} alt={`Slide ${num}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+          {galleryItems.length > 0 && (
+            <div className="w-full lg:w-[40%] lg:h-auto h-[350px]">
+              <RevealImage className="h-full">
+                <Swiper
+                  modules={[Autoplay, EffectFade]}
+                  effect="fade"
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  loop={galleryItems.length > 1}
+                  className="w-full h-full overflow-hidden shadow-sm rounded-[10px]"
+                >
+                  {galleryItems.map((item) => (
+                    <SwiperSlide key={item.id}>
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={item.image}
+                          alt={item.alt_text || "AHCL"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                        />
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </RevealImage>
-          </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </RevealImage>
+            </div>
+          )}
 
-          {/* Right Text Area */}
           <div className="w-full lg:flex-1 flex flex-col justify-center py-[24px]">
             <div className="text-content">
-              <RevealText delay={0.1}>
-                <div className="flex items-center gap-[10px] mb-[11.5px]">
-                  <Image src="/logo.png" alt="Logo" width={96} height={24} className="h-6 object-contain" style={{ width: "auto" }} />
-                  <span className="text-[#1E1E1E] text-[0.9rem] font-normal  uppercase">{t("home.whoWeAre")}</span>
-                </div>
-              </RevealText>
+              {eyebrow && (
+                <RevealText delay={0.1}>
+                  <div className="flex items-center gap-[10px] mb-[11.5px]">
+                    <Image
+                      src="/logo.png"
+                      alt="Logo"
+                      width={96}
+                      height={24}
+                      className="h-6 object-contain"
+                      style={{ width: "auto" }}
+                    />
+                    <span className="text-[#1E1E1E] text-[0.9rem] font-normal uppercase">
+                      {eyebrow}
+                    </span>
+                  </div>
+                </RevealText>
+              )}
 
-              <RevealText delay={0.2}>
-                <h2 className="text-[#1E1E1E] text-[1.8rem] font-light tracking-[-0.704px] uppercase mb-[2rem]">
-                  {t("home.whoWeAreTitle").split("Automotive & machinery distributor").reduce((acc: React.ReactNode[], part: string, index: number, array: string[]) => {
-                    acc.push(part);
-                    if (index < array.length - 1) {
-                      acc.push(
-                        <span key={index} className="font-bold">
-                          Automotive & machinery distributor
-                        </span>
-                      );
-                    }
-                    return acc;
-                  }, [])}
-                </h2>
-              </RevealText>
+              {titleHtml && (
+                <RevealText delay={0.2}>
+                  <h2
+                    className="text-[#1E1E1E] text-[1.8rem] font-light tracking-[-0.704px] uppercase mb-[2rem] [&_strong]:font-bold"
+                    dangerouslySetInnerHTML={{ __html: titleHtml }}
+                  />
+                </RevealText>
+              )}
 
-              <RevealText delay={0.3}>
-                <p className="text-[#727272] text-[0.95rem] font-normal  mb-[32px]">
-                  <span className="font-bold text-[#1E1E1E]">Abdullah Hashim Company Limited (AHCL) </span>
-                  is an established <span className="font-bold text-[#1E1E1E]">Automotive & machinery distributor</span> in Saudi Arabia. Since its establishment in
-                  1945, it has grown and expanded its network of showrooms, service centers & dealers, allowing it to
-                  serve a large customer base in the kingdom. AHCL operates across automobiles (including HONDA),
-                  machinery & commercial trucks and is headquartered in Jeddah, Saudi Arabia.
-                </p>
-              </RevealText>
+              {descHtml && (
+                <RevealText delay={0.3}>
+                  <div
+                    className="text-[#727272] text-[0.95rem] font-normal mb-[32px] [&_strong]:font-bold [&_strong]:text-[#1E1E1E] [&_p]:m-0 [&_p]:mb-2"
+                    dangerouslySetInnerHTML={{ __html: descHtml }}
+                  />
+                </RevealText>
+              )}
 
-              <ArrowLink href="/about-us" color="black">{t("home.readMore")}</ArrowLink>
+              {ctaLabel && ctaUrl && (
+                <ArrowLink href={ctaUrl} color="black">
+                  {ctaLabel}
+                </ArrowLink>
+              )}
             </div>
 
-            <div className="contdown mt-[32px] w-full">
-              <CountDown 
-              data={countdownData} 
-      
-            />
-            </div>
+            {countdownData.length > 0 && (
+              <div className="countdown mt-[32px] w-full">
+                <CountDown data={countdownData} />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export function useEventsSection() {
 
         const mappedData = response.data.map((item: ApiEventItem) => {
           const eventDate = item.starts_at || item.date || item.start_date || item.created_at;
-          const { day, monthShort } = formatDateParts(eventDate);
+          const { day, monthShort } = formatDateParts(eventDate, locale === "ar" ? "ar-SA" : "en-US");
 
           return {
             id: item.id || item.slug,

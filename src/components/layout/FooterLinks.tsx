@@ -16,7 +16,7 @@ export default function FooterLinks({
       <div>
         <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
           {t("footer.quickLinks")}
-          <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
+          <span className="absolute bottom-0 start-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
         </h2>
         <ul className="space-y-[12px]">
           <li>
@@ -51,7 +51,7 @@ export default function FooterLinks({
       <div>
         <h2 className="text-[#FFF] text-[1rem] font-bold uppercase pb-[1rem] relative mb-[1rem]">
           {t("footer.division")}
-          <span className="absolute bottom-0 left-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
+          <span className="absolute bottom-0 start-0 w-[32px] h-[2px] bg-[#D0A42A]"></span>
         </h2>
         <ul className="space-y-[12px]">
           {loading ? (
@@ -64,7 +64,7 @@ export default function FooterLinks({
             products.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/divisions/${product.slug}#${product.slug}`}
+                  href={`/divisions/${product.slug || product.id}#${product.slug || product.id}`}
                   prefetch={false}
                   className="text-[rgba(255,255,255,0.70)] text-[0.9rem] font-normal hover:text-white transition"
                 >

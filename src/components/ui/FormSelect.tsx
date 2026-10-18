@@ -7,14 +7,14 @@ export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
       <div className="relative w-full">
         <select
           ref={ref}
-          className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full appearance-none pr-[40px] ${
+          className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full appearance-none pe-[40px] ${
             error ? "border-red-400" : "border-[#E5E5E5]"
           } ${className}`}
           {...props}
         >
           {children}
         </select>
-        <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="9"

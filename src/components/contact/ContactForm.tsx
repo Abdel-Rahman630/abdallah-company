@@ -5,31 +5,50 @@ import { useGetInTouch } from "@/hooks/contact/useGetInTouch";
 import { FormInput } from "@/components/ui/FormInput";
 import { FormSelect } from "@/components/ui/FormSelect";
 import { RevealText } from "@/components/ui/ScrollReveal";
+import type { ContactSectionFields } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  fields?: ContactSectionFields | null;
+}
+
+export default function ContactForm({ fields }: ContactFormProps) {
+  const { t } = useLanguage();
   const { register, handleSubmit, onSubmit, errors, status, globalError } =
     useGetInTouch();
+
+  const headTitle = fields?.head_title || "GET IN TOUCH";
+  const title = fields?.title || t("header.contact");
+  const description = fields?.description;
+  const namePlaceholder = fields?.name_placeholder || t("eventForm.namePlaceholder");
+  const divisionPlaceholder = fields?.division_placeholder || t("contact.selectDivision");
+  const emailPlaceholder = fields?.email_placeholder || t("eventForm.emailPlaceholder");
+  const phonePlaceholder = fields?.phone_placeholder || t("eventForm.phonePlaceholder");
+  const messagePlaceholder = fields?.message_placeholder || t("contact.yourMessage");
+  const submitLabel = fields?.submit_label || t("contact.sendMessage");
 
   return (
     <div className="flex-1">
       <RevealText delay={0.1}>
         <span className="text-[#000] text-[1rem] font-bold uppercase block mb-[8px]">
-          GET IN TOUCH
+          {headTitle}
         </span>
       </RevealText>
 
       <RevealText delay={0.2}>
         <h2 className="text-[#231F20] text-[2.5rem] font-bold mb-[1rem]">
-          Contact Us
+          {title}
         </h2>
       </RevealText>
 
-      <RevealText delay={0.3}>
-        <p className="text-[#949494] text-[0.9rem] font-normal mb-[32px]">
-          We&apos;d love to hear from you. Fill out the form and we&apos;ll respond
-          as soon as possible.
-        </p>
-      </RevealText>
+      {description ? (
+        <RevealText delay={0.3}>
+          <div
+            className="text-[#949494] text-[0.9rem] font-normal mb-[32px] [&_p]:m-0"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        </RevealText>
+      ) : null}
 
       {/* Success Message */}
       {status === "success" && (
@@ -59,11 +78,10 @@ export default function ContactForm() {
           </svg>
           <div>
             <p className="text-green-800 font-bold text-[0.9rem]">
-              Message sent successfully!
+              {t("contact.successTitle")}
             </p>
             <p className="text-green-700 text-[0.85rem]">
-              Thank you for contacting us. We&apos;ll get back to you as soon
-              as possible.
+              {t("contact.successDesc")}
             </p>
           </div>
         </div>
@@ -103,9 +121,9 @@ export default function ContactForm() {
             <div className="flex flex-col gap-[4px]">
               <FormInput
                 type="text"
-                placeholder="Name"
+                placeholder={namePlaceholder}
                 error={!!errors.name}
-                {...register("name", { required: "Name is required." })}
+                {...register("name", { required: t("contact.nameRequired") })}
               />
               {errors.name && (
                 <span className="text-red-500 text-[0.75rem]">
@@ -119,19 +137,17 @@ export default function ContactForm() {
               <FormSelect
                 error={!!errors.division}
                 {...register("division", {
-                  required: "Please select a division.",
+                  required: t("contact.divisionRequired"),
                 })}
               >
-                <option value="">Select Division</option>
-                <option value="automotive">
-                  Automotive &amp; Machinery
-                </option>
-                <option value="marine">Marine</option>
-                <option value="power_solutions">Power Solutions</option>
-                <option value="agriculture">Agriculture</option>
-                <option value="construction_equipment">Construction Equipment</option>
-                <option value="water_solutions">Water Solutions</option>
-                <option value="material_handling">Material Handling</option>
+                <option value="">{divisionPlaceholder}</option>
+                <option value="automotive">{t("contact.divisionOptions.automotive")}</option>
+                <option value="marine">{t("contact.divisionOptions.marine")}</option>
+                <option value="power_solutions">{t("contact.divisionOptions.powerSolutions")}</option>
+                <option value="agriculture">{t("contact.divisionOptions.agriculture")}</option>
+                <option value="construction_equipment">{t("contact.divisionOptions.constructionEquipment")}</option>
+                <option value="water_solutions">{t("contact.divisionOptions.waterSolutions")}</option>
+                <option value="material_handling">{t("contact.divisionOptions.materialHandling")}</option>
               </FormSelect>
               {errors.division && (
                 <span className="text-red-500 text-[0.75rem]">
@@ -145,9 +161,9 @@ export default function ContactForm() {
           <div className="flex flex-col gap-[4px]">
             <FormInput
               type="email"
-              placeholder="Email Address"
+              placeholder={emailPlaceholder}
               error={!!errors.email}
-              {...register("email", { required: "Email is required." })}
+              {...register("email", { required: t("contact.emailRequired") })}
             />
             {errors.email && (
               <span className="text-red-500 text-[0.75rem]">
@@ -160,10 +176,10 @@ export default function ContactForm() {
           <div className="flex flex-col gap-[4px]">
             <FormInput
               type="tel"
-              placeholder="Phone Number"
+              placeholder={phonePlaceholder}
               error={!!errors.phone}
               {...register("phone", {
-                required: "Phone number is required.",
+                required: t("contact.phoneRequired"),
               })}
             />
             {errors.phone && (
@@ -176,13 +192,13 @@ export default function ContactForm() {
           {/* Message */}
           <div className="flex flex-col gap-[4px]">
             <textarea
-              placeholder="Your Message"
+              placeholder={messagePlaceholder}
               rows={4}
               className={`p-[16px] text-[#949494] text-[0.85rem] font-normal border rounded-[4px] bg-transparent outline-none focus:border-[#D1A52A] w-full resize-y ${
                 errors.message ? "border-red-400" : "border-[#E5E5E5]"
               }`}
               {...register("message", {
-                required: "Message is required.",
+                required: t("contact.messageRequired"),
               })}
             />
             {errors.message && (
@@ -215,12 +231,13 @@ export default function ContactForm() {
                     strokeLinecap="round"
                   />
                 </svg>
-                Sending...
+                {t("contact.sending")}
               </>
             ) : (
               <>
-                Send Message
+                {submitLabel}
                 <svg
+                  className="shrink-0 rtl:rotate-180 transition-transform"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"

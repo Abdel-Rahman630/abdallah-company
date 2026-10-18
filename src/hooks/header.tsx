@@ -15,18 +15,18 @@ export function useNavItems() {
         image: "/about.png",
         boxes: [
           {
-            title: "Company Overview",
-            text: "AHCL is a trusted leader in automotive and machinery distribution across Saudi Arabia.",
+            title: t("nav.about.overviewTitle"),
+            text: t("nav.about.overviewText"),
             link: "/about-us#company-overview",
           },
           {
-            title: "History & Legacy",
-            text: "Since 1945, AHCL has built a legacy of trust and excellence across Saudi Arabia.",
+            title: t("nav.about.historyTitle"),
+            text: t("nav.about.historyText"),
             link: "/about-us#history-legacy",
           },
           {
-            title: "Vision, Mission & Values",
-            text: "To deliver reliable mobility, machinery, and equipment solutions with exceptional service and customer focus.",
+            title: t("nav.about.visionTitle"),
+            text: t("nav.about.visionText"),
             link: "/about-us#vision-mission",
           },
         ],
@@ -47,13 +47,13 @@ export function useNavItems() {
         image: "/news.png",
         boxes: [
           {
-            title: "News",
-            text: "Stay updated with the latest news, announcements, and company highlights from AHCL.",
+            title: t("nav.news.newsTitle"),
+            text: t("nav.news.newsText"),
             link: "/news#news",
           },
           {
-            title: "Events",
-            text: "Discover the latest events, exhibitions, and activities featuring AHCL.",
+            title: t("nav.news.eventsTitle"),
+            text: t("nav.news.eventsText"),
             link: "/news#events",
           },
         ],
@@ -68,8 +68,8 @@ export function useNavItems() {
         image: "/about.png",
         boxes: [
           {
-            title: "Why AHCL",
-            text: "Discover why AHCL is a trusted partner, delivering quality, reliability, and exceptional service across Saudi Arabia.",
+            title: t("nav.careers.whyTitle"),
+            text: t("nav.careers.whyText"),
             link: "/careers#why-join-us",
           },
         ],
@@ -84,13 +84,13 @@ export function useNavItems() {
         image: "/find.png",
         boxes: [
           {
-            title: "Contact Us",
-            text: "Get in touch with our team for inquiries, support, or assistance.",
+            title: t("nav.contact.contactTitle"),
+            text: t("nav.contact.contactText"),
             link: "/contact-us#get-in-touch",
           },
           {
-            title: "Our Locations",
-            text: "Find AHCL showrooms, service centers, and branches across Saudi Arabia.",
+            title: t("nav.contact.locationsTitle"),
+            text: t("nav.contact.locationsText"),
             link: "/contact-us#find-us",
           },
         ],

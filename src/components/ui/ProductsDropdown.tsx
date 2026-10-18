@@ -6,11 +6,11 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOurProducts } from "@/hooks/home/useOurProducts";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
-
-const truncate = (text: string, max: number) =>
-  text && text.length > max ? text.substring(0, max).trimEnd() + "…" : text;
+import { useLanguage } from "@/providers/LanguageProvider";
+import { truncateText as truncate, normalizeImageUrl } from "@/lib/utils";
 
 export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boolean; onClose?: () => void }) {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const { products, loading } = useOurProducts();
 
@@ -37,7 +37,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
               onClick={() => {
                 setActiveIndex(index);
               }}
-              className={`text-left text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
+              className={`text-start text-[0.9rem] font-normal transition-colors py-1 cursor-pointer ${
                 activeIndex === index ? "text-white" : "text-[#666]"
               }`}
             >
@@ -59,7 +59,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             >
               <div className="flex items-center gap-[5px] mb-1">
                 <Link
-                  href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
+                  href={`/divisions/${activeProduct.slug || activeProduct.id}#${activeProduct.slug || activeProduct.id}`}
                   onClick={onClose}
                   prefetch={false}
                   className="text-white text-[1rem] font-medium underline"
@@ -80,29 +80,35 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
   return (
     <div className="bg-[#1E1E1E] rounded-[5px] shadow-[0_0_40px_10px_rgba(0,0,0,0.19)] p-[38px] flex min-w-[939px] min-h-[418px]">
       {/* First Column: List of Products */}
-      <div className="border-r border-[#666666] flex flex-col shrink-0 min-w-[200px]">
+      <div className="border-e border-[#666666] flex flex-col shrink-0 min-w-[200px]">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
-          Divisions
+          {t("divisions.label")}
         </p>
         <ul className="flex flex-col gap-[1rem]">
           {products.map((product, index) => (
             <li
               key={product.id}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`cursor-pointer transition-colors text-[0.9rem] font-normal ${
-                activeIndex === index ? "text-white" : "text-[#666]"
-              }`}
             >
-              {product.name}
+              <Link
+                href={`/divisions/${product.slug || product.id}#${product.slug || product.id}`}
+                onClick={onClose}
+                prefetch={false}
+                className={`cursor-pointer transition-colors text-[0.9rem] font-normal ${
+                  activeIndex === index ? "text-white" : "text-[#666]"
+                }`}
+              >
+                {product.name}
+              </Link>
             </li>
           ))}
         </ul>
       </div>
 
       {/* Second Column: Content Details */}
-      <div className="flex-1 pl-[38px] pb-[30px] flex flex-col relative overflow-hidden">
+      <div className="flex-1 ps-[38px] pb-[30px] flex flex-col relative overflow-hidden">
         <p className="text-[#666] text-[12px] font-semibold uppercase mb-[25px]">
-          Explore
+          {t("divisions.explore")}
         </p>
 
         <div className="flex-1 relative">
@@ -117,7 +123,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             >
               <div className="flex items-center gap-[5px] mb-[13px]">
                 <Link
-                  href={`/divisions/${activeProduct.slug}#${activeProduct.slug}`}
+                  href={`/divisions/${activeProduct.slug || activeProduct.id}#${activeProduct.slug || activeProduct.id}`}
                   onClick={onClose}
                   prefetch={false}
                   className="text-[#FFF] text-[0.9rem] font-medium hover:underline cursor-pointer"
@@ -127,7 +133,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
                 <ArrowIcon />
               </div>
               <div className="mb-[20px]">
-                <p className="text-[#666] text-justify text-[0.85rem] font-medium leading-relaxed">
+                <p className="text-[#a1a1a1] text-justify text-[0.85rem] font-medium leading-relaxed">
                   {truncate(activeProduct.description, 100)}
                 </p>
               </div>
@@ -137,7 +143,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
       </div>
 
       {/* Third Column: Image */}
-      <div className="shrink-0 w-[258px] h-[342px] rounded-[5px] overflow-hidden relative ml-[38px]">
+      <div className="shrink-0 w-[258px] h-[342px] rounded-[5px] overflow-hidden relative ms-[38px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
@@ -148,7 +154,7 @@ export default function ProductsDropdown({ isMobile, onClose }: { isMobile?: boo
             className="absolute inset-0"
           >
             <Image
-              src={activeProduct.home_image || "/bg.png"}
+              src={normalizeImageUrl(activeProduct.home_image) || "/bg.png"}
               alt={activeProduct.title}
               fill
               className="object-cover"

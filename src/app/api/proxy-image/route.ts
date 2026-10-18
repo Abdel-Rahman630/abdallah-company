@@ -25,10 +25,16 @@ export async function GET(req: NextRequest) {
       "127.0.0.1",
       apiDomain,
       "admin.ahcl.com.sa",
+      "cms.ahcl.com.sa",
+      "digital-iconcreations.com",
       "ahcl.com.sa"
     ].filter(Boolean);
 
-    if (!ALLOWED_DOMAINS.includes(parsedUrl.hostname)) {
+    const isAllowed = ALLOWED_DOMAINS.some(
+      (domain) => parsedUrl.hostname === domain || parsedUrl.hostname.endsWith(`.${domain}`)
+    );
+
+    if (!isAllowed) {
       return new NextResponse("Forbidden: Domain not allowed", { status: 403 });
     }
 

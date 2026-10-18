@@ -42,7 +42,7 @@ export default function LocationsFilter({
       {/* Filter Form Wrapper */}
       <div className="lg:py-[50px] lg:px-[100px] md:py-[35px] md:px-[70px] py-[30px] px-[25px] bg-[white] rounded-[10px] mb-[40px]">
         <h2 className="text-[#1E1E1E] text-center text-[2rem] font-bold mb-[40px]">
-          Find Our Network
+          {t("contact.findOurNetwork")}
         </h2>
         <div className="flex flex-wrap md:flex-nowrap gap-[24px] mb-[24px]">
           <div className="relative w-full md:w-1/4">
@@ -57,7 +57,7 @@ export default function LocationsFilter({
                 setSelectedDepartment("");
                 setSelectedCity("");
               }}
-              className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
+              className="w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pe-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A]"
             >
               <option value="">{t("contact.selectDivision")}</option>
               {divisions.map((d) => (
@@ -66,7 +66,7 @@ export default function LocationsFilter({
                 </option>
               ))}
             </select>
-            <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="9"
@@ -94,7 +94,7 @@ export default function LocationsFilter({
                 setSelectedCity("");
               }}
               disabled={!selectedDivision}
-              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDivision ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pe-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDivision ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <option value="">{t("contact.selectDepartment")}</option>
               {selectedDivision &&
@@ -104,7 +104,7 @@ export default function LocationsFilter({
                   </option>
                 ))}
             </select>
-            <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="9"
@@ -129,7 +129,7 @@ export default function LocationsFilter({
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
               disabled={!selectedDepartment}
-              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pr-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDepartment ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`w-full appearance-none rounded-[4px] border border-[#E5E7EB] bg-[white] p-[16px] pe-[40px] text-[#1E1E1E] outline-none focus:border-[#D1A52A] ${!selectedDepartment ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <option value="">{t("contact.selectCity")}</option>
               {selectedDepartment &&
@@ -139,7 +139,7 @@ export default function LocationsFilter({
                   </option>
                 ))}
             </select>
-            <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+            <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="9"
@@ -189,7 +189,7 @@ export default function LocationsFilter({
       {hasFiltered && (
       <div className="flex flex-col w-full">
         <p className="text-[#231F20] text-[1rem] font-normal pb-[8px] border-b border-[#E5E5E5] mb-[40px]">
-          ({locations.length}) Locations Found
+          ({locations.length}) {t("contact.locationsFound")}
         </p>
 
         {locations.length === 0 ? (
@@ -277,7 +277,7 @@ export default function LocationsFilter({
                         </defs>
                       </svg>
                       <span className="text-[#231F20] text-[1rem] font-bold">
-                        Get Directions
+                        {t("contact.getDirections")}
                       </span>
                     </a>
                   </div>
@@ -303,7 +303,7 @@ export default function LocationsFilter({
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
-                  className="rotate-180"
+                  className="rotate-180 rtl:rotate-0 transition-transform"
                   aria-hidden="true"
                 >
                   <path
@@ -321,6 +321,7 @@ export default function LocationsFilter({
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
+                  className="rtl:rotate-180 transition-transform"
                   aria-hidden="true"
                 >
                   <path

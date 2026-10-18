@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import ArrowLink from "@/components/ui/ArrowLink";
 import { EventCardProps } from "@/types/models";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function EventCard({ id = 1, image, date, month, title, disabled }: EventCardProps) {
+  const { t } = useLanguage();
   if (disabled) {
     return (
       <div className="block relative w-[260px] h-[222px] rounded-[5px] overflow-hidden shrink-0 cursor-default opacity-80" aria-label={`${title} (not available)`}>
@@ -19,7 +23,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
         <div className="absolute inset-0 bg-event-overlay" aria-hidden="true" />
         <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
         {/* Date Badge */}
-        <span className="absolute top-[24px] left-0 w-[109px] h-[47px] rounded-r-[5px] border-t border-r border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
+        <span className="absolute top-[24px] start-0 w-[109px] h-[47px] rounded-e-[5px] border-t border-e border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
           <span className="text-[2rem] font-bold leading-none">{date}</span>
           {month && <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{month}</span>}
         </span>
@@ -28,8 +32,8 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
           {title}
         </h3>
         {/* Disabled badge */}
-        <div className="absolute bottom-[16px] left-[16px] w-full flex z-10">
-          <span className="text-white/50 text-[0.6rem] font-normal uppercase">Coming soon</span>
+        <div className="absolute bottom-[16px] start-[16px] w-full flex z-10">
+          <span className="text-white/50 text-[0.6rem] font-normal uppercase">{t("events.comingSoon")}</span>
         </div>
       </div>
     );
@@ -53,7 +57,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       {/* Date Badge */}
-      <span className="absolute top-[24px] left-0 w-[109px] h-[47px] rounded-r-[5px] border-t border-r border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
+      <span className="absolute top-[24px] start-0 w-[109px] h-[47px] rounded-e-[5px] border-t border-e border-b border-white/30 bg-white/10 backdrop-blur-[5px] text-white flex items-center justify-center gap-[8px] z-10">
         <span className="text-[2rem] font-bold leading-none">{date}</span>
         {month && <span className="text-[0.75rem] font-medium uppercase leading-none mt-1">{month}</span>}
       </span>
@@ -64,10 +68,10 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
       </h4>
       
       {/* Hover Link */}
-      <div className="absolute bottom-[16px] left-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
+      <div className="absolute bottom-[16px] start-[16px] w-full flex opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
         <span className="inline-flex items-center gap-[10px] text-white text-[0.6rem] font-normal uppercase underline">
           <svg
-            className="transition-transform duration-500 group-hover:translate-x-1 shrink-0"
+            className="transition-transform duration-500 ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             width="13"
             height="10"
@@ -79,7 +83,7 @@ export default function EventCard({ id = 1, image, date, month, title, disabled 
               fill="white"
             />
           </svg>
-          view more
+          {t("events.viewMore")}
         </span>
       </div>
     </Link>

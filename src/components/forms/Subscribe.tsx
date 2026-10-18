@@ -14,14 +14,14 @@ export default function Subscribe() {
         {/* Col 1 */}
         <div className="md:col-span-1">
           <h2 className="text-[#1E1E1E] text-[1.5rem] font-medium">
-            Stay Updated With <span className="font-bold">AHCL</span>
+            {t("subscribeSection.title")}
           </h2>
         </div>
 
         {/* Col 2 */}
         <div className="md:col-span-1">
           <p className="text-[#6B6B6B] text-[0.75rem] font-normal leading-relaxed">
-            Join our newsletter for exclusive event invites and industry news.
+            {t("subscribeSection.desc")}
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function Subscribe() {
                 value={divisionId}
                 onChange={(e) => setDivisionId(e.target.value)}
                 disabled={subscribeStatus === "loading"}
-                className="w-full h-full rounded-[4px] border border-[#8D8D8D] p-[16px] pr-[40px] text-[#1E1E1E] text-[0.8rem] font-normal bg-transparent outline-none appearance-none"
+                className="w-full h-full rounded-[4px] border border-[#8D8D8D] p-[16px] pe-[40px] text-[#1E1E1E] text-[0.8rem] font-normal bg-transparent outline-none appearance-none"
               >
                 <option value="">{t("contact.selectDivision")}</option>
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -47,7 +47,7 @@ export default function Subscribe() {
                 ))}
               </select>
               {/* Custom dropdown arrow */}
-              <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="absolute end-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="9"
@@ -67,7 +67,7 @@ export default function Subscribe() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={subscribeStatus === "loading"}
-                placeholder="Email address"
+                placeholder={t("newsletter.placeholder")}
                 className="w-full h-full rounded-[3px] border-0 border-b border-[#C6C6C6] bg-[rgba(255,255,255,0.20)] text-[#1E1E1E] text-[0.8rem] font-normal py-[12px] px-[10px] outline-none placeholder:text-[#6B6B6B]"
               />
             </div>
@@ -79,7 +79,7 @@ export default function Subscribe() {
                 disabled={subscribeStatus === "loading" || !email || !divisionId}
                 className="w-full lg:w-[150px] h-full bg-[#D1A52A] text-[#1E1E1E] rounded-[4px] py-[16px] px-[16px] text-[0.8rem] uppercase flex justify-center items-center tracking-[1px] "
               >
-                {subscribeStatus === "loading" ? t("newsletter.loading") : "Subscribe"}
+                {subscribeStatus === "loading" ? t("newsletter.loading") : t("newsletter.subscribe")}
               </button>
             </div>
           </div>

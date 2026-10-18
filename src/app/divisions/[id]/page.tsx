@@ -12,28 +12,37 @@ type DynamicPageProps = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
   try {
     const { id } = await params;
+    const decodedId = decodeURIComponent(id || "");
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    const data = await getDivisionById(id, locale);
+    const data = await getDivisionById(decodedId, locale);
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const fallbackDesc = locale === "ar" ? "أقسام شركة عبد الله هاشم المحدودة." : "AHCL divisions.";
+
+    if (!data) return { title: `${siteTitle} | ${locale === "ar" ? "الأقسام" : "Divisions"}` };
+
+    const desc = data.description ? data.description.replace(/<[^>]*>/g, "").substring(0, 160) : fallbackDesc;
+
     return {
-      title: `Abdullah Hashim Company | ${data.name || "Divisions"}`,
-      description: data.description?.substring(0, 160) || "AHCL divisions.",
+      title: `${siteTitle} | ${data.name || (locale === "ar" ? "الأقسام" : "Divisions")}`,
+      description: desc,
     };
-  } catch (error) {
+  } catch {
     return {
-      title: "Abdullah Hashim Company | Divisions",
+      title: "Abdullah Hashim Company Limited | Divisions",
     };
   }
 }
 
 export default async function DivisionPage({ params }: DynamicPageProps) {
   const { id } = await params;
+  const decodedId = decodeURIComponent(id || "");
 
   let data;
   try {
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-    data = await getDivisionById(id, locale);
+    data = await getDivisionById(decodedId, locale);
   } catch (error) {
     console.error("Failed to fetch division:", error);
     notFound();

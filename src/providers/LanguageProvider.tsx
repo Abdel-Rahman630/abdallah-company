@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Locale, LanguageContextProps } from "@/types/models";
 import enTranslations from "@/locales/en.json";
 import arTranslations from "@/locales/ar.json";
+import { useGlobalLoading } from "@/providers/LoadingProvider";
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(
   undefined,
@@ -19,6 +20,7 @@ export function LanguageProvider({
 }) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
   const router = useRouter();
+  const { startLoading } = useGlobalLoading();
 
   // Helper to get nested translation keys e.g. "header.store"
   const getNestedTranslation = (
@@ -39,14 +41,24 @@ export function LanguageProvider({
   };
 
   const setLocale = (newLocale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=3159000`;
-    setLocaleState(newLocale);
+    // 1. Show global loading screen first
+    startLoading("lang-switch");
 
-    // Update HTML attributes for client-side immediate feedback
-    document.documentElement.lang = newLocale;
-    document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
+    // 2. Wait for loading screen overlay to appear before updating state & direction
+    setTimeout(() => {
+      document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=3159000; SameSite=Lax`;
+      setLocaleState(newLocale);
 
-    router.refresh(); // Refresh the server components to use new locale
+      // Update HTML attributes for client-side immediate feedback
+      document.documentElement.lang = newLocale;
+      document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
+
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      } else {
+        router.refresh();
+      }
+    }, 150);
   };
 
   return (

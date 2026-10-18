@@ -1,9 +1,26 @@
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
-export const metadata: Metadata = {
-  title: "Abdullah Hashim Company | Privacy Policy",
-  description: "Learn how Abdullah Hashim Company collects, uses, and protects your personal data.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("NEXT_LOCALE")?.value || "en") as string;
+  const siteTitle = lang === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+  const siteName = siteTitle;
+  const pageTitle = lang === "ar" ? "سياسة الخصوصية" : "Privacy Policy";
+  const description = lang === "ar"
+    ? "تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية لدى شركة عبد الله هاشم المحدودة."
+    : "Learn how Abdullah Hashim Company collects, uses, and protects your personal data.";
+
+  return {
+    title: `${siteTitle} | ${pageTitle}`,
+    description,
+    openGraph: {
+      title: `${siteTitle} | ${pageTitle}`,
+      description,
+      siteName,
+    },
+  };
+}
 
 export default function PrivacyPolicyPage() {
   return (

@@ -1,9 +1,12 @@
+"use client";
+
 import YellowButton from "@/components/ui/YellowButton";
 import { RevealText } from "@/components/ui/ScrollReveal";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const ArrowIconBlack = () => (
   <svg
-    className="transition-transform duration-500 group-hover:translate-x-1 shrink-0"
+    className="transition-transform duration-500 ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 shrink-0"
     xmlns="http://www.w3.org/2000/svg"
     width="13"
     height="10"
@@ -18,6 +21,8 @@ const ArrowIconBlack = () => (
 );
 
 export default function JoinUs() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-joinus border-b border-[#565656] py-[40px]">
       <div className="container mx-auto">
@@ -25,19 +30,19 @@ export default function JoinUs() {
           <div className="max-w-2xl">
             <RevealText delay={0.1}>
               <h2 className="text-white text-[1.5rem] font-bold uppercase mb-[10px]">
-                Join Abdullah Hashim Company Limited
+                {t("joinUs.title")}
               </h2>
             </RevealText>
             <RevealText delay={0.2}>
               <p className="text-white text-[0.9rem] font-normal leading-relaxed">
-                Join our team and build your future with AHCL. Explore exciting career opportunities and grow with us.
+                {t("joinUs.description")}
               </p>
             </RevealText>
           </div>
           <div className="shrink-0 flex items-center">
             <RevealText delay={0.3}>
-              <YellowButton href="https://abdullah-hashim-company-ltd.careers-page.com/" target="_blank" icon={<ArrowIconBlack />} className="w-[154px]">
-                Join Us
+              <YellowButton href="https://abdullah-hashim-company-ltd.careers-page.com/" target="_blank" icon={<ArrowIconBlack />} className="min-w-[154px]">
+                {t("joinUs.button")}
               </YellowButton>
             </RevealText>
           </div>

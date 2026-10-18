@@ -9,35 +9,52 @@ import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import ScreenshotButton from "@/components/news/ScreenshotButton";
 import { formatFullDate } from "@/lib/utils";
+import { getT } from "@/lib/getT";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
     const { slug } = await params;
     const cookieStore = await cookies();
     const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-
     const decodedSlug = decodeURIComponent(slug);
-    const res = await getNews({ limit: 100, lang: locale });
-    const matched = (res.data || []).find((n: NewsItem) =>
+
+    const siteTitle = locale === "ar" ? "شركة عبد الله هاشم المحدودة" : "Abdullah Hashim Company Limited";
+    const fallbackDesc = locale === "ar" ? "اقرأ أحدث الأخبار من شركة عبد الله هاشم المحدودة." : "Read the latest news from Abdullah Hashim Company Limited.";
+
+    let res = await getNews({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
-    if (!matched) return { title: "Abdullah Hashim Company | News Details" };
+
+    if (!matched) {
+      const fallbackRes = await getNews({ limit: 100 });
+      matched = (fallbackRes.data || []).find((n: NewsItem) =>
+        n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
+      );
+    }
+
+    if (!matched) return { title: `${siteTitle} | ${locale === "ar" ? "الأخبار" : "News Details"}` };
 
     const news = await getNewsById(String(matched.id), locale);
+    if (!news) return { title: `${siteTitle} | ${locale === "ar" ? "الأخبار" : "News Details"}` };
+
+    const desc = news.excerpt || news.short_description || (news.description ? news.description.replace(/<[^>]*>/g, "").substring(0, 160) : fallbackDesc);
+
     return {
-      title: `Abdullah Hashim Company | ${news.title}`,
-      description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+      title: `${siteTitle} | ${news.title}`,
+      description: desc,
       openGraph: {
-        title: `Abdullah Hashim Company | ${news.title}`,
-        description: news.excerpt || news.short_description || "Read the latest news from Abdullah Hashim Company.",
+        title: `${siteTitle} | ${news.title}`,
+        description: desc,
         type: "article",
         images: news.cover_image ? [{ url: news.cover_image, alt: news.title }] : [],
       },
     };
   } catch {
+    const siteTitle = "Abdullah Hashim Company Limited";
     return {
-      title: "Abdullah Hashim Company | News Details",
-      description: "Read the latest news from Abdullah Hashim Company.",
+      title: `${siteTitle} | News Details`,
+      description: "Read the latest news from Abdullah Hashim Company Limited.",
     };
   }
 }
@@ -46,15 +63,23 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
   const { slug } = await params;
   const cookieStore = await cookies();
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+  const t = getT(locale);
 
   let news;
   try {
     const decodedSlug = decodeURIComponent(slug);
 
-    const res = await getNews({ limit: 100, lang: locale });
-    const matched = (res.data || []).find((n: NewsItem) =>
+    let res = await getNews({ limit: 100, lang: locale });
+    let matched = (res.data || []).find((n: NewsItem) =>
       n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
     );
+
+    if (!matched) {
+      const fallbackRes = await getNews({ limit: 100 });
+      matched = (fallbackRes.data || []).find((n: NewsItem) =>
+        n.slug === decodedSlug || n.slug === slug || String(n.id) === decodedSlug || String(n.id) === slug
+      );
+    }
 
     if (!matched) {
       return notFound();
@@ -65,6 +90,8 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
     console.error("NewsDetailsPage error:", err);
     return notFound();
   }
+
+  if (!news) return notFound();
 
   // Build the images array from the media array, sorted by sort_order
   const mediaImages = (news.media ?? [])
@@ -90,7 +117,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                 className="group inline-flex items-center gap-[10px] text-black text-[1rem] uppercase underline"
               >
                 <svg
-                  className="transition-transform duration-500 group-hover:-translate-x-1 shrink-0"
+                  className="transition-transform duration-500 ltr:group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 shrink-0"
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"
                   height="10"
@@ -102,7 +129,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
                     fill="#1E1E1E"
                   />
                 </svg>
-                back to news &amp; events
+                {t("news.backToNews")}
               </Link>
             </RevealText>
           </div>
@@ -117,7 +144,7 @@ export default async function NewsDetailsPage({ params }: { params: Promise<{ sl
             <RevealText delay={0.3}>
               <div className="flex gap-[1rem] items-center">
                 <span className="text-[#1E1E1E] text-[0.7rem] rounded-[4px] font-bold uppercase bg-[#D1A52A] px-[10px] py-[4px]">
-                  Company News
+                  {t("news.companyNews")}
                 </span>
                 <span className="text-[#D1A52A] text-[0.9rem]">
                   {news.publish_date
