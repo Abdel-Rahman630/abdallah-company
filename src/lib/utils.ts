@@ -8,7 +8,10 @@ export function parseDate(dateStr?: string | null): Date {
   return isNaN(d.getTime()) ? new Date() : d;
 }
 
-export function formatDateParts(dateStr?: string | null, locale: string = "en-US") {
+export function formatDateParts(
+  dateStr?: string | null,
+  locale: string = "en-US",
+) {
   const d = parseDate(dateStr);
   return {
     day: String(d.getDate()).padStart(2, "0"),
@@ -19,7 +22,10 @@ export function formatDateParts(dateStr?: string | null, locale: string = "en-US
   };
 }
 
-export function formatFullDate(dateStr?: string | null, locale: string = "en-GB"): string {
+export function formatFullDate(
+  dateStr?: string | null,
+  locale: string = "en-GB",
+): string {
   const d = parseDate(dateStr);
   return d.toLocaleDateString(locale, {
     day: "2-digit",
@@ -28,7 +34,10 @@ export function formatFullDate(dateStr?: string | null, locale: string = "en-GB"
   });
 }
 
-export function formatTime(dateStr?: string | null, locale: string = "en-US"): string {
+export function formatTime(
+  dateStr?: string | null,
+  locale: string = "en-US",
+): string {
   const d = parseDate(dateStr);
   return d.toLocaleTimeString(locale, {
     hour: "2-digit",
@@ -65,7 +74,9 @@ export function formatCtaUrl(url?: string): string {
 export function truncateText(text: string | undefined, max: number): string {
   if (!text) return "";
   const clean = text.replace(/<[^>]*>/g, "").trim();
-  return clean.length > max ? clean.substring(0, max).trimEnd() + "\u2026" : clean;
+  return clean.length > max
+    ? clean.substring(0, max).trimEnd() + "\u2026"
+    : clean;
 }
 
 /**
@@ -80,9 +91,15 @@ export function normalizeImageUrl(url?: string | null): string {
   let cleanUrl = url.trim();
 
   // 1. Division images MUST be hosted on cms.ahcl.com.sa
-  if (cleanUrl.includes("/uploads/cms/divisions/") || cleanUrl.includes("/uploads/divisions/")) {
+  if (
+    cleanUrl.includes("/uploads/cms/divisions/") ||
+    cleanUrl.includes("/uploads/divisions/")
+  ) {
     if (cleanUrl.startsWith("http://") || cleanUrl.startsWith("https://")) {
-      cleanUrl = cleanUrl.replace(/https?:\/\/[^\/]+(?:\/ahcl-crm)?\/uploads\//g, "https://cms.ahcl.com.sa/uploads/");
+      cleanUrl = cleanUrl.replace(
+        /https?:\/\/[^\/]+(?:\/ahcl-crm)?\/uploads\//g,
+        "https://cms.ahcl.com.sa/uploads/",
+      );
     } else {
       if (cleanUrl.startsWith("/uploads/")) {
         cleanUrl = `https://cms.ahcl.com.sa${cleanUrl}`;
@@ -97,7 +114,10 @@ export function normalizeImageUrl(url?: string | null): string {
 
   // 2. For pages (e.g. /pages/home/): convert cms.ahcl.com.sa to digital-iconcreations.com/ahcl-crm
   if (cleanUrl.includes("/uploads/cms/pages/")) {
-    cleanUrl = cleanUrl.replace(/https?:\/\/cms\.ahcl\.com\.sa\/uploads\//g, "https://digital-iconcreations.com/ahcl-crm/uploads/");
+    cleanUrl = cleanUrl.replace(
+      /https?:\/\/cms\.ahcl\.com\.sa\/uploads\//g,
+      "https://digital-iconcreations.com/ahcl-crm/uploads/",
+    );
   }
 
   // 3. Handle relative upload paths
@@ -114,4 +134,3 @@ export function normalizeImageUrl(url?: string | null): string {
 
   return cleanUrl;
 }
-

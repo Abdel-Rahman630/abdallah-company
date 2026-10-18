@@ -11,8 +11,8 @@ export default function VideoSection({ fields }: VideoSectionProps) {
   const subtitle = fields?.subtitle;
 
   return (
-    <section className="relative h-[700px] w-full">
-      {videoUrl && (
+    <section className="relative h-[700px] w-full overflow-hidden bg-black">
+      {videoUrl ? (
         <video
           key={videoUrl}
           className="w-full h-full object-cover"
@@ -24,7 +24,13 @@ export default function VideoSection({ fields }: VideoSectionProps) {
           poster={posterUrl || undefined}
           aria-hidden="true"
         />
-      )}
+      ) : posterUrl ? (
+        <img
+          src={posterUrl}
+          alt={title || "Hero banner"}
+          className="w-full h-full object-cover"
+        />
+      ) : null}
 
       {/* Overlay Layer */}
       <div className="absolute inset-0 bg-video-overlay z-10 pointer-events-none" />
