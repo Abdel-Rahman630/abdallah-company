@@ -30,6 +30,10 @@ jobs:
             echo "Installing dependencies..."
             npm install
 
+            echo "Ensuring correct environment configuration on VPS..."
+            echo "NEXT_PUBLIC_API_URL=https://digital-iconcreations.com/ahcl-crm" > .env.production
+            echo "NEXT_PUBLIC_API_URL=https://digital-iconcreations.com/ahcl-crm" > .env.local
+
             echo "Building project..."
             rm -rf .next
             npm run build

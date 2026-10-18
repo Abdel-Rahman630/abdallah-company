@@ -98,15 +98,15 @@ export function normalizeImageUrl(url?: string | null): string {
     if (cleanUrl.startsWith("http://") || cleanUrl.startsWith("https://")) {
       cleanUrl = cleanUrl.replace(
         /https?:\/\/[^\/]+(?:\/ahcl-crm)?\/uploads\//g,
-        "https://digital-iconcreations.com/ahcl-crm/uploads/",
+        "https://cms.ahcl.com.sa/uploads/",
       );
     } else {
       if (cleanUrl.startsWith("/uploads/")) {
-        cleanUrl = `https://digital-iconcreations.com/ahcl-crm${cleanUrl}`;
+        cleanUrl = `https://cms.ahcl.com.sa${cleanUrl}`;
       } else if (cleanUrl.startsWith("uploads/")) {
-        cleanUrl = `https://digital-iconcreations.com/ahcl-crm/${cleanUrl}`;
+        cleanUrl = `https://cms.ahcl.com.sa/${cleanUrl}`;
       } else if (cleanUrl.startsWith("/")) {
-        cleanUrl = `https://digital-iconcreations.com/ahcl-crm${cleanUrl}`;
+        cleanUrl = `https://cms.ahcl.com.sa${cleanUrl}`;
       }
     }
     return cleanUrl.replace(/^http:\/\//g, "https://");
