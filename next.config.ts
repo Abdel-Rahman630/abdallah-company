@@ -1,17 +1,14 @@
 import type { NextConfig } from "next";
 
-const rawApi = process.env.NEXT_PUBLIC_API_URL?.trim();
 const API_BASE =
-  rawApi && !rawApi.includes("cms.ahcl.com.sa")
-    ? rawApi
-    : "https://digital-iconcreations.com/ahcl-crm";
+  process.env.NEXT_PUBLIC_API_URL?.trim() || "https://cms.ahcl.com.sa";
 
 const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa https://digital-iconcreations.com;
-  media-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa https://digital-iconcreations.com;
+  img-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa;
+  media-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
@@ -33,10 +30,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cms.ahcl.com.sa",
-      },
-      {
-        protocol: "https",
-        hostname: "digital-iconcreations.com",
       },
     ],
   },

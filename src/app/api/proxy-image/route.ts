@@ -26,7 +26,6 @@ export async function GET(req: NextRequest) {
       apiDomain,
       "admin.ahcl.com.sa",
       "cms.ahcl.com.sa",
-      "digital-iconcreations.com",
       "ahcl.com.sa"
     ].filter(Boolean);
 
