@@ -13,10 +13,15 @@ const API_BASE_URL = isServer
 
 import { FetchOptions } from "@/types/models";
 
-export async function apiGet<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
+export async function apiGet<T>(
+  endpoint: string,
+  options: FetchOptions = {},
+): Promise<T> {
   const { revalidate, tags, ...fetchOptions } = options;
 
-  const nextOptions: { next?: { revalidate?: number | false; tags?: string[] } } = {};
+  const nextOptions: {
+    next?: { revalidate?: number | false; tags?: string[] };
+  } = {};
   if (isServer && (revalidate !== undefined || tags)) {
     nextOptions.next = {};
     if (revalidate !== undefined) nextOptions.next.revalidate = revalidate;
@@ -33,18 +38,20 @@ export async function apiGet<T>(endpoint: string, options: FetchOptions = {}): P
   });
 
   if (!response.ok) {
-    throw new Error(`API error ${response.status}: ${response.statusText} — ${endpoint}`);
+    throw new Error(
+      `API error ${response.status}: ${response.statusText} — ${endpoint}`,
+    );
   }
 
-  const data = await response.json() as T;
- 
+  const data = (await response.json()) as T;
+
   return data;
 }
 
 export async function apiPost<TBody, TResponse>(
   endpoint: string,
   body: TBody,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<TResponse> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: "POST",
@@ -57,10 +64,12 @@ export async function apiPost<TBody, TResponse>(
   });
 
   if (!response.ok) {
-    throw new Error(`API error ${response.status}: ${response.statusText} — ${endpoint}`);
+    throw new Error(
+      `API error ${response.status}: ${response.statusText} — ${endpoint}`,
+    );
   }
 
-  const data = await response.json() as TResponse;
+  const data = (await response.json()) as TResponse;
 
   return data;
 }

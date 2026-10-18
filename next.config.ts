@@ -7,13 +7,17 @@ const cspHeader = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa https://digital-iconcreations.com;
+  media-src 'self' blob: data: https: http://cms.ahcl.com.sa https://cms.ahcl.com.sa https://digital-iconcreations.com;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
   connect-src 'self' https:;
   frame-src 'self' https://maps.google.com https://www.google.com;
   frame-ancestors 'none';
-`.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
+`
+  .replace(/\n/g, "")
+  .replace(/\s+/g, " ")
+  .trim();
 
 const nextConfig: NextConfig = {
   images: {
