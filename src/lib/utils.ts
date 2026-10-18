@@ -45,7 +45,7 @@ export function formatTime(
     hour12: true,
   });
 }
-
+ 
 /**
  * Formats full CMS external URLs (e.g. https://www.ahcl.com.sa/about-us)
  * to internal route paths (e.g. /about-us) if applicable.
